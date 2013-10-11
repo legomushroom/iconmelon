@@ -1,0 +1,5 @@
+define 'views/DropdownItemView', ['views/ProtoView', 'underscore'], (ProtoView, _)->
+	class DropdownItemView extends ProtoView
+		template: '#dropdown-item-template'
+		className: ''
+	DropdownItemView

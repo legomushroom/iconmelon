@@ -1848,6 +1848,19 @@ a.is-hoverable:hover:after {
   border-style: solid;
   border-color: #3fb8af;
 }
+.icon-select-view-b > .btn-b {
+  float: right;
+  width: 160px;
+}
+.icon-select-view-b > .input-with-icon-b {
+  float: left;
+  width: 160px;
+}
+.icon-select-view-b > .content-bl {
+  outline: 1px solid #3fb8af;
+  clear: both;
+  margin-top: 64px;
+}
 .main-logo-b {
   width: 176px;
   text-align: center;
@@ -1869,8 +1882,12 @@ a.is-hoverable:hover:after {
   height: 56px;
   padding-top: 18px;
   padding-left: 24px;
-  background-color: rgba(255,255,255,0.2);
+  background-color: rgba(255,255,255,0.9);
   position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
 }
 .main-header-b.is-convex {
   box-shadow: 0 4px 0 rgba(59,59,58,0.2);
@@ -1982,7 +1999,7 @@ a.is-hoverable:hover:after {
   width: 56px;
   border-radius: 3px;
   font-size: 12px;
-  line-height: 16px;
+  line-height: 14px;
   padding-left: 24px;
   height: 16px;
   z-index: 2;
@@ -2048,8 +2065,6 @@ a.is-hoverable:hover:after {
   white-space: nowrap;
   -webkit-text-overflow: ellipsis;
   -moz-text-overflow: ellipsis;
-  -khtml-text-overflow: ellipsis;
-  -icab-text-overflow: ellipsis;
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -2061,6 +2076,7 @@ a.is-hoverable:hover:after {
 .input-with-icon-b .input-e {
   padding-left: 40px;
   float: left;
+  width: 100%;
 }
 .input-with-icon-b .input-e:focus + .icon {
   fill: #3fb8af;
@@ -2182,6 +2198,12 @@ a.is-hoverable:hover:after {
     background-position: 50px 50px;
   }
 }
+#main-l {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 64px;
+  min-width: 480px;
+}
 .box-shadow-down-eff {
   box-shadow: 0 4px 0 rgba(59,59,58,0.2);
 }
@@ -2232,4 +2254,11 @@ a.is-hoverable:hover:after {
 }
 .icon.is-dropup-arrow.is-reverse rect {
   clip-path: url("#dropdown-arrow-path");
+}
+.main-page-p .main-logo-b {
+  margin: 0 auto;
+  margin-top: 128px;
+}
+.main-page-p .icon-select-view-b {
+  margin-top: 120px;
 }

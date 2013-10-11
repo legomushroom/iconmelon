@@ -4,7 +4,33 @@ html
 		meta(charset='UTF-8')
 		title Document
 		link(rel="stylesheet", type="text/css", href="css/main.css")
-	body
+		link(rel="stylesheet", href="css/css-assets/font/stylesheet.css", type="text/css", charset="utf-8")
 
-		script(type="text/javascript", src="js/lib/jquery-2.0.1.js")
-		script(type="text/javascript", src="js/main.js")
+	body
+		.main-header-b#js-main-header
+			a(href="#").logo-tiny-e
+			a(href="#").menu-item-be.is-hoverable use
+			a(href="#").menu-item-be.is-hoverable support
+			a(href="#").menu-item-be.is-hoverable contribute
+
+		section#main-l
+
+
+		script(id="main-template", type="template")
+			include templates/main-page
+
+		script(id="icon-select-view-template", type="template")
+			include templates/icon-select-view
+
+		script(id="button-counter-template", type="template")
+			include templates/button-counter
+
+		script(id="icon-view-template", type="template")
+			include templates/icon-view
+
+		script(id="icons-collection-view-template", type="template")
+			include templates/icons-collection-view
+
+
+		include css/icons.svg
+		script(type='text/javascript', src='js/lib/require.js', data-main='js/main')

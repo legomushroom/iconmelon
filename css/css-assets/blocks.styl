@@ -1,6 +1,21 @@
 // BLOCKS
 @import '../assets/imports.styl'
 
+/* 47a89f9dc70629feb99b65583ce49f4a */
+.icon-select-view-b
+	> .btn-b
+		float right
+		width 20*gs
+
+	> .input-with-icon-b
+		float left
+		width 20*gs
+
+	> .content-bl
+		hl c-green
+		clear both
+		margin-top 8*gs
+
 
 /* 19d8650be161cd15c32961dab15941ab */
 .main-logo-b
@@ -26,8 +41,11 @@
 	height 7*gs
 	padding-top 2*gs + 2px
 	padding-left 3*gs
-	background-color rgba(255,255,255,.2)
+	background-color rgba(255,255,255,.9)
 	position fixed
+	nw 0
+	width 100%
+	z-index: 10
 
 	&.is-convex
 		downShadow()
@@ -129,7 +147,7 @@
 			width 7*gs
 			border-radius br
 			font-size 12px
-			line-height 2*gs
+			line-height 2*gs - 2px
 			padding-left 3*gs
 			height 2*gs
 			z-index: 2
@@ -190,6 +208,7 @@ shadowSize = 2px
 	.input-e
 		padding-left 5*gs
 		float left
+		width 100%
 
 		&:focus + .icon
 			fill c-green

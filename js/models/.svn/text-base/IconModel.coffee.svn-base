@@ -1,0 +1,44 @@
+define 'models/IconModel', ['models/ProtoModel', 'md5'], (ProtoModel, md5)->
+	class IconModel extends ProtoModel
+		defaults:
+			isDeleted: false
+			isCurrent: false
+			isCollectionDeleted: false
+			hoverState: false
+			xCoordHover: false
+			yCoordHover: false
+			isNameValid: false
+
+		initialize:->
+			@set 'guid', md5(new Date() + new Date().getMilliseconds() + Math.random(999999) + Math.random(999999) )
+			@on 'change:name', 	@validateName
+			
+		validateName:->
+			name = $.trim @get 'name'
+			valid = true
+			for iconCollection in App.iconsCollection.collectionData
+				iconCollection.each (model)=>
+					if $.trim(model.get('name')) is name and @ isnt model and @get('isMainIcon') and model.get('isMainIcon')
+						valid = false
+
+			if !name.length then valid = false
+			@set 'isNameValid', valid
+
+		setRelativeCoordinates:(index)->
+			if !@get('isMainIcon')
+				@set 'yCoord', index + ~~@collection.mainIcon.get('yCoord')
+				@set 'xCoord', @collection.mainIcon.get 'xCoord'
+
+		toggleHoverState:->
+			if @get('hoverState')
+				@set 'hoverState', false
+			else
+				@set 'hoverState', true
+				@setHoverToMainCoords()
+
+		setHoverToMainCoords:->
+			@set 'xCoordHover', @get 'xCoord'
+			@set 'yCoordHover', @get 'yCoord'
+
+
+	IconModel

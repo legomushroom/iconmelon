@@ -8,8 +8,6 @@
   white-space: nowrap;
   -webkit-text-overflow: ellipsis;
   -moz-text-overflow: ellipsis;
-  -khtml-text-overflow: ellipsis;
-  -icab-text-overflow: ellipsis;
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
   overflow: hidden;

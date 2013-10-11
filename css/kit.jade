@@ -20,6 +20,9 @@ html
 					.color-sample-ke.c-red2-bg-gm
 					.color-sample-ke.c-green-bg-gm
 
+			//- - var rectStyle = ''
+			- var cnt = ''
+
 			.section-kl
 				.header-ke Icons
 				.cf 
@@ -74,13 +77,9 @@ html
 				include partials/input
 
 				.hash-e caa0608fbfea0f959bf1ce698d2327e6
-				.input-with-icon-b
-
-					- var placeholder = 'search'
-					include partials/input
-					
-					- var className = 'is-search'
-					include partials/icon.jade
+				- var placeholder 	= 	'search'
+				- var iconClass 	=	'is-search'
+				include partials/input-with-icon
 
 				.hash-e c303475264eeb60de2ad66c5e5cfbce6
 				- var iconClassName = 'is-twitter'
@@ -139,6 +138,19 @@ html
 					a(href="#").menu-item-be.is-hoverable support
 					a(href="#").menu-item-be.is-hoverable contribute
 
+
+				.hash-e 47a89f9dc70629feb99b65583ce49f4a
+				.icon-select-view-b.cf
+
+					- var text = 'download'
+					- var className = 'is-counter'
+					include partials/button
+
+					- var placeholder 	= 	'search'
+					- var iconClass 	=	'is-search'
+					include partials/input-with-icon
+
+					.content-bl
 
 
 

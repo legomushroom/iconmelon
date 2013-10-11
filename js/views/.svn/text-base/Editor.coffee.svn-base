@@ -1,0 +1,65 @@
+define 'views/Editor', [
+					'views/ProtoView'
+					'backbone'
+					'collections/IconsCollection'
+					'collections/IconCollection'
+					'collectionViews/IconsCollectionView'
+					], (ProtoView
+						Backbone
+						IconsCollection
+						IconCollection
+						IconsCollectionView)->
+	class Editor extends ProtoView
+		template: '#editor-template'
+		GRID_DELAY: 200
+
+		initialize:(@o={})->
+			@model?.on 'change:imageHeight', @render
+			@model?.on 'change:imageWidth',	 @render
+
+		render:->
+			super
+			App.addRegions icons: '#js-icons-region'
+			@$grid 	= @$('.js-grid')
+
+			!@imgLoaded and @loadImage()
+			@showIcons()
+			@showGrid()
+			
+			@
+
+		showGrid:->
+			clearTimeout @gridTimeout
+			@gridTimeout = setTimeout =>
+				gridSize = @model.get 'iconSize'
+				gridWidth = 1
+				gridColor = 'white'
+
+				@$grid.css
+					'background-image': 	"repeating-linear-gradient(0deg, #{gridColor}, #{gridColor} 0px, transparent #{gridWidth}px, transparent #{gridSize}px), repeating-linear-gradient(-90deg, #{gridColor}, #{gridColor} 0px, transparent #{gridWidth}px, transparent #{gridSize}px)"
+					'background-size': 		"#{gridSize}px #{gridSize}px"
+					'background-position': 	"#{gridWidth/2}px #{gridWidth/2}px"
+
+			, @GRID_DELAY
+
+		loadImage:->
+			@imgLoaded = true
+			@$img = $('<img>').on 'load', =>
+				@model.set 'imageHeight', 	@$img[0].height
+				@model.set 'imageWidth', 	@$img[0].width
+			@$img[0].src = @model.get 'url'
+
+		showIcons:->
+			_.defer =>
+				@iconsCollection 		= new IconsCollection @o.theme.data
+
+				@iconsCollectionView 	= new IconsCollectionView
+												collection: 	@iconsCollection
+												columnSize: 	@columnSize
+												rowSize: 		@rowSize
+												url: 			@model.get 'url'
+												theme: 			@model.get('theme') or ''
+				
+				App.icons.show @iconsCollectionView
+
+	Editor

@@ -1,0 +1,19 @@
+define 'views/notifier', [ 	'collections/noties-collection'
+							'collectionViews/noties-collection-view'
+							], (NotiesCollection, NotiesCollectionView)->
+
+
+	class Notifier
+		constructor:(@o={})->
+			@collectionView 	= new NotiesCollectionView
+									collection: new NotiesCollection
+
+			@$el = @collectionView.render().$el
+
+		add:(data)->
+			@collectionView.collection.add data
+
+
+	notifier = new Notifier
+	$('#js-notifier-place').append notifier.$el
+	notifier

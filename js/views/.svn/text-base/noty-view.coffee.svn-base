@@ -1,0 +1,25 @@
+define 'views/noty-view', ['views/ProtoView'], (ProtoView)->
+	class NotyView extends ProtoView
+		template: '#noty-view-template'
+		className: ->
+			"noty-b h-gm is-#{@model.get 'type'}"
+
+		events:
+			'click': 'hide'
+
+		render:->
+			super
+			@$el.fadeIn 'fast'
+			
+			@timer = setTimeout =>
+				@hide()
+			, @model.get('delay') or 5000
+
+			@
+
+		hide:->
+			@$el.fadeOut 'fast', =>
+				@model.destroy()
+
+
+	NotyView

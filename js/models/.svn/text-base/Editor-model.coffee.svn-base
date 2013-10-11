@@ -1,0 +1,14 @@
+define 'models/Editor-model', ['models/ProtoModel'], (ProtoModel)->
+	class EditorModel extends ProtoModel
+		defaults:
+			imageHeight: 0
+			imageWidth: 9999
+			iconSize: 36
+			isValid: false
+
+		initialize:(@o={})->
+			super
+			@themes = @o.themes
+			@
+			
+	EditorModel
