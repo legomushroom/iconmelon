@@ -1,0 +1,323 @@
+// BLOCKS
+@import '../assets/imports.styl'
+
+
+/* 19d8650be161cd15c32961dab15941ab */
+.main-logo-b
+	width 22*gs
+	text-align center
+
+	> .logo-large-e
+		margin 0 auto
+
+	> .name-be
+		font-size 52px
+		margin-top - 2*gs + 2px
+
+	> .description-be
+		font-size 19px
+		margin-top - (gs/2)
+
+
+/* 9f594b08a3b87a497c4f5b4592e970e4 */
+.main-header-b
+	font-size 20px
+	color c-grey1
+	height 7*gs
+	padding-top 2*gs + 2px
+	padding-left 3*gs
+	background-color rgba(255,255,255,.2)
+	position fixed
+
+	&.is-convex
+		downShadow()
+
+	> .logo-tiny-e
+		margin-top - gs
+		display: block
+		float left
+
+	> a
+		display inline-block
+
+		+ .menu-item-be
+			margin-left 3*gs
+
+/* d31599d6c04918e3e54b3383d136855e */
+.section-b
+	+ .section-b
+		margin-top 3*gs
+
+	&.is-closed
+		> .content-bl
+			height 0
+			overflow hidden
+
+	> .content-bl
+		margin-top 3*gs
+
+	.icon-with-text-b
+		float left
+		margin (gs)
+		margin-top 0
+
+/* 22c3f29200c646ede875bdad751d0ed5 */
+.section-header-b
+	color c-grey2
+	font-size 4*gs
+
+	> .name-be
+		display inline-block
+
+	> .icons-bl
+		display inline-block
+		margin-left gs
+		position: relative 
+		top -2px
+
+	.icon
+		float left
+		rect 1.5*gs
+
+		+ .icon
+			margin-left gs
+
+/* 79578151cf3186d5d1ece15f3defd4b7 */
+.icon-with-text-b
+	width  7*gs
+	height 7*gs + 2px
+	padding-top 1px
+	border-radius br
+	color c-grey2
+	cursor pointer
+	border 1px solid transparent
+	position relative
+	cbox()
+
+	&:hover, &.is-check
+		color c-green
+
+		> .icon
+			fill c-green
+
+	&:hover
+		background-color rgba(0,0,0,.05)
+
+	/* 5ac5220f1049eb20597200b73202b468 */
+	&.is-check
+		border 1px solid c-grey2
+
+		> .bullet-be
+			display block
+
+	> .bullet-be
+		position absolute
+		display none
+		rect gs
+		background-color white
+		border-radius 50%
+		border 1px solid c-grey2
+		left 100%
+		margin-left - (gs/2)
+		top 50%
+		bbox()
+		color white
+		font-size 0
+		z-index: 1
+
+		&:hover, &.is-expanded
+			width 7*gs
+			border-radius br
+			font-size 12px
+			line-height 2*gs
+			padding-left 3*gs
+			height 2*gs
+			z-index: 2
+			border 0
+
+	> .hover-be
+		margin-top - 2*gs - 1px
+		&.is-check, &:hover, &.is-expanded
+			border 0
+			background-color c-red1
+
+		&:hover, &.is-expanded
+			margin-top - 2.5*gs - 1px
+
+
+	> .active-be
+		margin-top - gs + 2px
+		&.is-check, &:hover,  &.is-expanded
+			border 0
+			background-color c-red2
+
+		&:hover, &.is-expanded
+			margin-top - 1.5*gs + 2px
+
+
+	> .focus-be
+		margin-top  5px
+		&.is-check, &:hover,  &.is-expanded
+			border 0
+			background-color c-green
+
+		&:hover, &.is-expanded
+			margin-top - (gs/2) + 5px
+
+
+
+	> .icon
+		margin 0 auto
+		margin-top 1px
+		// rect 3*gs
+	
+	> .text-be
+		font-size 20px
+		text-align center
+		margin-top 2px
+		max-width 100%
+		padding 0 (gs/2)
+		textel()
+
+
+
+shadowSize = 2px
+/* caa0608fbfea0f959bf1ce698d2327e6 */
+.input-with-icon-b
+	position relative
+	display inline-block
+
+	.input-e
+		padding-left 5*gs
+		float left
+
+		&:focus + .icon
+			fill c-green
+
+	.icon
+		position absolute
+		left 	gs + 4
+		top 	gs - 2
+		rect 	2.5*gs
+
+	
+
+shadowSize = 2px
+/* e8dcf44767bba63ed03de6691a1a44f7 */
+.btn-b
+	btnHeight = 4*gs
+	background c-green
+	height 		btnHeight
+	line-height btnHeight
+	position relative
+	display: inline-block
+	padding 0 4*gs
+	color white
+	cursor pointer
+	border-radius br
+	box-shadow shadowSize shadowSize 0 rgba(rgb(c-grey1), .2)
+	font-size 20px
+
+	&:hover
+		background c-green-hover
+	&:active
+		transform translate(shadowSize,shadowSize)
+		box-shadow none
+		background c-green
+	&.is-loading
+		background-image: -webkit-linear-gradient(-45deg, rgba(255,255,255,.2) 25%, rgba(255, 154, 26, 0) 25%, rgba(255, 154, 26, 0) 50%, rgba(255,255,255,.2) 50%, rgba(255,255,255,.2) 75%, rgba(255, 154, 26, 0) 75%);
+		background-image: -moz-linear-gradient(-45deg, rgba(255,255,255,.2) 25%, rgba(255, 154, 26, 0) 25%, rgba(255, 154, 26, 0) 50%, rgba(255,255,255,.2) 50%, rgba(255,255,255,.2) 75%, rgba(255, 154, 26, 0) 75%);
+		background-image: -o-linear-gradient(-45deg, rgba(255,255,255,.2) 25%, rgba(255, 154, 26, 0) 25%, rgba(255, 154, 26, 0) 50%, rgba(255,255,255,.2) 50%, rgba(255,255,255,.2) 75%, rgba(255, 154, 26, 0) 75%);
+		background-image: linear-gradient(-45deg, rgba(255,255,255,.2) 25%, rgba(255, 154, 26, 0) 25%, rgba(255, 154, 26, 0) 50%, rgba(255,255,255,.2) 50%, rgba(255,255,255,.2) 75%, rgba(255, 154, 26, 0) 75%);
+		background-size: 50px 50px;
+		-webkit-animation: flat-btn-loading-stripes 2s linear infinite;
+		-moz-animation: flat-btn-loading-stripes 2s linear infinite;
+		-ms-animation: flat-btn-loading-stripes 2s linear infinite;
+		animation: flat-btn-loading-stripes 2s linear infinite;
+
+	/* 3dd69df51d0449f7f9db27fe23b7cef6 */
+	&.is-inactive
+		background-color c-grey2
+		box-shadow none
+		cursor default
+
+		&:active
+			transform none
+	
+	/* 852b2351c7cfac250ba678d22d731ee3 */
+	&.is-counter
+		padding-left 8*gs
+
+		&:after
+			content attr(data-cnt)
+			height 3*gs
+			padding 0 (gs)
+			display inline-block
+			background-color c-red1
+			border-radius 50%
+			position absolute
+			top (gs/2)
+			left 2*gs + (gs/2)
+			text-align center
+			color white
+			line-height 3*gs + 2px
+
+		&.is-two-digits
+			// 4!
+			&:after
+				padding 0 (gs - 3px)
+
+		&.is-three-digits
+			// 4!
+			&:after
+				padding 0 (gs/2)
+				font-size 14px
+
+
+
+
+
+
+@-webkit-keyframes flat-btn-loading-stripes {
+    0%   { background-position: 0 0; }
+    100% { background-position: 50px 50px; }
+}
+
+@-moz-keyframes flat-btn-loading-stripes {
+    0%   { background-position: 0 0; }
+    100% { background-position: 50px 50px; }
+}
+
+@-ms-keyframes flat-btn-loading-stripes {
+    0%   { background-position: 0 0; }
+    100% { background-position: 50px 50px; }
+}
+
+@-webkit-keyframes flat-btn-loading-stripes {
+    0%   { background-position: 0 0; }
+    100% { background-position: 50px 50px; }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

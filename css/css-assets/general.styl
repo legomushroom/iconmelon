@@ -1,0 +1,99 @@
+// GENERAL
+@import '../assets/imports.styl'
+
+
+body
+	color c-grey1
+	font-family 'dense'
+	letter-spacing 1px
+
+@css{
+	::selection{
+		background-color: #E83F7D;
+	    color: white;
+	    text-shadow: none;
+	}
+}
+
+a
+	color c-grey1
+	text-decoration none
+	position relative
+
+	&.is-hoverable
+		&:after
+			content ''
+			position absolute
+			display none
+
+			width 100%
+			height 2px
+			left -2px
+			bottom - (gs/2)
+			border 1px solid transparent
+			border-top-color    c-grey1
+			border-bottom-color c-grey1
+
+		&:hover
+			// 4!
+			&:after
+				display block
+
+
+.float-left-gm,  .f-l-gm
+	float left
+.float-right-gm, .f-r-gm
+	float right
+
+
+.h-gm
+	display none
+.h-gm-i
+	display none II
+
+
+// CLEARFIX
+.cf:after,
+.cf:before {
+    content: '';
+    display: table;
+}
+.cf:after {
+    clear: both;
+}
+.cf {
+    zoom: 1;
+}
+
+
+metrics()
+	maxSize = 100
+	short = w h
+	long  = width height
+	for property, j in long
+		for i in 1..maxSize
+			.{property}-x{i}-gm, .{short[j]}-x{i}-gm
+				{property} i*gs
+	
+	maxSize = 20
+	short = m p
+	long  = margin padding
+	for property, j in long
+		for i in 1..maxSize
+			shortSide = -l -r -t -b ''
+			longSide  = -left -right -top -bottom ''
+			for prop, x in longSide
+
+				.{property}{prop}-x{i}-gm, .{short[j]}{shortSide[x]}-x{i}-gm
+					{property}{prop} i*gs
+
+
+colors()
+	colors 		=  c-red1   c-red2   c-green   c-grey1   c-grey2
+	colorsNames = 'c-red1' 'c-red2' 'c-green' 'c-grey1' 'c-grey2'
+	for color, i in colors
+		.{colorsNames[i]}-bg-gm
+			background-color color
+			
+metrics()
+colors()

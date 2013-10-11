@@ -1,0 +1,48 @@
+.icon {
+  width: 32px;
+  height: 32px;
+  fill: #d7d8d8;
+  display: block;
+/* 16139bdc1fb5bf21a3cb1769f714013a */
+/* 9e78a293b56b43a69cf374ae4ad9f495 */
+/* 5b2c9e1ee9d3e0e4ba56b2f8dea24f47 */
+/* fcca51eabd6ffa4a4ac157dfef02b2f7 */
+/* eafa14efc63037c35f910646115714b7 */
+/* 88802f98579d36bc528690c035360653 */
+}
+.icon.is-hoverable:hover {
+  fill: #cacbcb;
+  cursor: pointer;
+}
+.icon.is-green--onhover:hover {
+  fill: #4ec2ba;
+  cursor: pointer;
+}
+.icon.is-red1--onhover:hover {
+  fill: #ff5790;
+  cursor: pointer;
+}
+.icon.is-search rect {
+  clip-path: url("icons.svg#search-path");
+}
+.icon.is-twitter rect {
+  clip-path: url("icons.svg#twitter-path");
+}
+.icon.is-tick rect {
+  clip-path: url("icons.svg#tick-path");
+}
+.icon.is-close rect {
+  clip-path: url("icons.svg#close-path");
+}
+.icon.is-dropdown-arrow rect {
+  clip-path: url("icons.svg#dropdown-arrow-path");
+}
+.icon.is-dropdown-arrow.is-reverse rect {
+  clip-path: url("icons.svg#dropup-arrow-path");
+}
+.icon.is-dropup-arrow rect {
+  clip-path: url("icons.svg#dropup-arrow-path");
+}
+.icon.is-dropup-arrow.is-reverse rect {
+  clip-path: url("icons.svg#dropdown-arrow-path");
+}

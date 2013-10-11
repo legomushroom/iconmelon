@@ -1,0 +1,158 @@
+!!!5
+html
+	head
+		meta(charset='UTF-8')
+		title Iconmellon UI kit
+		link(rel="stylesheet", type="text/css", href="main.css")
+		link(rel="stylesheet", type="text/css", href="css-assets/kit.css")
+		script(src="css-assets/font/specimen_files/easytabs.js", type="text/javascript",charset="utf-8")
+		link(rel="stylesheet", href="css-assets/font/stylesheet.css", type="text/css", charset="utf-8")
+	body
+		.main-kl
+			.section-kl
+				.header-ke Colors
+				.cf 
+					.color-sample-ke.c-grey1-bg-gm
+					.color-sample-ke.c-grey2-bg-gm
+
+				.cf
+					.color-sample-ke.c-red1-bg-gm
+					.color-sample-ke.c-red2-bg-gm
+					.color-sample-ke.c-green-bg-gm
+
+			.section-kl
+				.header-ke Icons
+				.cf 
+					.icon-sample-kl
+						.hash-e 16139bdc1fb5bf21a3cb1769f714013a
+						- var className = 'is-search'
+						include partials/icon
+
+					.icon-sample-kl
+						.hash-e 9e78a293b56b43a69cf374ae4ad9f495
+						- var className = 'is-twitter'
+						include partials/icon
+
+					.icon-sample-kl
+						.hash-e 5b2c9e1ee9d3e0e4ba56b2f8dea24f47
+						- var className = 'is-tick'
+						include partials/icon
+
+					.icon-sample-kl
+						.hash-e fcca51eabd6ffa4a4ac157dfef02b2f7
+						- var className = 'is-close'
+						include partials/icon
+
+					.icon-sample-kl
+						.hash-e eafa14efc63037c35f910646115714b7
+						- var className = 'is-dropdown-arrow'
+						include partials/icon
+
+					.icon-sample-kl
+						.hash-e 771324a444f27698e359bb0c4524cd40
+						- var className = 'is-dropup-arrow'
+						include partials/icon
+
+			.section-kl
+				.header-ke Elements
+				.hash-e e8dcf44767bba63ed03de6691a1a44f7
+				- var text = 'download'
+				include partials/button
+
+				.hash-e 3dd69df51d0449f7f9db27fe23b7cef6
+				- var text = 'download'
+				- var className = 'is-inactive'
+				include partials/button
+
+				.hash-e 852b2351c7cfac250ba678d22d731ee3
+				- var text = 'download'
+				- var className = 'is-counter'
+				include partials/button
+
+				.hash-e e8f7ddd21782268ea812c14eaada3957
+				- var placeholder = 'search'
+				include partials/input
+
+				.hash-e caa0608fbfea0f959bf1ce698d2327e6
+				.input-with-icon-b
+
+					- var placeholder = 'search'
+					include partials/input
+					
+					- var className = 'is-search'
+					include partials/icon.jade
+
+				.hash-e c303475264eeb60de2ad66c5e5cfbce6
+				- var iconClassName = 'is-twitter'
+				include partials/icon-with-text
+
+				.hash-e 5ac5220f1049eb20597200b73202b468
+				- var className 	= 'is-check'
+				- var iconClassName = 'is-twitter'
+				include partials/icon-with-text
+
+				.hash-e d8231e3de7a5cfc54e2a32c99fda48b0
+				- var text = null
+				include partials/section-header
+
+
+				.hash-e d31599d6c04918e3e54b3383d136855e
+				.section-b.cf
+					- var text = null
+					include partials/section-header
+					
+					.content-bl
+						- for (var x = 0; x < 10; x++)
+							- var text 			= 'search'
+							- var iconClassName = 'is-search'
+							include partials/icon-with-text
+
+							- var text 			= 'twitter'
+							- var iconClassName = 'is-twitter'
+							include partials/icon-with-text
+
+							- var text 			= 'tick'
+							- var iconClassName = 'is-tick'
+							include partials/icon-with-text
+
+							- var text 			= 'close'
+							- var iconClassName = 'is-close'
+							include partials/icon-with-text
+
+
+				.hash-e	745569f548ab5734b69d33d95b3f7074
+				a.logo-tiny-e
+
+				.hash-e	a3c04187903038745cfd8388b6846a61
+				.logo-large-e
+
+				.hash-e	19d8650be161cd15c32961dab15941ab
+				.main-logo-b
+					.logo-large-e
+					.name-be iconmelon
+					.description-be svg icons library for web
+
+				.hash-e 9f594b08a3b87a497c4f5b4592e970e4
+				.main-header-b(style="position:relative")
+					a(href="#").logo-tiny-e
+					a(href="#").menu-item-be.is-hoverable use
+					a(href="#").menu-item-be.is-hoverable support
+					a(href="#").menu-item-be.is-hoverable contribute
+
+
+
+
+			include icons.svg
+
+
+
+
+
+
+
+
+
+
+
+
+

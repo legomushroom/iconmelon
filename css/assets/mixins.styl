@@ -1,0 +1,70 @@
+gs = 8px
+br = 3px
+
+downShadow()
+	box-shadow 0 (gs/2) 0 rgba(rgb(c-grey1), .2)
+
+
+fontOfControl()
+	font-family 'dense'
+	font-size 20px
+	letter-spacing 1px
+
+nw(position=0)
+	top 	position
+	left 	position
+ne(position=0)
+	top 	position 
+	right 	position
+sw(position=0)
+	bottom 	position
+	left 	position
+se(position=0)
+	bottom 	position
+	right 	position
+
+border(width, style= solid, color= black)
+	border-width width
+	border-style style
+	border-color color
+
+bbox()
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	        box-sizing: border-box;
+
+cbox()
+	-webkit-box-sizing: content-box;
+	   -moz-box-sizing: content-box;
+	        box-sizing: content-box;
+
+transform(property)
+	-webkit-transform property
+	-moz-transform property
+	-ms-transform property
+	-o-transform property
+	transform property
+
+rect(size)
+	width size
+	height size
+
+min-rect(size)
+	min-width size
+	min-height size
+
+hl(color, size=1px)
+	outline size solid color
+
+textel()
+	white-space: nowrap
+	-webkit-text-overflow: ellipsis
+	-moz-text-overflow: ellipsis
+	-khtml-text-overflow: ellipsis
+	-icab-text-overflow: ellipsis
+	-o-text-overflow: ellipsis
+	text-overflow: ellipsis
+	overflow:hidden
+
+
+II = !important
