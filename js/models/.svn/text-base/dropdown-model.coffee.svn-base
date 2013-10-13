@@ -1,3 +1,0 @@
-define 'models/dropdown-model', ['models/ProtoModel'], (ProtoModel)->
-	class DropdownModel extends ProtoModel
-	DropdownModel
