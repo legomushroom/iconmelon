@@ -1,0 +1,202 @@
+define 'views/Constructor', [
+					'views/ProtoView'
+					'backbone'
+					'collections/IconsCollection'
+					'collections/IconCollection'
+					'collectionViews/IconsCollectionView'
+					], (ProtoView, Backbone, IconsCollection, IconCollection, IconsCollectionView)->
+	class Constructor extends ProtoView
+		template: '#constructor-template'
+		className: "cf"
+
+		GRID_DELAY: 200
+
+		bindings:
+			'#js-icon-size':
+				observe: 	'iconSize'
+				onSet: 		'validateGridsize'
+
+			'#js-theme':
+				observe: 	'theme'
+				onSet: 		'themeSet'
+
+		events:
+			'keyup': 							'showGrid'
+			'click #js-next:not(.is-inactive)': 'splitIcons'
+
+		initialize:(@o={})->
+			super
+			@imgLoaded 		= false
+			@btnTemplate 	= _.template $('#constructor-submit-template').html()
+
+			if @o.mode is 'edit'
+				@model.set 'theme', @o.theme.theme
+				@model.set 'isValid', true
+				@loadImage().then =>
+					@splitIcons()
+
+			@model?.on 'change:imageHeight', @render
+			@model?.on 'change:imageWidth',	 @render
+			!(@o.mode is 'edit') and @model?.on 'change:isValid',	 _.bind @renderBtn, @
+			@model?.on 'change:theme',	 	_.bind @validateNext, @
+
+		render:->
+			super
+			@renderInit()
+			@stickit()
+
+			
+			@
+
+		renderInit:->
+			@$sprite 	= @$('.js-sprite')
+			@$grid 		= @$('.js-grid')
+			@$iconSizeI = @$('#js-icon-size')
+			@renderBtn()
+			@imgLoaded or @loadImage()
+			@showGrid()
+			@validateNext()
+
+			App.addRegions
+				icons: '#icons-region'
+
+		renderBtn:->
+			@$('#js-btn-place').html @btnTemplate @model.toJSON()
+
+		themeSet:(val)->
+			val = $.trim val
+			App.currentTheme = val
+			val
+
+		validateTheme:->
+			valid = true
+			if App.themes[@model.get('theme')]
+				valid = false
+			valid
+
+		validateNext:->
+			@model.set 'isValid', if @model.get('iconSize') and @model.get('theme') and @validateTheme() then true else false
+
+		loadImage:->
+			dfr = new $.Deferred
+			@imgLoaded = true
+			@$img = $('<img>').on 'load', =>
+				@model.set 'imageHeight', 	@$img[0].height
+				@model.set 'imageWidth', 	@$img[0].width
+				dfr.resolve()
+
+			@$img[0].src = @model.get 'url'
+			dfr.promise()
+
+		showGrid:->
+			clearTimeout @gridTimeout
+			@gridTimeout = setTimeout =>
+				gridSize = @model.get 'iconSize'
+				gridWidth = 1
+				gridColor = 'white'
+
+				@$grid.css
+					'background-image': 	"repeating-linear-gradient(0deg, #{gridColor}, #{gridColor} 0px, transparent #{gridWidth}px, transparent #{gridSize}px), repeating-linear-gradient(-90deg, #{gridColor}, #{gridColor} 0px, transparent #{gridWidth}px, transparent #{gridSize}px)"
+					'background-size': 		"#{gridSize}px #{gridSize}px"
+					'background-position': 	"#{gridWidth/2}px #{gridWidth/2}px"
+
+			, @GRID_DELAY
+
+		validateGridsize:(val, options)->
+			val = Math.max 1, parseInt val
+			options.update @$iconSizeI, val or ''
+			val
+
+		splitIcons:->
+			if @o.type is 'change-image' then @recalcIcons().then (data)=>
+				@o.theme.data 		= data.icons
+				@o.theme.columnSize = data.columnSize
+				@o.theme.rowSize 	= data.rowSize
+				@routeShowIcons()
+			else @routeShowIcons()
+				
+		routeShowIcons:->
+			_.defer =>
+				if @o.mode is 'edit'
+					@showIcons @o.theme
+				else @showIcons @calcIcons()
+
+		showIcons:(iconsData)->
+			@iconsCollection 		= new IconsCollection iconsData.data
+			@iconsCollectionView 	= new IconsCollectionView
+											collection: 	@iconsCollection
+											mode: 			@o.mode
+											options: 		iconsData
+											
+			App.icons.show @iconsCollectionView
+
+		recalcIcons:->
+			dfr = new $.Deferred
+			@loadImage().then =>
+				data 		= @calcSizes()
+				rowSize 	= data.rowSize
+				columnSize 	= data.columnSize
+
+				icons = for icon in [0...rowSize]
+					[]
+					for modifier in [0...columnSize]
+						{
+							size: 		@model.get 'iconSize'
+							xCoord: 	icon
+							yCoord: 	modifier
+							columnSize: columnSize
+							rowSize: 	rowSize
+							image:	 	@model.get 'url'
+							name: 		@o.theme.data?[icon]?[modifier]?.name
+							class: 		@o.theme.data?[icon]?[modifier]?.class
+							isValidName:true
+						}
+
+
+				dfr.resolve 
+						icons: 		icons
+						columnSize: columnSize
+						rowSize: 	rowSize
+
+			dfr.promise()
+
+
+		calcSizes:->
+			columnSize 		= (@model.get('imageHeight')/2)/@model.get 'iconSize'
+			rowSize 		= (@model.get('imageWidth')/2)/@model.get 'iconSize'
+
+			data = 
+				columnSize: columnSize
+				rowSize: rowSize
+
+		calcIcons:->
+			data 		= @calcSizes()
+			columnSize 	= data.columnSize
+			rowSize 	= data.rowSize
+
+			icons = for i in [0...rowSize]
+				[]
+				for j in [0...columnSize]
+					{
+						size: @model.get 'iconSize'
+						xCoord: i
+						yCoord: j
+						columnSize: columnSize
+						rowSize: 	rowSize
+						image:	 	@model.get 'url'
+					}
+					
+			icons = 
+				data: 		icons
+				image: 		@model.get 'url'
+				theme:  	@model.get('theme')
+				pattern: 	null
+				columnSize: columnSize
+				rowSize: 	rowSize
+
+			icons
+
+
+			
+
+	Constructor

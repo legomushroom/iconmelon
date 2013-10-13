@@ -1,0 +1,17 @@
+{
+  "name": "iconmelon",
+  "version": "0.0.1",
+  "private": false,
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "dependencies": {
+    "express": "3.3.7",
+    "jade": "*",
+    "mongoose": "*",
+    "socket.io": "latest"
+  },
+  "devDependencies": {
+    "nodemon": "*"
+  }
+}

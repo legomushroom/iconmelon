@@ -1,0 +1,11 @@
+//- .icon-with-text-b(class="<%= (isSelected)  ? 'is-check' : ''  %>")
+
+- var className = ''
+- var rectStyle = '<%= \'clip-path:url(#\' + hash + \');\' %>'
+include ../css/partials/icon
+
+.text-be(title="<%= name %>") <%= name %>
+
+.bullet-be.hover-be(class="	<%= (hover)  ? 'is-check' : ''  %>") 	hover
+.bullet-be.active-be(class="<%= (active) ? 'is-check' : ''  %>") 	active
+.bullet-be.focus-be(class="	<%= (focus)  ? 'is-check' : ''  %>") 	focus

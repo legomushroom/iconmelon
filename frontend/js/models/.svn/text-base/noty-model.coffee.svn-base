@@ -1,0 +1,3 @@
+define 'models/noty-model', ['models/ProtoModel'], (ProtoModel)->
+	class NotyModel extends ProtoModel
+	NotyModel

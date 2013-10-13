@@ -1,0 +1,19 @@
+//- d8231e3de7a5cfc54e2a32c99fda48b0
+.section-header-b
+	.name-be #{ text || 'Section name' }
+	.icons-bl
+		
+		- var className   = 'is-dropup-arrow is-hoverable ' + arrowClass
+		- var idAttribute = 'js-hide'
+		- var title 	  = "close section"
+		include icon
+
+		- var className   = 'is-tick is-green--onhover'
+		- var idAttribute = 'js-select-all'
+		- var title 	  = "select all"
+		include icon
+
+		- var className   = 'is-close is-red1--onhover'
+		- var idAttribute = 'js-deselect-all'
+		- var title 	  = "deselect all"
+		include icon
