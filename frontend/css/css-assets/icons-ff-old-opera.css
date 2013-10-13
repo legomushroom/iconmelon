@@ -3,16 +3,13 @@
   height: 32px;
   fill: #d7d8d8;
   display: block;
-  position: relative;
+  overflow: hidden;
 /* 16139bdc1fb5bf21a3cb1769f714013a */
 /* 9e78a293b56b43a69cf374ae4ad9f495 */
 /* 5b2c9e1ee9d3e0e4ba56b2f8dea24f47 */
 /* fcca51eabd6ffa4a4ac157dfef02b2f7 */
 /* eafa14efc63037c35f910646115714b7 */
 /* 88802f98579d36bc528690c035360653 */
-}
-.icon rect {
-  position: absolute;
 }
 .icon.is-hoverable:hover {
   fill: #cacbcb;
