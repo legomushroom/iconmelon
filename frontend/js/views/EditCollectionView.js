@@ -126,8 +126,9 @@
             return data.submit();
           },
           done: function(e, data) {
-            var modelToRemove, _ref1;
+            var modelToRemove, name, _ref1;
 
+            name = data.files[0].name.split('.svg')[0];
             if ((_ref1 = _this.filesLoadedCnt) == null) {
               _this.filesLoadedCnt = 0;
             }
@@ -135,7 +136,7 @@
             modelToRemove = _this.iconsCollection.collection.length === 1 && !_this.isValidCollection() ? _this.iconsCollection.collection.at(0) : null;
             _this.iconsCollection.collection.add({
               shape: data.result,
-              name: 'Generic name',
+              name: name,
               hash: helpers.generateHash(),
               isValid: true
             });

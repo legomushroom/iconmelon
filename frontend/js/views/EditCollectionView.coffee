@@ -96,12 +96,13 @@ define 'views/EditCollectionView', [ 'views/ProtoView', 'views/IconEditView', 'c
 					@filesDroppedCnt = data.originalFiles.length
 					data.submit()
 				done:(e, data)=>
+					name = data.files[0].name.split('.svg')[0]
 					@filesLoadedCnt ?= 0
 					@filesLoadedCnt++
 					modelToRemove = if @iconsCollection.collection.length is 1 and !@isValidCollection() then @iconsCollection.collection.at(0) else null
 					@iconsCollection.collection.add
 							shape: data.result
-							name: 'Generic name'
+							name: name
 							hash: helpers.generateHash()
 							isValid: true
 
