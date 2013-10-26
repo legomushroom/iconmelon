@@ -5,14 +5,15 @@ define 'views/SectionView', ['views/ProtoView', 'models/SectionModel', 'collecti
 		className: 'section-b cf'
 
 		events: 
-			'click #js-hide': 		'toggleHide'
-			'click #js-select-all': 'selectAll'
-			'click #js-deselect-all': 'deSelectAll'
+			'click #js-hide': 			'toggleHide'
+			'click #js-select-all': 	'selectAll'
+			'click #js-deselect-all': 	'deSelectAll'
 
 		initialize:->
 			@bindModelEvents()
 			super
 			@
+
 
 		bindModelEvents:->
 			@model.on 'change', @render
@@ -43,6 +44,7 @@ define 'views/SectionView', ['views/ProtoView', 'models/SectionModel', 'collecti
 			App.vent.trigger 'icon:select'
 
 		toggleHide:->
+			console.log 'toggle hide'
 			@model.toggleAttr 'isClosed'
 
 	SectionView

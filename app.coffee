@@ -1,44 +1,68 @@
+express = require 'express'
+http    = require 'http'
+fs      = require 'fs'
+mongo   = require 'mongoose'
+path    = require 'path'
+che     = require 'cheerio'
 
-express     = require('express');
-http        = require('http');
-port        = 3000
-mongo       = require 'mongoose'
-path 		= require 'path'
-app         = express()
+
+
+port    = 3000
+app     = express()
 
 app.set 'port', process.env.PORT or port
-app.use express.favicon	__dirname + '/frontend/favicon.ico'
+app.use express.favicon __dirname + '/frontend/favicon.ico'
 app.use express.static  __dirname + '/frontend'
 
 
-app.use express.bodyParser()
-app.use express.methodOverride()
 
+app.use express.bodyParser(uploadDir: 'uploads')
+app.use express.methodOverride()
 
 
 mongo.connect 'mongodb://localhost/iconmelon'
 
 SectionSchema = new mongo.Schema
-				name: 			String
-				author: 		String
-				license: 		String
-				creationDate: 	String
-				icons: 			Array
+      name:           String
+      author:         String
+      license:        String
+      creationDate:   String
+      icons:          Array
+      moderated:      Boolean
 
 Section = mongo.model 'Section', SectionSchema
 
+# app(serve)
 
 io = require('socket.io').listen(app.listen(process.env.PORT or port))
 
 io.sockets.on "connection", (socket) ->
-	console.log 'connected'
+  console.log 'connected'
+  socket.on "sections:read", (data, callback) ->
+    Section.find {moderated: true}, (err, docs)->
+      callback null, docs
 
-	socket.on "sections:read", (data, callback) ->
-		Section.find {}, (err, docs)->
-			callback null, docs
+  socket.on "section:create", (data, callback) ->
+    console.log typeof data
+    # data = JSON.parse data
+    data.moderated = false
+    console.log data
+    new Section(data).save()
+
+app.post '/file-upload', (req,res,next)->
+  fs.readFile req.files.files[0].path, {encoding: 'utf8'}, (err,data)->
+    $ = che.load data
+    res.send $('svg').html()
+    fs.unlink req.files.files[0].path, (err)->
+        err and console.error err
+  
+
+
 
 
 # app.get '/api/sections', (req,res)->
+# 	console.log req
+# 	res.send 200
 	
 
 # getRandom = (min, max)->
@@ -78,6 +102,5 @@ io.sockets.on "connection", (socket) ->
 # }).save()
 
 # http.createServer(app).listen(process.env.PORT or port)
-
     
 

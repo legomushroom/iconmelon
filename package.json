@@ -9,7 +9,8 @@
     "express": "3.3.7",
     "jade": "*",
     "mongoose": "*",
-    "socket.io": "latest"
+    "socket.io": "latest",
+    "cheerio": "latest"
   },
   "devDependencies": {
     "nodemon": "*"

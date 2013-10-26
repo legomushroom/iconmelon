@@ -15,12 +15,15 @@ body
 	}
 }
 
+.op-5-gm
+	opacity .5
+
 a
 	color c-grey1
 	text-decoration none
 	position relative
 
-	&.is-hoverable
+	&.is-hoverable, &.is-check
 		&:after
 			content ''
 			position absolute
@@ -39,6 +42,16 @@ a
 			&:after
 				display block
 
+	&.is-check
+		&:after
+			display block
+	
+
+.f-s-x3-gm
+	font-size 3*gs
+
+.f-s-x4-gm
+	font-size 4*gs
 
 .float-left-gm,  .f-l-gm
 	float left
@@ -89,8 +102,8 @@ metrics()
 
 
 colors()
-	colors 		=  c-red1   c-red2   c-green   c-grey1   c-grey2
-	colorsNames = 'c-red1' 'c-red2' 'c-green' 'c-grey1' 'c-grey2'
+	colors 		=  c-red1   c-red2   c-green   c-grey1   c-grey3
+	colorsNames = 'c-red1' 'c-red2' 'c-green' 'c-grey1' 'c-grey3'
 	for color, i in colors
 		.{colorsNames[i]}-bg-gm
 			background-color color

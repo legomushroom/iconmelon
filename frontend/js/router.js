@@ -20,15 +20,24 @@
       };
 
       Router.prototype.main = function() {
-        return this.startPage(pc.main);
+        this.startPage(pc.main);
+        return this.chechMainMenuItem();
       };
 
       Router.prototype.submit = function() {
-        return this.startPage(pc.submit);
+        this.startPage(pc.submit);
+        return this.chechMainMenuItem('#js-submit');
       };
 
       Router.prototype.startPage = function(View) {
-        return App.main.show(new View(this.o));
+        App.main.show(new View(this.o));
+        return App.$bodyHtml.animate({
+          'scrollTop': 0
+        });
+      };
+
+      Router.prototype.chechMainMenuItem = function(selector) {
+        return App.$mainHeader.find('a').removeClass('is-check').filter(selector).addClass('is-check');
       };
 
       return Router;

@@ -4,13 +4,35 @@
 iconsMixin(path="")
 	.icon
 		rect 4*gs
-		fill c-grey2
+		fill c-grey3
 		display block
+		position relative
 		overflow hidden
+
+		&:after
+			content: ''
+			rect 100%
+			position absolute
+			nw 0
+
+		svg
+			float left
+			rect 100%
+
+		&.is-reverse
+			transform rotate(-180deg)
+			transition -webkit-transform .3s linear
+			transition -moz-transform .3s linear
+			transition -o-transform .3s linear
+			transition transform .3s linear
+
+		&.is-grey3
+			fill c-grey3
+
 
 		&.is-hoverable
 			&:hover
-				fill c-grey2-hover
+				fill c-grey3-hover
 				cursor pointer
 
 		&.is-green--onhover
@@ -22,36 +44,5 @@ iconsMixin(path="")
 			&:hover
 				fill c-red1-hover
 				cursor pointer
-
-		/* 16139bdc1fb5bf21a3cb1769f714013a */
-		&.is-search rect
-			clip-path url(path + '#search-path')
-
-		/* 9e78a293b56b43a69cf374ae4ad9f495 */
-		&.is-twitter rect
-			clip-path url(path + '#twitter-path')
-
-		/* 5b2c9e1ee9d3e0e4ba56b2f8dea24f47 */
-		&.is-tick rect
-			clip-path url(path + '#tick-path')
-
-		/* fcca51eabd6ffa4a4ac157dfef02b2f7 */
-		&.is-close rect
-			clip-path url(path + '#close-path')
-
-		/* eafa14efc63037c35f910646115714b7 */
-		&.is-dropdown-arrow 
-			rect
-				clip-path url(path + '#dropdown-arrow-path')
-			&.is-reverse rect
-				clip-path url(path + '#dropup-arrow-path')
-
-		/* 88802f98579d36bc528690c035360653 */
-		&.is-dropup-arrow 
-			rect
-				clip-path url(path + '#dropup-arrow-path')
-			&.is-reverse rect
-				clip-path url(path + '#dropdown-arrow-path')
-
 
 

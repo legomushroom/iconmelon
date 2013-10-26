@@ -1,4 +1,4 @@
-define 'helpers', ->
+define 'helpers', ['md5'], (md5)->
 	class Helpers
 
 		getRandom:(min,max)->
@@ -7,10 +7,11 @@ define 'helpers', ->
 		listenLinks:->
 			$(document.body).on 'click', 'a', (e)->
 				e.preventDefault()
-				$it = $(@).addClass 'is-check'
+				$it = $(@)
+				# $it = $(@).addClass 'is-check'
 
-				$it.hasClass('js-nav-link') and $('.js-nav-link').removeClass 'is-check'
-				$it.addClass 'is-check'
+				# $it.hasClass('js-nav-link') and $('.js-nav-link').removeClass 'is-check'
+				# $it.addClass 'is-check'
 
 				App.router.navigate $it.attr('href'), trigger:true
 
@@ -19,6 +20,9 @@ define 'helpers', ->
 
 		unescape:(str)->
 			str?.replace(/\&lt;/g, '<').replace(/\&gt;/g, '>').replace(/\&quot;/g, '"')
+
+		generateHash:->
+			md5 (new Date) + (new Date).getMilliseconds() + Math.random(9999999999999) + Math.random(9999999999999) + Math.random(9999999999999)
 
 
 	new Helpers

@@ -1,6 +1,122 @@
 // BLOCKS
 @import '../assets/imports.styl'
 
+
+/* df265d9e31b7bad5b31e1545831142ba */
+.submit-icon-collection-b
+	border-left 2px solid c-grey3
+	padding-left 8*gs
+	padding-top 4*gs
+
+	> .icons-bl
+		> .icons-bll
+			overflow hidden
+
+	.plus-btn-b
+		margin-top 3*gs
+		margin-left 3*gs
+		float left
+
+	> .header-be
+		font-size 4*gs
+		color c-grey3
+		margin-bottom gs - 1px
+
+	.submit-icon-b
+		float left
+
+/* 7fc5887b7434ee59fc7d648ff4f4541d */
+.plus-btn-b
+	rect 3*gs
+	border 1px solid c-grey3
+	border-radius 50%
+	cursor pointer
+	overflow hidden
+	position relative
+
+	&:hover
+		// background-color rgba(0,0,0,.05)
+		border-color c-grey2
+		.icon
+			fill c-grey2
+
+
+	.icon
+		rect gs
+		margin 0 auto
+		margin-top gs - 1px
+
+	#fileupload
+		opacity 0
+		z-index: 1
+		position absolute
+		cursor pointer
+		padding-left 4*gs
+		nw 0
+		rect 100%
+
+		
+
+/* 64fa8abebcd9bc5daf0b64b066612b83 */
+marginTop = 2*gs
+.collection-credits-b
+	width 36*gs
+	padding-right 5*gs
+	padding-left 5*gs
+	padding-top 4*gs
+	padding-bottom 6*gs
+
+	> .header-be
+		font-size 4*gs
+		color c-grey3
+		margin-bottom 2.5*gs
+
+	input, .btn-b
+		width 100%
+		+ input
+			margin-top marginTop
+	.btn-b
+		margin-top marginTop + 2*gs
+
+
+/* 1a4f5ba6fd48663826fe4d9ef3f3a2dd */
+.submit-icon-b
+	width 22*gs
+	padding 2*gs
+	position relative
+	brad()
+
+	&.is-error
+		border 1px solid c-red1
+
+	&:hover
+		background-color rgba(0,0,0,.025)
+
+		.close-bh
+			display block
+
+	.icon-sample-bh
+		float left
+		fill c-grey2
+		margin-left (gs/2)
+		margin-top 2px
+		rect 4*gs
+
+	.close-bh
+		position absolute
+		rect gs + 2px
+		ne (gs/2)
+		display none
+		// fill c-grey3
+
+	.input-e
+		width 100%
+	.name-bh
+		margin-left 6*gs	
+
+	.shape-bh
+		margin-top  1.5*gs
+
 /* 47a89f9dc70629feb99b65583ce49f4a */
 .icon-select-view-b
 	> .controls-bl
@@ -85,7 +201,7 @@
 
 /* 22c3f29200c646ede875bdad751d0ed5 */
 .section-header-b
-	color c-grey2
+	color c-grey3
 	font-size 4*gs
 
 	> .name-be
@@ -110,7 +226,7 @@
 	height 7*gs + 2px
 	padding-top 1px
 	border-radius br
-	color c-grey2
+	color c-grey3
 	cursor pointer
 	border 1px solid transparent
 	position relative
@@ -127,7 +243,7 @@
 
 	/* 5ac5220f1049eb20597200b73202b468 */
 	&.is-check
-		border 1px solid c-grey2
+		border 1px solid c-grey3
 
 		> .bullet-be
 			display block
@@ -138,7 +254,7 @@
 		rect gs
 		background-color white
 		border-radius 50%
-		border 1px solid c-grey2
+		border 1px solid c-grey3
 		left 100%
 		margin-left - (gs/2)
 		top 50%
@@ -220,7 +336,8 @@ shadowSize = 2px
 	.icon
 		position absolute
 		left 	gs + 4
-		top 	gs - 2
+		top 	50%
+		margin-top - gs - 2px
 		rect 	2.5*gs
 
 	
@@ -228,7 +345,7 @@ shadowSize = 2px
 shadowSize = 2px
 /* e8dcf44767bba63ed03de6691a1a44f7 */
 .btn-b
-	btnHeight = 4*gs
+	btnHeight = 4.5*gs 
 	background c-green
 	height 		btnHeight
 	line-height btnHeight
@@ -240,6 +357,7 @@ shadowSize = 2px
 	border-radius br
 	box-shadow shadowSize shadowSize 0 rgba(rgb(c-grey1), .2)
 	font-size 20px
+	text-align center
 
 	&:hover
 		background c-green-hover
@@ -260,7 +378,7 @@ shadowSize = 2px
 
 	/* 3dd69df51d0449f7f9db27fe23b7cef6 */
 	&.is-inactive
-		background-color c-grey2
+		background-color c-grey3
 		box-shadow none
 		cursor default
 
@@ -278,7 +396,8 @@ shadowSize = 2px
 			background-color c-red1
 			border-radius 50%
 			position absolute
-			top (gs/2)
+			top 50%
+			margin-top - (1.5*gs)
 			left 2*gs + (gs/2)
 			text-align center
 			color white

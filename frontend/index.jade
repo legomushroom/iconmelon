@@ -7,12 +7,16 @@ html
 		link(rel="stylesheet", type="text/css", href="css/main.css")
 		link(rel="stylesheet", href="css/css-assets/font/stylesheet.css", type="text/css", charset="utf-8")
 	body
+		- var iconClass = ''
+		- var text = ''		
+		#js-svg-wrap	
+			include css/icons.svg
+
 		.main-header-b#js-main-header
-			a(href="//").logo-tiny-e
-			a(href="//submit").menu-item-be.is-hoverable submit icons
-			a(href="#").menu-item-be.is-hoverable use
-			a(href="#").menu-item-be.is-hoverable support
-			a(href="#").menu-item-be.is-hoverable contribute
+			a(href="#/").logo-tiny-e#js-main
+			a(href="#").menu-item-be.is-hoverable#js-how-to-use how to use
+			a(href="#/submit").menu-item-be.is-hoverable#js-submit submit icons
+			a(href="#").menu-item-be.is-hoverable#js-main support us
 
 		section#main-l
 
@@ -40,6 +44,11 @@ html
 		script(id="sections-collection-view-template", type="template")
 			include templates/sections-collection-view
 
+		script(id="edit-collection-view-template", type="template")
+			include templates/edit-collection-view
 
-		include css/icons.svg
+		script(id="icon-edit-view-template", type="template")
+			include templates/icon-edit-view
+
+
 		script(type='text/javascript', src='js/lib/require.js', data-main='js/main')

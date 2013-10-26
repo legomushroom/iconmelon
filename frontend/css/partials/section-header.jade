@@ -3,17 +3,20 @@
 	.name-be #{ text || 'Section name' }
 	.icons-bl
 		
-		- var className   = 'is-dropup-arrow is-hoverable ' + arrowClass
+		- var path	      = 'dropup-arrow-icon'
+		- var iconClass   = 'is-hoverable ' + arrowClass
 		- var idAttribute = 'js-hide'
 		- var title 	  = "close section"
 		include icon
 
-		- var className   = 'is-tick is-green--onhover'
+		- var path	      = 'tick-icon'
+		- var iconClass   = 'is-green--onhover '
 		- var idAttribute = 'js-select-all'
 		- var title 	  = "select all"
 		include icon
 
-		- var className   = 'is-close is-red1--onhover'
+		- var path	      = 'close-icon'
+		- var iconClass   = 'is-red1--onhover '
 		- var idAttribute = 'js-deselect-all'
 		- var title 	  = "deselect all"
 		include icon

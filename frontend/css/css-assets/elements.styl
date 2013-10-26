@@ -18,9 +18,9 @@ shadowSize = 2px
 .input-e
 	display block
 	bbox()
-	border 1px solid c-grey2
+	border 1px solid c-grey3
 	border-radius br
-	height 4*gs
+	height 4.5*gs
 	outline 0
 	background white
 	padding-left gs
@@ -28,12 +28,14 @@ shadowSize = 2px
 	box-shadow shadowSize shadowSize 0 rgba(rgb(c-grey1), .2)
 	color c-grey1
 	fontOfControl()
-
+	placeholder-mixin()
 
 	&:focus
-		background transparent
 		box-shadow none
 		border 1px solid c-green
+
+	&.is-error
+		border 1px solid c-red1
 
 
 

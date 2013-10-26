@@ -4,6 +4,8 @@ br = 3px
 downShadow()
 	box-shadow 0 (gs/2) 0 rgba(rgb(c-grey1), .2)
 
+brad(amount = br)
+	border-radius amount
 
 fontOfControl()
 	font-family 'dense'
@@ -64,5 +66,19 @@ textel()
 	text-overflow: ellipsis
 	overflow:hidden
 
+placeholder-mixin(colorArg = c-grey3 )
+	&::-webkit-input-placeholder { /* WebKit browsers */
+		    color: colorArg
+	}
+	&:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+	    color: colorArg
+	}
+	&::-moz-placeholder { /* Mozilla Firefox 19+ */
+	    color: colorArg
+	}
+	&:-ms-input-placeholder { /* Internet Explorer 10+ */
+	    color: colorArg
+	}
 
 II = !important
+

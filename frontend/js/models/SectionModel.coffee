@@ -1,9 +1,16 @@
 define 'models/SectionModel', ['models/ProtoModel', 'helpers'], (ProtoModel, helpers)->
 	class SectionModel extends ProtoModel
+		url: 'section'
 		defaults:
-			name: 'Section name'
+			name: 	 ''
+			author:  ''
+			email: 	 ''
+			webdite: ''
+			license: ''
 			isClosed: false
+			moderated: false
 			icons: []
+
 
 		initialize:->
 			# @set 'icons', @generateIcons()

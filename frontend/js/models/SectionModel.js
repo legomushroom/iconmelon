@@ -14,9 +14,16 @@
         return _ref;
       }
 
+      SectionModel.prototype.url = 'section';
+
       SectionModel.prototype.defaults = {
-        name: 'Section name',
+        name: '',
+        author: '',
+        email: '',
+        webdite: '',
+        license: '',
         isClosed: false,
+        moderated: false,
         icons: []
       };
 

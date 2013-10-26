@@ -59,6 +59,9 @@
         App.addRegions({
           main: '#main-l'
         });
+        this.$mainHeader = $('#js-main-header');
+        App.$mainHeader = this.$mainHeader;
+        App.$bodyHtml = $('body, html');
         App.helpers = helpers;
         window.socket = io.connect('http://localhost');
         App.router = new Router;
@@ -74,8 +77,7 @@
         var _this = this;
 
         return App.$window.on('scroll', function() {
-          _this.$mainHeader.toggleClass('is-convex', App.$window.scrollTop() > 0);
-          return console.log;
+          return _this.$mainHeader.toggleClass('is-convex', App.$window.scrollTop() > 0);
         });
       };
 

@@ -67,6 +67,7 @@
       };
 
       SectionView.prototype.toggleHide = function() {
+        console.log('toggle hide');
         return this.model.toggleAttr('isClosed');
       };
 

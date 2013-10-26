@@ -8,12 +8,13 @@ html
 		script(src="css-assets/font/specimen_files/easytabs.js", type="text/javascript",charset="utf-8")
 		link(rel="stylesheet", href="css-assets/font/stylesheet.css", type="text/css", charset="utf-8")
 	body
+		include icons.svg
 		.main-kl
 			.section-kl
 				.header-ke Colors
 				.cf 
 					.color-sample-ke.c-grey1-bg-gm
-					.color-sample-ke.c-grey2-bg-gm
+					.color-sample-ke.c-grey3-bg-gm
 
 				.cf
 					.color-sample-ke.c-red1-bg-gm
@@ -23,6 +24,8 @@ html
 			- var rectStyle = ''
 			- var cnt = ''
 			- var arrowClass	 = ''
+			- var nameId = ''
+			- var shapeId = ''
 
 
 			.section-kl
@@ -30,32 +33,43 @@ html
 				.cf 
 					.icon-sample-kl
 						.hash-e 16139bdc1fb5bf21a3cb1769f714013a
-						- var className = 'is-search'
+						- var path = 'search-icon'
+
 						include partials/icon
 
 					.icon-sample-kl
 						.hash-e 9e78a293b56b43a69cf374ae4ad9f495
-						- var className = 'is-twitter'
+						- var path = 'twitter-icon'
 						include partials/icon
 
 					.icon-sample-kl
 						.hash-e 5b2c9e1ee9d3e0e4ba56b2f8dea24f47
-						- var className = 'is-tick'
+						- var path = 'tick-icon'
 						include partials/icon
 
 					.icon-sample-kl
 						.hash-e fcca51eabd6ffa4a4ac157dfef02b2f7
-						- var className = 'is-close'
+						- var path = 'close-icon'
 						include partials/icon
 
 					.icon-sample-kl
 						.hash-e eafa14efc63037c35f910646115714b7
-						- var className = 'is-dropdown-arrow'
+						- var path = 'dropdown-arrow-icon'
 						include partials/icon
 
 					.icon-sample-kl
 						.hash-e 771324a444f27698e359bb0c4524cd40
-						- var className = 'is-dropup-arrow'
+						- var path = 'dropup-arrow-icon'
+						include partials/icon
+
+					.icon-sample-kl
+						.hash-e b2b295cb68e9811e95d3525e49fdc9d1
+						- var path = 'cross-icon'
+						include partials/icon
+
+					.icon-sample-kl
+						.hash-e 109127092afaf837a82f1cb9a6c2d3fe
+						- var path = 'arrow-down-icon'
 						include partials/icon
 
 			.section-kl
@@ -73,6 +87,7 @@ html
 				- var text = 'download'
 				- var className = 'is-counter'
 				include partials/button
+				- var text = ''
 
 				.hash-e e8f7ddd21782268ea812c14eaada3957
 				- var placeholder = 'search'
@@ -80,44 +95,104 @@ html
 
 				.hash-e caa0608fbfea0f959bf1ce698d2327e6
 				- var placeholder 	= 	'search'
-				- var iconClass 	=	'is-search'
+				- var iconClass 	=	'search-icon'
 				include partials/input-with-icon
 
 				.hash-e c303475264eeb60de2ad66c5e5cfbce6
-				- var iconClassName = 'is-twitter'
+				- var iconClassName = 'twitter-icon'
 				include partials/icon-with-text
 
-				.hash-e 5ac5220f1049eb20597200b73202b468
-				- var className 	= 'is-check'
-				- var iconClassName = 'is-twitter'
+				.hash-e e9520494c3f0ed6cc4c70a9c47816ea2
+				- var iconClassName = 'twitter-icon'
 				include partials/icon-with-text
+
+				.hash-e 7fc5887b7434ee59fc7d648ff4f4541d
+				include partials/plus-btn
+
+				.hash-e 631c167faca224536b60b9719cd58830
+				- title = 'upload', iconClass = '', idAttribute = ''
+				include partials/upload-btn
+
+				.hash-e 1a4f5ba6fd48663826fe4d9ef3f3a2dd
+				include partials/submit-icon
+
+				.hash-e df265d9e31b7bad5b31e1545831142ba
+				.submit-icon-collection-b
+					.header-be Icons:
+					.icons-bl.cf
+						include partials/submit-icon
+						include partials/submit-icon
+						include partials/submit-icon
+						include partials/submit-icon
+						include partials/submit-icon
+						include partials/submit-icon
+						include partials/submit-icon
+						include partials/submit-icon
+					include partials/plus-btn
+
+
+				.hash-e 64fa8abebcd9bc5daf0b64b066612b83
+				.collection-credits-b
+					.header-be Collection credits:
+					include partials/input
+					include partials/input
+					include partials/input
+					include partials/input
+					include partials/input
+					- text = 'submit'
+					include partials/button
+
+				.hash-e 7e807202bea13c1b52e121142a6092f8
+				.submit-collection-l.cf
+					.collection-credits-b
+						.header-be Collection credits:
+						include partials/input
+						include partials/input
+						include partials/input
+						include partials/input
+						include partials/input
+						- text = 'submit'
+						include partials/button
+
+					.submit-icon-collection-b
+						.header-be Icons:
+						.icons-bl.cf
+							.icons-bll
+								include partials/submit-icon
+								include partials/submit-icon
+								include partials/submit-icon
+								include partials/submit-icon
+								include partials/submit-icon
+								include partials/submit-icon
+							
+							include partials/plus-btn
+
 
 				.hash-e d8231e3de7a5cfc54e2a32c99fda48b0
-				- var text = null
+				- var placeholder = 'search'
 				include partials/section-header
 
 
 				.hash-e d31599d6c04918e3e54b3383d136855e
 				.section-b.cf
-					- var text = null
 					include partials/section-header
 					
 					.content-bl
 						- for (var x = 0; x < 10; x++)
 							- var text 			= 'search'
-							- var iconClassName = 'is-search'
+							- var path = 'search-icon'
 							include partials/icon-with-text
 
 							- var text 			= 'twitter'
-							- var iconClassName = 'is-twitter'
+							- var path = 'twitter-icon'
 							include partials/icon-with-text
 
 							- var text 			= 'tick'
-							- var iconClassName = 'is-tick'
+							- var path = 'tick-icon'
 							include partials/icon-with-text
 
 							- var text 			= 'close'
-							- var iconClassName = 'is-close'
+							- var path = 'close-icon'
 							include partials/icon-with-text
 
 
@@ -150,15 +225,10 @@ html
 						include partials/button
 
 						- var placeholder 	= 	'search'
-						- var iconClass 	=	'is-search'
+						- var iconClass 	=	'search-icon'
 						include partials/input-with-icon
 
 					.content-bl
-
-
-
-			include icons.svg
-
 
 
 

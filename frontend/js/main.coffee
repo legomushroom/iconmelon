@@ -51,6 +51,10 @@ define 'main', ['marionette', 'jquery', 'router', 'socketio', 'helpers' ], (M, j
 			App.addRegions
 				main: 	'#main-l'
 
+			@$mainHeader = $('#js-main-header')
+			
+			App.$mainHeader = @$mainHeader
+			App.$bodyHtml = $('body, html')
 			App.helpers = helpers
 			
 			window.socket = io.connect('http://localhost')
@@ -65,9 +69,7 @@ define 'main', ['marionette', 'jquery', 'router', 'socketio', 'helpers' ], (M, j
 			@listenEvents()
 
 		listenEvents:->
-
 			App.$window.on 'scroll', =>
 				@$mainHeader.toggleClass 'is-convex', App.$window.scrollTop() > 0
-				console.log 
 
 	new Application

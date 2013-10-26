@@ -1,0 +1,55 @@
+- var cnt = ''
+.submit-collection-l.cf
+	.collection-credits-b
+		.header-be Collection credits:
+		- className = ''
+
+		- placeholder = 'collection name'
+		- var idAttribute = 'js-collection-name'
+		include ../css/partials/input
+
+		- placeholder = 'author'
+		- var idAttribute = 'js-author'
+		include ../css/partials/input
+
+		- placeholder = 'email'
+		- var idAttribute = 'js-email'
+		include ../css/partials/input
+
+		- placeholder = 'website(optional)'
+		- var idAttribute = 'js-website'		
+		include ../css/partials/input
+
+		//- - placeholder = 'license'
+		//- - var idAttribute = 'js-license'
+		//- include ../css/partials/input
+
+		- text = 'submit'
+		- className = 'js-submit-btn is-inactive'
+		include ../css/partials/button
+		- className = ''
+		
+
+	.submit-icon-collection-b
+		.header-be Icons:
+		.icons-bl.cf
+			#js-icons-place.icons-bll
+			- var idAttribute = 'js-add-icon'
+			- var iconClass = ''
+			- var title = 'add icon'
+			include ../css/partials/plus-btn
+
+			- var idAttribute = 'js-upload-icon'
+			- var iconClass = ''
+			- var title = 'upload icon from svg file'
+			include ../css/partials/upload-btn
+
+
+
+
+
+
+
+
+
+			
