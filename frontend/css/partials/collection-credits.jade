@@ -1,0 +1,24 @@
+.collection-credits-b(class=className)
+	.header-be Collection credits:
+	- var className = '', placeholder = ''
+	include input
+	- var className = '', placeholder = ''
+	include input
+	- var className = '', placeholder = ''
+	include input
+	- var className = '', placeholder = ''
+	include input
+	- var text = 'moderated', className = '', idAttribute = ''
+	include checkbox-with-label
+
+	.icon-set-l
+		.left-ll
+			- var className = 'is-iconed is-red1'
+			- var iconPath = 'close-icon'
+			include button-with-icon
+		.right-ll
+			- var className = '', text = 'save', cnt = ''
+			include button
+
+	- var cnt = '', idAttribute = '', text = 'submit'
+	include button

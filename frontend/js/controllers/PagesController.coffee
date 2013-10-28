@@ -1,10 +1,12 @@
 define 'controllers/PagesController', [
 	'views/pages/main',
 	'views/pages/submit',
-	], (main, submit)->
+	'views/pages/editr',
+	], (main, submit, editr)->
 		class Controller 
 			constructor:->
 				@main 	= main
-				@submit 	= submit
+				@submit = submit
+				@editr  = editr
 
 		new Controller

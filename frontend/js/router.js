@@ -16,7 +16,8 @@
 
       Router.prototype.routes = {
         '': 'main',
-        'submit': 'submit'
+        'submit': 'submit',
+        'editr': 'editr'
       };
 
       Router.prototype.main = function() {
@@ -27,6 +28,11 @@
       Router.prototype.submit = function() {
         this.startPage(pc.submit);
         return this.chechMainMenuItem('#js-submit');
+      };
+
+      Router.prototype.editr = function() {
+        this.startPage(pc.editr);
+        return this.chechMainMenuItem('#js-editr');
       };
 
       Router.prototype.startPage = function(View) {

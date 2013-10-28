@@ -50,6 +50,7 @@
         $shape = $('<g>').html(val);
         hash = helpers.generateHash();
         $shape.attr('id', hash);
+        this.model.set('hash', hash);
         $shape.find('*').each(function(i, child) {
           return $(child).removeAttr('fill');
         });
@@ -60,7 +61,6 @@
         this.$svg.append($shape);
         this.$svgWrap.html(this.$svgWrap.html());
         this.$svg = $('#svg-source');
-        this.model.set('hash', hash);
         this.model.attributes.shape = $shape.html();
         this.model.set('isShapeValid', $shape.children().length ? true : false);
         return val;
@@ -79,7 +79,9 @@
         this.model.on('change:name', _.bind(this.modelChange, this));
         this.model.on('change:shape', _.bind(this.modelChange, this));
         IconEditView.__super__.initialize.apply(this, arguments);
-        this.model.get('shape') && this.setShape(this.model.get('shape'));
+        if (this.model.get('shape')) {
+          this.setShape(this.model.get('shape'));
+        }
         return this;
       };
 

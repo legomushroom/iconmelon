@@ -35,7 +35,7 @@
   SectionSchema = new mongo.Schema({
     name: String,
     author: String,
-    license: String,
+    email: String,
     creationDate: String,
     icons: Array,
     moderated: Boolean
@@ -54,11 +54,15 @@
         return callback(null, docs);
       });
     });
+    socket.on("sections-all:read", function(data, callback) {
+      return Section.find({}, function(err, docs) {
+        return callback(null, docs);
+      });
+    });
     return socket.on("section:create", function(data, callback) {
-      console.log(typeof data);
       data.moderated = false;
-      console.log(data);
-      return new Section(data).save();
+      new Section(data).save();
+      return callback(null, 'ok');
     });
   });
 

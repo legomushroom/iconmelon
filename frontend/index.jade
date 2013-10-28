@@ -14,9 +14,11 @@ html
 
 		.main-header-b#js-main-header
 			a(href="#/").logo-tiny-e#js-main
-			a(href="#").menu-item-be.is-hoverable#js-how-to-use how to use
+			//- a(href="#").menu-item-be.is-hoverable#js-how-to-use how to use
 			a(href="#/submit").menu-item-be.is-hoverable#js-submit submit icons
-			a(href="#").menu-item-be.is-hoverable#js-main support us
+			//- a(href="#").menu-item-be.is-hoverable#js-main support us
+			a(href="#/editr").menu-item-be.is-hoverable#js-main editr
+			.loading-be.loading-eff#js-loadin-line
 
 		section#main-l
 
@@ -25,6 +27,10 @@ html
 
 		script(id="submit-page-template", type="template")
 			include templates/submit-page
+
+		script(id="editr-page-template", type="template")
+			include templates/editr-page
+
 
 		script(id="icon-select-view-template", type="template")
 			include templates/icon-select-view
@@ -41,6 +47,9 @@ html
 		script(id="section-view-template", type="template")
 			include templates/section-view
 
+		script(id="section-line-view-template", type="template")
+			include templates/section-line-view
+
 		script(id="sections-collection-view-template", type="template")
 			include templates/sections-collection-view
 
@@ -49,6 +58,9 @@ html
 
 		script(id="icon-edit-view-template", type="template")
 			include templates/icon-edit-view
+
+		script(id="sections-collection-line-view-template", type="template")
+			include templates/sections-collection-line-view
 
 
 		script(type='text/javascript', src='js/lib/require.js', data-main='js/main')

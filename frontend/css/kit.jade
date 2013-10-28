@@ -72,10 +72,24 @@ html
 						- var path = 'arrow-down-icon'
 						include partials/icon
 
+					.icon-sample-kl
+						.hash-e 4effe5183600b5033f8e90489240cddc
+						- var path = 'arrow-left-icon'
+						include partials/icon
+
+					.icon-sample-kl
+						.hash-e b8ec61d0ffff446d88681382e6700102
+						- var path = 'arrow-right-icon'
+						include partials/icon
+
 			.section-kl
 				.header-ke Elements
 				.hash-e e8dcf44767bba63ed03de6691a1a44f7
 				- var text = 'download'
+				include partials/button
+
+				.hash-e 9343b5637912148f603dc8c154382c2c
+				- var className = 'is-red1', text = 'download'
 				include partials/button
 
 				.hash-e 3dd69df51d0449f7f9db27fe23b7cef6
@@ -89,6 +103,21 @@ html
 				include partials/button
 				- var text = ''
 
+				.hash-e cee98a768f3a4013d3cfd5d0c67ffe0d
+				- var className = 'is-iconed is-red1'
+				- var iconPath = 'close-icon'
+				include partials/button-with-icon
+
+				.hash-e 58b21870f4e247e374c47f1d6d823c88
+				.icon-set-l
+					.left-ll
+						- var className = 'is-iconed is-red1'
+						- var iconPath = 'close-icon'
+						include partials/button-with-icon
+					.right-ll
+						- var className = '', text = 'download', cnt = ''
+						include partials/button
+
 				.hash-e e8f7ddd21782268ea812c14eaada3957
 				- var placeholder = 'search'
 				include partials/input
@@ -98,6 +127,14 @@ html
 				- var iconClass 	=	'search-icon'
 				include partials/input-with-icon
 
+				.hash-e d72ce917d1c414ba1d72da724f3a7ec4
+				- checked = undefined, className = '', idAttribute = ''
+				include partials/checkbox
+
+				.hash-e b3ae71e6b694bf45eec717b27592df6e
+				- var text = 'moderated', className = '', idAttribute = ''
+				include partials/checkbox-with-label
+
 				.hash-e c303475264eeb60de2ad66c5e5cfbce6
 				- var iconClassName = 'twitter-icon'
 				include partials/icon-with-text
@@ -106,18 +143,120 @@ html
 				- var iconClassName = 'twitter-icon'
 				include partials/icon-with-text
 
+				.hash-e aa37471cadddb8a9885c21df63f63beb
+				- var className = '', idAttribute = ''
+				- var iconPath1 = 'twitter-icon', iconPath2 = 'close-icon', iconPath3 = 'search-icon'
+				- var iconPath4 = 'tick-icon', iconPath5 = 'arrow-down-icon', iconPath6 = 'cross-icon'
+				- var text = 'Tracksflow'
+				include partials/icons-set
+
 				.hash-e 7fc5887b7434ee59fc7d648ff4f4541d
 				include partials/plus-btn
 
 				.hash-e 631c167faca224536b60b9719cd58830
-				- title = 'upload', iconClass = '', idAttribute = ''
+				- var iconPath = 'arrow-down-icon', title = 'upload', iconClass = '', idAttribute = ''
 				include partials/upload-btn
+
+				.hash-e 54c9947f169329dee397b29e9c02e578
+				- var iconPath = 'arrow-right-icon', title = 'right', iconClass = '', idAttribute = ''
+				include partials/plus-btn
+
+				.hash-e 54c9947f169329dee397b29e9c02e578
+				- var iconPath = 'arrow-left-icon', title = 'left', iconClass = '', idAttribute = ''
+				include partials/plus-btn
+
+				.hash-e 8e2f71e057587b0892bbe4bab889dc32
+				.icon-collections-line-b
+					- var className = 'right-arrow-bh', iconPath = 'arrow-right-icon', title = 'right', iconClass = '', idAttribute = ''
+					include partials/plus-btn
+
+					- var className = 'left-arrow-bh', iconPath = 'arrow-left-icon', title = 'left', iconClass = '', idAttribute = ''
+					include partials/plus-btn
+
+					.icons-bl.cf
+						- var className = '', idAttribute = ''
+						- var iconPath1 = 'twitter-icon', iconPath2 = 'close-icon', iconPath3 = 'search-icon'
+						- var iconPath4 = 'tick-icon', iconPath5 = 'arrow-down-icon', iconPath6 = 'cross-icon'
+						- var text = 'Collection'
+						include partials/icons-set
+
+						- var className = '', idAttribute = ''
+						- var iconPath1 = 'twitter-icon', iconPath2 = 'close-icon', iconPath3 = 'search-icon'
+						- var iconPath4 = 'tick-icon', iconPath5 = 'arrow-down-icon', iconPath6 = 'cross-icon'
+						- var text = 'Collection'
+						include partials/icons-set
+
+						- var className = '', idAttribute = ''
+						- var iconPath1 = 'twitter-icon', iconPath2 = 'close-icon', iconPath3 = 'search-icon'
+						- var iconPath4 = 'tick-icon', iconPath5 = 'arrow-down-icon', iconPath6 = 'cross-icon'
+						- var text = 'Collection'
+						include partials/icons-set
+
+						- var className = 'is-check', idAttribute = ''
+						- var iconPath1 = 'twitter-icon', iconPath2 = 'close-icon', iconPath3 = 'search-icon'
+						- var iconPath4 = 'tick-icon', iconPath5 = 'arrow-down-icon', iconPath6 = 'cross-icon'
+						- var text = 'Collection'
+						include partials/icons-set
+
+						- var className = '', idAttribute = ''
+						- var iconPath1 = 'twitter-icon', iconPath2 = 'close-icon', iconPath3 = 'search-icon'
+						- var iconPath4 = 'tick-icon', iconPath5 = 'arrow-down-icon', iconPath6 = 'cross-icon'
+						- var text = 'Collection'
+						include partials/icons-set
+
+						- var className = '', idAttribute = ''
+						- var iconPath1 = 'twitter-icon', iconPath2 = 'close-icon', iconPath3 = 'search-icon'
+						- var iconPath4 = 'tick-icon', iconPath5 = 'arrow-down-icon', iconPath6 = 'cross-icon'
+						- var text = 'Collection'
+						include partials/icons-set
+
+						- var className = '', idAttribute = ''
+						- var iconPath1 = 'twitter-icon', iconPath2 = 'close-icon', iconPath3 = 'search-icon'
+						- var iconPath4 = 'tick-icon', iconPath5 = 'arrow-down-icon', iconPath6 = 'cross-icon'
+						- var text = 'Collection'
+						include partials/icons-set
+
+						- var className = '', idAttribute = ''
+						- var iconPath1 = 'twitter-icon', iconPath2 = 'close-icon', iconPath3 = 'search-icon'
+						- var iconPath4 = 'tick-icon', iconPath5 = 'arrow-down-icon', iconPath6 = 'cross-icon'
+						- var text = 'Collection'
+						include partials/icons-set
+
+						- var className = '', idAttribute = ''
+						- var iconPath1 = 'twitter-icon', iconPath2 = 'close-icon', iconPath3 = 'search-icon'
+						- var iconPath4 = 'tick-icon', iconPath5 = 'arrow-down-icon', iconPath6 = 'cross-icon'
+						- var text = 'Collection'
+						include partials/icons-set
+
+						- var className = '', idAttribute = ''
+						- var iconPath1 = 'twitter-icon', iconPath2 = 'close-icon', iconPath3 = 'search-icon'
+						- var iconPath4 = 'tick-icon', iconPath5 = 'arrow-down-icon', iconPath6 = 'cross-icon'
+						- var text = 'Collection'
+						include partials/icons-set
+
+						- var className = '', idAttribute = ''
+						- var iconPath1 = 'twitter-icon', iconPath2 = 'close-icon', iconPath3 = 'search-icon'
+						- var iconPath4 = 'tick-icon', iconPath5 = 'arrow-down-icon', iconPath6 = 'cross-icon'
+						- var text = 'Collection'
+						include partials/icons-set
+
+						- var className = '', idAttribute = ''
+						- var iconPath1 = 'twitter-icon', iconPath2 = 'close-icon', iconPath3 = 'search-icon'
+						- var iconPath4 = 'tick-icon', iconPath5 = 'arrow-down-icon', iconPath6 = 'cross-icon'
+						- var text = 'Collection'
+						include partials/icons-set
+
+						- var className = '', idAttribute = ''
+						- var iconPath1 = 'twitter-icon', iconPath2 = 'close-icon', iconPath3 = 'search-icon'
+						- var iconPath4 = 'tick-icon', iconPath5 = 'arrow-down-icon', iconPath6 = 'cross-icon'
+						- var text = 'Collection'
+						include partials/icons-set
 
 				.hash-e 1a4f5ba6fd48663826fe4d9ef3f3a2dd
 				include partials/submit-icon
 
 				.hash-e df265d9e31b7bad5b31e1545831142ba
-				.submit-icon-collection-b
+				.submit-icon-collection-b.cf
 					.header-be Icons:
 					.icons-bl.cf
 						include partials/submit-icon
@@ -128,31 +267,24 @@ html
 						include partials/submit-icon
 						include partials/submit-icon
 						include partials/submit-icon
+					- var iconPath = 'cross-icon', title = 'upload', iconClass = '', idAttribute = ''
 					include partials/plus-btn
+
+					- var iconPath = 'arrow-down-icon', title = 'upload', iconClass = '', idAttribute = ''
+					include partials/upload-btn
 
 
 				.hash-e 64fa8abebcd9bc5daf0b64b066612b83
-				.collection-credits-b
-					.header-be Collection credits:
-					include partials/input
-					include partials/input
-					include partials/input
-					include partials/input
-					include partials/input
-					- text = 'submit'
-					include partials/button
+				- var className = ''
+				include partials/collection-credits
+
+				.hash-e 64fa8abebcd9bc5daf0b64b066612b83
+				- var className = 'is-edit'
+				include partials/collection-credits
 
 				.hash-e 7e807202bea13c1b52e121142a6092f8
 				.submit-collection-l.cf
-					.collection-credits-b
-						.header-be Collection credits:
-						include partials/input
-						include partials/input
-						include partials/input
-						include partials/input
-						include partials/input
-						- text = 'submit'
-						include partials/button
+					include partials/collection-credits
 
 					.submit-icon-collection-b
 						.header-be Icons:
@@ -164,7 +296,7 @@ html
 								include partials/submit-icon
 								include partials/submit-icon
 								include partials/submit-icon
-							
+							- var iconPath = 'cross-icon', title = 'upload', iconClass = '', idAttribute = ''
 							include partials/plus-btn
 
 
@@ -214,6 +346,7 @@ html
 					a(href="#").menu-item-be.is-hoverable use
 					a(href="#").menu-item-be.is-hoverable support
 					a(href="#").menu-item-be.is-hoverable contribute
+					.loading-be
 
 
 				.hash-e 47a89f9dc70629feb99b65583ce49f4a

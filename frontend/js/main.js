@@ -60,6 +60,8 @@
           main: '#main-l'
         });
         this.$mainHeader = $('#js-main-header');
+        this.$loadingLine = $('#js-loadin-line');
+        App.$loadingLine = this.$loadingLine;
         App.$mainHeader = this.$mainHeader;
         App.$bodyHtml = $('body, html');
         App.helpers = helpers;

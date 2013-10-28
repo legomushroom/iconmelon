@@ -31,6 +31,7 @@ define 'views/IconEditView', ['views/ProtoView', 'models/IconModel', 'underscore
 			$shape = $('<g>').html val
 			hash = helpers.generateHash()
 			$shape.attr 'id', hash
+			@model.set 'hash', hash
 			
 			$shape.find('*').each (i, child)->
 				$(child).removeAttr 'fill'
@@ -44,7 +45,6 @@ define 'views/IconEditView', ['views/ProtoView', 'models/IconModel', 'underscore
 
 			@$svgWrap.html @$svgWrap.html()
 			@$svg = $('#svg-source')
-			@model.set 'hash', hash
 
 			@model.attributes.shape = $shape.html()
 			@model.set 'isShapeValid',  if $shape.children().length then true else false
@@ -61,7 +61,8 @@ define 'views/IconEditView', ['views/ProtoView', 'models/IconModel', 'underscore
 			@model.on 'change:name', _.bind @modelChange, @
 			@model.on 'change:shape', _.bind @modelChange, @
 			super
-			@model.get('shape') and @setShape @model.get('shape')
+			if @model.get('shape')
+				@setShape @model.get('shape')
 			@
 
 		modelChange:->

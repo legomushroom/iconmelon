@@ -25,7 +25,7 @@ mongo.connect 'mongodb://localhost/iconmelon'
 SectionSchema = new mongo.Schema
       name:           String
       author:         String
-      license:        String
+      email:          String
       creationDate:   String
       icons:          Array
       moderated:      Boolean
@@ -38,16 +38,19 @@ io = require('socket.io').listen(app.listen(process.env.PORT or port))
 
 io.sockets.on "connection", (socket) ->
   console.log 'connected'
+  
   socket.on "sections:read", (data, callback) ->
     Section.find {moderated: true}, (err, docs)->
       callback null, docs
 
+   socket.on "sections-all:read", (data, callback) ->
+    Section.find {}, (err, docs)->
+      callback null, docs
+
   socket.on "section:create", (data, callback) ->
-    console.log typeof data
-    # data = JSON.parse data
     data.moderated = false
-    console.log data
     new Section(data).save()
+    callback null, 'ok'
 
 app.post '/file-upload', (req,res,next)->
   fs.readFile req.files.files[0].path, {encoding: 'utf8'}, (err,data)->

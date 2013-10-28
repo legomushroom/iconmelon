@@ -51,11 +51,13 @@ define 'main', ['marionette', 'jquery', 'router', 'socketio', 'helpers' ], (M, j
 			App.addRegions
 				main: 	'#main-l'
 
-			@$mainHeader = $('#js-main-header')
+			@$mainHeader  = $('#js-main-header')
+			@$loadingLine = $('#js-loadin-line')
 			
-			App.$mainHeader = @$mainHeader
-			App.$bodyHtml = $('body, html')
-			App.helpers = helpers
+			App.$loadingLine 	= @$loadingLine
+			App.$mainHeader 	= @$mainHeader
+			App.$bodyHtml 		= $('body, html')
+			App.helpers 		= helpers
 			
 			window.socket = io.connect('http://localhost')
 

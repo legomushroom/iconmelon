@@ -98,9 +98,18 @@
       };
 
       EditCollectionView.prototype.isValidCollection = function() {
-        return this.iconsCollection.collection.models.filter(function(model) {
-          return model.get('isValid');
-        }).length;
+        var i, valid;
+
+        i = 0;
+        valid = false;
+        while (i < this.iconsCollection.collection.models.length) {
+          if (this.iconsCollection.collection.at(i).get('isValid')) {
+            i = this.iconsCollection.collection.models.length;
+            valid = true;
+          }
+          i++;
+        }
+        return valid;
       };
 
       EditCollectionView.prototype.enableSubmitButton = function(state) {
@@ -108,8 +117,17 @@
       };
 
       EditCollectionView.prototype.submit = function() {
-        this.model.set('icons', this.iconsCollection.collection.toJSON());
-        return this.model.save();
+        var _this = this;
+
+        this.$submitButton.addClass('loading-eff is-inactive');
+        return _.defer(function() {
+          _this.model.set('icons', _this.iconsCollection.collection.toJSON());
+          return _this.model.save().then(function() {
+            return _this.$submitButton.removeClass('loading-eff');
+          }).fail(function(err) {
+            return _this.$submitButton.removeClass('loading-eff is-inactive');
+          });
+        });
       };
 
       EditCollectionView.prototype.initFileUpload = function() {
@@ -120,43 +138,44 @@
           acceptFileTypes: /(\.|\/)(svg)$/i,
           dataType: 'text',
           limitMultiFileUploads: 999,
-          add: function(e, data) {
-            console.log('upload started...');
-            _this.filesDroppedCnt = data.originalFiles.length;
-            return data.submit();
-          },
           done: function(e, data) {
-            var modelToRemove, name, _ref1;
+            return _.defer(function() {
+              var modelToRemove, name;
 
-            name = data.files[0].name.split('.svg')[0];
-            if ((_ref1 = _this.filesLoadedCnt) == null) {
-              _this.filesLoadedCnt = 0;
-            }
-            _this.filesLoadedCnt++;
-            modelToRemove = _this.iconsCollection.collection.length === 1 && !_this.isValidCollection() ? _this.iconsCollection.collection.at(0) : null;
-            _this.iconsCollection.collection.add({
-              shape: data.result,
-              name: name,
-              hash: helpers.generateHash(),
-              isValid: true
+              name = data.files[0].name.split('.svg')[0];
+              modelToRemove = _this.iconsCollection.collection.length === 1 && !_this.isValidCollection() ? _this.iconsCollection.collection.at(0) : null;
+              _this.iconsCollection.collection.add({
+                shape: data.result,
+                name: name,
+                hash: helpers.generateHash(),
+                isValid: true
+              });
+              return modelToRemove != null ? modelToRemove.destroy() : void 0;
             });
-            if (modelToRemove != null) {
-              modelToRemove.destroy();
-            }
-            console.log("" + _this.filesLoadedCnt + "/" + _this.filesDroppedCnt);
-            if (_this.filesDroppedCnt === _this.filesLoadedCnt) {
-              return _this.finishFilesLoading();
-            }
           },
           error: function(e, data) {},
-          progressall: function(e, data) {}
+          progressall: function(e, data) {
+            var progress;
+
+            progress = parseInt(data.loaded / data.total * 100, 10);
+            App.$loadingLine.css({
+              'width': "" + progress + "%"
+            });
+            return progress === 100 && _this.finishFilesLoading();
+          }
         });
       };
 
       EditCollectionView.prototype.finishFilesLoading = function() {
-        this.filesLoadedCnt = 0;
+        var _this = this;
+
         this.checkIfValidCollection();
-        return console.log('files loaded');
+        return _.defer(function() {
+          return App.$loadingLine.fadeOut(1000, function() {
+            App.$loadingLine.width("0%");
+            return App.$loadingLine.show();
+          });
+        });
       };
 
       return EditCollectionView;

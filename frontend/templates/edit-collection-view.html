@@ -6,13 +6,42 @@
     <input id="js-author" placeholder="author" class="input-e "/>
     <input id="js-email" placeholder="email" class="input-e "/>
     <input id="js-website" placeholder="website(optional)" class="input-e "/>
+    <div id="" class="checkbox-with-label-b ">
+      <div id="" class="checkbox-b input-e ">
+        <input type="checkbox" id="moderated"/>
+        <div id="" title="" class="icon ">
+          <svg viewBox="0 0 32 32">
+            <g>
+              <use xlink:href="#tick-icon"></use>
+            </g>
+          </svg>
+        </div>
+      </div>
+      <label for="moderated">moderated</label>
+    </div>
+    <div class="icon-set-l">
+      <div class="left-ll">
+        <div class="btn-b is-iconed is-red1">
+          <div id="" title="" class="icon ">
+            <svg viewBox="0 0 32 32">
+              <g>
+                <use xlink:href="#close-icon"></use>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="right-ll">
+        <div data-cnt="0" class="btn-b ">save</div>
+      </div>
+    </div>
     <div data-cnt="0" class="btn-b js-submit-btn is-inactive">submit</div>
   </div>
   <div class="submit-icon-collection-b">
     <div class="header-be">Icons:</div>
     <div class="icons-bl cf">
       <div id="js-icons-place" class="icons-bll"></div>
-      <div id="js-add-icon" title="add icon" class="plus-btn-b">
+      <div id="js-add-icon" title="add icon" class="plus-btn-b ">
         <div id="" title="add icon" class="icon ">
           <svg viewBox="0 0 32 32">
             <g>
@@ -22,6 +51,7 @@
         </div>
       </div>
       <div id="js-upload-icon" title="upload icon from svg file" class="plus-btn-b">
+        <input id="fileupload" type="file" name="files[]" multiple="multiple"/>
         <div id="" title="upload icon from svg file" class="icon ">
           <svg viewBox="0 0 32 32">
             <g>

@@ -3,3 +3,35 @@
 
 .box-shadow-down-eff
 	downShadow()
+
+.loading-eff
+	background-image: -webkit-linear-gradient(-45deg, rgba(255,255,255,.2) 25%, rgba(255, 154, 26, 0) 25%, rgba(255, 154, 26, 0) 50%, rgba(255,255,255,.2) 50%, rgba(255,255,255,.2) 75%, rgba(255, 154, 26, 0) 75%);
+	background-image: -moz-linear-gradient(-45deg, rgba(255,255,255,.2) 25%, rgba(255, 154, 26, 0) 25%, rgba(255, 154, 26, 0) 50%, rgba(255,255,255,.2) 50%, rgba(255,255,255,.2) 75%, rgba(255, 154, 26, 0) 75%);
+	background-image: -o-linear-gradient(-45deg, rgba(255,255,255,.2) 25%, rgba(255, 154, 26, 0) 25%, rgba(255, 154, 26, 0) 50%, rgba(255,255,255,.2) 50%, rgba(255,255,255,.2) 75%, rgba(255, 154, 26, 0) 75%);
+	background-image: linear-gradient(-45deg, rgba(255,255,255,.2) 25%, rgba(255, 154, 26, 0) 25%, rgba(255, 154, 26, 0) 50%, rgba(255,255,255,.2) 50%, rgba(255,255,255,.2) 75%, rgba(255, 154, 26, 0) 75%);
+	background-size: 50px 50px;
+	-webkit-animation: loading-stripes-bg 2s linear infinite;
+	-moz-animation: loading-stripes-bg 2s linear infinite;
+	-ms-animation: loading-stripes-bg 2s linear infinite;
+	animation: loading-stripes-bg 2s linear infinite;
+
+
+@-webkit-keyframes loading-stripes-bg {
+    0%   { background-position: 0 0; }
+    100% { background-position: 50px 50px; }
+}
+
+@-moz-keyframes loading-stripes-bg {
+    0%   { background-position: 0 0; }
+    100% { background-position: 50px 50px; }
+}
+
+@-ms-keyframes loading-stripes-bg {
+    0%   { background-position: 0 0; }
+    100% { background-position: 50px 50px; }
+}
+
+@-webkit-keyframes loading-stripes-bg {
+    0%   { background-position: 0 0; }
+    100% { background-position: 50px 50px; }
+}

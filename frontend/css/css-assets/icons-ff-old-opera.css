@@ -25,9 +25,21 @@
   -ms-transform: rotate(-180deg);
   -o-transform: rotate(-180deg);
   transform: rotate(-180deg);
+  -webkit-transition: -webkit-transform 0.3s linear;
+  -moz-transition: -webkit-transform 0.3s linear;
+  -o-transition: -webkit-transform 0.3s linear;
   transition: -webkit-transform 0.3s linear;
+  -webkit-transition: -moz-transform 0.3s linear;
+  -moz-transition: -moz-transform 0.3s linear;
+  -o-transition: -moz-transform 0.3s linear;
   transition: -moz-transform 0.3s linear;
+  -webkit-transition: -o-transform 0.3s linear;
+  -moz-transition: -o-transform 0.3s linear;
+  -o-transition: -o-transform 0.3s linear;
   transition: -o-transform 0.3s linear;
+  -webkit-transition: transform 0.3s linear;
+  -moz-transition: transform 0.3s linear;
+  -o-transition: transform 0.3s linear;
   transition: transform 0.3s linear;
 }
 .icon.is-grey3 {

@@ -3,6 +3,7 @@ define 'router', ['backbone','controllers/PagesController'], (B, pc)->
 		routes:
 			'': 			'main'
 			'submit': 		'submit'
+			'editr': 		'editr'
 
 		main:->
 			@startPage pc.main
@@ -11,6 +12,10 @@ define 'router', ['backbone','controllers/PagesController'], (B, pc)->
 		submit:->
 			@startPage pc.submit
 			@chechMainMenuItem '#js-submit'
+
+		editr:->
+			@startPage pc.editr
+			@chechMainMenuItem '#js-editr'
 
 		startPage:(View)->
 			App.main.show new View @o

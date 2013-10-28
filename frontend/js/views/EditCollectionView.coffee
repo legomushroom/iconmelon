@@ -76,14 +76,29 @@ define 'views/EditCollectionView', [ 'views/ProtoView', 'views/IconEditView', 'c
 			@enableSubmitButton @nameValid and @authorValid and @emailValid and @isValidCollection()
 
 		isValidCollection:->
-			@iconsCollection.collection.models.filter((model)-> model.get('isValid')).length
+			i = 0
+			valid = false
+			while i < @iconsCollection.collection.models.length
+				if @iconsCollection.collection.at(i).get('isValid')
+					i = @iconsCollection.collection.models.length
+					valid = true
+				i++
+
+			valid
+			# @iconsCollection.collection.models.filter((model)-> model.get('isValid')).length
 
 		enableSubmitButton:(state)->
 			@$submitButton.toggleClass 'is-inactive', !state
 
 		submit:->
-			@model.set 'icons', @iconsCollection.collection.toJSON()
-			@model.save()
+			@$submitButton.addClass('loading-eff is-inactive')
+			_.defer =>
+				@model.set 'icons', @iconsCollection.collection.toJSON()
+				@model.save().then( =>
+					@$submitButton.removeClass 'loading-eff'
+				).fail (err)=>
+					@$submitButton.removeClass 'loading-eff is-inactive'
+
 
 		initFileUpload:->
 			@$('#fileupload').fileupload
@@ -91,32 +106,33 @@ define 'views/EditCollectionView', [ 'views/ProtoView', 'views/IconEditView', 'c
 				acceptFileTypes: /(\.|\/)(svg)$/i
 				dataType: 'text'
 				limitMultiFileUploads: 999
-				add:(e, data)=>
-					console.log 'upload started...'
-					@filesDroppedCnt = data.originalFiles.length
-					data.submit()
+				# add:(e, data)=>
+				# 	@filesDroppedCnt = data.originalFiles.length
+				# 	data.submit()
 				done:(e, data)=>
-					name = data.files[0].name.split('.svg')[0]
-					@filesLoadedCnt ?= 0
-					@filesLoadedCnt++
-					modelToRemove = if @iconsCollection.collection.length is 1 and !@isValidCollection() then @iconsCollection.collection.at(0) else null
-					@iconsCollection.collection.add
-							shape: data.result
-							name: name
-							hash: helpers.generateHash()
-							isValid: true
+					_.defer =>
+						name = data.files[0].name.split('.svg')[0]
+						modelToRemove = if @iconsCollection.collection.length is 1 and !@isValidCollection() then @iconsCollection.collection.at(0) else null
+						@iconsCollection.collection.add
+								shape: data.result
+								name: name
+								hash: helpers.generateHash()
+								isValid: true
 
-					modelToRemove?.destroy()
-					console.log "#{@filesLoadedCnt}/#{@filesDroppedCnt}"
-					if @filesDroppedCnt is @filesLoadedCnt then @finishFilesLoading()
+						modelToRemove?.destroy()
 
 				error:(e, data)->
 				progressall:(e, data)=>
+					progress = parseInt(data.loaded / data.total * 100, 10)
+					App.$loadingLine.css 'width':"#{progress}%"
+					progress is 100 and @finishFilesLoading()
 
 		finishFilesLoading:()->
-			@filesLoadedCnt = 0
 			@checkIfValidCollection()
-			console.log 'files loaded'
+			_.defer =>
+				App.$loadingLine.fadeOut(1000,=>
+					App.$loadingLine.width "0%"
+					App.$loadingLine.show())
 
 
 	EditCollectionView

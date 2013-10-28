@@ -31,7 +31,7 @@
         var pattern,
           _this = this;
 
-        pattern = new RegExp(filter, 'g');
+        pattern = new RegExp(filter, 'gi');
         return this.each(function(model) {
           return _.defer(function() {
             return model.set('isFiltered', !(model.get('name').match(pattern)) ? true : false);

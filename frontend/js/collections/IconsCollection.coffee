@@ -11,7 +11,7 @@ define 'collections/IconsCollection', ['backbone', 'models/IconModel', 'undersco
 			App.vent.on 'icon-select-filter:change', _.debounce _.bind(@filter, @), 250
 
 		filter:(filter)->
-			pattern = new RegExp filter, 'g'
+			pattern = new RegExp filter, 'gi'
 			@each (model)=>
 				_.defer =>
 					model.set 'isFiltered', if !(model.get('name').match pattern) then true else false
