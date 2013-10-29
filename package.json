@@ -10,7 +10,8 @@
     "jade": "*",
     "mongoose": "*",
     "socket.io": "latest",
-    "cheerio": "latest"
+    "cheerio": "latest",
+    "node-promise": "latest"
   },
   "devDependencies": {
     "nodemon": "*"

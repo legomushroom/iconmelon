@@ -28,15 +28,24 @@ a
 			content ''
 			position absolute
 			display none
+			color inherit
 
 			width 100%
 			height 2px
 			left -2px
-			bottom - (gs/2)
-			border 1px solid transparent
-			border-top-color    c-grey1
-			border-bottom-color c-grey1
 
+			bottom - (gs/2)
+			border 1px solid 
+			border-left-color transparent
+			border-right-color transparent
+
+		&.is-grey3
+			// 4!
+			&:after
+				border-top-color    c-grey3
+				border-bottom-color c-grey3
+
+	
 		&:hover
 			// 4!
 			&:after

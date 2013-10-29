@@ -3,7 +3,7 @@
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define('views/SectionLineView', ['views/ProtoView', 'models/SectionModel', 'collectionViews/IconsCollectionView', 'collections/IconsCollection', 'underscore'], function(ProtoView, SectionModel, IconsCollectionView, IconsCollection, _) {
+  define('views/SectionLineView', ['views/ProtoView', 'models/SectionModel', 'collectionViews/IconsCollectionView', 'collections/IconsCollection', 'underscore', 'helpers'], function(ProtoView, SectionModel, IconsCollectionView, IconsCollection, _, helpers) {
     var SectionView, _ref;
 
     SectionView = (function(_super) {
@@ -25,7 +25,10 @@
       };
 
       SectionView.prototype.initialize = function() {
-        return this.model.on('change:isSelected', _.bind(this.render, this));
+        this.makePreviewSvg();
+        this.model.on('change:isSelected', _.bind(this.render, this));
+        SectionView.__super__.initialize.apply(this, arguments);
+        return this;
       };
 
       SectionView.prototype.selectMe = function() {
@@ -35,6 +38,23 @@
           _base.onSelect(this.model);
         }
         return this.model.set('isSelected', true);
+      };
+
+      SectionView.prototype.makePreviewSvg = function() {
+        var $shapes, i, icons;
+
+        i = 0;
+        icons = this.model.get('icons');
+        $shapes = $('<div>');
+        while (i < 6) {
+          helpers.upsetSvgShape({
+            hash: icons[i].hash,
+            shape: icons[i].shape,
+            $shapes: $shapes
+          });
+          i++;
+        }
+        return helpers.addToSvg($shapes);
       };
 
       SectionView.prototype.render = function() {

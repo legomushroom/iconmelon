@@ -304,7 +304,7 @@ marginTop = 2*gs
 		left 	 0
 		bottom 	 - gs + 2px
 		position absolute
-		transition width .5s ease-out
+		transition width .05s ease-out
 		border-top-right-radius br + 1px
 		border-bottom-right-radius br + 1px
 
@@ -345,6 +345,13 @@ marginTop = 2*gs
 	color c-grey3
 	font-size 4*gs
 
+	> .author-be
+		font-size 2.5*gs
+		float right
+		display block
+		color c-grey3
+		margin-top gs + 2px
+
 	> .name-be
 		display inline-block
 
@@ -382,12 +389,12 @@ marginTop = 2*gs
 	&:hover
 		background-color rgba(0,0,0,.05)
 
-	/* 5ac5220f1049eb20597200b73202b468 */
-	&.is-check
-		border 1px solid c-grey3
+	// /* 5ac5220f1049eb20597200b73202b468 */
+	// &.is-check
+	// 	border 1px solid c-grey3
 
-		> .bullet-be
-			display block
+	// 	> .bullet-be
+	// 		display block
 
 	> .bullet-be
 		position absolute
@@ -499,6 +506,22 @@ shadowSize = 2px
 	box-shadow shadowSize shadowSize 0 rgba(rgb(c-grey1), .2)
 	font-size 20px
 	text-align center
+
+	&:hover
+		background c-green-hover
+	&:active
+		transform translate(shadowSize,shadowSize)
+		box-shadow none
+		background c-green
+	&:before
+		content ''
+		position absolute
+		nw 0
+		rect 100%
+	&:active
+		&:before
+			transform translate(- shadowSize,- shadowSize)
+
 	
 	/* 9343b5637912148f603dc8c154382c2c */
 	&.is-red1
@@ -521,13 +544,6 @@ shadowSize = 2px
 			nw 50%
 			margin-left - (gs/2)
 			margin-top - (gs/2)
-
-	&:hover
-		background c-green-hover
-	&:active
-		transform translate(shadowSize,shadowSize)
-		box-shadow none
-		background c-green
 
 	/* 3dd69df51d0449f7f9db27fe23b7cef6 */
 	&.is-inactive

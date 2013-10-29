@@ -57,7 +57,11 @@ define 'main', ['marionette', 'jquery', 'router', 'socketio', 'helpers' ], (M, j
 			App.$loadingLine 	= @$loadingLine
 			App.$mainHeader 	= @$mainHeader
 			App.$bodyHtml 		= $('body, html')
+			App.$svgWrap 		= $('#js-svg-wrap')
 			App.helpers 		= helpers
+			App.loadedHashes = []
+
+			@loadSvg()
 			
 			window.socket = io.connect('http://localhost')
 
@@ -69,6 +73,9 @@ define 'main', ['marionette', 'jquery', 'router', 'socketio', 'helpers' ], (M, j
 			App.$window = $(window)
 			@$mainHeader = $('#js-main-header')
 			@listenEvents()
+
+		loadSvg:()->
+			App.$svgWrap.load 'css/icons-main-page.svg'
 
 		listenEvents:->
 			App.$window.on 'scroll', =>

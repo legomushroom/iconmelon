@@ -2,7 +2,7 @@ define 'collections/IconsCollection', ['backbone', 'models/IconModel', 'undersco
 	class IconsCollection extends B.Collection
 		model: IconModel
 
-		initialize:->
+		initialize:(@o={})->
 			@listenToPUBSUB()
 			super
 			@

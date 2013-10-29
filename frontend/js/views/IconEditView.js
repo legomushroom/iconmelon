@@ -52,14 +52,16 @@
         $shape.attr('id', hash);
         this.model.set('hash', hash);
         $shape.find('*').each(function(i, child) {
-          return $(child).removeAttr('fill');
+          if ($(child).attr('fill') !== 'none') {
+            return $(child).removeAttr('fill');
+          }
         });
         $svgRef = this.$svg.find("#" + hash);
         if ($svgRef.length) {
           $svgRef.remove();
         }
         this.$svg.append($shape);
-        this.$svgWrap.html(this.$svgWrap.html());
+        helpers.refreshSvg();
         this.$svg = $('#svg-source');
         this.model.attributes.shape = $shape.html();
         this.model.set('isShapeValid', $shape.children().length ? true : false);
@@ -74,12 +76,12 @@
       IconEditView.prototype.initialize = function(o) {
         this.o = o != null ? o : {};
         this.$svg = $('#svg-source');
-        this.$svgWrap = $('#js-svg-wrap');
+        this.$svgWrap = App.$svgWrap;
         this.bindModelEvents();
         this.model.on('change:name', _.bind(this.modelChange, this));
         this.model.on('change:shape', _.bind(this.modelChange, this));
         IconEditView.__super__.initialize.apply(this, arguments);
-        if (this.model.get('shape')) {
+        if (this.model.get('shape') && (this.model.collection.mode !== 'edit')) {
           this.setShape(this.model.get('shape'));
         }
         return this;

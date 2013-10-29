@@ -24,6 +24,33 @@ define 'helpers', ['md5'], (md5)->
 		generateHash:->
 			md5 (new Date) + (new Date).getMilliseconds() + Math.random(9999999999999) + Math.random(9999999999999) + Math.random(9999999999999)
 
+		refreshSvg:->
+			App.$svgWrap.html App.$svgWrap.html()
+
+		upsetSvgShape:(o)->
+			isLoaded = false
+			if o.isCheck
+				i = 0; 
+				while i < App.loadedHashes.length
+					if String(App.loadedHashes[i]) is String(o.hash)
+						isLoaded = true
+						i = App.loadedHashes.length
+					i++
+
+			
+			if !isLoaded
+				$shape = $('<g>').html(o.shape).attr 'id', o.hash
+				$shape.find('*').each (i, child)->
+					$child = $(child)
+					if ($child.attr('fill') isnt 'none')
+						$child.removeAttr('fill')
+				o.$shapes.append $shape
+				App.loadedHashes.push o.hash
+
+		addToSvg:($shapes)->
+			App.$svgWrap.find('#svg-source').append $shapes.html()
+			@refreshSvg()
+
 
 	new Helpers
 

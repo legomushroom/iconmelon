@@ -34,6 +34,44 @@
         return md5((new Date) + (new Date).getMilliseconds() + Math.random(9999999999999) + Math.random(9999999999999) + Math.random(9999999999999));
       };
 
+      Helpers.prototype.refreshSvg = function() {
+        return App.$svgWrap.html(App.$svgWrap.html());
+      };
+
+      Helpers.prototype.upsetSvgShape = function(o) {
+        var $shape, i, isLoaded;
+
+        isLoaded = false;
+        if (o.isCheck) {
+          i = 0;
+          while (i < App.loadedHashes.length) {
+            if (String(App.loadedHashes[i]) === String(o.hash)) {
+              isLoaded = true;
+              i = App.loadedHashes.length;
+            }
+            i++;
+          }
+        }
+        if (!isLoaded) {
+          $shape = $('<g>').html(o.shape).attr('id', o.hash);
+          $shape.find('*').each(function(i, child) {
+            var $child;
+
+            $child = $(child);
+            if ($child.attr('fill') !== 'none') {
+              return $child.removeAttr('fill');
+            }
+          });
+          o.$shapes.append($shape);
+          return App.loadedHashes.push(o.hash);
+        }
+      };
+
+      Helpers.prototype.addToSvg = function($shapes) {
+        App.$svgWrap.find('#svg-source').append($shapes.html());
+        return this.refreshSvg();
+      };
+
       return Helpers;
 
     })();

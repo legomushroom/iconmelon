@@ -2,5 +2,11 @@ define 'collectionViews/IconsCollectionView', ['collectionViews/ProtoCollectionV
 	class IconsCollectionView extends ProtoView
 		itemView: IconView
 		template: '#icons-collection-view-template'
+
+		initialize:(@o={})->
+			@collection.mode = @o.mode
+			super
+			@
+
 	IconsCollectionView
 

@@ -18,6 +18,8 @@ define 'router', ['backbone','controllers/PagesController'], (B, pc)->
 			@chechMainMenuItem '#js-editr'
 
 		startPage:(View)->
+			if @currentPage is View then return
+			@currentPage = View
 			App.main.show new View @o
 			App.$bodyHtml.animate 'scrollTop': 0
 

@@ -5,25 +5,16 @@ define 'models/SectionModel', ['models/ProtoModel', 'helpers'], (ProtoModel, hel
 			name: 	 ''
 			author:  ''
 			email: 	 ''
-			webdite: ''
+			website: ''
 			license: ''
 			isClosed: false
 			moderated: false
 			icons: []
 
 
-		initialize:->
-			# @set 'icons', @generateIcons()
-
+		initialize:(@o={})->
 			super
 			@
-
-		# generateIcons:->
-		# 	for i in [0..helpers.getRandom(10,100)]
-		# 		{}
-
-				
-
 
 
 	SectionModel

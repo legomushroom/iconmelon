@@ -27,6 +27,10 @@
         return this;
       };
 
+      ProtoView.prototype.teardown = function() {
+        return this.undelegateEvents();
+      };
+
       return ProtoView;
 
     })(M.ItemView);

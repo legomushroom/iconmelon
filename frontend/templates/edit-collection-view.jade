@@ -20,16 +20,16 @@
 		- var idAttribute = 'js-website'		
 		include ../css/partials/input
 
-		- var text = 'moderated', className = '', idAttribute = ''
+		- var text = 'moderated', className = '', idAttribute = 'js-moderated'
 		include ../css/partials/checkbox-with-label
 
 		.icon-set-l
 			.left-ll
-				- var className = 'is-iconed is-red1'
+				- var className = 'js-delete is-iconed is-red1'
 				- var iconPath = 'close-icon'
 				include ../css/partials/button-with-icon
 			.right-ll
-				- var className = '', text = 'save', cnt = ''
+				- var className = 'js-save', text = 'save', cnt = ''
 				include ../css/partials/button
 
 		- text = 'submit'

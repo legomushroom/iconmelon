@@ -10,4 +10,9 @@ define 'views/ProtoView', ['marionette'], (M)->
 		render:->
 			super
 			@
+
+		teardown:->
+			@undelegateEvents()
+
+
 	ProtoView

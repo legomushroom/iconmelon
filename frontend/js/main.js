@@ -64,7 +64,10 @@
         App.$loadingLine = this.$loadingLine;
         App.$mainHeader = this.$mainHeader;
         App.$bodyHtml = $('body, html');
+        App.$svgWrap = $('#js-svg-wrap');
         App.helpers = helpers;
+        App.loadedHashes = [];
+        this.loadSvg();
         window.socket = io.connect('http://localhost');
         App.router = new Router;
         Backbone.history.start();
@@ -74,6 +77,10 @@
         this.$mainHeader = $('#js-main-header');
         this.listenEvents();
       }
+
+      Application.prototype.loadSvg = function() {
+        return App.$svgWrap.load('css/icons-main-page.svg');
+      };
 
       Application.prototype.listenEvents = function() {
         var _this = this;

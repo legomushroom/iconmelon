@@ -20,14 +20,15 @@
         name: '',
         author: '',
         email: '',
-        webdite: '',
+        website: '',
         license: '',
         isClosed: false,
         moderated: false,
         icons: []
       };
 
-      SectionModel.prototype.initialize = function() {
+      SectionModel.prototype.initialize = function(o) {
+        this.o = o != null ? o : {};
         SectionModel.__super__.initialize.apply(this, arguments);
         return this;
       };

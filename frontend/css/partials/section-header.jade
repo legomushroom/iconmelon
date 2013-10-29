@@ -1,8 +1,9 @@
 //- d8231e3de7a5cfc54e2a32c99fda48b0
 .section-header-b
+	a(href="#").is-grey3.is-hoverable.author-be #{ author || 'by LegoMushroom' }
+
 	.name-be #{ text || 'Section name' }
 	.icons-bl
-		
 		- var path	      = 'dropup-arrow-icon'
 		- var iconClass   = 'is-hoverable ' + arrowClass
 		- var idAttribute = 'js-hide'

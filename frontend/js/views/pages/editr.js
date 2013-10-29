@@ -33,26 +33,31 @@
         });
         this.collectionLine.collection.url = 'sections-all';
         this.collectionLine.collection.fetch().then(function() {
-          var model;
-
-          model = _this.collectionLine.collection.at(0).set('isSelected', true);
-          return _this.setEditTo(model);
+          return _this.showFirstModel();
         });
-        return this.collectionLine.collection.onSelect = function(model) {
-          return _this.setEditTo(model);
+        this.collectionLine.collection.onSelect = function(model) {
+          return _this.renderEditCollectionView(model);
         };
+        return this.collectionLine.collection.on('remove', _.bind(this.showFirstModel, this));
       };
 
-      Edit.prototype.setEditTo = function(model) {
-        this.editCollectionView.model.unset().set(model.toJSON());
-        return this.editCollectionView.render();
+      Edit.prototype.showFirstModel = function() {
+        var _ref1;
+
+        return this.renderEditCollectionView((_ref1 = this.collectionLine.collection.at(0)) != null ? _ref1.set('isSelected', true) : void 0);
       };
 
-      Edit.prototype.renderEditCollectionView = function() {
+      Edit.prototype.renderEditCollectionView = function(model) {
+        var _ref1;
+
+        if ((_ref1 = this.editCollectionView) != null) {
+          _ref1.teardown();
+        }
         return this.editCollectionView = new EditCollectionView({
           $el: this.$('#js-edit-collection-view-place'),
           isRender: true,
-          model: new IconsCollectionModel
+          model: model || new IconsCollectionModel,
+          mode: 'edit'
         });
       };
 

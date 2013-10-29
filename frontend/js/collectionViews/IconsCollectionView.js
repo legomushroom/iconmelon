@@ -18,6 +18,13 @@
 
       IconsCollectionView.prototype.template = '#icons-collection-view-template';
 
+      IconsCollectionView.prototype.initialize = function(o) {
+        this.o = o != null ? o : {};
+        this.collection.mode = this.o.mode;
+        IconsCollectionView.__super__.initialize.apply(this, arguments);
+        return this;
+      };
+
       return IconsCollectionView;
 
     })(ProtoView);

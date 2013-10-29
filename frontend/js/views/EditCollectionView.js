@@ -18,7 +18,9 @@
 
       EditCollectionView.prototype.events = {
         'click #js-add-icon': 'addIcon',
-        'click .js-submit-btn:not(.is-inactive)': 'submit'
+        'click .js-submit-btn:not(.is-inactive)': 'submit',
+        'click .js-delete': 'delete',
+        'click .js-save': 'save'
       };
 
       EditCollectionView.prototype.bindings = {
@@ -34,15 +36,19 @@
           observe: 'email',
           onSet: 'emailSet'
         },
-        '#js-website': 'website'
+        '#js-website': 'website',
+        '#js-moderated input': 'moderated'
       };
 
       EditCollectionView.prototype.ui = {
         submitBtn: '.js-submit-btn'
       };
 
-      EditCollectionView.prototype.initialize = function() {
+      EditCollectionView.prototype.initialize = function(o) {
+        this.o = o != null ? o : {};
         EditCollectionView.__super__.initialize.apply(this, arguments);
+        this.iconsLoaded = [];
+        this.o.mode === 'edit' && this.makeSvgData();
         this.initFileUpload();
         return this;
       };
@@ -50,9 +56,30 @@
       EditCollectionView.prototype.render = function() {
         EditCollectionView.__super__.render.apply(this, arguments);
         this.$submitButton = this.$(this.ui.submitBtn);
+        this.o.mode === 'edit' && this.$('.collection-credits-b').addClass('is-edit');
         this.renderIconsCollection();
         this.stickit();
         return this;
+      };
+
+      EditCollectionView.prototype.makeSvgData = function(isCheck) {
+        var _this = this;
+
+        if (isCheck == null) {
+          isCheck = true;
+        }
+        console.time('svg load');
+        this.$shapes = $('<div>');
+        this.iconsCollection.collection.each(function(model) {
+          return helpers.upsetSvgShape({
+            hash: model.get('hash'),
+            $shapes: _this.$shapes,
+            shape: model.get('shape'),
+            isCheck: isCheck
+          });
+        });
+        helpers.addToSvg(this.$shapes);
+        return console.timeEnd('svg load');
       };
 
       EditCollectionView.prototype.renderIconsCollection = function() {
@@ -60,7 +87,8 @@
           itemView: IconEditView,
           collection: new IconsCollection(this.model.get('icons').length ? this.model.get('icons') : [{}]),
           isRender: true,
-          $el: this.$('#js-icons-place')
+          $el: this.$('#js-icons-place'),
+          mode: this.o.mode
         });
         return App.vent.on('edit-collection:change', _.bind(this.checkIfValidCollection, this));
       };
@@ -130,6 +158,19 @@
         });
       };
 
+      EditCollectionView.prototype["delete"] = function() {
+        return this.model.destroy();
+      };
+
+      EditCollectionView.prototype.save = function() {
+        var _this = this;
+
+        return _.defer(function() {
+          _this.model.set('icons', _this.iconsCollection.collection.toJSON());
+          return _this.model.save();
+        });
+      };
+
       EditCollectionView.prototype.initFileUpload = function() {
         var _this = this;
 
@@ -138,40 +179,54 @@
           acceptFileTypes: /(\.|\/)(svg)$/i,
           dataType: 'text',
           limitMultiFileUploads: 999,
-          done: function(e, data) {
-            return _.defer(function() {
-              var modelToRemove, name;
-
-              name = data.files[0].name.split('.svg')[0];
-              modelToRemove = _this.iconsCollection.collection.length === 1 && !_this.isValidCollection() ? _this.iconsCollection.collection.at(0) : null;
-              _this.iconsCollection.collection.add({
-                shape: data.result,
-                name: name,
-                hash: helpers.generateHash(),
-                isValid: true
-              });
-              return modelToRemove != null ? modelToRemove.destroy() : void 0;
-            });
+          add: function(e, data) {
+            _this.filesDropped = data.originalFiles.length;
+            _this.filesLoaded = 0;
+            return data.submit();
           },
-          error: function(e, data) {},
+          done: function(e, data) {
+            var name;
+
+            _this.filesLoaded++;
+            name = data.files[0].name.split('.svg')[0];
+            data = {
+              shape: data.result.replace(/fill=\"+[#]\d{3,6}"/gi, ''),
+              name: name,
+              hash: helpers.generateHash(),
+              isValid: true
+            };
+            _this.iconsLoaded.push(data);
+            return _this.filesLoaded === _this.filesDropped && _this.finishFilesLoading();
+          },
+          error: function(e, data) {
+            return console.error(e);
+          },
           progressall: function(e, data) {
             var progress;
 
             progress = parseInt(data.loaded / data.total * 100, 10);
-            App.$loadingLine.css({
+            return App.$loadingLine.css({
               'width': "" + progress + "%"
             });
-            return progress === 100 && _this.finishFilesLoading();
           }
         });
       };
 
       EditCollectionView.prototype.finishFilesLoading = function() {
-        var _this = this;
+        var _ref1,
+          _this = this;
 
+        this.modelToRemove = this.iconsCollection.collection.length === 1 && !this.isValidCollection() ? this.iconsCollection.collection.at(0) : null;
+        this.iconsCollection.collection.mode = 'edit';
+        this.iconsCollection.collection.add(this.iconsLoaded);
+        if ((_ref1 = this.modelToRemove) != null) {
+          _ref1.destroy();
+        }
+        this.iconsLoaded = [];
+        this.makeSvgData(false);
         this.checkIfValidCollection();
         return _.defer(function() {
-          return App.$loadingLine.fadeOut(1000, function() {
+          return App.$loadingLine.fadeOut(200, function() {
             App.$loadingLine.width("0%");
             return App.$loadingLine.show();
           });

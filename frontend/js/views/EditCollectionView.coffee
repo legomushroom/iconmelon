@@ -4,8 +4,10 @@ define 'views/EditCollectionView', [ 'views/ProtoView', 'views/IconEditView', 'c
 		template: '#edit-collection-view-template'
 
 		events:
-			'click #js-add-icon': 'addIcon'
+			'click #js-add-icon': 	'addIcon'
 			'click .js-submit-btn:not(.is-inactive)': 'submit'
+			'click .js-delete': 	'delete'
+			'click .js-save': 		'save'
 
 		bindings:
 			'#js-collection-name': 	
@@ -22,21 +24,41 @@ define 'views/EditCollectionView', [ 'views/ProtoView', 'views/IconEditView', 'c
 			
 			'#js-website': 	'website'
 
+			'#js-moderated input': 'moderated'
+
 		ui:
 			submitBtn: '.js-submit-btn'
 
 
-		initialize:->
+		initialize:(@o={})->
 			super
+			@iconsLoaded = []
+
+			@o.mode is 'edit' and @makeSvgData()
 			@initFileUpload()
 			@
 
 		render:->
 			super
 			@$submitButton = @$(@ui.submitBtn)
+			@o.mode is 'edit' and @$('.collection-credits-b').addClass 'is-edit'
 			@renderIconsCollection()
 			@stickit()
 			@
+
+		makeSvgData:(isCheck=true)->
+			console.time 'svg load'
+			@$shapes = $('<div>')
+			@iconsCollection.collection.each (model)=>
+				helpers.upsetSvgShape 
+							hash: model.get('hash')
+							$shapes: @$shapes
+							shape: model.get 'shape'
+							isCheck: isCheck
+
+			helpers.addToSvg @$shapes
+			console.timeEnd 'svg load'
+
 
 		renderIconsCollection:->
 			@iconsCollection = new IconsCollectionView
@@ -44,6 +66,7 @@ define 'views/EditCollectionView', [ 'views/ProtoView', 'views/IconEditView', 'c
 				collection: new IconsCollection if @model.get('icons').length then @model.get('icons') else [{}]
 				isRender: true
 				$el: @$ '#js-icons-place'
+				mode: @o.mode
 
 			App.vent.on 'edit-collection:change', _.bind @checkIfValidCollection, @
 
@@ -99,6 +122,13 @@ define 'views/EditCollectionView', [ 'views/ProtoView', 'views/IconEditView', 'c
 				).fail (err)=>
 					@$submitButton.removeClass 'loading-eff is-inactive'
 
+		delete:->
+			@model.destroy()
+
+		save:->
+			_.defer =>
+				@model.set 'icons', @iconsCollection.collection.toJSON()
+				@model.save()
 
 		initFileUpload:->
 			@$('#fileupload').fileupload
@@ -106,31 +136,39 @@ define 'views/EditCollectionView', [ 'views/ProtoView', 'views/IconEditView', 'c
 				acceptFileTypes: /(\.|\/)(svg)$/i
 				dataType: 'text'
 				limitMultiFileUploads: 999
-				# add:(e, data)=>
-				# 	@filesDroppedCnt = data.originalFiles.length
-				# 	data.submit()
+				add:(e, data)=>
+					@filesDropped = data.originalFiles.length
+					@filesLoaded  = 0
+					data.submit()
 				done:(e, data)=>
-					_.defer =>
-						name = data.files[0].name.split('.svg')[0]
-						modelToRemove = if @iconsCollection.collection.length is 1 and !@isValidCollection() then @iconsCollection.collection.at(0) else null
-						@iconsCollection.collection.add
-								shape: data.result
-								name: name
-								hash: helpers.generateHash()
-								isValid: true
-
-						modelToRemove?.destroy()
+					@filesLoaded++
+					name = data.files[0].name.split('.svg')[0]
+					data = 
+						shape: data.result.replace(/fill=\"+[#]\d{3,6}"/gi, '')
+						name: name
+						hash: helpers.generateHash()
+						isValid: true
+					@iconsLoaded.push data
+					@filesLoaded is @filesDropped and @finishFilesLoading()
 
 				error:(e, data)->
+					console.error e
 				progressall:(e, data)=>
 					progress = parseInt(data.loaded / data.total * 100, 10)
 					App.$loadingLine.css 'width':"#{progress}%"
-					progress is 100 and @finishFilesLoading()
 
 		finishFilesLoading:()->
+			@modelToRemove = if @iconsCollection.collection.length is 1 and !@isValidCollection() then @iconsCollection.collection.at(0) else null
+			@iconsCollection.collection.mode = 'edit'
+			@iconsCollection.collection.add @iconsLoaded
+			@modelToRemove?.destroy()
+			@iconsLoaded = []
+
+			@makeSvgData false
+
 			@checkIfValidCollection()
 			_.defer =>
-				App.$loadingLine.fadeOut(1000,=>
+				App.$loadingLine.fadeOut(200,=>
 					App.$loadingLine.width "0%"
 					App.$loadingLine.show())
 

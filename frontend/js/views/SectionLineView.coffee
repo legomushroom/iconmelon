@@ -1,4 +1,4 @@
-define 'views/SectionLineView', ['views/ProtoView', 'models/SectionModel', 'collectionViews/IconsCollectionView', 'collections/IconsCollection', 'underscore' ], (ProtoView, SectionModel, IconsCollectionView, IconsCollection, _)->
+define 'views/SectionLineView', ['views/ProtoView', 'models/SectionModel', 'collectionViews/IconsCollectionView', 'collections/IconsCollection', 'underscore', 'helpers' ], (ProtoView, SectionModel, IconsCollectionView, IconsCollection, _, helpers)->
 	class SectionView extends ProtoView
 		model: SectionModel
 		template: '#section-line-view-template'
@@ -8,11 +8,25 @@ define 'views/SectionLineView', ['views/ProtoView', 'models/SectionModel', 'coll
 			'click': 'selectMe'
 
 		initialize:->
+			@makePreviewSvg()
 			@model.on 'change:isSelected', _.bind @render, @
+			super
+			@
 
 		selectMe:->
 			@model.collection.onSelect? @model
 			@model.set 'isSelected', true
+
+		makePreviewSvg:->
+			i = 0; icons = @model.get('icons')
+			$shapes = $('<div>')
+			while i < 6
+				helpers.upsetSvgShape 
+							hash: icons[i].hash
+							shape: icons[i].shape
+							$shapes: $shapes
+				i++
+			helpers.addToSvg $shapes
 
 		render:->
 			super

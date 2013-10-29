@@ -17,7 +17,8 @@
 
       IconsCollection.prototype.model = IconModel;
 
-      IconsCollection.prototype.initialize = function() {
+      IconsCollection.prototype.initialize = function(o) {
+        this.o = o != null ? o : {};
         this.listenToPUBSUB();
         IconsCollection.__super__.initialize.apply(this, arguments);
         return this;

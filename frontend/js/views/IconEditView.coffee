@@ -34,7 +34,8 @@ define 'views/IconEditView', ['views/ProtoView', 'models/IconModel', 'underscore
 			@model.set 'hash', hash
 			
 			$shape.find('*').each (i, child)->
-				$(child).removeAttr 'fill'
+				if ($(child).attr('fill') isnt 'none')
+					$(child).removeAttr('fill')
 
 			$svgRef = @$svg.find "##{hash}"
 			
@@ -43,7 +44,7 @@ define 'views/IconEditView', ['views/ProtoView', 'models/IconModel', 'underscore
 			@$svg.append $shape
 
 
-			@$svgWrap.html @$svgWrap.html()
+			helpers.refreshSvg()
 			@$svg = $('#svg-source')
 
 			@model.attributes.shape = $shape.html()
@@ -56,12 +57,12 @@ define 'views/IconEditView', ['views/ProtoView', 'models/IconModel', 'underscore
 
 		initialize:(@o={})->
 			@$svg = $('#svg-source')
-			@$svgWrap = $('#js-svg-wrap')
+			@$svgWrap = App.$svgWrap
 			@bindModelEvents()
 			@model.on 'change:name', _.bind @modelChange, @
 			@model.on 'change:shape', _.bind @modelChange, @
 			super
-			if @model.get('shape')
+			if @model.get('shape') and (@model.collection.mode isnt 'edit')
 				@setShape @model.get('shape')
 			@
 

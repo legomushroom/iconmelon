@@ -17,20 +17,22 @@ define 'views/pages/editr', [ 	'views/pages/PageView', 'views/EditCollectionView
 			
 			@collectionLine.collection.url = 'sections-all'
 			@collectionLine.collection.fetch().then =>
-				model = @collectionLine.collection.at(0).set 'isSelected', true
-				@setEditTo model
+				@showFirstModel()
 
 			@collectionLine.collection.onSelect = (model)=>
-				@setEditTo model
-		setEditTo:(model)->
-			@editCollectionView.model.unset().set model.toJSON()
-			@editCollectionView.render()
+				@renderEditCollectionView model
+			@collectionLine.collection.on 'remove', _.bind @showFirstModel, @
 
-		renderEditCollectionView:->
+		showFirstModel:->
+			@renderEditCollectionView @collectionLine.collection.at(0)?.set 'isSelected', true
+
+		renderEditCollectionView:(model)->
+			@editCollectionView?.teardown()
 			@editCollectionView = new EditCollectionView
 				$el: @$('#js-edit-collection-view-place')
 				isRender: true
-				model: new IconsCollectionModel
+				model: model or new IconsCollectionModel
+				mode: 'edit'
 
 
 	Edit

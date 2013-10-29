@@ -36,6 +36,10 @@
       };
 
       Router.prototype.startPage = function(View) {
+        if (this.currentPage === View) {
+          return;
+        }
+        this.currentPage = View;
         App.main.show(new View(this.o));
         return App.$bodyHtml.animate({
           'scrollTop': 0
