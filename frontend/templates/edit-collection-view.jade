@@ -20,7 +20,14 @@
 		- var idAttribute = 'js-website'		
 		include ../css/partials/input
 
-		- var text = 'moderated', className = '', idAttribute = 'js-moderated'
+		.checkbox-with-label-b(class="license-bh", id="js-license")
+			- var checked = undefined, name = "license"
+			include ../css/partials/checkbox
+			label(for=name) apply 
+				a(target="_blank", href="http://opensource.org/licenses/mit-license.html", class="is-grey3 is-hoverable is-grey2--onhover") MIT
+				|  license
+
+		- var text = 'moderated', className = 'moderated-bh', idAttribute = 'js-moderated'
 		include ../css/partials/checkbox-with-label
 
 		.icon-set-l

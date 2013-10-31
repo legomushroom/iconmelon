@@ -4,7 +4,6 @@
   fill: #d7d8d8;
   display: block;
   position: relative;
-  overflow: hidden;
 }
 .icon:after {
   content: '';

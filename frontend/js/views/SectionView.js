@@ -44,6 +44,7 @@
           return _this.renderIcons();
         });
         this.$el.toggleClass('is-closed', !!this.model.get('isClosed'));
+        this.$el.toggleClass('h-gm', !!this.model.get('isFiltered'));
         return this;
       };
 
@@ -53,7 +54,12 @@
           isRender: true,
           collection: new IconsCollection(this.model.get('icons'))
         });
+        this.iconsCollectionView.collection.onFilter = _.bind(this.onFilter, this);
         return this.model.iconsCollectionView = this.iconsCollectionView;
+      };
+
+      SectionView.prototype.onFilter = function(state) {
+        return this.model.set('isFiltered', state);
       };
 
       SectionView.prototype.selectAll = function() {

@@ -9,6 +9,7 @@ html
 	body
 		- var iconClass = ''
 		- var text = ''		
+		- var filter = ''
 		#js-svg-wrap	
 			//- include css/icons-main-page.svg
 
@@ -31,7 +32,6 @@ html
 		script(id="editr-page-template", type="template")
 			include templates/editr-page
 
-
 		script(id="icon-select-view-template", type="template")
 			include templates/icon-select-view
 
@@ -44,8 +44,14 @@ html
 		script(id="icons-collection-view-template", type="template")
 			include templates/icons-collection-view
 
+		script(id="filters-collection-view-template", type="template")
+			include templates/filters-collection-view
+
 		script(id="section-view-template", type="template")
 			include templates/section-view
+
+		script(id="filter-view-template", type="template")
+			include templates/filter-view
 
 		script(id="section-line-view-template", type="template")
 			include templates/section-line-view

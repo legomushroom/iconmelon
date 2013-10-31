@@ -67,6 +67,8 @@
         App.$svgWrap = $('#js-svg-wrap');
         App.helpers = helpers;
         App.loadedHashes = [];
+        App.iconsSelected = [];
+        App.filtersSelected = [];
         this.loadSvg();
         window.socket = io.connect('http://localhost');
         App.router = new Router;

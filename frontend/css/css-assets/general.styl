@@ -1,7 +1,6 @@
 // GENERAL
 @import '../assets/imports.styl'
 
-
 body
 	color c-grey1
 	font-family 'dense'
@@ -22,7 +21,7 @@ a
 	color c-grey1
 	text-decoration none
 	position relative
-
+ 
 	&.is-hoverable, &.is-check
 		&:after
 			content ''
@@ -35,21 +34,29 @@ a
 			left -2px
 
 			bottom - (gs/2)
-			border 1px solid 
+			border 1px solid
 			border-left-color transparent
 			border-right-color transparent
 
-		&.is-grey3
-			// 4!
-			&:after
-				border-top-color    c-grey3
-				border-bottom-color c-grey3
-
-	
 		&:hover
 			// 4!
 			&:after
 				display block
+
+	&.is-grey3
+		color c-grey3
+		&:after
+			border-top-color    c-grey3
+			border-bottom-color c-grey3		
+		
+
+	&.is-grey2--onhover
+		&:hover
+			color c-grey2
+
+			&:after
+				border-top-color    c-grey2
+				border-bottom-color c-grey2		
 
 	&.is-check
 		&:after

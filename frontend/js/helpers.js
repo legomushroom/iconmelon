@@ -14,8 +14,11 @@
         return $(document.body).on('click', 'a', function(e) {
           var $it;
 
-          e.preventDefault();
           $it = $(this);
+          if ($it.attr('target') === '_blank' || $it.attr('href').match(/mailto:/g)) {
+            return;
+          }
+          e.preventDefault();
           return App.router.navigate($it.attr('href'), {
             trigger: true
           });
@@ -36,6 +39,43 @@
 
       Helpers.prototype.refreshSvg = function() {
         return App.$svgWrap.html(App.$svgWrap.html());
+      };
+
+      Helpers.prototype.getFilterIcon = function(direction) {
+        var _ref;
+
+        if ((_ref = this.currIconIndex) == null) {
+          this.currIconIndex = 0;
+        }
+        if (direction === '<') {
+          this.currIconIndex--;
+          this.currIconIndex < 0 && (this.currIconIndex = App.iconsSelected.length - 1);
+        } else {
+          this.currIconIndex++;
+          this.currIconIndex >= App.iconsSelected.length && (this.currIconIndex = 0);
+        }
+        if (App.iconsSelected[this.currIconIndex]) {
+          return App.iconsSelected[this.currIconIndex];
+        } else {
+          return this.getStandartIcon(direction);
+        }
+      };
+
+      Helpers.prototype.getStandartIcon = function(direction) {
+        var iconsSource, _ref, _ref1;
+
+        iconsSource = App.sectionsCollectionView.collection.at(0).get('icons');
+        if ((_ref = this.currStandartIconIndex) == null) {
+          this.currStandartIconIndex = 0;
+        }
+        if (direction === '<') {
+          this.currStandartIconIndex--;
+          this.currStandartIconIndex < 0 && (this.currStandartIconIndex = iconsSource.length - 1);
+        } else {
+          this.currStandartIconIndex++;
+          this.currStandartIconIndex >= iconsSource.length && (this.currStandartIconIndex = 0);
+        }
+        return ((_ref1 = iconsSource[this.currStandartIconIndex]) != null ? _ref1.hash : void 0) || 'tick-icon';
       };
 
       Helpers.prototype.upsetSvgShape = function(o) {
@@ -70,6 +110,26 @@
       Helpers.prototype.addToSvg = function($shapes) {
         App.$svgWrap.find('#svg-source').append($shapes.html());
         return this.refreshSvg();
+      };
+
+      Helpers.prototype.toggleArray = function(array, item, isSingle) {
+        var indexOfItem, newArray;
+
+        if (array == null) {
+          return void 0;
+        }
+        newArray = array.slice(0);
+        indexOfItem = _.indexOf(newArray, item);
+        if (indexOfItem === -1) {
+          newArray.push(item);
+        } else {
+          if (isSingle) {
+            newArray.splice(indexOfItem, 1);
+          } else {
+            newArray = _.without(newArray, item);
+          }
+        }
+        return newArray;
       };
 
       return Helpers;

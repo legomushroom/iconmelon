@@ -37,7 +37,11 @@
           onSet: 'emailSet'
         },
         '#js-website': 'website',
-        '#js-moderated input': 'moderated'
+        '#js-moderated input': 'moderated',
+        '#js-license   input': {
+          observe: 'license',
+          onSet: 'licenseSet'
+        }
       };
 
       EditCollectionView.prototype.ui = {
@@ -121,8 +125,14 @@
         return val;
       };
 
+      EditCollectionView.prototype.licenseSet = function(val) {
+        this.licenseValid = val;
+        this.checkIfValidCollection();
+        return val;
+      };
+
       EditCollectionView.prototype.checkIfValidCollection = function() {
-        return this.enableSubmitButton(this.nameValid && this.authorValid && this.emailValid && this.isValidCollection());
+        return this.enableSubmitButton(this.nameValid && this.authorValid && this.emailValid && this.licenseValid && this.isValidCollection());
       };
 
       EditCollectionView.prototype.isValidCollection = function() {

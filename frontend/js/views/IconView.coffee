@@ -23,5 +23,7 @@ define 'views/IconView', ['views/ProtoView', 'models/IconModel', 'underscore', '
 
 		toggleSelected:->
 			@model.toggleSelected()
+			App.iconsSelected = helpers.toggleArray(App.iconsSelected, 	@model.get 'hash')
+			
 
 	IconSelectView

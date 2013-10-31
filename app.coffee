@@ -26,6 +26,7 @@ SectionSchema = new mongo.Schema
       name:           String
       author:         String
       email:          String
+      website:        String
       creationDate:   String
       icons:          Array
       moderated:      Boolean
@@ -37,6 +38,16 @@ SectionSchema.set 'toJSON', virtuals: true
 
 Section = mongo.model 'Section', SectionSchema
 
+FilterSchema = new mongo.Schema
+      name:           String
+      author:         String
+      email:          String
+      hash:           String
+      filter:         String
+      moderated:      Boolean
+
+Filter = mongo.model 'Filter', FilterSchema
+
 io = require('socket.io').listen(app.listen(process.env.PORT or port), { log: false })
 
 class Main
@@ -44,13 +55,21 @@ class Main
   constructor:(@o={})->
   
   generateMainPageSvg:()->
+    prm = new Promise()
     @getIconsData({moderated: true}).then (iconsData)=>
       @makeMainSvgFile(iconsData).then (data)=>
-        @writeFile "#{@SVG_PATH}icons-main-page.svg", data
+        @writeFile("#{@SVG_PATH}icons-main-page.svg", data).then ->
+          prm.resolve()
+    prm
+
+
 
   writeFile:(filename, data)->
+    prm = new Promise()
     fs.writeFile filename, data, (err)->
       err and (console.error err)
+      prm.resolve()
+    prm
 
   makeMainSvgFile:(iconsData, filename)->
     prm = new Promise()
@@ -68,10 +87,13 @@ class Main
       for doc, i in docs
         for icon, j in doc.icons
           iconData += "<g id='#{icon.hash}'>#{icon.shape}</g>"
-      prm.resolve iconData
+
+      Filter.find search, (err, docs)->
+        for doc, i in docs
+          iconData += doc.filter.replace /\<filter/, "<filter id='#{doc.hash}'"
+        prm.resolve iconData
 
     prm
-    
 
 main = new Main
 
@@ -80,6 +102,14 @@ io.sockets.on "connection", (socket) ->
   
   socket.on "sections:read", (data, callback) ->
     Section.find {moderated: true}, (err, docs)->
+      callback null, docs
+
+  socket.on "filters:read", (data, callback) ->
+    Filter.find {moderated: true}, (err, docs)->
+      if err
+        callback 500, 'DB error'
+        console.error err
+
       callback null, docs
 
   socket.on "sections-all:read", (data, callback) ->
@@ -122,3 +152,29 @@ app.post '/file-upload', (req,res,next)->
     res.send $('svg').html()
     fs.unlink req.files.files[0].path, (err)->
         err and console.error err
+
+app.get '/generate-main-svg-data', (req,res,next)->
+  main.generateMainPageSvg().then ->
+    res.send 'ok'
+
+
+# new Filter({
+#   name: 'outline color'
+#   hash: 'b6e728fa74b3a7f7b053d94f53db3cba'
+#   moderated: true
+#   filter: """
+            
+#   <filter>
+#    <feFlood flood-color="#FF3D7F" result="base" />
+#    <feMorphology result="bigger" in="SourceGraphic" operator="dilate" radius="1"/>
+#    <feColorMatrix result="mask" in="bigger" type="matrix"
+#       values="0 0 0 0 0
+#               0 0 0 0 0
+#               0 0 0 0 0
+#               0 0 0 1 0" />
+#    <feComposite result="drop" in="base" in2="mask" operator="in" />
+#    <feGaussianBlur result="blur" in="drop" stdDeviation="0" />
+#    <feBlend in="SourceGraphic" in2="blur" mode="normal" />
+# </filter>
+#           """
+# }).save()

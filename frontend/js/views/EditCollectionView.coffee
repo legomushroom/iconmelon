@@ -25,6 +25,9 @@ define 'views/EditCollectionView', [ 'views/ProtoView', 'views/IconEditView', 'c
 			'#js-website': 	'website'
 
 			'#js-moderated input': 'moderated'
+			'#js-license   input': 
+				observe: 'license'
+				onSet: 	'licenseSet'
 
 		ui:
 			submitBtn: '.js-submit-btn'
@@ -95,8 +98,13 @@ define 'views/EditCollectionView', [ 'views/ProtoView', 'views/IconEditView', 'c
 			@checkIfValidCollection()
 			val
 
+		licenseSet:(val)->
+			@licenseValid = val
+			@checkIfValidCollection()
+			val
+
 		checkIfValidCollection:->
-			@enableSubmitButton @nameValid and @authorValid and @emailValid and @isValidCollection()
+			@enableSubmitButton @nameValid and @authorValid and @emailValid and @licenseValid and @isValidCollection()
 
 		isValidCollection:->
 			i = 0

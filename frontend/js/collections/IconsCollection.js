@@ -29,15 +29,21 @@
       };
 
       IconsCollection.prototype.filter = function(filter) {
-        var pattern,
+        var iconsFiltered, pattern,
           _this = this;
 
         pattern = new RegExp(filter, 'gi');
-        return this.each(function(model) {
-          return _.defer(function() {
-            return model.set('isFiltered', !(model.get('name').match(pattern)) ? true : false);
-          });
+        iconsFiltered = 0;
+        this.each(function(model) {});
+        this.each(function(model) {
+          var isFiltered;
+
+          isFiltered = !(model.get('name').match(pattern)) ? true : false;
+          model.set('isFiltered', isFiltered);
+          return isFiltered && iconsFiltered++;
         });
+        this.filtered = iconsFiltered === this.length;
+        return this.onFilter(this.filtered);
       };
 
       IconsCollection.prototype.selectAll = function() {

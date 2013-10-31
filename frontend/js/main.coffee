@@ -61,6 +61,9 @@ define 'main', ['marionette', 'jquery', 'router', 'socketio', 'helpers' ], (M, j
 			App.helpers 		= helpers
 			App.loadedHashes = []
 
+			App.iconsSelected = []
+			App.filtersSelected = []
+
 			@loadSvg()
 			
 			window.socket = io.connect('http://localhost')

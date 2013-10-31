@@ -6,7 +6,7 @@ define 'models/SectionModel', ['models/ProtoModel', 'helpers'], (ProtoModel, hel
 			author:  ''
 			email: 	 ''
 			website: ''
-			license: ''
+			license: false
 			isClosed: false
 			moderated: false
 			icons: []

@@ -1,0 +1,23 @@
+.left-bl#js-left
+	- var path = 'arrow-left-icon'
+	- var filter = ''
+	- var iconClass = 'is-hoverable'
+	- var idAttribute = ''
+	- var title = 'previous icon'
+	include ../css/partials/icon
+
+.right-bl#js-right
+	- var path = 'arrow-right-icon'
+	- var filter = ''
+	- var iconClass = 'is-hoverable'
+	- var idAttribute = ''
+	- var title = 'next icon'
+	include ../css/partials/icon
+
+- var path = '<%= iconHash %>'
+- var filter = 'url(#<%= hash %>)'
+- var iconClass = ''
+- var idAttribute = ''
+include ../css/partials/icon
+- var filter = ''
+.name-be <%= name %>

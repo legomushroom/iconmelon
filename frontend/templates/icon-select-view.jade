@@ -1,11 +1,25 @@
 .controls-bl.cf
-	- var placeholder 	= 	'search'
-	- var path 	=	'search-icon'
-	include ../css/partials/input-with-icon
+  - var placeholder = 'search'
+  - var path  = 'search-icon'
+  - var idAttribute = ''
+  - var className = ''
+  - var title = ''
+  - var iconClass = ''
+  include ../css/partials/input-with-icon
 
-	- var text = 'download'
-	- var className = 'is-counter'
-	- var cnt = '0'
-	include ../css/partials/button
+  .icon-set-l
+    .left-ll
+      - var className = 'is-iconed is-red1'
+      - var iconPath = 'arrow-up-icon'
+      - var title = 'load from file'
+      include ../css/partials/button-with-icon
+    .right-ll
+      - var className = 'is-counter', text = 'download', cnt = ''
+      include ../css/partials/button
 
-#js-section-collections-place.section-b.cf
+.header-pm Filters:
+#js-filters-place.icon-collections-line-b.cf.section-pm
+  
+.header-pm Icons:
+#js-section-collections-place.section-b.cf.section-pm
+

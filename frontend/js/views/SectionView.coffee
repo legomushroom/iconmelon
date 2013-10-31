@@ -24,6 +24,7 @@ define 'views/SectionView', ['views/ProtoView', 'models/SectionModel', 'collecti
 				@renderIcons()
 
 			@$el.toggleClass 'is-closed', !!@model.get('isClosed')
+			@$el.toggleClass 'h-gm', 			!!@model.get('isFiltered')
 			@
 
 		renderIcons:->
@@ -32,8 +33,12 @@ define 'views/SectionView', ['views/ProtoView', 'models/SectionModel', 'collecti
 							isRender: true
 							collection: new IconsCollection @model.get 'icons'
 
+			@iconsCollectionView.collection.onFilter = _.bind @onFilter, @
+
 			@model.iconsCollectionView = @iconsCollectionView
 
+		onFilter:(state)->
+			@model.set 'isFiltered', state
 		
 		selectAll:->
 			@iconsCollectionView.collection.selectAll()

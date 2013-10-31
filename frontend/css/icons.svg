@@ -8,6 +8,8 @@
 
     <polygon id="arrow-down-icon" points="16,32 32,16 24.002,16 24.002,0 16,0 8,0 8,16 0,16 "/>
 
+    <polygon id="arrow-up-icon" points="16,0 0,16 7.998,16 7.998,32 16,32 24,32 24,16 32,16 "/>
+
     <polygon id="cross-icon" points="20,12 20,0 12,0 12,12 0,12 0,20 12,20 12,32 20,32 20,20 32,20 32,12 "/>
 
     <polygon id="cross-icon" points="20,12 20,0 12,0 12,12 0,12 0,20 12,20 12,32 20,32 20,20 32,20 32,12 "/>
@@ -114,6 +116,79 @@
     <path d="M16.004,25.156c-5.327,0-10.287-1.566-14.448-4.262L0,22.954c4.454,3.357,9.997,5.349,16.004,5.349
         c6.004,0,11.543-1.988,15.996-5.342l-1.607-2.027C26.243,23.604,21.306,25.156,16.004,25.156z"/>
     </g>
+
+
+    <filter id='inset-shadow'>
+    
+         <!-- Shadow offset -->
+        <feOffset
+          dx='0'
+          dy='0'
+        />
+        
+        <!-- Shadow blur -->
+        <feGaussianBlur
+          stdDeviation='1'
+          result='offset-blur'
+        />
+        
+        <!-- Invert drop shadow to make an inset shadow-->
+        <feComposite
+          operator='out'
+          in='SourceGraphic'
+          in2='offset-blur'
+          result='inverse'
+        />
+        
+       <!-- Cut colour inside shadow -->
+        <feFlood
+          flood-color='black'
+          flood-opacity='.95'
+          result='color'
+        />
+          
+       <feComposite
+          operator='in'
+          in='color'
+          in2='inverse'
+          result='shadow'
+        />
+     
+        
+       <!-- Placing shadow over element -->
+        <feComposite
+          operator='over'
+          in='shadow'
+          in2='SourceGraphic'
+        />
+          
+      </filter>
+
+     
+
+    <filter id="drop-shadow-color" x="-1" y="-1" width="200%" height="200%">
+
+        <feOffset result="offOut" in="SourceGraphic" dx="1" dy="1" />
+        <feColorMatrix result="matrixOut" in="offOut" type="matrix" values="0.2 0 0 0 0 0 0.2 0 0 0 0 0 0.2 0 0 0 0 0 .5 0" />
+        <feGaussianBlur result="blurOut" in="matrixOut" stdDeviation="1" />
+        <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
+
+    </filter>
+
+    <filter id="drop-shadow" x="0" y="0" width="200%" height="200%">
+      <feOffset result="offOut" in="SourceAlpha" dx="1" dy="1" />
+      <feGaussianBlur result="blurOut" in="offOut" stdDeviation="1" />
+      <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
+    </filter>
+
+
+     <filter id="blurFilter3" y="-10" height="40" x="-10" width="150">
+      <feOffset in="SourceAlpha" dx="1" dy="1" result="offset3" />
+      <feGaussianBlur in="offset3" stdDeviation="1"  result="blur3"/>
+
+      <feBlend  in="SourceGraphic" in2="blur3" x="-10" width="160"/>
+
+    </filter>
 
 
 </svg>

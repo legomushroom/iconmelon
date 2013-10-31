@@ -43,7 +43,8 @@
       };
 
       IconSelectView.prototype.toggleSelected = function() {
-        return this.model.toggleSelected();
+        this.model.toggleSelected();
+        return App.iconsSelected = helpers.toggleArray(App.iconsSelected, this.model.get('hash'));
       };
 
       return IconSelectView;

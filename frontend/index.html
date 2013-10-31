@@ -44,23 +44,56 @@
           <input id="" placeholder="search" class="input-e ">
           <div id="" title="" class="icon ">
             <svg viewBox="0 0 32 32">
-              <g>
+              <g filter="">
                 <use xlink:href="#search-icon"></use>
               </g>
             </svg>
           </div>
         </div>
-        <div data-cnt="0" class="btn-b is-counter">download</div>
+        <div class="icon-set-l">
+          <div class="left-ll">
+            <div title="load from file" class="btn-b is-iconed is-red1">
+              <div id="" title="" class="icon ">
+                <svg viewBox="0 0 32 32">
+                  <g filter="">
+                    <use xlink:href="#arrow-up-icon"></use>
+                  </g>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="right-ll">
+            <div data-cnt="0" class="btn-b is-counter">download</div>
+          </div>
+        </div>
       </div>
-      <div id="js-section-collections-place" class="section-b cf"></div>
+      <div class="header-pm">Filters:</div>
+      <div id="js-filters-place" class="icon-collections-line-b cf section-pm"></div>
+      <div class="header-pm">Icons:</div>
+      <div id="js-section-collections-place" class="section-b cf section-pm"></div>
     </script>
     <script id="button-counter-template" type="template">
-      <div data-cnt="&lt;%= selectedCounter %&gt;" class="btn-b is-counter is-&lt;%= (selectedCounter + &quot;&quot;).length %&gt;-digits">download</div>
+      <div class="icon-set-l">
+        <div class="left-ll">
+          <div title="load from file" class="btn-b is-iconed is-red1">
+            <div id="" title="" class="icon ">
+              <svg viewBox="0 0 32 32">
+                <g filter="">
+                  <use xlink:href="#arrow-up-icon"></use>
+                </g>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="right-ll">
+          <div data-cnt="&lt;%= selectedCounter %&gt;" class="btn-b is-counter is-&lt;%= (selectedCounter + &quot;&quot;).length %&gt;-digits">download</div>
+        </div>
+      </div>
     </script>
     <script id="icon-view-template" type="template">
       <div id="" title="" class="icon ">
         <svg viewBox="0 0 32 32">
-          <g>
+          <g filter="">
             <use xlink:href="#&lt;%= hash %&gt;"></use>
           </g>
         </svg>
@@ -73,27 +106,48 @@
     <script id="icons-collection-view-template" type="template">
       <div></div>
     </script>
+    <script id="filters-collection-view-template" type="template">
+      <div id="" title="right" class="plus-btn-b right-arrow-bh">
+        <div id="" title="right" class="icon ">
+          <svg viewBox="0 0 32 32">
+            <g filter="">
+              <use xlink:href="#arrow-right-icon"></use>
+            </g>
+          </svg>
+        </div>
+      </div>
+      <div id="" title="left" class="plus-btn-b left-arrow-bh">
+        <div id="" title="left" class="icon ">
+          <svg viewBox="0 0 32 32">
+            <g filter="">
+              <use xlink:href="#arrow-left-icon"></use>
+            </g>
+          </svg>
+        </div>
+      </div>
+      <div id="js-filters-place" class="icons-bl cf"></div>
+    </script>
     <script id="section-view-template" type="template">
-      <div class="section-header-b">
+      <div class="section-header-b"><a target="&lt;%= (website.length &gt; 0) ? &quot;_blank&quot; : undefined %&gt;" href="&lt;%= (website.length &gt; 0) ? &quot;http://&quot; + website.replace(/http:\/\//g, &quot;&quot;) : &quot;mailto:&quot; + email %&gt;" class="is-grey3 is-hoverable is-grey2--onhover author-be">by &lt;%= author %&gt;</a>
         <div class="name-be">&lt;%= name %&gt;</div>
         <div class="icons-bl">
           <div id="js-hide" title="close section" class="icon is-hoverable &lt;%= (isClosed) ? &quot;is-reverse&quot; : &quot;&quot; %&gt;">
             <svg viewBox="0 0 32 32">
-              <g>
+              <g filter="">
                 <use xlink:href="#dropup-arrow-icon"></use>
               </g>
             </svg>
           </div>
           <div id="js-select-all" title="select all" class="icon is-green--onhover ">
             <svg viewBox="0 0 32 32">
-              <g>
+              <g filter="">
                 <use xlink:href="#tick-icon"></use>
               </g>
             </svg>
           </div>
           <div id="js-deselect-all" title="deselect all" class="icon is-red1--onhover ">
             <svg viewBox="0 0 32 32">
-              <g>
+              <g filter="">
                 <use xlink:href="#close-icon"></use>
               </g>
             </svg>
@@ -102,46 +156,74 @@
       </div>
       <div id="js-icons-place" class="content-bl cf"></div>
     </script>
+    <script id="filter-view-template" type="template">
+      <div id="js-left" class="left-bl">
+        <div id="" title="previous icon" class="icon is-hoverable">
+          <svg viewBox="0 0 32 32">
+            <g filter="">
+              <use xlink:href="#arrow-left-icon"></use>
+            </g>
+          </svg>
+        </div>
+      </div>
+      <div id="js-right" class="right-bl">
+        <div id="" title="next icon" class="icon is-hoverable">
+          <svg viewBox="0 0 32 32">
+            <g filter="">
+              <use xlink:href="#arrow-right-icon"></use>
+            </g>
+          </svg>
+        </div>
+      </div>
+      <div id="" title="next icon" class="icon ">
+        <svg viewBox="0 0 32 32">
+          <g filter="url(#&lt;%= hash %&gt;)">
+            <use xlink:href="#&lt;%= iconHash %&gt;"></use>
+          </g>
+        </svg>
+      </div>
+      <div class="name-be"><%= name %></div>
+    </script>
     <script id="section-line-view-template" type="template">
       <div class="icons-bl cf">
         <div id="" title="" class="icon ">
           <svg viewBox="0 0 32 32">
-            <g>
+            <g filter="">
               <use xlink:href="#&lt;%= (icons[0]) ? icons[0].hash : &quot;b5282d4ecdc7ae3d0799023622c560a5&quot;  %&gt;"></use>
             </g>
           </svg>
         </div>
         <div id="" title="" class="icon ">
           <svg viewBox="0 0 32 32">
-            <g>
+            <g filter="">
               <use xlink:href="#&lt;%= (icons[1]) ? icons[1].hash : &quot;b5282d4ecdc7ae3d0799023622c560a5&quot;  %&gt;"></use>
             </g>
           </svg>
         </div>
         <div id="" title="" class="icon ">
           <svg viewBox="0 0 32 32">
-            <g>
+            <g filter="">
               <use xlink:href="#&lt;%= (icons[2]) ? icons[2].hash : &quot;b5282d4ecdc7ae3d0799023622c560a5&quot;  %&gt;"></use>
             </g>
           </svg>
         </div>
         <div id="" title="" class="icon ">
           <svg viewBox="0 0 32 32">
-            <g>
+            <g filter="">
               <use xlink:href="#&lt;%= (icons[3]) ? icons[3].hash : &quot;b5282d4ecdc7ae3d0799023622c560a5&quot;  %&gt;"></use>
             </g>
           </svg>
         </div>
         <div id="" title="" class="icon ">
           <svg viewBox="0 0 32 32">
-            <g>
+            <g filter="">
               <use xlink:href="#&lt;%= (icons[4]) ? icons[4].hash : &quot;b5282d4ecdc7ae3d0799023622c560a5&quot;  %&gt;"></use>
             </g>
           </svg>
         </div>
         <div id="" title="" class="icon ">
           <svg viewBox="0 0 32 32">
-            <g>
+            <g filter="">
               <use xlink:href="#&lt;%= (icons[5]) ? icons[5].hash : &quot;b5282d4ecdc7ae3d0799023622c560a5&quot;  %&gt;"></use>
             </g>
           </svg>
@@ -160,12 +242,25 @@
           <input id="js-author" placeholder="author" class="input-e ">
           <input id="js-email" placeholder="email" class="input-e ">
           <input id="js-website" placeholder="website(optional)" class="input-e ">
-          <div id="js-moderated" class="checkbox-with-label-b ">
+          <div id="js-license" class="checkbox-with-label-b license-bh">
+            <div id="js-website" class="checkbox-b input-e ">
+              <input type="checkbox" id="license">
+              <div id="" title="" class="icon ">
+                <svg viewBox="0 0 32 32">
+                  <g filter="">
+                    <use xlink:href="#tick-icon"></use>
+                  </g>
+                </svg>
+              </div>
+            </div>
+            <label for="license">apply <a target="_blank" href="http://opensource.org/licenses/mit-license.html" class="is-grey3 is-hoverable is-grey2--onhover">MIT</a> license</label>
+          </div>
+          <div id="js-moderated" class="checkbox-with-label-b moderated-bh">
             <div id="" class="checkbox-b input-e ">
               <input type="checkbox" id="moderated">
               <div id="" title="" class="icon ">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#tick-icon"></use>
                   </g>
                 </svg>
@@ -175,10 +270,10 @@
           </div>
           <div class="icon-set-l">
             <div class="left-ll">
-              <div class="btn-b js-delete is-iconed is-red1">
+              <div title="" class="btn-b js-delete is-iconed is-red1">
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#close-icon"></use>
                     </g>
                   </svg>
@@ -198,7 +293,7 @@
             <div id="js-add-icon" title="add icon" class="plus-btn-b ">
               <div id="" title="add icon" class="icon ">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#cross-icon"></use>
                   </g>
                 </svg>
@@ -208,7 +303,7 @@
               <input id="fileupload" type="file" name="files[]" multiple="multiple">
               <div id="" title="upload icon from svg file" class="icon ">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#arrow-down-icon"></use>
                   </g>
                 </svg>
@@ -222,14 +317,14 @@
       <div class="submit-icon-b">
         <div id="js-destroy" title="remove" class="icon is-hoverable close-bh">
           <svg viewBox="0 0 32 32">
-            <g>
+            <g filter="">
               <use xlink:href="#close-icon"></use>
             </g>
           </svg>
         </div>
         <div id="" title="" class="icon icon-sample-bh &lt;%= hash || 'is-grey3' %&gt;">
           <svg viewBox="0 0 32 32">
-            <g>
+            <g filter="">
               <use xlink:href="#&lt;%= hash || &quot;b5282d4ecdc7ae3d0799023622c560a5&quot; %&gt;"></use>
             </g>
           </svg>
@@ -245,7 +340,7 @@
         <div id="" title="right" class="plus-btn-b right-arrow-bh">
           <div id="" title="right" class="icon ">
             <svg viewBox="0 0 32 32">
-              <g>
+              <g filter="">
                 <use xlink:href="#arrow-right-icon"></use>
               </g>
             </svg>
@@ -254,7 +349,7 @@
         <div id="" title="left" class="plus-btn-b left-arrow-bh">
           <div id="" title="left" class="icon ">
             <svg viewBox="0 0 32 32">
-              <g>
+              <g filter="">
                 <use xlink:href="#arrow-left-icon"></use>
               </g>
             </svg>

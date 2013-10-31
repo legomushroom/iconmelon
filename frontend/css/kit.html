@@ -18,6 +18,8 @@
 
     <polygon id="arrow-down-icon" points="16,32 32,16 24.002,16 24.002,0 16,0 8,0 8,16 0,16 "/>
 
+    <polygon id="arrow-up-icon" points="16,0 0,16 7.998,16 7.998,32 16,32 24,32 24,16 32,16 "/>
+
     <polygon id="cross-icon" points="20,12 20,0 12,0 12,12 0,12 0,20 12,20 12,32 20,32 20,20 32,20 32,12 "/>
 
     <polygon id="cross-icon" points="20,12 20,0 12,0 12,12 0,12 0,20 12,20 12,32 20,32 20,20 32,20 32,12 "/>
@@ -126,6 +128,79 @@
     </g>
 
 
+    <filter id='inset-shadow'>
+    
+         <!-- Shadow offset -->
+        <feOffset
+          dx='0'
+          dy='0'
+        />
+        
+        <!-- Shadow blur -->
+        <feGaussianBlur
+          stdDeviation='20'
+          result='offset-blur'
+        />
+        
+        <!-- Invert drop shadow to make an inset shadow-->
+        <feComposite
+          operator='out'
+          in='SourceGraphic'
+          in2='offset-blur'
+          result='inverse'
+        />
+        
+       <!-- Cut colour inside shadow -->
+        <feFlood
+          flood-color='black'
+          flood-opacity='.5'
+          result='color'
+        />
+          
+       <feComposite
+          operator='in'
+          in='color'
+          in2='inverse'
+          result='shadow'
+        />
+     
+        
+       <!-- Placing shadow over element -->
+        <feComposite
+          operator='over'
+          in='shadow'
+          in2='SourceGraphic'
+        />
+          
+      </filter>
+
+     
+
+    <filter id="drop-shadow-color" x="-1" y="-1" width="200%" height="200%">
+
+        <feOffset result="offOut" in="SourceGraphic" dx="1" dy="1" />
+        <feColorMatrix result="matrixOut" in="offOut" type="matrix" values="0.2 0 0 0 0 0 0.2 0 0 0 0 0 0.2 0 0 0 0 0 .5 0" />
+        <feGaussianBlur result="blurOut" in="matrixOut" stdDeviation="1" />
+        <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
+
+    </filter>
+
+    <filter id="drop-shadow" x="0" y="0" width="200%" height="200%">
+      <feOffset result="offOut" in="SourceAlpha" dx="1" dy="1" />
+      <feGaussianBlur result="blurOut" in="offOut" stdDeviation="1" />
+      <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
+    </filter>
+
+
+     <filter id="blurFilter3" y="-10" height="40" x="-10" width="150">
+      <feOffset in="SourceAlpha" dx="1" dy="1" result="offset3" />
+      <feGaussianBlur in="offset3" stdDeviation="1"  result="blur3"/>
+
+      <feBlend  in="SourceGraphic" in2="blur3" x="-10" width="160"/>
+
+    </filter>
+
+
 </svg>
     <div class="main-kl">
       <div class="section-kl">
@@ -147,7 +222,7 @@
             <div class="hash-e">16139bdc1fb5bf21a3cb1769f714013a</div>
             <div id="" title="" class="icon ">
               <svg viewBox="0 0 32 32">
-                <g>
+                <g filter="">
                   <use xlink:href="#search-icon"></use>
                 </g>
               </svg>
@@ -157,7 +232,7 @@
             <div class="hash-e">9e78a293b56b43a69cf374ae4ad9f495</div>
             <div id="" title="" class="icon ">
               <svg viewBox="0 0 32 32">
-                <g>
+                <g filter="">
                   <use xlink:href="#twitter-icon"></use>
                 </g>
               </svg>
@@ -167,7 +242,7 @@
             <div class="hash-e">5b2c9e1ee9d3e0e4ba56b2f8dea24f47</div>
             <div id="" title="" class="icon ">
               <svg viewBox="0 0 32 32">
-                <g>
+                <g filter="">
                   <use xlink:href="#tick-icon"></use>
                 </g>
               </svg>
@@ -177,7 +252,7 @@
             <div class="hash-e">fcca51eabd6ffa4a4ac157dfef02b2f7</div>
             <div id="" title="" class="icon ">
               <svg viewBox="0 0 32 32">
-                <g>
+                <g filter="">
                   <use xlink:href="#close-icon"></use>
                 </g>
               </svg>
@@ -187,7 +262,7 @@
             <div class="hash-e">eafa14efc63037c35f910646115714b7</div>
             <div id="" title="" class="icon ">
               <svg viewBox="0 0 32 32">
-                <g>
+                <g filter="">
                   <use xlink:href="#dropdown-arrow-icon"></use>
                 </g>
               </svg>
@@ -197,7 +272,7 @@
             <div class="hash-e">771324a444f27698e359bb0c4524cd40</div>
             <div id="" title="" class="icon ">
               <svg viewBox="0 0 32 32">
-                <g>
+                <g filter="">
                   <use xlink:href="#dropup-arrow-icon"></use>
                 </g>
               </svg>
@@ -207,7 +282,7 @@
             <div class="hash-e">b2b295cb68e9811e95d3525e49fdc9d1</div>
             <div id="" title="" class="icon ">
               <svg viewBox="0 0 32 32">
-                <g>
+                <g filter="">
                   <use xlink:href="#cross-icon"></use>
                 </g>
               </svg>
@@ -217,8 +292,18 @@
             <div class="hash-e">109127092afaf837a82f1cb9a6c2d3fe</div>
             <div id="" title="" class="icon ">
               <svg viewBox="0 0 32 32">
-                <g>
+                <g filter="">
                   <use xlink:href="#arrow-down-icon"></use>
+                </g>
+              </svg>
+            </div>
+          </div>
+          <div class="icon-sample-kl">
+            <div class="hash-e">25dc184a372a161438ffc5b0b66b4934</div>
+            <div id="" title="" class="icon ">
+              <svg viewBox="0 0 32 32">
+                <g filter="">
+                  <use xlink:href="#arrow-up-icon"></use>
                 </g>
               </svg>
             </div>
@@ -227,7 +312,7 @@
             <div class="hash-e">4effe5183600b5033f8e90489240cddc</div>
             <div id="" title="" class="icon ">
               <svg viewBox="0 0 32 32">
-                <g>
+                <g filter="">
                   <use xlink:href="#arrow-left-icon"></use>
                 </g>
               </svg>
@@ -237,7 +322,7 @@
             <div class="hash-e">b8ec61d0ffff446d88681382e6700102</div>
             <div id="" title="" class="icon ">
               <svg viewBox="0 0 32 32">
-                <g>
+                <g filter="">
                   <use xlink:href="#arrow-right-icon"></use>
                 </g>
               </svg>
@@ -255,11 +340,28 @@
         <div data-cnt="0" class="btn-b is-inactive">download</div>
         <div class="hash-e">852b2351c7cfac250ba678d22d731ee3</div>
         <div data-cnt="0" class="btn-b is-counter">download</div>
+        <div class="hash-e">a29d03c89fb63ef91c45ab8e64c04f1f</div>
+        <div class="icon-set-l">
+          <div class="left-ll">
+            <div title="load from file" class="btn-b is-iconed is-red1">
+              <div id="" title="" class="icon ">
+                <svg viewBox="0 0 32 32">
+                  <g filter="">
+                    <use xlink:href="#arrow-down-icon"></use>
+                  </g>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="right-ll">
+            <div data-cnt="0" class="btn-b is-counter">download</div>
+          </div>
+        </div>
         <div class="hash-e">cee98a768f3a4013d3cfd5d0c67ffe0d</div>
-        <div class="btn-b is-iconed is-red1">
+        <div title="load from file" class="btn-b is-iconed is-red1">
           <div id="" title="" class="icon ">
             <svg viewBox="0 0 32 32">
-              <g>
+              <g filter="">
                 <use xlink:href="#close-icon"></use>
               </g>
             </svg>
@@ -268,10 +370,10 @@
         <div class="hash-e">58b21870f4e247e374c47f1d6d823c88</div>
         <div class="icon-set-l">
           <div class="left-ll">
-            <div class="btn-b is-iconed is-red1">
+            <div title="load from file" class="btn-b is-iconed is-red1">
               <div id="" title="" class="icon ">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#close-icon"></use>
                   </g>
                 </svg>
@@ -289,7 +391,7 @@
           <input id="" placeholder="search" class="input-e ">
           <div id="" title="" class="icon search-icon">
             <svg viewBox="0 0 32 32">
-              <g>
+              <g filter="">
                 <use xlink:href="#search-icon"></use>
               </g>
             </svg>
@@ -300,7 +402,7 @@
           <input type="checkbox" id="undefined">
           <div id="" title="" class="icon ">
             <svg viewBox="0 0 32 32">
-              <g>
+              <g filter="">
                 <use xlink:href="#tick-icon"></use>
               </g>
             </svg>
@@ -312,7 +414,7 @@
             <input type="checkbox" id="moderated">
             <div id="" title="" class="icon ">
               <svg viewBox="0 0 32 32">
-                <g>
+                <g filter="">
                   <use xlink:href="#tick-icon"></use>
                 </g>
               </svg>
@@ -324,7 +426,7 @@
         <div class="icon-with-text-b ">
           <div id="" title="" class="icon ">
             <svg viewBox="0 0 32 32">
-              <g>
+              <g filter="">
                 <use xlink:href="#tick-icon"></use>
               </g>
             </svg>
@@ -338,7 +440,7 @@
         <div class="icon-with-text-b twitter-icon">
           <div id="" title="" class="icon ">
             <svg viewBox="0 0 32 32">
-              <g>
+              <g filter="">
                 <use xlink:href="#tick-icon"></use>
               </g>
             </svg>
@@ -353,42 +455,42 @@
           <div class="icons-bl cf">
             <div id="" title="" class="icon ">
               <svg viewBox="0 0 32 32">
-                <g>
+                <g filter="">
                   <use xlink:href="#twitter-icon"></use>
                 </g>
               </svg>
             </div>
             <div id="" title="" class="icon ">
               <svg viewBox="0 0 32 32">
-                <g>
+                <g filter="">
                   <use xlink:href="#close-icon"></use>
                 </g>
               </svg>
             </div>
             <div id="" title="" class="icon ">
               <svg viewBox="0 0 32 32">
-                <g>
+                <g filter="">
                   <use xlink:href="#search-icon"></use>
                 </g>
               </svg>
             </div>
             <div id="" title="" class="icon ">
               <svg viewBox="0 0 32 32">
-                <g>
+                <g filter="">
                   <use xlink:href="#tick-icon"></use>
                 </g>
               </svg>
             </div>
             <div id="" title="" class="icon ">
               <svg viewBox="0 0 32 32">
-                <g>
+                <g filter="">
                   <use xlink:href="#arrow-down-icon"></use>
                 </g>
               </svg>
             </div>
             <div id="" title="" class="icon ">
               <svg viewBox="0 0 32 32">
-                <g>
+                <g filter="">
                   <use xlink:href="#cross-icon"></use>
                 </g>
               </svg>
@@ -396,11 +498,69 @@
           </div>
           <div class="text-be">Tracksflow</div>
         </div>
+        <div class="hash-e">7b95f5d5e25620cd774bd8742941cb39</div>
+        <div class="filter-b">
+          <div class="left-bl">
+            <div id="" title="" class="icon is-hoverable">
+              <svg viewBox="0 0 32 32">
+                <g filter="">
+                  <use xlink:href="#arrow-left-icon"></use>
+                </g>
+              </svg>
+            </div>
+          </div>
+          <div class="right-bl">
+            <div id="" title="" class="icon is-hoverable">
+              <svg viewBox="0 0 32 32">
+                <g filter="">
+                  <use xlink:href="#arrow-right-icon"></use>
+                </g>
+              </svg>
+            </div>
+          </div>
+          <div id="" title="" class="icon ">
+            <svg viewBox="0 0 32 32">
+              <g filter="url(#drop-shadow)">
+                <use xlink:href="#twitter-icon"></use>
+              </g>
+            </svg>
+          </div>
+          <div class="name-be">inset shadow</div>
+        </div>
+        <div class="hash-e">fd6aba2f05e13181a91f77074d87b4b4</div>
+        <div class="filter-b is-check">
+          <div class="left-bl">
+            <div id="" title="" class="icon is-hoverable">
+              <svg viewBox="0 0 32 32">
+                <g filter="">
+                  <use xlink:href="#arrow-left-icon"></use>
+                </g>
+              </svg>
+            </div>
+          </div>
+          <div class="right-bl">
+            <div id="" title="" class="icon is-hoverable">
+              <svg viewBox="0 0 32 32">
+                <g filter="">
+                  <use xlink:href="#arrow-right-icon"></use>
+                </g>
+              </svg>
+            </div>
+          </div>
+          <div id="" title="" class="icon ">
+            <svg viewBox="0 0 32 32">
+              <g filter="url(#drop-shadow)">
+                <use xlink:href="#twitter-icon"></use>
+              </g>
+            </svg>
+          </div>
+          <div class="name-be">inset shadow</div>
+        </div>
         <div class="hash-e">7fc5887b7434ee59fc7d648ff4f4541d</div>
         <div id="" title="" class="plus-btn-b ">
           <div id="" title="" class="icon ">
             <svg viewBox="0 0 32 32">
-              <g>
+              <g filter="">
                 <use xlink:href="#close-icon"></use>
               </g>
             </svg>
@@ -411,7 +571,7 @@
           <input id="fileupload" type="file" name="files[]" multiple="multiple">
           <div id="" title="upload" class="icon ">
             <svg viewBox="0 0 32 32">
-              <g>
+              <g filter="">
                 <use xlink:href="#arrow-down-icon"></use>
               </g>
             </svg>
@@ -421,7 +581,7 @@
         <div id="" title="right" class="plus-btn-b ">
           <div id="" title="right" class="icon ">
             <svg viewBox="0 0 32 32">
-              <g>
+              <g filter="">
                 <use xlink:href="#arrow-right-icon"></use>
               </g>
             </svg>
@@ -431,7 +591,7 @@
         <div id="" title="left" class="plus-btn-b ">
           <div id="" title="left" class="icon ">
             <svg viewBox="0 0 32 32">
-              <g>
+              <g filter="">
                 <use xlink:href="#arrow-left-icon"></use>
               </g>
             </svg>
@@ -442,7 +602,7 @@
           <div id="" title="right" class="plus-btn-b right-arrow-bh">
             <div id="" title="right" class="icon ">
               <svg viewBox="0 0 32 32">
-                <g>
+                <g filter="">
                   <use xlink:href="#arrow-right-icon"></use>
                 </g>
               </svg>
@@ -451,7 +611,7 @@
           <div id="" title="left" class="plus-btn-b left-arrow-bh">
             <div id="" title="left" class="icon ">
               <svg viewBox="0 0 32 32">
-                <g>
+                <g filter="">
                   <use xlink:href="#arrow-left-icon"></use>
                 </g>
               </svg>
@@ -462,42 +622,42 @@
               <div class="icons-bl cf">
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#twitter-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#close-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#search-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#tick-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#arrow-down-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#cross-icon"></use>
                     </g>
                   </svg>
@@ -509,42 +669,42 @@
               <div class="icons-bl cf">
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#twitter-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#close-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#search-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#tick-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#arrow-down-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#cross-icon"></use>
                     </g>
                   </svg>
@@ -556,42 +716,42 @@
               <div class="icons-bl cf">
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#twitter-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#close-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#search-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#tick-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#arrow-down-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#cross-icon"></use>
                     </g>
                   </svg>
@@ -603,42 +763,42 @@
               <div class="icons-bl cf">
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#twitter-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#close-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#search-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#tick-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#arrow-down-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#cross-icon"></use>
                     </g>
                   </svg>
@@ -650,42 +810,42 @@
               <div class="icons-bl cf">
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#twitter-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#close-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#search-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#tick-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#arrow-down-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#cross-icon"></use>
                     </g>
                   </svg>
@@ -697,42 +857,42 @@
               <div class="icons-bl cf">
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#twitter-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#close-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#search-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#tick-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#arrow-down-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#cross-icon"></use>
                     </g>
                   </svg>
@@ -744,42 +904,42 @@
               <div class="icons-bl cf">
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#twitter-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#close-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#search-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#tick-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#arrow-down-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#cross-icon"></use>
                     </g>
                   </svg>
@@ -791,42 +951,42 @@
               <div class="icons-bl cf">
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#twitter-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#close-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#search-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#tick-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#arrow-down-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#cross-icon"></use>
                     </g>
                   </svg>
@@ -838,42 +998,42 @@
               <div class="icons-bl cf">
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#twitter-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#close-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#search-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#tick-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#arrow-down-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#cross-icon"></use>
                     </g>
                   </svg>
@@ -885,42 +1045,42 @@
               <div class="icons-bl cf">
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#twitter-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#close-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#search-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#tick-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#arrow-down-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#cross-icon"></use>
                     </g>
                   </svg>
@@ -932,42 +1092,42 @@
               <div class="icons-bl cf">
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#twitter-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#close-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#search-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#tick-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#arrow-down-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#cross-icon"></use>
                     </g>
                   </svg>
@@ -979,42 +1139,42 @@
               <div class="icons-bl cf">
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#twitter-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#close-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#search-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#tick-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#arrow-down-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#cross-icon"></use>
                     </g>
                   </svg>
@@ -1026,42 +1186,42 @@
               <div class="icons-bl cf">
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#twitter-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#close-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#search-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#tick-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#arrow-down-icon"></use>
                     </g>
                   </svg>
                 </div>
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#cross-icon"></use>
                     </g>
                   </svg>
@@ -1071,18 +1231,153 @@
             </div>
           </div>
         </div>
+        <div class="hash-e">0c92b54348ac91c1096d93584a8b2275</div>
+        <div class="icon-collections-line-b">
+          <div id="" title="right" class="plus-btn-b right-arrow-bh">
+            <div id="" title="right" class="icon ">
+              <svg viewBox="0 0 32 32">
+                <g filter="">
+                  <use xlink:href="#arrow-right-icon"></use>
+                </g>
+              </svg>
+            </div>
+          </div>
+          <div id="" title="left" class="plus-btn-b left-arrow-bh">
+            <div id="" title="left" class="icon ">
+              <svg viewBox="0 0 32 32">
+                <g filter="">
+                  <use xlink:href="#arrow-left-icon"></use>
+                </g>
+              </svg>
+            </div>
+          </div>
+          <div class="icons-bl cf">
+            <div class="filter-b">
+              <div class="left-bl">
+                <div id="" title="left" class="icon is-hoverable">
+                  <svg viewBox="0 0 32 32">
+                    <g filter="">
+                      <use xlink:href="#arrow-left-icon"></use>
+                    </g>
+                  </svg>
+                </div>
+              </div>
+              <div class="right-bl">
+                <div id="" title="left" class="icon is-hoverable">
+                  <svg viewBox="0 0 32 32">
+                    <g filter="">
+                      <use xlink:href="#arrow-right-icon"></use>
+                    </g>
+                  </svg>
+                </div>
+              </div>
+              <div id="" title="left" class="icon ">
+                <svg viewBox="0 0 32 32">
+                  <g filter="url(#drop-shadow)">
+                    <use xlink:href="#twitter-icon"></use>
+                  </g>
+                </svg>
+              </div>
+              <div class="name-be">inset shadow</div>
+            </div>
+            <div class="filter-b">
+              <div class="left-bl">
+                <div id="" title="left" class="icon is-hoverable">
+                  <svg viewBox="0 0 32 32">
+                    <g filter="">
+                      <use xlink:href="#arrow-left-icon"></use>
+                    </g>
+                  </svg>
+                </div>
+              </div>
+              <div class="right-bl">
+                <div id="" title="left" class="icon is-hoverable">
+                  <svg viewBox="0 0 32 32">
+                    <g filter="">
+                      <use xlink:href="#arrow-right-icon"></use>
+                    </g>
+                  </svg>
+                </div>
+              </div>
+              <div id="" title="left" class="icon ">
+                <svg viewBox="0 0 32 32">
+                  <g filter="url(#drop-shadow)">
+                    <use xlink:href="#twitter-icon"></use>
+                  </g>
+                </svg>
+              </div>
+              <div class="name-be">inset shadow</div>
+            </div>
+            <div class="filter-b is-check">
+              <div class="left-bl">
+                <div id="" title="left" class="icon is-hoverable">
+                  <svg viewBox="0 0 32 32">
+                    <g filter="">
+                      <use xlink:href="#arrow-left-icon"></use>
+                    </g>
+                  </svg>
+                </div>
+              </div>
+              <div class="right-bl">
+                <div id="" title="left" class="icon is-hoverable">
+                  <svg viewBox="0 0 32 32">
+                    <g filter="">
+                      <use xlink:href="#arrow-right-icon"></use>
+                    </g>
+                  </svg>
+                </div>
+              </div>
+              <div id="" title="left" class="icon ">
+                <svg viewBox="0 0 32 32">
+                  <g filter="url(#drop-shadow)">
+                    <use xlink:href="#twitter-icon"></use>
+                  </g>
+                </svg>
+              </div>
+              <div class="name-be">inset shadow</div>
+            </div>
+            <div class="filter-b">
+              <div class="left-bl">
+                <div id="" title="left" class="icon is-hoverable">
+                  <svg viewBox="0 0 32 32">
+                    <g filter="">
+                      <use xlink:href="#arrow-left-icon"></use>
+                    </g>
+                  </svg>
+                </div>
+              </div>
+              <div class="right-bl">
+                <div id="" title="left" class="icon is-hoverable">
+                  <svg viewBox="0 0 32 32">
+                    <g filter="">
+                      <use xlink:href="#arrow-right-icon"></use>
+                    </g>
+                  </svg>
+                </div>
+              </div>
+              <div id="" title="left" class="icon ">
+                <svg viewBox="0 0 32 32">
+                  <g filter="url(#drop-shadow)">
+                    <use xlink:href="#twitter-icon"></use>
+                  </g>
+                </svg>
+              </div>
+              <div class="name-be">inset shadow</div>
+            </div>
+          </div>
+        </div>
         <div class="hash-e">1a4f5ba6fd48663826fe4d9ef3f3a2dd</div>
         <div class="submit-icon-b">
           <div id="js-destroy" title="remove" class="icon is-hoverable close-bh">
             <svg viewBox="0 0 32 32">
-              <g>
+              <g filter="">
                 <use xlink:href="#close-icon"></use>
               </g>
             </svg>
           </div>
           <div id="" title="" class="icon icon-sample-bh &lt;%= hash || 'is-grey3' %&gt;">
             <svg viewBox="0 0 32 32">
-              <g>
+              <g filter="">
                 <use xlink:href="#&lt;%= hash || &quot;b5282d4ecdc7ae3d0799023622c560a5&quot; %&gt;"></use>
               </g>
             </svg>
@@ -1099,14 +1394,14 @@
             <div class="submit-icon-b">
               <div id="js-destroy" title="remove" class="icon is-hoverable close-bh">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#close-icon"></use>
                   </g>
                 </svg>
               </div>
               <div id="" title="" class="icon icon-sample-bh &lt;%= hash || 'is-grey3' %&gt;">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#&lt;%= hash || &quot;b5282d4ecdc7ae3d0799023622c560a5&quot; %&gt;"></use>
                   </g>
                 </svg>
@@ -1119,14 +1414,14 @@
             <div class="submit-icon-b">
               <div id="js-destroy" title="remove" class="icon is-hoverable close-bh">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#close-icon"></use>
                   </g>
                 </svg>
               </div>
               <div id="" title="" class="icon icon-sample-bh &lt;%= hash || 'is-grey3' %&gt;">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#&lt;%= hash || &quot;b5282d4ecdc7ae3d0799023622c560a5&quot; %&gt;"></use>
                   </g>
                 </svg>
@@ -1139,14 +1434,14 @@
             <div class="submit-icon-b">
               <div id="js-destroy" title="remove" class="icon is-hoverable close-bh">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#close-icon"></use>
                   </g>
                 </svg>
               </div>
               <div id="" title="" class="icon icon-sample-bh &lt;%= hash || 'is-grey3' %&gt;">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#&lt;%= hash || &quot;b5282d4ecdc7ae3d0799023622c560a5&quot; %&gt;"></use>
                   </g>
                 </svg>
@@ -1159,14 +1454,14 @@
             <div class="submit-icon-b">
               <div id="js-destroy" title="remove" class="icon is-hoverable close-bh">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#close-icon"></use>
                   </g>
                 </svg>
               </div>
               <div id="" title="" class="icon icon-sample-bh &lt;%= hash || 'is-grey3' %&gt;">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#&lt;%= hash || &quot;b5282d4ecdc7ae3d0799023622c560a5&quot; %&gt;"></use>
                   </g>
                 </svg>
@@ -1179,14 +1474,14 @@
             <div class="submit-icon-b">
               <div id="js-destroy" title="remove" class="icon is-hoverable close-bh">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#close-icon"></use>
                   </g>
                 </svg>
               </div>
               <div id="" title="" class="icon icon-sample-bh &lt;%= hash || 'is-grey3' %&gt;">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#&lt;%= hash || &quot;b5282d4ecdc7ae3d0799023622c560a5&quot; %&gt;"></use>
                   </g>
                 </svg>
@@ -1199,14 +1494,14 @@
             <div class="submit-icon-b">
               <div id="js-destroy" title="remove" class="icon is-hoverable close-bh">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#close-icon"></use>
                   </g>
                 </svg>
               </div>
               <div id="" title="" class="icon icon-sample-bh &lt;%= hash || 'is-grey3' %&gt;">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#&lt;%= hash || &quot;b5282d4ecdc7ae3d0799023622c560a5&quot; %&gt;"></use>
                   </g>
                 </svg>
@@ -1219,14 +1514,14 @@
             <div class="submit-icon-b">
               <div id="js-destroy" title="remove" class="icon is-hoverable close-bh">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#close-icon"></use>
                   </g>
                 </svg>
               </div>
               <div id="" title="" class="icon icon-sample-bh &lt;%= hash || 'is-grey3' %&gt;">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#&lt;%= hash || &quot;b5282d4ecdc7ae3d0799023622c560a5&quot; %&gt;"></use>
                   </g>
                 </svg>
@@ -1239,14 +1534,14 @@
             <div class="submit-icon-b">
               <div id="js-destroy" title="remove" class="icon is-hoverable close-bh">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#close-icon"></use>
                   </g>
                 </svg>
               </div>
               <div id="" title="" class="icon icon-sample-bh &lt;%= hash || 'is-grey3' %&gt;">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#&lt;%= hash || &quot;b5282d4ecdc7ae3d0799023622c560a5&quot; %&gt;"></use>
                   </g>
                 </svg>
@@ -1260,7 +1555,7 @@
           <div id="" title="upload" class="plus-btn-b shape-bh">
             <div id="" title="upload" class="icon ">
               <svg viewBox="0 0 32 32">
-                <g>
+                <g filter="">
                   <use xlink:href="#cross-icon"></use>
                 </g>
               </svg>
@@ -1270,7 +1565,7 @@
             <input id="fileupload" type="file" name="files[]" multiple="multiple">
             <div id="" title="upload" class="icon ">
               <svg viewBox="0 0 32 32">
-                <g>
+                <g filter="">
                   <use xlink:href="#arrow-down-icon"></use>
                 </g>
               </svg>
@@ -1289,7 +1584,7 @@
               <input type="checkbox" id="moderated">
               <div id="" title="" class="icon ">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#tick-icon"></use>
                   </g>
                 </svg>
@@ -1299,10 +1594,10 @@
           </div>
           <div class="icon-set-l">
             <div class="left-ll">
-              <div class="btn-b is-iconed is-red1">
+              <div title="" class="btn-b is-iconed is-red1">
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#close-icon"></use>
                     </g>
                   </svg>
@@ -1327,7 +1622,7 @@
               <input type="checkbox" id="moderated">
               <div id="" title="" class="icon ">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#tick-icon"></use>
                   </g>
                 </svg>
@@ -1337,10 +1632,10 @@
           </div>
           <div class="icon-set-l">
             <div class="left-ll">
-              <div class="btn-b is-iconed is-red1">
+              <div title="" class="btn-b is-iconed is-red1">
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#close-icon"></use>
                     </g>
                   </svg>
@@ -1366,7 +1661,7 @@
                 <input type="checkbox" id="moderated">
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#tick-icon"></use>
                     </g>
                   </svg>
@@ -1376,10 +1671,10 @@
             </div>
             <div class="icon-set-l">
               <div class="left-ll">
-                <div class="btn-b is-iconed is-red1">
+                <div title="" class="btn-b is-iconed is-red1">
                   <div id="" title="" class="icon ">
                     <svg viewBox="0 0 32 32">
-                      <g>
+                      <g filter="">
                         <use xlink:href="#close-icon"></use>
                       </g>
                     </svg>
@@ -1399,14 +1694,14 @@
                 <div class="submit-icon-b">
                   <div id="js-destroy" title="remove" class="icon is-hoverable close-bh">
                     <svg viewBox="0 0 32 32">
-                      <g>
+                      <g filter="">
                         <use xlink:href="#close-icon"></use>
                       </g>
                     </svg>
                   </div>
                   <div id="" title="" class="icon icon-sample-bh &lt;%= hash || 'is-grey3' %&gt;">
                     <svg viewBox="0 0 32 32">
-                      <g>
+                      <g filter="">
                         <use xlink:href="#&lt;%= hash || &quot;b5282d4ecdc7ae3d0799023622c560a5&quot; %&gt;"></use>
                       </g>
                     </svg>
@@ -1419,14 +1714,14 @@
                 <div class="submit-icon-b">
                   <div id="js-destroy" title="remove" class="icon is-hoverable close-bh">
                     <svg viewBox="0 0 32 32">
-                      <g>
+                      <g filter="">
                         <use xlink:href="#close-icon"></use>
                       </g>
                     </svg>
                   </div>
                   <div id="" title="" class="icon icon-sample-bh &lt;%= hash || 'is-grey3' %&gt;">
                     <svg viewBox="0 0 32 32">
-                      <g>
+                      <g filter="">
                         <use xlink:href="#&lt;%= hash || &quot;b5282d4ecdc7ae3d0799023622c560a5&quot; %&gt;"></use>
                       </g>
                     </svg>
@@ -1439,14 +1734,14 @@
                 <div class="submit-icon-b">
                   <div id="js-destroy" title="remove" class="icon is-hoverable close-bh">
                     <svg viewBox="0 0 32 32">
-                      <g>
+                      <g filter="">
                         <use xlink:href="#close-icon"></use>
                       </g>
                     </svg>
                   </div>
                   <div id="" title="" class="icon icon-sample-bh &lt;%= hash || 'is-grey3' %&gt;">
                     <svg viewBox="0 0 32 32">
-                      <g>
+                      <g filter="">
                         <use xlink:href="#&lt;%= hash || &quot;b5282d4ecdc7ae3d0799023622c560a5&quot; %&gt;"></use>
                       </g>
                     </svg>
@@ -1459,14 +1754,14 @@
                 <div class="submit-icon-b">
                   <div id="js-destroy" title="remove" class="icon is-hoverable close-bh">
                     <svg viewBox="0 0 32 32">
-                      <g>
+                      <g filter="">
                         <use xlink:href="#close-icon"></use>
                       </g>
                     </svg>
                   </div>
                   <div id="" title="" class="icon icon-sample-bh &lt;%= hash || 'is-grey3' %&gt;">
                     <svg viewBox="0 0 32 32">
-                      <g>
+                      <g filter="">
                         <use xlink:href="#&lt;%= hash || &quot;b5282d4ecdc7ae3d0799023622c560a5&quot; %&gt;"></use>
                       </g>
                     </svg>
@@ -1479,14 +1774,14 @@
                 <div class="submit-icon-b">
                   <div id="js-destroy" title="remove" class="icon is-hoverable close-bh">
                     <svg viewBox="0 0 32 32">
-                      <g>
+                      <g filter="">
                         <use xlink:href="#close-icon"></use>
                       </g>
                     </svg>
                   </div>
                   <div id="" title="" class="icon icon-sample-bh &lt;%= hash || 'is-grey3' %&gt;">
                     <svg viewBox="0 0 32 32">
-                      <g>
+                      <g filter="">
                         <use xlink:href="#&lt;%= hash || &quot;b5282d4ecdc7ae3d0799023622c560a5&quot; %&gt;"></use>
                       </g>
                     </svg>
@@ -1499,14 +1794,14 @@
                 <div class="submit-icon-b">
                   <div id="js-destroy" title="remove" class="icon is-hoverable close-bh">
                     <svg viewBox="0 0 32 32">
-                      <g>
+                      <g filter="">
                         <use xlink:href="#close-icon"></use>
                       </g>
                     </svg>
                   </div>
                   <div id="" title="" class="icon icon-sample-bh &lt;%= hash || 'is-grey3' %&gt;">
                     <svg viewBox="0 0 32 32">
-                      <g>
+                      <g filter="">
                         <use xlink:href="#&lt;%= hash || &quot;b5282d4ecdc7ae3d0799023622c560a5&quot; %&gt;"></use>
                       </g>
                     </svg>
@@ -1520,7 +1815,7 @@
               <div id="" title="upload" class="plus-btn-b shape-bh">
                 <div id="" title="upload" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g>
+                    <g filter="">
                       <use xlink:href="#cross-icon"></use>
                     </g>
                   </svg>
@@ -1530,26 +1825,26 @@
           </div>
         </div>
         <div class="hash-e">d8231e3de7a5cfc54e2a32c99fda48b0</div>
-        <div class="section-header-b"><a href="#" class="is-hoverable author-be">by LegoMushroom</a>
+        <div class="section-header-b"><a target="" href="" class="is-grey3 is-hoverable is-grey2--onhover author-be">by LegoMushroom</a>
           <div class="name-be">submit</div>
           <div class="icons-bl">
             <div id="js-hide" title="close section" class="icon is-hoverable ">
               <svg viewBox="0 0 32 32">
-                <g>
+                <g filter="">
                   <use xlink:href="#dropup-arrow-icon"></use>
                 </g>
               </svg>
             </div>
             <div id="js-select-all" title="select all" class="icon is-green--onhover ">
               <svg viewBox="0 0 32 32">
-                <g>
+                <g filter="">
                   <use xlink:href="#tick-icon"></use>
                 </g>
               </svg>
             </div>
             <div id="js-deselect-all" title="deselect all" class="icon is-red1--onhover ">
               <svg viewBox="0 0 32 32">
-                <g>
+                <g filter="">
                   <use xlink:href="#close-icon"></use>
                 </g>
               </svg>
@@ -1558,26 +1853,26 @@
         </div>
         <div class="hash-e">d31599d6c04918e3e54b3383d136855e</div>
         <div class="section-b cf">
-          <div class="section-header-b"><a href="#" class="is-hoverable author-be">by LegoMushroom</a>
+          <div class="section-header-b"><a target="" href="" class="is-grey3 is-hoverable is-grey2--onhover author-be">by LegoMushroom</a>
             <div class="name-be">submit</div>
             <div class="icons-bl">
               <div id="js-hide" title="close section" class="icon is-hoverable ">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#dropup-arrow-icon"></use>
                   </g>
                 </svg>
               </div>
               <div id="js-select-all" title="select all" class="icon is-green--onhover ">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#tick-icon"></use>
                   </g>
                 </svg>
               </div>
               <div id="js-deselect-all" title="deselect all" class="icon is-red1--onhover ">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#close-icon"></use>
                   </g>
                 </svg>
@@ -1588,7 +1883,7 @@
             <div class="icon-with-text-b shape-bh">
               <div id="js-deselect-all" title="deselect all" class="icon is-red1--onhover ">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#search-icon"></use>
                   </g>
                 </svg>
@@ -1601,7 +1896,7 @@
             <div class="icon-with-text-b twitter-icon">
               <div id="js-deselect-all" title="deselect all" class="icon is-red1--onhover ">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#twitter-icon"></use>
                   </g>
                 </svg>
@@ -1614,7 +1909,7 @@
             <div class="icon-with-text-b twitter-icon">
               <div id="js-deselect-all" title="deselect all" class="icon is-red1--onhover ">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#tick-icon"></use>
                   </g>
                 </svg>
@@ -1627,7 +1922,7 @@
             <div class="icon-with-text-b twitter-icon">
               <div id="js-deselect-all" title="deselect all" class="icon is-red1--onhover ">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#close-icon"></use>
                   </g>
                 </svg>
@@ -1640,7 +1935,7 @@
             <div class="icon-with-text-b twitter-icon">
               <div id="js-deselect-all" title="deselect all" class="icon is-red1--onhover ">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#search-icon"></use>
                   </g>
                 </svg>
@@ -1653,7 +1948,7 @@
             <div class="icon-with-text-b twitter-icon">
               <div id="js-deselect-all" title="deselect all" class="icon is-red1--onhover ">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#twitter-icon"></use>
                   </g>
                 </svg>
@@ -1666,7 +1961,7 @@
             <div class="icon-with-text-b twitter-icon">
               <div id="js-deselect-all" title="deselect all" class="icon is-red1--onhover ">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#tick-icon"></use>
                   </g>
                 </svg>
@@ -1679,7 +1974,7 @@
             <div class="icon-with-text-b twitter-icon">
               <div id="js-deselect-all" title="deselect all" class="icon is-red1--onhover ">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#close-icon"></use>
                   </g>
                 </svg>
@@ -1692,7 +1987,7 @@
             <div class="icon-with-text-b twitter-icon">
               <div id="js-deselect-all" title="deselect all" class="icon is-red1--onhover ">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#search-icon"></use>
                   </g>
                 </svg>
@@ -1705,7 +2000,7 @@
             <div class="icon-with-text-b twitter-icon">
               <div id="js-deselect-all" title="deselect all" class="icon is-red1--onhover ">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#twitter-icon"></use>
                   </g>
                 </svg>
@@ -1718,7 +2013,7 @@
             <div class="icon-with-text-b twitter-icon">
               <div id="js-deselect-all" title="deselect all" class="icon is-red1--onhover ">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#tick-icon"></use>
                   </g>
                 </svg>
@@ -1731,7 +2026,7 @@
             <div class="icon-with-text-b twitter-icon">
               <div id="js-deselect-all" title="deselect all" class="icon is-red1--onhover ">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#close-icon"></use>
                   </g>
                 </svg>
@@ -1744,7 +2039,7 @@
             <div class="icon-with-text-b twitter-icon">
               <div id="js-deselect-all" title="deselect all" class="icon is-red1--onhover ">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#search-icon"></use>
                   </g>
                 </svg>
@@ -1757,7 +2052,7 @@
             <div class="icon-with-text-b twitter-icon">
               <div id="js-deselect-all" title="deselect all" class="icon is-red1--onhover ">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#twitter-icon"></use>
                   </g>
                 </svg>
@@ -1770,7 +2065,7 @@
             <div class="icon-with-text-b twitter-icon">
               <div id="js-deselect-all" title="deselect all" class="icon is-red1--onhover ">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#tick-icon"></use>
                   </g>
                 </svg>
@@ -1783,7 +2078,7 @@
             <div class="icon-with-text-b twitter-icon">
               <div id="js-deselect-all" title="deselect all" class="icon is-red1--onhover ">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#close-icon"></use>
                   </g>
                 </svg>
@@ -1796,7 +2091,7 @@
             <div class="icon-with-text-b twitter-icon">
               <div id="js-deselect-all" title="deselect all" class="icon is-red1--onhover ">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#search-icon"></use>
                   </g>
                 </svg>
@@ -1809,7 +2104,7 @@
             <div class="icon-with-text-b twitter-icon">
               <div id="js-deselect-all" title="deselect all" class="icon is-red1--onhover ">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#twitter-icon"></use>
                   </g>
                 </svg>
@@ -1822,7 +2117,7 @@
             <div class="icon-with-text-b twitter-icon">
               <div id="js-deselect-all" title="deselect all" class="icon is-red1--onhover ">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#tick-icon"></use>
                   </g>
                 </svg>
@@ -1835,7 +2130,7 @@
             <div class="icon-with-text-b twitter-icon">
               <div id="js-deselect-all" title="deselect all" class="icon is-red1--onhover ">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#close-icon"></use>
                   </g>
                 </svg>
@@ -1848,7 +2143,7 @@
             <div class="icon-with-text-b twitter-icon">
               <div id="js-deselect-all" title="deselect all" class="icon is-red1--onhover ">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#search-icon"></use>
                   </g>
                 </svg>
@@ -1861,7 +2156,7 @@
             <div class="icon-with-text-b twitter-icon">
               <div id="js-deselect-all" title="deselect all" class="icon is-red1--onhover ">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#twitter-icon"></use>
                   </g>
                 </svg>
@@ -1874,7 +2169,7 @@
             <div class="icon-with-text-b twitter-icon">
               <div id="js-deselect-all" title="deselect all" class="icon is-red1--onhover ">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#tick-icon"></use>
                   </g>
                 </svg>
@@ -1887,7 +2182,7 @@
             <div class="icon-with-text-b twitter-icon">
               <div id="js-deselect-all" title="deselect all" class="icon is-red1--onhover ">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#close-icon"></use>
                   </g>
                 </svg>
@@ -1900,7 +2195,7 @@
             <div class="icon-with-text-b twitter-icon">
               <div id="js-deselect-all" title="deselect all" class="icon is-red1--onhover ">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#search-icon"></use>
                   </g>
                 </svg>
@@ -1913,7 +2208,7 @@
             <div class="icon-with-text-b twitter-icon">
               <div id="js-deselect-all" title="deselect all" class="icon is-red1--onhover ">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#twitter-icon"></use>
                   </g>
                 </svg>
@@ -1926,7 +2221,7 @@
             <div class="icon-with-text-b twitter-icon">
               <div id="js-deselect-all" title="deselect all" class="icon is-red1--onhover ">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#tick-icon"></use>
                   </g>
                 </svg>
@@ -1939,7 +2234,7 @@
             <div class="icon-with-text-b twitter-icon">
               <div id="js-deselect-all" title="deselect all" class="icon is-red1--onhover ">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#close-icon"></use>
                   </g>
                 </svg>
@@ -1952,7 +2247,7 @@
             <div class="icon-with-text-b twitter-icon">
               <div id="js-deselect-all" title="deselect all" class="icon is-red1--onhover ">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#search-icon"></use>
                   </g>
                 </svg>
@@ -1965,7 +2260,7 @@
             <div class="icon-with-text-b twitter-icon">
               <div id="js-deselect-all" title="deselect all" class="icon is-red1--onhover ">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#twitter-icon"></use>
                   </g>
                 </svg>
@@ -1978,7 +2273,7 @@
             <div class="icon-with-text-b twitter-icon">
               <div id="js-deselect-all" title="deselect all" class="icon is-red1--onhover ">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#tick-icon"></use>
                   </g>
                 </svg>
@@ -1991,7 +2286,7 @@
             <div class="icon-with-text-b twitter-icon">
               <div id="js-deselect-all" title="deselect all" class="icon is-red1--onhover ">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#close-icon"></use>
                   </g>
                 </svg>
@@ -2004,7 +2299,7 @@
             <div class="icon-with-text-b twitter-icon">
               <div id="js-deselect-all" title="deselect all" class="icon is-red1--onhover ">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#search-icon"></use>
                   </g>
                 </svg>
@@ -2017,7 +2312,7 @@
             <div class="icon-with-text-b twitter-icon">
               <div id="js-deselect-all" title="deselect all" class="icon is-red1--onhover ">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#twitter-icon"></use>
                   </g>
                 </svg>
@@ -2030,7 +2325,7 @@
             <div class="icon-with-text-b twitter-icon">
               <div id="js-deselect-all" title="deselect all" class="icon is-red1--onhover ">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#tick-icon"></use>
                   </g>
                 </svg>
@@ -2043,7 +2338,7 @@
             <div class="icon-with-text-b twitter-icon">
               <div id="js-deselect-all" title="deselect all" class="icon is-red1--onhover ">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#close-icon"></use>
                   </g>
                 </svg>
@@ -2056,7 +2351,7 @@
             <div class="icon-with-text-b twitter-icon">
               <div id="js-deselect-all" title="deselect all" class="icon is-red1--onhover ">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#search-icon"></use>
                   </g>
                 </svg>
@@ -2069,7 +2364,7 @@
             <div class="icon-with-text-b twitter-icon">
               <div id="js-deselect-all" title="deselect all" class="icon is-red1--onhover ">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#twitter-icon"></use>
                   </g>
                 </svg>
@@ -2082,7 +2377,7 @@
             <div class="icon-with-text-b twitter-icon">
               <div id="js-deselect-all" title="deselect all" class="icon is-red1--onhover ">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#tick-icon"></use>
                   </g>
                 </svg>
@@ -2095,7 +2390,7 @@
             <div class="icon-with-text-b twitter-icon">
               <div id="js-deselect-all" title="deselect all" class="icon is-red1--onhover ">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#close-icon"></use>
                   </g>
                 </svg>
@@ -2123,12 +2418,27 @@
         <div class="hash-e">47a89f9dc70629feb99b65583ce49f4a</div>
         <div class="icon-select-view-b cf">
           <div class="controls-bl">
-            <div data-cnt="0" class="btn-b is-counter">download</div>
+            <div class="icon-set-l">
+              <div class="left-ll">
+                <div title="load from file" class="btn-b is-iconed is-red1">
+                  <div id="" title="" class="icon ">
+                    <svg viewBox="0 0 32 32">
+                      <g filter="">
+                        <use xlink:href="#arrow-down-icon"></use>
+                      </g>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <div class="right-ll">
+                <div data-cnt="0" class="btn-b is-counter">download</div>
+              </div>
+            </div>
             <div class="input-with-icon-b">
-              <input id="js-deselect-all" placeholder="search" class="input-e is-counter">
-              <div id="js-deselect-all" title="deselect all" class="icon search-icon">
+              <input id="" placeholder="search" class="input-e is-counter">
+              <div id="" title="" class="icon search-icon">
                 <svg viewBox="0 0 32 32">
-                  <g>
+                  <g filter="">
                     <use xlink:href="#search-icon"></use>
                   </g>
                 </svg>

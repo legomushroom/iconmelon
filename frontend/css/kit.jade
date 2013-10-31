@@ -73,6 +73,11 @@ html
 						include partials/icon
 
 					.icon-sample-kl
+						.hash-e 25dc184a372a161438ffc5b0b66b4934
+						- var path = 'arrow-up-icon'
+						include partials/icon
+
+					.icon-sample-kl
 						.hash-e 4effe5183600b5033f8e90489240cddc
 						- var path = 'arrow-left-icon'
 						include partials/icon
@@ -103,9 +108,21 @@ html
 				include partials/button
 				- var text = ''
 
+				.hash-e a29d03c89fb63ef91c45ab8e64c04f1f
+				.icon-set-l
+					.left-ll
+						- var className = 'is-iconed is-red1'
+						- var iconPath = 'arrow-down-icon'
+						- var title = 'load from file'
+						include partials/button-with-icon
+					.right-ll
+						- var className = 'is-counter', text = 'download', cnt = ''
+						include partials/button
+
 				.hash-e cee98a768f3a4013d3cfd5d0c67ffe0d
 				- var className = 'is-iconed is-red1'
 				- var iconPath = 'close-icon'
+				- var title = 'load from file'
 				include partials/button-with-icon
 
 				.hash-e 58b21870f4e247e374c47f1d6d823c88
@@ -113,6 +130,7 @@ html
 					.left-ll
 						- var className = 'is-iconed is-red1'
 						- var iconPath = 'close-icon'
+						- var title = 'load from file'
 						include partials/button-with-icon
 					.right-ll
 						- var className = '', text = 'download', cnt = ''
@@ -149,6 +167,48 @@ html
 				- var iconPath4 = 'tick-icon', iconPath5 = 'arrow-down-icon', iconPath6 = 'cross-icon'
 				- var text = 'Tracksflow'
 				include partials/icons-set
+
+				.hash-e 7b95f5d5e25620cd774bd8742941cb39
+				.filter-b
+					.left-bl
+						- var path = 'arrow-left-icon'
+						- var filter = ''
+						- var iconClass = 'is-hoverable'
+						include partials/icon
+
+					.right-bl
+						- var path = 'arrow-right-icon'
+						- var filter = ''
+						- var iconClass = 'is-hoverable'
+						include partials/icon
+
+					- var path = 'twitter-icon'
+					- var filter = 'url(#drop-shadow)'
+					- var iconClass = ''
+					include partials/icon
+					- var filter = ''
+					.name-be inset shadow
+
+				.hash-e fd6aba2f05e13181a91f77074d87b4b4
+				.filter-b.is-check
+					.left-bl
+						- var path = 'arrow-left-icon'
+						- var filter = ''
+						- var iconClass = 'is-hoverable'
+						include partials/icon
+
+					.right-bl
+						- var path = 'arrow-right-icon'
+						- var filter = ''
+						- var iconClass = 'is-hoverable'
+						include partials/icon
+
+					- var path = 'twitter-icon'
+					- var filter = 'url(#drop-shadow)'
+					- var iconClass = ''
+					include partials/icon
+					- var filter = ''
+					.name-be inset shadow
 
 				.hash-e 7fc5887b7434ee59fc7d648ff4f4541d
 				include partials/plus-btn
@@ -252,6 +312,96 @@ html
 						- var text = 'Collection'
 						include partials/icons-set
 
+				.hash-e 0c92b54348ac91c1096d93584a8b2275
+				.icon-collections-line-b
+
+					- var className = 'right-arrow-bh', iconPath = 'arrow-right-icon', title = 'right', iconClass = '', idAttribute = ''
+					include partials/plus-btn
+
+					- var className = 'left-arrow-bh', iconPath = 'arrow-left-icon', title = 'left', iconClass = '', idAttribute = ''
+					include partials/plus-btn
+
+					.icons-bl.cf
+						.filter-b
+							.left-bl
+								- var path = 'arrow-left-icon'
+								- var filter = ''
+								- var iconClass = 'is-hoverable'
+								include partials/icon
+
+							.right-bl
+								- var path = 'arrow-right-icon'
+								- var filter = ''
+								- var iconClass = 'is-hoverable'
+								include partials/icon
+
+							- var path = 'twitter-icon'
+							- var filter = 'url(#drop-shadow)'
+							- var iconClass = ''
+							include partials/icon
+							- var filter = ''
+							.name-be inset shadow
+
+						.filter-b
+							.left-bl
+								- var path = 'arrow-left-icon'
+								- var filter = ''
+								- var iconClass = 'is-hoverable'
+								include partials/icon
+
+							.right-bl
+								- var path = 'arrow-right-icon'
+								- var filter = ''
+								- var iconClass = 'is-hoverable'
+								include partials/icon
+
+							- var path = 'twitter-icon'
+							- var filter = 'url(#drop-shadow)'
+							- var iconClass = ''
+							include partials/icon
+							- var filter = ''
+							.name-be inset shadow
+
+						.filter-b.is-check
+							.left-bl
+								- var path = 'arrow-left-icon'
+								- var filter = ''
+								- var iconClass = 'is-hoverable'
+								include partials/icon
+
+							.right-bl
+								- var path = 'arrow-right-icon'
+								- var filter = ''
+								- var iconClass = 'is-hoverable'
+								include partials/icon
+
+							- var path = 'twitter-icon'
+							- var filter = 'url(#drop-shadow)'
+							- var iconClass = ''
+							include partials/icon
+							- var filter = ''
+							.name-be inset shadow
+
+						.filter-b
+							.left-bl
+								- var path = 'arrow-left-icon'
+								- var filter = ''
+								- var iconClass = 'is-hoverable'
+								include partials/icon
+
+							.right-bl
+								- var path = 'arrow-right-icon'
+								- var filter = ''
+								- var iconClass = 'is-hoverable'
+								include partials/icon
+
+							- var path = 'twitter-icon'
+							- var filter = 'url(#drop-shadow)'
+							- var iconClass = ''
+							include partials/icon
+							- var filter = ''
+							.name-be inset shadow
+
 				.hash-e 1a4f5ba6fd48663826fe4d9ef3f3a2dd
 				include partials/submit-icon
 
@@ -302,11 +452,14 @@ html
 
 				.hash-e d8231e3de7a5cfc54e2a32c99fda48b0
 				- var placeholder = 'search', author = 'by LegoMushroom'
+				- var linkTarget = '', authorLink = ''
 				include partials/section-header
 
 
 				.hash-e d31599d6c04918e3e54b3383d136855e
 				.section-b.cf
+					- var placeholder = 'search', author = 'by LegoMushroom'
+					- var linkTarget = '', authorLink = ''
 					include partials/section-header
 					
 					.content-bl
@@ -351,11 +504,8 @@ html
 
 				.hash-e 47a89f9dc70629feb99b65583ce49f4a
 				.icon-select-view-b.cf
-
 					.controls-bl
-						- var text = 'download'
-						- var className = 'is-counter'
-						include partials/button
+						include partials/main-btns-set
 
 						- var placeholder 	= 	'search'
 						- var iconClass 	=	'search-icon'

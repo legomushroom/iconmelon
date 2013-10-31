@@ -3,7 +3,7 @@
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define('views/IconSelectView', ['views/ProtoView', 'collectionViews/SectionsCollectionView', 'collections/SectionsCollection', 'underscore', 'jquery', 'helpers'], function(ProtoView, SectionsCollectionView, SectionsCollection, _, $, helpers) {
+  define('views/IconSelectView', ['views/ProtoView', 'collectionViews/SectionsCollectionView', 'collections/SectionsCollection', 'collectionViews/FiltersCollectionView', 'collections/FiltersCollection', 'underscore', 'jquery', 'helpers'], function(ProtoView, SectionsCollectionView, SectionsCollection, FiltersCollectionView, FiltersCollection, _, $, helpers) {
     var IconSelectView, _ref;
 
     IconSelectView = (function(_super) {
@@ -23,7 +23,7 @@
       };
 
       IconSelectView.prototype.filter = function(e) {
-        return App.vent.trigger('icon-select-filter:change', $(e.target).val());
+        return App.vent.trigger('icon-select-filter:change', $.trim($(e.target).val()));
       };
 
       IconSelectView.prototype.initialize = function(o) {
@@ -50,18 +50,42 @@
       };
 
       IconSelectView.prototype.renderView = function() {
+        var filter, filter2, filter3;
+
+        filter2 = {
+          hash: 'drop-shadow',
+          name: 'drop shadow',
+          iconHash: 'tick-icon'
+        };
+        filter = {
+          hash: 'inset-shadow',
+          name: 'inset shadow',
+          iconHash: 'tick-icon'
+        };
+        filter3 = {
+          hash: 'drop-shadow-color',
+          name: 'drop shadow with color',
+          iconHash: 'tick-icon'
+        };
+        this.filtersCollectionView = new FiltersCollectionView({
+          collection: new FiltersCollection,
+          isRender: true,
+          $el: this.$('#js-filters-place')
+        });
+        this.filtersCollectionView.collection.fetch();
         this.sectionsCollectionView = new SectionsCollectionView({
           collection: new SectionsCollection,
           isRender: true,
           $el: this.$('#js-section-collections-place')
         });
         this.sectionsCollectionView.collection.fetch();
+        App.sectionsCollectionView = this.sectionsCollectionView;
         this.model.sectionsView = this.sectionsCollectionView;
         return this;
       };
 
       IconSelectView.prototype.renderButton = function() {
-        return this.$('.btn-b').replaceWith(this.buttonCounterTemplate(this.model.toJSON()));
+        return this.$('.icon-set-l').replaceWith(this.buttonCounterTemplate(this.model.toJSON()));
       };
 
       return IconSelectView;

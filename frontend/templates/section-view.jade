@@ -1,6 +1,10 @@
 - var text = '<%= name %>'
-- var rectStyle = ''
-- var arrowClass = '<%= (isClosed) ? "is-reverse" : "" %>'
+- var rectStyle   = ''
+- var arrowClass  = '<%= (isClosed) ? "is-reverse" : "" %>'
+- var author      = 'by <%= author %>'
+- var authorLink  = '<%= (website.length > 0) ? "http://" + website.replace(/http:\\/\\//g, "") : "mailto:" + email %>'
+- var linkTarget  = '<%= (website.length > 0) ? "_blank" : undefined %>'
+
 include ../css/partials/section-header
 
 .content-bl.cf#js-icons-place

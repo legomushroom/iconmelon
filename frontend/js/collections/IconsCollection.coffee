@@ -12,9 +12,16 @@ define 'collections/IconsCollection', ['backbone', 'models/IconModel', 'undersco
 
 		filter:(filter)->
 			pattern = new RegExp filter, 'gi'
+			iconsFiltered = 0
 			@each (model)=>
-				_.defer =>
-					model.set 'isFiltered', if !(model.get('name').match pattern) then true else false
+			@each (model)=>
+
+				isFiltered = if !(model.get('name').match pattern) then true else false
+				model.set 'isFiltered', isFiltered
+				isFiltered and iconsFiltered++
+
+			@filtered = iconsFiltered is @length
+			@onFilter @filtered
 
 		selectAll:->
 			@setToAll true
