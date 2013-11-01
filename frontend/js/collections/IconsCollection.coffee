@@ -8,20 +8,16 @@ define 'collections/IconsCollection', ['backbone', 'models/IconModel', 'undersco
 			@
 
 		listenToPUBSUB:->
-			App.vent.on 'icon-select-filter:change', _.debounce _.bind(@filter, @), 250
+			App.vent.on 'icon-select-filter:change', (filter)=>
+				pattern = new RegExp filter, 'gi'
+				iconsFiltered = 0
+				@each (model)=>
+					isFiltered = if !(model.get('name').match pattern) then true else false
+					model.set 'isFiltered', isFiltered
+					isFiltered and iconsFiltered++
 
-		filter:(filter)->
-			pattern = new RegExp filter, 'gi'
-			iconsFiltered = 0
-			@each (model)=>
-			@each (model)=>
-
-				isFiltered = if !(model.get('name').match pattern) then true else false
-				model.set 'isFiltered', isFiltered
-				isFiltered and iconsFiltered++
-
-			@filtered = iconsFiltered is @length
-			@onFilter @filtered
+				@filtered = iconsFiltered is @length
+				@onFilter @filtered
 
 		selectAll:->
 			@setToAll true
@@ -31,9 +27,16 @@ define 'collections/IconsCollection', ['backbone', 'models/IconModel', 'undersco
 			@setToAll false
 			@selectedCnt = 0
 
-
 		setToAll:(val)->
 			@each (model)=>
-				model.set 'isSelected', val
+				if !model.get('isFiltered')
+					model.set 'isSelected', val
+
+					hash = model.get 'hash'
+					if !val
+						App.iconsSelected = _.without App.iconsSelected, hash
+					else App.iconsSelected.push hash
+
+			App.iconsSelected = _.uniq App.iconsSelected
 
 	IconsCollection

@@ -47,7 +47,7 @@
     }
   });
 
-  define('main', ['marionette', 'jquery', 'router', 'socketio', 'helpers'], function(M, jquery, Router, io, helpers) {
+  define('main', ['collectionViews/NotiesCollectionView', 'marionette', 'jquery', 'router', 'socketio', 'helpers'], function(Notyfier, M, jquery, Router, io, helpers) {
     var Application;
 
     Application = (function() {
@@ -69,7 +69,6 @@
         App.loadedHashes = [];
         App.iconsSelected = [];
         App.filtersSelected = [];
-        this.loadSvg();
         window.socket = io.connect('http://localhost');
         App.router = new Router;
         Backbone.history.start();
@@ -78,7 +77,14 @@
         App.$window = $(window);
         this.$mainHeader = $('#js-main-header');
         this.listenEvents();
+        this.makeNotyfier();
       }
+
+      Application.prototype.makeNotyfier = function() {
+        return App.notifier = new Notyfier({
+          isRender: true
+        });
+      };
 
       Application.prototype.loadSvg = function() {
         return App.$svgWrap.load('css/icons-main-page.svg');

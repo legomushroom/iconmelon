@@ -1,8 +1,13 @@
 gs = 8px
 br = 3px
 
+notyWidth = 42*gs
+
 downShadow()
 	box-shadow 0 (gs/2) 0 rgba(rgb(c-grey1), .2)
+
+downRightShadow()
+	box-shadow (gs/2) (gs/2) 0 rgba(rgb(c-grey1), .2)
 
 brad(amount = br)
 	border-radius amount
@@ -11,6 +16,18 @@ fontOfControl()
 	font-family 'dense'
 	font-size 20px
 	letter-spacing 1px
+
+t(position)
+	top position
+
+b(position)
+	bottom position	
+
+l(position)
+	left position
+
+r(position)
+	right position
 
 nw(position=0)
 	top 	position

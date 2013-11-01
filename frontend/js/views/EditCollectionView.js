@@ -19,6 +19,7 @@
       EditCollectionView.prototype.events = {
         'click #js-add-icon': 'addIcon',
         'click .js-submit-btn:not(.is-inactive)': 'submit',
+        'click .js-submit-btn.is-inactive': 'suggestOnSubmition',
         'click .js-delete': 'delete',
         'click .js-save': 'save'
       };
@@ -41,6 +42,10 @@
         '#js-license   input': {
           observe: 'license',
           onSet: 'licenseSet'
+        },
+        '#js-multicolor  input': {
+          observe: 'isMulticolor',
+          onSet: 'multicolorChange'
         }
       };
 
@@ -64,6 +69,17 @@
         this.renderIconsCollection();
         this.stickit();
         return this;
+      };
+
+      EditCollectionView.prototype.multicolorChange = function(val) {
+        return val;
+      };
+
+      EditCollectionView.prototype.suggestOnSubmition = function(e) {
+        return App.notifier.show({
+          type: 'error',
+          text: 'You have to fill credentials and have at least one valid icon to make this button active'
+        });
       };
 
       EditCollectionView.prototype.makeSvgData = function(isCheck) {

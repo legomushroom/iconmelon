@@ -55,7 +55,8 @@
 
       FilterView.prototype.toggleSelected = function() {
         this.model.toggleSelected();
-        return App.filtersSelected = helpers.toggleArray(App.filtersSelected, this.model.get('hash'));
+        App.filtersSelected = helpers.toggleArray(App.filtersSelected, this.model.get('hash'));
+        return App.vent.trigger('icon:select');
       };
 
       return FilterView;

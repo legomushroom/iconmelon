@@ -1,20 +1,42 @@
 // ELEMENTS
 @import '../assets/imports.styl'
 
+/* 684fe5faa1e5f55468916bcff7fb7ae8 */
+.main-logo-icon-e
+	fill none II
+	#main-logo-icon
+		#color-green
+			fill green
+		#color-pink
+			fill pink
+		#color-red
+			fill red
+
 /* a3c04187903038745cfd8388b6846a61 */
 .logo-large-e
 	rect 20*gs
-	background url('icons/logo-large.png') no-repeat center center
+	padding-top 1px
+	// background url('icons/logo-large.png') no-repeat center center
+
+	.icon
+		rect 18*gs
+		margin 0 auto
+		margin-top gs
 
 /* 745569f548ab5734b69d33d95b3f7074 */
 .logo-tiny-e
 	rect 4*gs
-	background url('icons/logo-tiny.png') no-repeat center center
+	// background url('icons/logo-tiny.png') no-repeat center center
 	display block
+	padding-top 1px
+	.icon
+		rect 4*gs
+		margin 0 auto
+		// margin-top 2px
+		// display none
 
 /* e8f7ddd21782268ea812c14eaada3957 */
 shadowSize = 2px
-
 .input-e
 	display block
 	bbox()
@@ -26,9 +48,9 @@ shadowSize = 2px
 	padding-left gs
 	padding-right gs
 	box-shadow shadowSize shadowSize 0 rgba(rgb(c-grey1), .2)
-	color c-grey1
+	color darken(c-grey2-hover, 10)
 	fontOfControl()
-	placeholder-mixin()
+	placeholder-mixin(c-grey3)
 
 	&:focus
 		box-shadow none

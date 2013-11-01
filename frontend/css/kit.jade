@@ -26,15 +26,12 @@ html
 			- var arrowClass	 = ''
 			- var nameId = ''
 			- var shapeId = ''
-
-
 			.section-kl
 				.header-ke Icons
 				.cf 
 					.icon-sample-kl
 						.hash-e 16139bdc1fb5bf21a3cb1769f714013a
 						- var path = 'search-icon'
-
 						include partials/icon
 
 					.icon-sample-kl
@@ -83,9 +80,21 @@ html
 						include partials/icon
 
 					.icon-sample-kl
-						.hash-e b8ec61d0ffff446d88681382e6700102
+						.hash-e 36edc99902bb2cf05aeb481c518808fa
 						- var path = 'arrow-right-icon'
 						include partials/icon
+
+					.icon-sample-kl
+						.hash-e b8ec61d0ffff446d88681382e6700102
+						- var path = 'info-icon'
+						include partials/icon
+
+					.icon-sample-kl
+						.hash-e 684fe5faa1e5f55468916bcff7fb7ae8
+						- var path = 'main-logo-icon'
+						- var iconClass = ''
+						include partials/icon
+					
 
 			.section-kl
 				.header-ke Elements
@@ -152,6 +161,15 @@ html
 				.hash-e b3ae71e6b694bf45eec717b27592df6e
 				- var text = 'moderated', className = '', idAttribute = ''
 				include partials/checkbox-with-label
+
+				.hash-e 3fa6aa94c0c640fbe1a63ee1f0df8f70
+				- checked = undefined, className = '', idAttribute = ''
+				include partials/switcher
+
+				.hash-e fb37b27f09cb5fb3537f01a90de36adf
+				- var className = '', idAttribute = ''
+				- var textLeft = 'Normal', textRight = 'Multicolor'
+				include partials/switcher-with-texts
 
 				.hash-e c303475264eeb60de2ad66c5e5cfbce6
 				- var iconClassName = 'twitter-icon'
@@ -224,6 +242,46 @@ html
 				.hash-e 54c9947f169329dee397b29e9c02e578
 				- var iconPath = 'arrow-left-icon', title = 'left', iconClass = '', idAttribute = ''
 				include partials/plus-btn
+
+				.hash-e 8d92942b39756658a1fc398019ca1af8
+				- var className = '', idAttribute = ''
+				- var title = '', text = 'add effects'
+				- var iconPath = 'cross-icon'
+				include partials/icon-with-text-line
+
+				.hash-e f74ef723f71f2fc674d7183e3be4792f
+				- var className = 'is-hoverable', idAttribute = ''
+				- var title = '', text = 'add effects'
+				- var iconPath = 'cross-icon'
+				include partials/icon-with-text-line
+
+				.hash-e 6c7758a7f5cb75603d6bb6f833d321b3
+				- var className = '', text = 'ok message ok message ok message ok message ok message'
+				include partials/noty
+
+				.hash-e 71127d559a0a51a2d479fa6cd44fd41a
+				- var className = 'is-error', text = 'error message error message error message error message error message'
+				include partials/noty
+
+				.hash-e 82d0708b986cd9e95076b7a1486fa5da
+				- var className = 'is-warning', text = 'warning message warning message warning message warning message warning message'
+				include partials/noty
+
+				.hash-e f609e06a5e7b6776445a78e6c90fe6fa
+				.noties-l
+					.noty-l.is-show
+						- var className = '', text = 'ok message ok message ok message ok message ok message'
+						include partials/noty
+					.noty-l.is-show
+						- var className = 'is-error', text = 'error message error message error message error message error message'
+						include partials/noty
+					.noty-l.is-show
+						- var className = 'is-warning', text = 'warning message warning message warning message warning message warning message'
+						include partials/noty
+
+
+				
+				
 
 				.hash-e 8e2f71e057587b0892bbe4bab889dc32
 				.icon-collections-line-b
@@ -482,20 +540,25 @@ html
 
 
 				.hash-e	745569f548ab5734b69d33d95b3f7074
-				a.logo-tiny-e
+				- var className = '', id = ''
+				- var link = '#'
+				include partials/tiny-logo-link
+				
 
 				.hash-e	a3c04187903038745cfd8388b6846a61
 				.logo-large-e
+					- var path = 'main-logo-icon'
+					- var iconClass = ''
+					include partials/icon
 
 				.hash-e	19d8650be161cd15c32961dab15941ab
-				.main-logo-b
-					.logo-large-e
-					.name-be iconmelon
-					.description-be svg icons library for web
+				include partials/main-logo-with-text
 
 				.hash-e 9f594b08a3b87a497c4f5b4592e970e4
 				.main-header-b(style="position:relative")
-					a(href="#").logo-tiny-e
+					- var className = '', id = ''
+					- var link = '#'
+					include partials/tiny-logo-link
 					a(href="#").menu-item-be.is-hoverable use
 					a(href="#").menu-item-be.is-hoverable support
 					a(href="#").menu-item-be.is-hoverable contribute

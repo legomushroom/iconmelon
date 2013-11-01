@@ -33,18 +33,15 @@
       };
 
       SectionView.prototype.bindModelEvents = function() {
-        return this.model.on('change', this.render);
+        this.model.on('change:isFiltered', _.bind(this.toggleClasses, this));
+        return this.model.on('change:isClosed', _.bind(this.toggleClasses, this));
       };
 
       SectionView.prototype.render = function() {
-        var _this = this;
-
         SectionView.__super__.render.apply(this, arguments);
-        _.defer(function() {
-          return _this.renderIcons();
-        });
-        this.$el.toggleClass('is-closed', !!this.model.get('isClosed'));
-        this.$el.toggleClass('h-gm', !!this.model.get('isFiltered'));
+        this.renderIcons();
+        this.toggleClasses();
+        this.$content = this.$('#js-icons-place');
         return this;
       };
 
@@ -56,6 +53,11 @@
         });
         this.iconsCollectionView.collection.onFilter = _.bind(this.onFilter, this);
         return this.model.iconsCollectionView = this.iconsCollectionView;
+      };
+
+      SectionView.prototype.toggleClasses = function() {
+        this.$el.toggleClass('is-closed', !!this.model.get('isClosed'));
+        return this.$el.toggleClass('h-gm', !!this.model.get('isFiltered'));
       };
 
       SectionView.prototype.onFilter = function(state) {
@@ -73,8 +75,8 @@
       };
 
       SectionView.prototype.toggleHide = function() {
-        console.log('toggle hide');
-        return this.model.toggleAttr('isClosed');
+        this.model.toggleAttr('isClosed');
+        return this.$content.slideToggle();
       };
 
       return SectionView;

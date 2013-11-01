@@ -19,19 +19,26 @@
       IconSelectView.prototype.className = '';
 
       IconSelectView.prototype.events = {
-        'keyup': 'filter'
-      };
-
-      IconSelectView.prototype.filter = function(e) {
-        return App.vent.trigger('icon-select-filter:change', $.trim($(e.target).val()));
+        'keyup': 'debouncedFilter',
+        'click #js-add-effects': 'toggleEffects'
       };
 
       IconSelectView.prototype.initialize = function(o) {
         this.o = o != null ? o : {};
         this.buttonCounterTemplate = _.template(helpers.unescape($("#button-counter-template").text()));
         this.bindModelEvents();
+        this.debouncedFilter = _.debounce(this.filter, 250);
         IconSelectView.__super__.initialize.apply(this, arguments);
         return this;
+      };
+
+      IconSelectView.prototype.toggleEffects = function() {
+        this.$('#js-filter-block').slideToggle();
+        return this.$el.addClass('is-filter-show');
+      };
+
+      IconSelectView.prototype.filter = function(e) {
+        return App.vent.trigger('icon-select-filter:change', $.trim($(e.target).val()));
       };
 
       IconSelectView.prototype.bindModelEvents = function() {
@@ -50,37 +57,24 @@
       };
 
       IconSelectView.prototype.renderView = function() {
-        var filter, filter2, filter3;
+        var _this = this;
 
-        filter2 = {
-          hash: 'drop-shadow',
-          name: 'drop shadow',
-          iconHash: 'tick-icon'
-        };
-        filter = {
-          hash: 'inset-shadow',
-          name: 'inset shadow',
-          iconHash: 'tick-icon'
-        };
-        filter3 = {
-          hash: 'drop-shadow-color',
-          name: 'drop shadow with color',
-          iconHash: 'tick-icon'
-        };
         this.filtersCollectionView = new FiltersCollectionView({
           collection: new FiltersCollection,
           isRender: true,
           $el: this.$('#js-filters-place')
         });
         this.filtersCollectionView.collection.fetch();
-        this.sectionsCollectionView = new SectionsCollectionView({
-          collection: new SectionsCollection,
-          isRender: true,
-          $el: this.$('#js-section-collections-place')
+        this.sectionsCollection = new SectionsCollection;
+        this.sectionsCollection.fetch().then(function() {
+          _this.sectionsCollectionView = new SectionsCollectionView({
+            collection: _this.sectionsCollection,
+            isRender: true,
+            $el: _this.$('#js-section-collections-place')
+          });
+          App.sectionsCollectionView = _this.sectionsCollectionView;
+          return _this.model.sectionsView = _this.sectionsCollectionView;
         });
-        this.sectionsCollectionView.collection.fetch();
-        App.sectionsCollectionView = this.sectionsCollectionView;
-        this.model.sectionsView = this.sectionsCollectionView;
         return this;
       };
 

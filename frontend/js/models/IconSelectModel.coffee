@@ -13,6 +13,6 @@ define 'models/IconSelectModel', ['models/ProtoModel'], (ProtoModel)->
 			@sectionsView.collection.each (model)->
 				counter += model.iconsCollectionView.collection.selectedCnt or 0
 
-			@set 'selectedCounter', counter
+			@set 'selectedCounter', counter + App.filtersSelected.length
 
 	IconSelectModel

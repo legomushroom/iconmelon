@@ -5,8 +5,8 @@ define 'views/SectionView', ['views/ProtoView', 'models/SectionModel', 'collecti
 		className: 'section-b cf'
 
 		events: 
-			'click #js-hide': 			'toggleHide'
-			'click #js-select-all': 	'selectAll'
+			'click #js-hide': 					'toggleHide'
+			'click #js-select-all': 		'selectAll'
 			'click #js-deselect-all': 	'deSelectAll'
 
 		initialize:->
@@ -16,15 +16,14 @@ define 'views/SectionView', ['views/ProtoView', 'models/SectionModel', 'collecti
 
 
 		bindModelEvents:->
-			@model.on 'change', @render
+			@model.on 'change:isFiltered', 	_.bind @toggleClasses, @
+			@model.on 'change:isClosed', 		_.bind @toggleClasses, @
 
 		render:->
 			super
-			_.defer =>
-				@renderIcons()
-
-			@$el.toggleClass 'is-closed', !!@model.get('isClosed')
-			@$el.toggleClass 'h-gm', 			!!@model.get('isFiltered')
+			@renderIcons()
+			@toggleClasses()
+			@$content = @$('#js-icons-place')
 			@
 
 		renderIcons:->
@@ -36,6 +35,10 @@ define 'views/SectionView', ['views/ProtoView', 'models/SectionModel', 'collecti
 			@iconsCollectionView.collection.onFilter = _.bind @onFilter, @
 
 			@model.iconsCollectionView = @iconsCollectionView
+
+		toggleClasses:->
+			@$el.toggleClass 'is-closed', !!@model.get('isClosed')
+			@$el.toggleClass 'h-gm', 			!!@model.get('isFiltered')
 
 		onFilter:(state)->
 			@model.set 'isFiltered', state
@@ -49,7 +52,7 @@ define 'views/SectionView', ['views/ProtoView', 'models/SectionModel', 'collecti
 			App.vent.trigger 'icon:select'
 
 		toggleHide:->
-			console.log 'toggle hide'
 			@model.toggleAttr 'isClosed'
+			@$content.slideToggle()
 
 	SectionView

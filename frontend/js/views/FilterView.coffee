@@ -32,5 +32,6 @@ define 'views/FilterView', ['views/ProtoView', 'models/FilterModel', 'underscore
 		toggleSelected:->
 			@model.toggleSelected()
 			App.filtersSelected = helpers.toggleArray(App.filtersSelected, 	@model.get 'hash')
+			App.vent.trigger 'icon:select'
 
 	FilterView

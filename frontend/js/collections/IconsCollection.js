@@ -25,25 +25,23 @@
       };
 
       IconsCollection.prototype.listenToPUBSUB = function() {
-        return App.vent.on('icon-select-filter:change', _.debounce(_.bind(this.filter, this), 250));
-      };
+        var _this = this;
 
-      IconsCollection.prototype.filter = function(filter) {
-        var iconsFiltered, pattern,
-          _this = this;
+        return App.vent.on('icon-select-filter:change', function(filter) {
+          var iconsFiltered, pattern;
 
-        pattern = new RegExp(filter, 'gi');
-        iconsFiltered = 0;
-        this.each(function(model) {});
-        this.each(function(model) {
-          var isFiltered;
+          pattern = new RegExp(filter, 'gi');
+          iconsFiltered = 0;
+          _this.each(function(model) {
+            var isFiltered;
 
-          isFiltered = !(model.get('name').match(pattern)) ? true : false;
-          model.set('isFiltered', isFiltered);
-          return isFiltered && iconsFiltered++;
+            isFiltered = !(model.get('name').match(pattern)) ? true : false;
+            model.set('isFiltered', isFiltered);
+            return isFiltered && iconsFiltered++;
+          });
+          _this.filtered = iconsFiltered === _this.length;
+          return _this.onFilter(_this.filtered);
         });
-        this.filtered = iconsFiltered === this.length;
-        return this.onFilter(this.filtered);
       };
 
       IconsCollection.prototype.selectAll = function() {
@@ -59,9 +57,20 @@
       IconsCollection.prototype.setToAll = function(val) {
         var _this = this;
 
-        return this.each(function(model) {
-          return model.set('isSelected', val);
+        this.each(function(model) {
+          var hash;
+
+          if (!model.get('isFiltered')) {
+            model.set('isSelected', val);
+            hash = model.get('hash');
+            if (!val) {
+              return App.iconsSelected = _.without(App.iconsSelected, hash);
+            } else {
+              return App.iconsSelected.push(hash);
+            }
+          }
         });
+        return App.iconsSelected = _.uniq(App.iconsSelected);
       };
 
       return IconsCollection;

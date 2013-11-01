@@ -28,6 +28,7 @@ SectionSchema = new mongo.Schema
       email:          String
       website:        String
       creationDate:   String
+      isMulticolor:   Boolean
       icons:          Array
       moderated:      Boolean
 

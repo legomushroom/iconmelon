@@ -6,6 +6,7 @@ define 'views/EditCollectionView', [ 'views/ProtoView', 'views/IconEditView', 'c
 		events:
 			'click #js-add-icon': 	'addIcon'
 			'click .js-submit-btn:not(.is-inactive)': 'submit'
+			'click .js-submit-btn.is-inactive': 			'suggestOnSubmition'
 			'click .js-delete': 	'delete'
 			'click .js-save': 		'save'
 
@@ -29,6 +30,10 @@ define 'views/EditCollectionView', [ 'views/ProtoView', 'views/IconEditView', 'c
 				observe: 'license'
 				onSet: 	'licenseSet'
 
+			'#js-multicolor  input':
+				observe: 'isMulticolor'
+				onSet: 	 'multicolorChange'
+
 		ui:
 			submitBtn: '.js-submit-btn'
 
@@ -48,6 +53,15 @@ define 'views/EditCollectionView', [ 'views/ProtoView', 'views/IconEditView', 'c
 			@renderIconsCollection()
 			@stickit()
 			@
+
+		multicolorChange:(val)->
+			val
+
+		suggestOnSubmition:(e)->
+			App.notifier.show
+				type: 'error'
+				text: 'You have to fill credentials and have at least one valid icon to make this button active'
+
 
 		makeSvgData:(isCheck=true)->
 			console.time 'svg load'

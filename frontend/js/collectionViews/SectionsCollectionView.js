@@ -18,6 +18,33 @@
 
       SectionsCollectionView.prototype.template = '#sections-collection-view-template';
 
+      SectionsCollectionView.prototype.initialize = function() {
+        SectionsCollectionView.__super__.initialize.apply(this, arguments);
+        return this;
+      };
+
+      SectionsCollectionView.prototype.render = function() {
+        SectionsCollectionView.__super__.render.apply(this, arguments);
+        this.items = this.children.toArray();
+        this.fadeInAll();
+        return this;
+      };
+
+      SectionsCollectionView.prototype.fadeInAll = function(i) {
+        var _this = this;
+
+        if (i == null) {
+          i = 0;
+        }
+        if (i < this.items.length) {
+          this.items[i].$el.fadeIn();
+          setTimeout((function() {
+            return _this.fadeInAll(i);
+          }), 100);
+          return i++;
+        }
+      };
+
       return SectionsCollectionView;
 
     })(ProtoView);

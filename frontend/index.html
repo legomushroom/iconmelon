@@ -10,16 +10,32 @@
   <body>
     <div id="js-svg-wrap">	
     </div>
-    <div id="js-main-header" class="main-header-b"><a href="#/" id="js-main" class="logo-tiny-e"></a><a href="#/submit" id="js-submit" class="menu-item-be is-hoverable">submit icons</a><a href="#/editr" id="js-editr" class="menu-item-be is-hoverable">editr</a>
+    <div id="js-notifier-place" class="notyfier-b noties-l"></div>
+    <div id="js-main-header" class="main-header-b"><a href="#/" class=" logo-tiny-e">
+        <div id="" title="" class="icon ">
+          <svg viewBox="0 0 32 32">
+            <g filter="">
+              <use xlink:href="#main-logo-icon"></use>
+            </g>
+          </svg>
+        </div></a><a href="#/submit" id="js-submit" class="menu-item-be is-hoverable">submit icons</a><a href="#/editr" id="js-editr" class="menu-item-be is-hoverable">editr</a>
       <div id="js-loadin-line" class="loading-be loading-eff"></div>
     </div>
     <section id="main-l"></section>
     <script id="main-template" type="template">
       <div class="main-page-p">
         <div class="main-logo-b">
-          <div class="logo-large-e"></div>
+          <div class="logo-large-e">
+            <div id="" title="" class="icon ">
+              <svg viewBox="0 0 32 32">
+                <g filter="">
+                  <use xlink:href="#main-logo-icon"></use>
+                </g>
+              </svg>
+            </div>
+          </div>
           <div class="name-be">iconmelon</div>
-          <div class="description-be">SVG icons library for web</div>
+          <div class="description-be">svg icons library for web</div>
         </div>
         <section id="js-icons-select-view-place" class="icon-select-view-b"></section>
       </div>
@@ -67,10 +83,26 @@
           </div>
         </div>
       </div>
-      <div class="header-pm">Filters:</div>
-      <div id="js-filters-place" class="icon-collections-line-b cf section-pm"></div>
-      <div class="header-pm">Icons:</div>
-      <div id="js-section-collections-place" class="section-b cf section-pm"></div>
+      <div title="" id="js-add-effects" class="icon-with-text-line-b is-hoverable add-effects-ph">
+        <div class="icon-bl">
+          <div id="" title="" class="plus-btn-b is-hoverable add-effects-ph">
+            <div id="" title="" class="icon ">
+              <svg viewBox="0 0 32 32">
+                <g filter="">
+                  <use xlink:href="#cross-icon"></use>
+                </g>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="text-be">add effects</div>
+      </div>
+      <div id="js-filter-block" class="filters-block-pl">
+        <div class="header-pm">Filters:</div>
+        <div id="js-filters-place" class="icon-collections-line-b cf section-pm"></div>
+        <div class="header-pm">Icons:</div>
+      </div>
+      <div id="js-section-collections-place" class="cf section-pm"></div>
     </script>
     <script id="button-counter-template" type="template">
       <div class="icon-set-l">
@@ -131,7 +163,7 @@
       <div class="section-header-b"><a target="&lt;%= (website.length &gt; 0) ? &quot;_blank&quot; : undefined %&gt;" href="&lt;%= (website.length &gt; 0) ? &quot;http://&quot; + website.replace(/http:\/\//g, &quot;&quot;) : &quot;mailto:&quot; + email %&gt;" class="is-grey3 is-hoverable is-grey2--onhover author-be">by &lt;%= author %&gt;</a>
         <div class="name-be">&lt;%= name %&gt;</div>
         <div class="icons-bl">
-          <div id="js-hide" title="close section" class="icon is-hoverable &lt;%= (isClosed) ? &quot;is-reverse&quot; : &quot;&quot; %&gt;">
+          <div id="js-hide" title="close section" class="icon close-bh is-hoverable &lt;%= (isClosed) ? &quot;is-reverse&quot; : &quot;&quot; %&gt;">
             <svg viewBox="0 0 32 32">
               <g filter="">
                 <use xlink:href="#dropup-arrow-icon"></use>
@@ -184,6 +216,32 @@
       </div>
       <div class="name-be"><%= name %></div>
     </script>
+    <script id="noty-view-template" type="template">
+      <div class="noty-b is-&lt;%= type %&gt;">
+        <div id="" title="" class="icon tick-icon-bh">
+          <svg viewBox="0 0 32 32">
+            <g filter="">
+              <use xlink:href="#tick-icon"></use>
+            </g>
+          </svg>
+        </div>
+        <div id="" title="" class="icon close-icon-bh">
+          <svg viewBox="0 0 32 32">
+            <g filter="">
+              <use xlink:href="#close-icon"></use>
+            </g>
+          </svg>
+        </div>
+        <div id="" title="" class="icon info-icon-bh">
+          <svg viewBox="0 0 32 32">
+            <g filter="">
+              <use xlink:href="#info-icon"></use>
+            </g>
+          </svg>
+        </div>
+        <div class="text-be">&lt;%= text %&gt;</div>
+      </div>
+    </script>
     <script id="section-line-view-template" type="template">
       <div class="icons-bl cf">
         <div id="" title="" class="icon ">
@@ -234,6 +292,9 @@
     <script id="sections-collection-view-template" type="template">
       <div></div>
     </script>
+    <script id="noties-collection-view-template" type="template">
+      <div></div>
+    </script>
     <script id="edit-collection-view-template" type="template">
       <div class="submit-collection-l cf">
         <div class="collection-credits-b">
@@ -242,8 +303,17 @@
           <input id="js-author" placeholder="author" class="input-e ">
           <input id="js-email" placeholder="email" class="input-e ">
           <input id="js-website" placeholder="website(optional)" class="input-e ">
+          <div id="js-multicolor" class="switcher-with-texts-b ">
+            <div class="left-text-be">Normal</div>
+            <div id="" class="switch-b ">
+              <input type="checkbox" id="undefined">
+              <div class="btn-be"></div>
+              <div class="bg-be"></div>
+            </div>
+            <div class="right-text-be">Multicolor</div>
+          </div>
           <div id="js-license" class="checkbox-with-label-b license-bh">
-            <div id="js-website" class="checkbox-b input-e ">
+            <div id="" class="checkbox-b input-e ">
               <input type="checkbox" id="license">
               <div id="" title="" class="icon ">
                 <svg viewBox="0 0 32 32">
@@ -253,14 +323,23 @@
                 </svg>
               </div>
             </div>
-            <label for="license">apply <a target="_blank" href="http://opensource.org/licenses/mit-license.html" class="is-grey3 is-hoverable is-grey2--onhover">MIT</a> license</label>
+            <label for="license">apply MIT license<a target="_blank" href="http://opensource.org/licenses/mit-license.html">
+                <div id="" title="info" class="plus-btn-b ">
+                  <div id="" title="info" class="icon ">
+                    <svg viewBox="0 0 32 32">
+                      <g filter="info-icon">
+                        <use xlink:href="#info-icon"></use>
+                      </g>
+                    </svg>
+                  </div>
+                </div></a></label>
           </div>
           <div id="js-moderated" class="checkbox-with-label-b moderated-bh">
             <div id="" class="checkbox-b input-e ">
               <input type="checkbox" id="moderated">
               <div id="" title="" class="icon ">
                 <svg viewBox="0 0 32 32">
-                  <g filter="">
+                  <g filter="info-icon">
                     <use xlink:href="#tick-icon"></use>
                   </g>
                 </svg>
@@ -273,7 +352,7 @@
               <div title="" class="btn-b js-delete is-iconed is-red1">
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 32 32">
-                    <g filter="">
+                    <g filter="info-icon">
                       <use xlink:href="#close-icon"></use>
                     </g>
                   </svg>
@@ -293,7 +372,7 @@
             <div id="js-add-icon" title="add icon" class="plus-btn-b ">
               <div id="" title="add icon" class="icon ">
                 <svg viewBox="0 0 32 32">
-                  <g filter="">
+                  <g filter="info-icon">
                     <use xlink:href="#cross-icon"></use>
                   </g>
                 </svg>
@@ -303,7 +382,7 @@
               <input id="fileupload" type="file" name="files[]" multiple="multiple">
               <div id="" title="upload icon from svg file" class="icon ">
                 <svg viewBox="0 0 32 32">
-                  <g filter="">
+                  <g filter="info-icon">
                     <use xlink:href="#arrow-down-icon"></use>
                   </g>
                 </svg>
@@ -317,14 +396,14 @@
       <div class="submit-icon-b">
         <div id="js-destroy" title="remove" class="icon is-hoverable close-bh">
           <svg viewBox="0 0 32 32">
-            <g filter="">
+            <g filter="info-icon">
               <use xlink:href="#close-icon"></use>
             </g>
           </svg>
         </div>
         <div id="" title="" class="icon icon-sample-bh &lt;%= hash || 'is-grey3' %&gt;">
           <svg viewBox="0 0 32 32">
-            <g filter="">
+            <g filter="info-icon">
               <use xlink:href="#&lt;%= hash || &quot;b5282d4ecdc7ae3d0799023622c560a5&quot; %&gt;"></use>
             </g>
           </svg>
@@ -340,7 +419,7 @@
         <div id="" title="right" class="plus-btn-b right-arrow-bh">
           <div id="" title="right" class="icon ">
             <svg viewBox="0 0 32 32">
-              <g filter="">
+              <g filter="info-icon">
                 <use xlink:href="#arrow-right-icon"></use>
               </g>
             </svg>
@@ -349,7 +428,7 @@
         <div id="" title="left" class="plus-btn-b left-arrow-bh">
           <div id="" title="left" class="icon ">
             <svg viewBox="0 0 32 32">
-              <g filter="">
+              <g filter="info-icon">
                 <use xlink:href="#arrow-left-icon"></use>
               </g>
             </svg>
@@ -359,5 +438,11 @@
       </div>
     </script>
     <script type="text/javascript" src="js/lib/require.js" data-main="js/main"></script>
+    <script>
+      var url='css/icons-main-page.svg',c=new XMLHttpRequest();
+      c.open('GET', url, false); c.setRequestHeader('Content-Type', 'text/xml'); c.send();
+      document.getElementById('js-svg-wrap').appendChild(c.responseXML.firstChild)
+      
+    </script>
   </body>
 </html>

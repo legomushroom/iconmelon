@@ -1,6 +1,158 @@
 // BLOCKS
 @import '../assets/imports.styl'
 
+/* fb37b27f09cb5fb3537f01a90de36adf */
+.switcher-with-texts-b
+	color c-grey3
+	display inline-block
+	font-size 3*gs
+	overflow hidden
+
+	&:hover
+		color c-grey2
+	
+	> .left-text-be, > .right-text-be, .switch-b
+		float left
+	> .left-text-be, > .right-text-be
+		margin-top 2px
+
+	.switch-b
+		input
+			width 100*gs
+			l - 50*gs
+			t - 2px
+
+	> .left-text-be
+		margin-right 1.5*gs
+	> .right-text-be
+		margin-left 1.5*gs
+
+
+/* 3fa6aa94c0c640fbe1a63ee1f0df8f70 */
+.switch-b
+	border-radius 2*gs
+	height 3*gs + 2px
+	width 6*gs
+	box-shadow none
+	position relative
+	cursor pointer
+
+	> .bg-be
+		background-color c-grey3
+		height 3*gs + 1px
+		width 6*gs
+		border-radius 2*gs
+		position absolute
+		nw 0
+		z-index 0
+		transition all .15s ease-out
+
+	> .btn-be
+		content ''
+		rect 3*gs + 2px
+		background-color white
+		box-shadow 2px 2px 0 rgba(0,0,0,.1)
+		position absolute
+		t -1px
+		l 0
+		border-radius 50%
+		z-index 1
+		transition all .15s ease-out
+
+	input
+		rect 100%
+		z-index 2
+		position absolute
+		nw 0
+		background-color red
+		display block
+		opacity 0
+		cursor pointer
+
+		&:checked + .btn-be
+			left 100%
+			margin-left - 3*gs - 1px		
+		&:checked ~ .bg-be
+			background-color c-green
+
+/* 8d92942b39756658a1fc398019ca1af8 */
+.icon-with-text-line-b
+	color c-grey3
+	padding-top 1px
+	display inline-block
+	
+	/* f74ef723f71f2fc674d7183e3be4792f */
+	&.is-hoverable
+		&:hover
+			cursor pointer
+			color c-grey2
+			.plus-btn-b
+				border-color c-grey2
+
+			.icon
+				fill c-grey2
+
+	.icon-bl
+		float left
+	.text-be
+		font-size 2.5*gs
+		margin-left 4*gs
+		margin-top 2px
+
+
+/* 6c7758a7f5cb75603d6bb6f833d321b3 */
+.noty-b
+	background-color c-green
+	border-top-right-radius br
+	border-bottom-right-radius br
+	downRightShadow()
+	position relative
+	padding 1.5*gs 6*gs
+	color white
+	font-size 2.5*gs
+	text-align left
+	cursor pointer
+	width notyWidth
+
+	/* 82d0708b986cd9e95076b7a1486fa5da */
+	&.is-warning
+		background-color c-red2
+		&:hover
+			background-color c-red2-hover
+
+		.info-icon-bh
+			display block
+
+		.tick-icon-bh
+			display none
+
+	/* 71127d559a0a51a2d479fa6cd44fd41a */
+	&.is-error
+		background-color c-red1
+		&:hover
+			background-color c-red1-hover
+
+		.close-icon-bh
+			display block
+
+		.tick-icon-bh
+			display none
+
+	&:hover
+		background-color c-green-hover
+
+	.icon
+		rect 1.5*gs
+		fill white
+		position absolute
+		t 50%
+		r 1.5*gs
+		margin-top - 0.75*gs
+
+	.close-icon-bh, .info-icon-bh
+		display none
+
+	
 /* 7b95f5d5e25620cd774bd8742941cb39 */
 .filter-b
 	position relative
@@ -14,12 +166,10 @@
 	cursor pointer
 
 	&.is-check
-		color c-green
+		color darken(c-grey2, 20)
 		> .icon
-			fill c-green
-			// 4!
-			&:hover
-				fill c-green-hover
+			fill darken(c-grey2, 20)
+
 	&:hover
 		background-color rgba(0,0,0,.02)
 		.left-bl, .right-bl
@@ -128,24 +278,34 @@ arrowOffset = 5*gs
 	> .text-be
 		font-size 2.5*gs
 		color white
-		textel()
 		text-align center
 		background-color rgba(0,0,0,.2)
 		border-bottom-right-radius br
 		border-bottom-left-radius br
 		padding 2px 0
+		textel()
 
 
 /* b3ae71e6b694bf45eec717b27592df6e */
 .checkbox-with-label-b
 	color c-grey3
+	.plus-btn-b
+		rect 2*gs
+		display inline-block
+		color c-grey3
+		position relative
+		top 1px
+		left (gs/2)
+		.icon
+			margin-top 3px
+
 	&:hover
 		color c-grey2
-		.icon
-			fill c-grey2
 		.checkbox-b
 			box-shadow 2px 2px 0 c-grey2
 			border 1px solid c-grey2
+			.icon
+				fill c-grey2
 
 	label
 		font-size 3*gs
@@ -244,6 +404,7 @@ arrowOffset = 5*gs
 /* 64fa8abebcd9bc5daf0b64b066612b83 */
 marginTop = 2*gs
 .collection-credits-b
+	text-align center
 	width 36*gs
 	padding-right 5*gs
 	padding-left 5*gs
@@ -275,9 +436,13 @@ marginTop = 2*gs
 	.btn-b
 		margin-top marginTop + 2*gs
 
+	.switcher-with-texts-b
+		margin-top 3*gs
+
 	.checkbox-with-label-b
 		margin-top  2*gs
 		margin-left 2*gs
+		text-align left
 	
 	.moderated-bh
 		display none
@@ -327,7 +492,7 @@ marginTop = 2*gs
 /* 47a89f9dc70629feb99b65583ce49f4a */
 .icon-select-view-b
 	> .controls-bl
-		margin-bottom 5*gs
+		margin-bottom 3*gs
 
 		> .icon-set-l
 			float right
@@ -404,12 +569,22 @@ marginTop = 2*gs
 		margin-top 3*gs
 
 	&.is-closed
-		> .content-bl
-			height 0
-			overflow hidden
+		// > .content-bl
+		// 	height 0
+		// 	overflow hidden
+
+		.close-bh
+			transform rotate(-180deg)
 
 	> .content-bl
 		margin-top 3*gs
+
+	.close-bh
+			transition -webkit-transform .25s linear
+			transition -moz-transform .25s linear
+			transition -ms-transform .25s linear
+			transition -o-transform .25s linear
+			transition transform .25s linear
 
 	.icon-with-text-b
 		float left
@@ -422,6 +597,7 @@ marginTop = 2*gs
 	font-size 4*gs
 	position relative
 	padding-right 3*gs
+	text-align left
 	
 	// background-color rgba(0,0,0,.05)
 	// border-top-left-radius br
@@ -475,20 +651,18 @@ marginTop = 2*gs
 	cbox()
 
 	&:hover, &.is-check
-		color c-green
+		color darken(c-grey2, 20)
 
 		> .icon
-			fill c-green
+			fill darken(c-grey2, 20)
+			transition fill 0s linear
+		> .text-be
+			transition color 0s linear
+
 
 	&:hover
 		background-color rgba(0,0,0,.05)
 
-	// /* 5ac5220f1049eb20597200b73202b468 */
-	// &.is-check
-	// 	border 1px solid c-grey3
-
-	// 	> .bullet-be
-	// 		display block
 
 	> .bullet-be
 		position absolute
@@ -549,6 +723,7 @@ marginTop = 2*gs
 	> .icon
 		margin 0 auto
 		margin-top 1px
+		transition fill .5s ease-out
 		// rect 3*gs
 	
 	> .text-be
@@ -558,6 +733,7 @@ marginTop = 2*gs
 		max-width 100%
 		padding 0 (gs/2)
 		textel()
+		transition color .5s ease-out
 
 
 

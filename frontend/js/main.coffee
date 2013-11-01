@@ -42,7 +42,7 @@ require.config
 		baresize:
 			deps: 	['jquery']
 
-define 'main', ['marionette', 'jquery', 'router', 'socketio', 'helpers' ], (M, jquery, Router, io, helpers)->
+define 'main', ['collectionViews/NotiesCollectionView', 'marionette', 'jquery', 'router', 'socketio', 'helpers' ], (Notyfier, M, jquery, Router, io, helpers)->
 	
 	class Application
 		constructor:->
@@ -64,7 +64,7 @@ define 'main', ['marionette', 'jquery', 'router', 'socketio', 'helpers' ], (M, j
 			App.iconsSelected = []
 			App.filtersSelected = []
 
-			@loadSvg()
+			# @loadSvg()
 			
 			window.socket = io.connect('http://localhost')
 
@@ -76,6 +76,11 @@ define 'main', ['marionette', 'jquery', 'router', 'socketio', 'helpers' ], (M, j
 			App.$window = $(window)
 			@$mainHeader = $('#js-main-header')
 			@listenEvents()
+			@makeNotyfier()
+
+		makeNotyfier:->
+			App.notifier = new Notyfier
+				isRender: true
 
 		loadSvg:()->
 			App.$svgWrap.load 'css/icons-main-page.svg'

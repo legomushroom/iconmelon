@@ -17,9 +17,15 @@
       - var className = 'is-counter', text = 'download', cnt = ''
       include ../css/partials/button
 
-.header-pm Filters:
-#js-filters-place.icon-collections-line-b.cf.section-pm
+- var className = 'is-hoverable add-effects-ph', idAttribute = 'js-add-effects'
+- var title = '', text = 'add effects'
+- var iconPath = 'cross-icon'
+include ../css/partials/icon-with-text-line
+
+.filters-block-pl#js-filter-block
+  .header-pm Filters:
+  #js-filters-place.icon-collections-line-b.cf.section-pm
   
-.header-pm Icons:
-#js-section-collections-place.section-b.cf.section-pm
+  .header-pm Icons:
+#js-section-collections-place.cf.section-pm
 

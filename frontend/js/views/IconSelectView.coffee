@@ -4,16 +4,22 @@ define 'views/IconSelectView', ['views/ProtoView', 'collectionViews/SectionsColl
 		className: ''
 
 		events:
-			'keyup': 'filter'
-
-		filter:(e)->
-			App.vent.trigger 'icon-select-filter:change', $.trim $(e.target).val()
+			'keyup': 'debouncedFilter'
+			'click #js-add-effects': 'toggleEffects'
 
 		initialize:(@o={})->
 			@buttonCounterTemplate = _.template helpers.unescape $("#button-counter-template").text()
 			@bindModelEvents()
+			@debouncedFilter = 	_.debounce @filter, 250
 			super
 			@
+
+		toggleEffects:->
+			@$('#js-filter-block').slideToggle()
+			@$el.addClass 'is-filter-show'
+
+		filter:(e)->
+			App.vent.trigger 'icon-select-filter:change', $.trim $(e.target).val()
 
 		bindModelEvents:->
 			@model.on 'change:selectedCounter', _.bind @renderButton, @
@@ -26,21 +32,6 @@ define 'views/IconSelectView', ['views/ProtoView', 'collectionViews/SectionsColl
 			@
 
 		renderView:->
-			filter2 = 
-				hash: 'drop-shadow'
-				name: 'drop shadow'
-				iconHash: 'tick-icon'
-
-			filter = 
-				hash: 'inset-shadow'
-				name: 'inset shadow'
-				iconHash: 'tick-icon'
-
-			filter3 = 
-				hash: 'drop-shadow-color'
-				name: 'drop shadow with color'
-				iconHash: 'tick-icon'
-
 			@filtersCollectionView = new FiltersCollectionView
 				collection: new FiltersCollection
 				isRender: true
@@ -48,16 +39,17 @@ define 'views/IconSelectView', ['views/ProtoView', 'collectionViews/SectionsColl
 
 			@filtersCollectionView.collection.fetch()
 
-			@sectionsCollectionView = new SectionsCollectionView
-				collection: new SectionsCollection
-				isRender: true
-				$el: @$('#js-section-collections-place')
+			@sectionsCollection = new SectionsCollection
+			
+			@sectionsCollection.fetch().then =>
+				@sectionsCollectionView = new SectionsCollectionView
+					collection: @sectionsCollection
+					isRender: true
+					$el: @$('#js-section-collections-place')
 
-			@sectionsCollectionView.collection.fetch()
+				App.sectionsCollectionView = @sectionsCollectionView 
 
-			App.sectionsCollectionView = @sectionsCollectionView 
-
-			@model.sectionsView = @sectionsCollectionView
+				@model.sectionsView = @sectionsCollectionView
 
 			@
 

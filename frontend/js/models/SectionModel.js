@@ -22,6 +22,7 @@
         email: '',
         website: '',
         license: false,
+        isMulticolor: false,
         isClosed: false,
         moderated: false,
         icons: []

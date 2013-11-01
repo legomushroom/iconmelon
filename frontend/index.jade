@@ -13,8 +13,12 @@ html
 		#js-svg-wrap	
 			//- include css/icons-main-page.svg
 
+		.notyfier-b.noties-l#js-notifier-place
+
 		.main-header-b#js-main-header
-			a(href="#/").logo-tiny-e#js-main
+			- var className = '', id = 'js-main'
+			- var link = '#/'
+			include css/partials/tiny-logo-link
 			//- a(href="#").menu-item-be.is-hoverable#js-how-to-use how to use
 			a(href="#/submit").menu-item-be.is-hoverable#js-submit submit icons
 			//- a(href="#").menu-item-be.is-hoverable#js-main support us
@@ -53,11 +57,17 @@ html
 		script(id="filter-view-template", type="template")
 			include templates/filter-view
 
+		script(id="noty-view-template", type="template")
+			include templates/noty-view
+
 		script(id="section-line-view-template", type="template")
 			include templates/section-line-view
 
 		script(id="sections-collection-view-template", type="template")
 			include templates/sections-collection-view
+
+		script(id="noties-collection-view-template", type="template")
+			include templates/noties-collection-view
 
 		script(id="edit-collection-view-template", type="template")
 			include templates/edit-collection-view
@@ -70,3 +80,29 @@ html
 
 
 		script(type='text/javascript', src='js/lib/require.js', data-main='js/main')
+
+
+		script
+			var url='css/icons-main-page.svg',c=new XMLHttpRequest();
+			c.open('GET', url, false); c.setRequestHeader('Content-Type', 'text/xml'); c.send();
+			document.getElementById('js-svg-wrap').appendChild(c.responseXML.firstChild)
+
+		//- script
+		//- 	var c = new XMLHttpRequest();
+		//- 	c.open("GET", "css/icons-main-page.svg", false);
+		//- 	c.setRequestHeader("Content-Type", "text/xml"); c.send();
+		//- 	var TheDocument = c.responseXML;
+		//- 	var el = document.getElementById('js-svg-wrap')
+		//- 	el.insertBefore(TheDocument.firstChild,el.firstChild)
+
+
+
+
+
+
+
+
+
+
+
+

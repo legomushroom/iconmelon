@@ -6,8 +6,17 @@
     <input id="js-author" placeholder="author" class="input-e "/>
     <input id="js-email" placeholder="email" class="input-e "/>
     <input id="js-website" placeholder="website(optional)" class="input-e "/>
+    <div id="js-multicolor" class="switcher-with-texts-b ">
+      <div class="left-text-be">Normal</div>
+      <div id="" class="switch-b ">
+        <input type="checkbox" id="undefined"/>
+        <div class="btn-be"></div>
+        <div class="bg-be"></div>
+      </div>
+      <div class="right-text-be">Multicolor</div>
+    </div>
     <div id="js-license" class="checkbox-with-label-b license-bh">
-      <div id="js-website" class="checkbox-b input-e ">
+      <div id="" class="checkbox-b input-e ">
         <input type="checkbox" id="license"/>
         <div id="" title="" class="icon ">
           <svg viewBox="0 0 32 32">
@@ -17,14 +26,23 @@
           </svg>
         </div>
       </div>
-      <label for="license">apply <a target="_blank" href="http://opensource.org/licenses/mit-license.html" class="is-grey3 is-hoverable is-grey2--onhover">MIT</a> license</label>
+      <label for="license">apply MIT license<a target="_blank" href="http://opensource.org/licenses/mit-license.html">
+          <div id="" title="info" class="plus-btn-b ">
+            <div id="" title="info" class="icon ">
+              <svg viewBox="0 0 32 32">
+                <g filter="info-icon">
+                  <use xlink:href="#info-icon"></use>
+                </g>
+              </svg>
+            </div>
+          </div></a></label>
     </div>
     <div id="js-moderated" class="checkbox-with-label-b moderated-bh">
       <div id="" class="checkbox-b input-e ">
         <input type="checkbox" id="moderated"/>
         <div id="" title="" class="icon ">
           <svg viewBox="0 0 32 32">
-            <g filter="">
+            <g filter="info-icon">
               <use xlink:href="#tick-icon"></use>
             </g>
           </svg>
@@ -37,7 +55,7 @@
         <div title="" class="btn-b js-delete is-iconed is-red1">
           <div id="" title="" class="icon ">
             <svg viewBox="0 0 32 32">
-              <g filter="">
+              <g filter="info-icon">
                 <use xlink:href="#close-icon"></use>
               </g>
             </svg>
@@ -57,7 +75,7 @@
       <div id="js-add-icon" title="add icon" class="plus-btn-b ">
         <div id="" title="add icon" class="icon ">
           <svg viewBox="0 0 32 32">
-            <g filter="">
+            <g filter="info-icon">
               <use xlink:href="#cross-icon"></use>
             </g>
           </svg>
@@ -67,7 +85,7 @@
         <input id="fileupload" type="file" name="files[]" multiple="multiple"/>
         <div id="" title="upload icon from svg file" class="icon ">
           <svg viewBox="0 0 32 32">
-            <g filter="">
+            <g filter="info-icon">
               <use xlink:href="#arrow-down-icon"></use>
             </g>
           </svg>
