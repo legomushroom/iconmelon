@@ -1,9 +1,15 @@
 // ELEMENTS
 @import '../assets/imports.styl'
 
+.blinded-e
+	background rgba(0,0,0,.75)
+	rect 100%
+	position fixed
+	nw 0
+	z-index: 30
+
 /* 684fe5faa1e5f55468916bcff7fb7ae8 */
 .main-logo-icon-e
-	fill none II
 	#main-logo-icon
 		#color-green
 			fill green
@@ -16,6 +22,12 @@
 .logo-large-e
 	rect 20*gs
 	padding-top 1px
+	&.is-rotated
+		transform rotate(15deg)
+		-webkit-transform-origin: bottom center;
+		-moz-transform-origin: bottom center;
+		-o-transform-origin: bottom center;
+		transform-origin: bottom center;
 	// background url('icons/logo-large.png') no-repeat center center
 
 	.icon

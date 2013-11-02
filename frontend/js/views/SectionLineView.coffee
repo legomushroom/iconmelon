@@ -22,9 +22,11 @@ define 'views/SectionLineView', ['views/ProtoView', 'models/SectionModel', 'coll
 			$shapes = $('<div>')
 			while i < 6
 				helpers.upsetSvgShape 
-							hash: icons[i].hash
-							shape: icons[i].shape
+							hash: icons[i]?.hash
+							shape: icons[i]?.shape
 							$shapes: $shapes
+							isMulticolor: @model.get 'isMulticolor'
+							# isReset: true
 				i++
 			helpers.addToSvg $shapes
 

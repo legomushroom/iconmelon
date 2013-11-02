@@ -57,14 +57,13 @@ define 'main', ['collectionViews/NotiesCollectionView', 'marionette', 'jquery', 
 			App.$loadingLine 	= @$loadingLine
 			App.$mainHeader 	= @$mainHeader
 			App.$bodyHtml 		= $('body, html')
-			App.$svgWrap 		= $('#js-svg-wrap')
-			App.helpers 		= helpers
-			App.loadedHashes = []
+			App.$svgWrap 			= $('#js-svg-wrap')
+			App.helpers 			= helpers
+			App.loadedHashes 	= []
 
 			App.iconsSelected = []
 			App.filtersSelected = []
 
-			# @loadSvg()
 			
 			window.socket = io.connect('http://localhost')
 
@@ -75,15 +74,14 @@ define 'main', ['collectionViews/NotiesCollectionView', 'marionette', 'jquery', 
 
 			App.$window = $(window)
 			@$mainHeader = $('#js-main-header')
+			App.$blinded = $('#js-blinded')
+
 			@listenEvents()
 			@makeNotyfier()
 
 		makeNotyfier:->
 			App.notifier = new Notyfier
 				isRender: true
-
-		loadSvg:()->
-			App.$svgWrap.load 'css/icons-main-page.svg'
 
 		listenEvents:->
 			App.$window.on 'scroll', =>

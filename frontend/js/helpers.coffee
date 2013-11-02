@@ -49,6 +49,10 @@ define 'helpers', ['md5'], (md5)->
 
 		upsetSvgShape:(o)->
 			isLoaded = false
+			
+			if o.isReset
+				App.$svgWrap.find("##{o.hash}").remove()
+
 			if o.isCheck
 				i = 0; 
 				while i < App.loadedHashes.length
@@ -62,8 +66,9 @@ define 'helpers', ['md5'], (md5)->
 				$shape = $('<g>').html(o.shape).attr 'id', o.hash
 				$shape.find('*').each (i, child)->
 					$child = $(child)
-					if ($child.attr('fill') isnt 'none')
-						$child.removeAttr('fill')
+					if !o.isMulticolor
+						if ($child.attr('fill') isnt 'none')
+							$child.removeAttr('fill')
 				o.$shapes.append $shape
 				App.loadedHashes.push o.hash
 

@@ -8,18 +8,5 @@ define 'collectionViews/IconsCollectionView', ['collectionViews/ProtoCollectionV
 			super
 			@
 
-		# render:->
-		# 	super @items = @children.toArray()
-		# 	@fadeInAll()
-		# 	@
-
-		# fadeInAll:(i=0)->
-		# 	if i < @items.length 
-		# 		@items[i].$el.fadeIn('fast') 
-		# 		setTimeout => 
-		# 			@fadeInAll i
-		# 		, 15
-		# 		i++
-
 	IconsCollectionView
 

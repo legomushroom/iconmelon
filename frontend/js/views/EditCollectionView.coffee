@@ -1,4 +1,4 @@
-define 'views/EditCollectionView', [ 'views/ProtoView', 'views/IconEditView', 'collections/IconsCollection', 'collectionViews/IconsCollectionView', 'fileupload','jquery', 'helpers' ], (ProtoView, IconEditView, IconsCollection, IconsCollectionView, fileupload, $, helpers)->
+define 'views/EditCollectionView', [ 'views/ProtoView', 'views/IconEditView', 'collections/IconsCollection', 'collectionViews/IconsCollectionView', 'views/ThanxModalView', 'fileupload','jquery', 'helpers' ], (ProtoView, IconEditView, IconsCollection, IconsCollectionView, ThanxModalView, fileupload, $, helpers)->
 
 	class EditCollectionView extends ProtoView
 		template: '#edit-collection-view-template'
@@ -55,7 +55,15 @@ define 'views/EditCollectionView', [ 'views/ProtoView', 'views/IconEditView', 'c
 			@
 
 		multicolorChange:(val)->
+			_.defer =>
+				@makeSvgData false, true
+				_.defer =>
+					@renderIcons()
 			val
+
+		renderIcons:->
+			for view, i in @iconsCollection.children.toArray()
+				view.render()
 
 		suggestOnSubmition:(e)->
 			App.notifier.show
@@ -63,7 +71,7 @@ define 'views/EditCollectionView', [ 'views/ProtoView', 'views/IconEditView', 'c
 				text: 'You have to fill credentials and have at least one valid icon to make this button active'
 
 
-		makeSvgData:(isCheck=true)->
+		makeSvgData:(isCheck=true, isReset=false)->
 			console.time 'svg load'
 			@$shapes = $('<div>')
 			@iconsCollection.collection.each (model)=>
@@ -72,6 +80,8 @@ define 'views/EditCollectionView', [ 'views/ProtoView', 'views/IconEditView', 'c
 							$shapes: @$shapes
 							shape: model.get 'shape'
 							isCheck: isCheck
+							isMulticolor: @model.get 'isMulticolor'
+							isReset: isReset
 
 			helpers.addToSvg @$shapes
 			console.timeEnd 'svg load'
@@ -84,6 +94,8 @@ define 'views/EditCollectionView', [ 'views/ProtoView', 'views/IconEditView', 'c
 				isRender: true
 				$el: @$ '#js-icons-place'
 				mode: @o.mode
+
+			@iconsCollection.collection.parentModel = @model
 
 			App.vent.on 'edit-collection:change', _.bind @checkIfValidCollection, @
 
@@ -141,6 +153,8 @@ define 'views/EditCollectionView', [ 'views/ProtoView', 'views/IconEditView', 'c
 				@model.set 'icons', @iconsCollection.collection.toJSON()
 				@model.save().then( =>
 					@$submitButton.removeClass 'loading-eff'
+					(new ThanxModalView).onClose =>
+
 				).fail (err)=>
 					@$submitButton.removeClass 'loading-eff is-inactive'
 
@@ -150,7 +164,19 @@ define 'views/EditCollectionView', [ 'views/ProtoView', 'views/IconEditView', 'c
 		save:->
 			_.defer =>
 				@model.set 'icons', @iconsCollection.collection.toJSON()
-				@model.save()
+				@model.save().done( =>
+					App.notifier.show
+						type: 'ok'
+						text: 'saved happily'
+						delay: 4000
+				).fail =>
+					App.notifier.show
+						type: 'error'
+						text: 'saving sadness'
+						delay: 4000
+						
+
+
 
 		initFileUpload:->
 			@$('#fileupload').fileupload
@@ -166,15 +192,18 @@ define 'views/EditCollectionView', [ 'views/ProtoView', 'views/IconEditView', 'c
 					@filesLoaded++
 					name = data.files[0].name.split('.svg')[0]
 					data = 
-						shape: data.result.replace(/fill=\"+[#]\d{3,6}"/gi, '')
+						shape: data.result #.replace(/fill=\"+[#]\d{3,6}"/gi, '')
 						name: name
 						hash: helpers.generateHash()
 						isValid: true
+
 					@iconsLoaded.push data
 					@filesLoaded is @filesDropped and @finishFilesLoading()
 
 				error:(e, data)->
-					console.error e
+					App.notifier
+						text: 'loading error'
+						type: 'error'
 				progressall:(e, data)=>
 					progress = parseInt(data.loaded / data.total * 100, 10)
 					App.$loadingLine.css 'width':"#{progress}%"
@@ -190,7 +219,7 @@ define 'views/EditCollectionView', [ 'views/ProtoView', 'views/IconEditView', 'c
 
 			@checkIfValidCollection()
 			_.defer =>
-				App.$loadingLine.fadeOut(200,=>
+				App.$loadingLine.fadeOut(100,=>
 					App.$loadingLine.width "0%"
 					App.$loadingLine.show())
 

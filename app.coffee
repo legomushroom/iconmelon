@@ -87,7 +87,9 @@ class Main
       iconData = ''
       for doc, i in docs
         for icon, j in doc.icons
-          iconData += "<g id='#{icon.hash}'>#{icon.shape}</g>"
+          str = "<g id='#{icon.hash}'>#{icon.shape}</g>"
+          str = if !doc.isMulticolor then str.replace(/fill=\"\s?#[0-9A-Fa-f]{3,6}\s?\"/gi, '') else str
+          iconData += str
 
       Filter.find search, (err, docs)->
         for doc, i in docs
@@ -128,12 +130,13 @@ io.sockets.on "connection", (socket) ->
   socket.on "section:update", (data, callback) ->
     id = data.id; delete data._id
     Section.update {'_id':id}, data, {upsert:true}, (err)->
-      if err
-        callback 500, 'DB error'
-        console.error err
-      else callback null, 'ok'
+      main.generateMainPageSvg().then =>
+        if err
+          callback 500, 'DB error'
+          console.error err
+        else callback null, 'ok'
 
-      main.generateMainPageSvg()
+      # main.generateMainPageSvg()
 
   socket.on "section:delete", (data, callback) ->
     Section.findById data.id, (err, doc)->
@@ -143,7 +146,7 @@ io.sockets.on "connection", (socket) ->
       else callback null, 'ok'
       doc.remove (err)->
         if err
-          callback 500, 'DB error'
+          callback 500, 'fs error'
           console.error err
         else callback null, 'ok'
 

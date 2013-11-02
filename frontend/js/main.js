@@ -76,6 +76,7 @@
         App.helpers.listenLinks();
         App.$window = $(window);
         this.$mainHeader = $('#js-main-header');
+        App.$blinded = $('#js-blinded');
         this.listenEvents();
         this.makeNotyfier();
       }
@@ -84,10 +85,6 @@
         return App.notifier = new Notyfier({
           isRender: true
         });
-      };
-
-      Application.prototype.loadSvg = function() {
-        return App.$svgWrap.load('css/icons-main-page.svg');
       };
 
       Application.prototype.listenEvents = function() {

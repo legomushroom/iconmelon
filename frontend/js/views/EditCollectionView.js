@@ -3,7 +3,7 @@
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define('views/EditCollectionView', ['views/ProtoView', 'views/IconEditView', 'collections/IconsCollection', 'collectionViews/IconsCollectionView', 'fileupload', 'jquery', 'helpers'], function(ProtoView, IconEditView, IconsCollection, IconsCollectionView, fileupload, $, helpers) {
+  define('views/EditCollectionView', ['views/ProtoView', 'views/IconEditView', 'collections/IconsCollection', 'collectionViews/IconsCollectionView', 'views/ThanxModalView', 'fileupload', 'jquery', 'helpers'], function(ProtoView, IconEditView, IconsCollection, IconsCollectionView, ThanxModalView, fileupload, $, helpers) {
     var EditCollectionView, _ref;
 
     EditCollectionView = (function(_super) {
@@ -72,7 +72,27 @@
       };
 
       EditCollectionView.prototype.multicolorChange = function(val) {
+        var _this = this;
+
+        _.defer(function() {
+          _this.makeSvgData(false, true);
+          return _.defer(function() {
+            return _this.renderIcons();
+          });
+        });
         return val;
+      };
+
+      EditCollectionView.prototype.renderIcons = function() {
+        var i, view, _i, _len, _ref1, _results;
+
+        _ref1 = this.iconsCollection.children.toArray();
+        _results = [];
+        for (i = _i = 0, _len = _ref1.length; _i < _len; i = ++_i) {
+          view = _ref1[i];
+          _results.push(view.render());
+        }
+        return _results;
       };
 
       EditCollectionView.prototype.suggestOnSubmition = function(e) {
@@ -82,11 +102,14 @@
         });
       };
 
-      EditCollectionView.prototype.makeSvgData = function(isCheck) {
+      EditCollectionView.prototype.makeSvgData = function(isCheck, isReset) {
         var _this = this;
 
         if (isCheck == null) {
           isCheck = true;
+        }
+        if (isReset == null) {
+          isReset = false;
         }
         console.time('svg load');
         this.$shapes = $('<div>');
@@ -95,7 +118,9 @@
             hash: model.get('hash'),
             $shapes: _this.$shapes,
             shape: model.get('shape'),
-            isCheck: isCheck
+            isCheck: isCheck,
+            isMulticolor: _this.model.get('isMulticolor'),
+            isReset: isReset
           });
         });
         helpers.addToSvg(this.$shapes);
@@ -110,6 +135,7 @@
           $el: this.$('#js-icons-place'),
           mode: this.o.mode
         });
+        this.iconsCollection.collection.parentModel = this.model;
         return App.vent.on('edit-collection:change', _.bind(this.checkIfValidCollection, this));
       };
 
@@ -177,7 +203,8 @@
         return _.defer(function() {
           _this.model.set('icons', _this.iconsCollection.collection.toJSON());
           return _this.model.save().then(function() {
-            return _this.$submitButton.removeClass('loading-eff');
+            _this.$submitButton.removeClass('loading-eff');
+            return (new ThanxModalView).onClose(function() {});
           }).fail(function(err) {
             return _this.$submitButton.removeClass('loading-eff is-inactive');
           });
@@ -193,7 +220,19 @@
 
         return _.defer(function() {
           _this.model.set('icons', _this.iconsCollection.collection.toJSON());
-          return _this.model.save();
+          return _this.model.save().done(function() {
+            return App.notifier.show({
+              type: 'ok',
+              text: 'saved happily',
+              delay: 4000
+            });
+          }).fail(function() {
+            return App.notifier.show({
+              type: 'error',
+              text: 'saving sadness',
+              delay: 4000
+            });
+          });
         });
       };
 
@@ -216,7 +255,7 @@
             _this.filesLoaded++;
             name = data.files[0].name.split('.svg')[0];
             data = {
-              shape: data.result.replace(/fill=\"+[#]\d{3,6}"/gi, ''),
+              shape: data.result,
               name: name,
               hash: helpers.generateHash(),
               isValid: true
@@ -225,7 +264,10 @@
             return _this.filesLoaded === _this.filesDropped && _this.finishFilesLoading();
           },
           error: function(e, data) {
-            return console.error(e);
+            return App.notifier({
+              text: 'loading error',
+              type: 'error'
+            });
           },
           progressall: function(e, data) {
             var progress;
@@ -252,7 +294,7 @@
         this.makeSvgData(false);
         this.checkIfValidCollection();
         return _.defer(function() {
-          return App.$loadingLine.fadeOut(200, function() {
+          return App.$loadingLine.fadeOut(100, function() {
             App.$loadingLine.width("0%");
             return App.$loadingLine.show();
           });

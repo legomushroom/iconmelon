@@ -82,6 +82,9 @@
         var $shape, i, isLoaded;
 
         isLoaded = false;
+        if (o.isReset) {
+          App.$svgWrap.find("#" + o.hash).remove();
+        }
         if (o.isCheck) {
           i = 0;
           while (i < App.loadedHashes.length) {
@@ -98,8 +101,10 @@
             var $child;
 
             $child = $(child);
-            if ($child.attr('fill') !== 'none') {
-              return $child.removeAttr('fill');
+            if (!o.isMulticolor) {
+              if ($child.attr('fill') !== 'none') {
+                return $child.removeAttr('fill');
+              }
             }
           });
           o.$shapes.append($shape);

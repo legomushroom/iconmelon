@@ -32,10 +32,13 @@ define 'views/IconEditView', ['views/ProtoView', 'models/IconModel', 'underscore
 			hash = helpers.generateHash()
 			$shape.attr 'id', hash
 			@model.set 'hash', hash
-			
-			$shape.find('*').each (i, child)->
-				if ($(child).attr('fill') isnt 'none')
-					$(child).removeAttr('fill')
+
+			if !@model.collection.parentModel.get 'isMulticolor'
+
+				$shape.find('*').each (i, child)->
+					if !@model.get 'isMulticolor'
+						if ($(child).attr('fill') isnt 'none')
+							$(child).removeAttr('fill')
 
 			$svgRef = @$svg.find "##{hash}"
 			

@@ -3,21 +3,29 @@
 	padding 0 8*gs
 	text-align center
 
-	.icon-select-view-b
-		&.is-filter-show
-			// 4!
-			.add-effects-ph
-				display none
-
 	.section-b
 		display none
 
 	.main-logo-b
 		margin 0 auto
 		margin-top 16*gs
+		// -webkit-transform translateX(2000px) translateZ(0)
+		// -moz-transform translateX(2000px) translateZ(0)
+		// -ms-transform translateX(2000px) translateZ(0)
+		// -o-transform translateX(2000px) translateZ(0)
+		// transform translateX(2000px) translateZ(0)
+		transform(translateX(2000px))
+
+		&.is-no-translateX
+			transform(translateX(0))
 
 	.icon-select-view-b
-		margin-top 12*gs
+		margin-top 15*gs
+		opacity 0
+		&.is-filter-show
+			// 4!
+			.add-effects-ph
+				display none
 
 	.add-effects-ph
 		margin-bottom gs

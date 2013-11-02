@@ -1,12 +1,84 @@
 // BLOCKS
 @import '../assets/imports.styl'
 
+/* 38c06112c6e3e24b5f57202103de26e6 */
+.modal-b
+	position: relative
+	padding 4*gs
+	border-radius br + 2px
+	box-shadow gs gs 0 rgba(0,0,0,.2)
+	margin: auto;
+	position: absolute
+	background-color white
+	height 56*gs
+	width 60%
+	nw 0
+	se 0
+	z-index 31
+
+	> .icon
+		position: absolute
+		rect 1.5*gs - 2px
+		ne 4*gs
+
+	> .btns-bl
+		width 32*gs
+		float right
+		margin-top - 5*gs
+		// margin-right 4*gs
+
+	.close-btn-bh
+		display none
+
+	.thanx-modal-with-icon-b
+		width 90%
+		padding-right 2*gs
+		margin-left 4*gs
+		margin-top  	 13.5*gs
+		margin-bottom  17.5*gs
+		margin-left auto
+		margin-right auto
+
+
+
+/* 127f8d904045dfc33124d528e5f6c04c */
+.thanx-modal-with-icon-b
+	position relative
+	> .icon-bl
+		position absolute
+		t 50%
+		margin-top - 4*gs
+	.icon
+		rect 6.5*gs
+
+	.thanx-modal-b
+		margin-left 12*gs
+
+/* 127f8d904045dfc33124d528e5f6c04c */
+.thanx-modal-b
+	padding-left 2*gs + 2px
+	border-left 2px solid c-grey3
+
+	> .header-be
+		font-size 4*gs + 2px
+		color c-grey2
+		font-weight bold
+		margin-bottom gs - 2px
+
+	> .text-be
+		font-size 3*gs + 2px
+		line-height 3.5*gs + 2px
+		color c-grey3
+		+ .text-be
+			margin-top gs + 2px
+
 /* fb37b27f09cb5fb3537f01a90de36adf */
 .switcher-with-texts-b
 	color c-grey3
 	display inline-block
 	font-size 3*gs
 	overflow hidden
+	padding-bottom 1px
 
 	&:hover
 		color c-grey2
@@ -537,6 +609,7 @@ marginTop = 2*gs
 	nw 0
 	width 100%
 	z-index: 10
+	opacity 0
 
 	> .loading-be
 		width 	 0%

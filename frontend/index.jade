@@ -7,11 +7,12 @@ html
 		link(rel="stylesheet", type="text/css", href="css/main.css")
 		link(rel="stylesheet", href="css/css-assets/font/stylesheet.css", type="text/css", charset="utf-8")
 	body
+		.blinded-e#js-blinded.h-gm
 		- var iconClass = ''
 		- var text = ''		
 		- var filter = ''
 		#js-svg-wrap	
-			//- include css/icons-main-page.svg
+			include css/icons.svg
 
 		.notyfier-b.noties-l#js-notifier-place
 
@@ -19,10 +20,12 @@ html
 			- var className = '', id = 'js-main'
 			- var link = '#/'
 			include css/partials/tiny-logo-link
-			//- a(href="#").menu-item-be.is-hoverable#js-how-to-use how to use
+			a(href="#").menu-item-be.is-hoverable#js-how-to-use how to use
+			a(href="#").menu-item-be.is-hoverable#js-main why yummy
 			a(href="#/submit").menu-item-be.is-hoverable#js-submit submit icons
-			//- a(href="#").menu-item-be.is-hoverable#js-main support us
-			a(href="#/editr").menu-item-be.is-hoverable#js-editr editr
+			a(href="#").menu-item-be.is-hoverable.f-r-gm.m-r-x6-gm#js-main contacts
+			a(href="#").menu-item-be.is-hoverable.f-r-gm.m-r-x2-gm#js-main support us
+			//- a(href="#/editr").menu-item-be.is-hoverable#js-editr editr
 			.loading-be.loading-eff#js-loadin-line
 
 		section#main-l
@@ -78,14 +81,17 @@ html
 		script(id="sections-collection-line-view-template", type="template")
 			include templates/sections-collection-line-view
 
+		script(id="thanx-modal-view-template", type="template")
+			include templates/thanx-modal-view
+
 
 		script(type='text/javascript', src='js/lib/require.js', data-main='js/main')
 
 
-		script
-			var url='css/icons-main-page.svg',c=new XMLHttpRequest();
-			c.open('GET', url, false); c.setRequestHeader('Content-Type', 'text/xml'); c.send();
-			document.getElementById('js-svg-wrap').appendChild(c.responseXML.firstChild)
+		//- script
+		//- 	var url='css/icons-main-page.svg',c=new XMLHttpRequest();
+		//- 	c.open('GET', url, false); c.setRequestHeader('Content-Type', 'text/xml'); c.send();
+		//- 	document.getElementById('js-svg-wrap').appendChild(c.responseXML.firstChild)
 
 		//- script
 		//- 	var c = new XMLHttpRequest();

@@ -22,17 +22,20 @@
 
       Router.prototype.main = function() {
         this.startPage(pc.main);
-        return this.chechMainMenuItem();
+        this.chechMainMenuItem();
+        return this.animateHeader();
       };
 
       Router.prototype.submit = function() {
         this.startPage(pc.submit);
-        return this.chechMainMenuItem('#js-submit');
+        this.chechMainMenuItem('#js-submit');
+        return this.showHeader();
       };
 
       Router.prototype.editr = function() {
         this.startPage(pc.editr);
-        return this.chechMainMenuItem('#js-editr');
+        this.chechMainMenuItem('#js-editr');
+        return this.showHeader();
       };
 
       Router.prototype.startPage = function(View) {
@@ -44,6 +47,20 @@
         return App.$bodyHtml.animate({
           'scrollTop': 0
         });
+      };
+
+      Router.prototype.animateHeader = function() {
+        var _this = this;
+
+        return setTimeout(function() {
+          return App.$mainHeader.addClass('animated fadeInDown');
+        }, 1000);
+      };
+
+      Router.prototype.showHeader = function() {
+        return App.$mainHeader.css({
+          'opacity': 1
+        }).addClass('no-animation');
       };
 
       Router.prototype.chechMainMenuItem = function(selector) {

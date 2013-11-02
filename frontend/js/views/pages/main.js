@@ -19,8 +19,13 @@
       Main.prototype.className = "cf";
 
       Main.prototype.initialize = function() {
+        this.loadSvg();
         Main.__super__.initialize.apply(this, arguments);
         return this;
+      };
+
+      Main.prototype.loadSvg = function() {
+        return App.$svgWrap.load('css/icons-main-page.svg');
       };
 
       Main.prototype.render = function() {
@@ -30,7 +35,32 @@
           $el: this.$('#js-icons-select-view-place'),
           isRender: true
         });
+        this.$mainLogo = this.$('.main-logo-b');
+        this.$melon = this.$('.logo-large-e');
+        this.$mainSection = this.$('#js-icons-select-view-place');
+        !App.mainAnimated && this.animate();
+        App.mainAnimated && this.show();
         return this;
+      };
+
+      Main.prototype.animate = function() {
+        var _this = this;
+
+        this.$mainLogo.addClass('animated fadeInRightBig');
+        setTimeout((function() {
+          return _this.$melon.addClass('animated swing').removeClass('is-rotated');
+        }), 450);
+        return setTimeout((function() {
+          _this.$mainSection.addClass('animated fadeInDown');
+          return App.mainAnimated = true;
+        }), 1000);
+      };
+
+      Main.prototype.show = function() {
+        this.$mainLogo.addClass('is-no-translateX');
+        this.$melon.removeClass('is-rotated');
+        this.$mainSection.addClass('animated fadeInDown');
+        return this.$mainLogo.addClass('animated fadeInDown');
       };
 
       return Main;

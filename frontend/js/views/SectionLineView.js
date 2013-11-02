@@ -41,16 +41,17 @@
       };
 
       SectionView.prototype.makePreviewSvg = function() {
-        var $shapes, i, icons;
+        var $shapes, i, icons, _ref1, _ref2;
 
         i = 0;
         icons = this.model.get('icons');
         $shapes = $('<div>');
         while (i < 6) {
           helpers.upsetSvgShape({
-            hash: icons[i].hash,
-            shape: icons[i].shape,
-            $shapes: $shapes
+            hash: (_ref1 = icons[i]) != null ? _ref1.hash : void 0,
+            shape: (_ref2 = icons[i]) != null ? _ref2.shape : void 0,
+            $shapes: $shapes,
+            isMulticolor: this.model.get('isMulticolor')
           });
           i++;
         }

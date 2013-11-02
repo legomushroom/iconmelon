@@ -51,11 +51,15 @@
         hash = helpers.generateHash();
         $shape.attr('id', hash);
         this.model.set('hash', hash);
-        $shape.find('*').each(function(i, child) {
-          if ($(child).attr('fill') !== 'none') {
-            return $(child).removeAttr('fill');
-          }
-        });
+        if (!this.model.collection.parentModel.get('isMulticolor')) {
+          $shape.find('*').each(function(i, child) {
+            if (!this.model.get('isMulticolor')) {
+              if ($(child).attr('fill') !== 'none') {
+                return $(child).removeAttr('fill');
+              }
+            }
+          });
+        }
         $svgRef = this.$svg.find("#" + hash);
         if ($svgRef.length) {
           $svgRef.remove();

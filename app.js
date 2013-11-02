@@ -124,7 +124,7 @@
 
       prm = new Promise();
       Section.find(search, function(err, docs) {
-        var doc, i, icon, iconData, j, _i, _j, _len, _len1, _ref;
+        var doc, i, icon, iconData, j, str, _i, _j, _len, _len1, _ref;
 
         iconData = '';
         for (i = _i = 0, _len = docs.length; _i < _len; i = ++_i) {
@@ -132,7 +132,9 @@
           _ref = doc.icons;
           for (j = _j = 0, _len1 = _ref.length; _j < _len1; j = ++_j) {
             icon = _ref[j];
-            iconData += "<g id='" + icon.hash + "'>" + icon.shape + "</g>";
+            str = "<g id='" + icon.hash + "'>" + icon.shape + "</g>";
+            str = !doc.isMulticolor ? str.replace(/fill=\"\s?#[0-9A-Fa-f]{3,6}\s?\"/gi, '') : str;
+            iconData += str;
           }
         }
         return Filter.find(search, function(err, docs) {
@@ -199,13 +201,16 @@
       }, data, {
         upsert: true
       }, function(err) {
-        if (err) {
-          callback(500, 'DB error');
-          console.error(err);
-        } else {
-          callback(null, 'ok');
-        }
-        return main.generateMainPageSvg();
+        var _this = this;
+
+        return main.generateMainPageSvg().then(function() {
+          if (err) {
+            callback(500, 'DB error');
+            return console.error(err);
+          } else {
+            return callback(null, 'ok');
+          }
+        });
       });
     });
     return socket.on("section:delete", function(data, callback) {
@@ -218,7 +223,7 @@
         }
         return doc.remove(function(err) {
           if (err) {
-            callback(500, 'DB error');
+            callback(500, 'fs error');
             return console.error(err);
           } else {
             return callback(null, 'ok');
