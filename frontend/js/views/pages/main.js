@@ -18,6 +18,10 @@
 
       Main.prototype.className = "cf";
 
+      Main.prototype.events = {
+        'click .js-download': 'download'
+      };
+
       Main.prototype.initialize = function() {
         this.loadSvg();
         Main.__super__.initialize.apply(this, arguments);
@@ -41,6 +45,31 @@
         !App.mainAnimated && this.animate();
         App.mainAnimated && this.show();
         return this;
+      };
+
+      Main.prototype.download = function() {
+        if (App.iconsSelected.length === 0) {
+          App.notifier.show({
+            type: 'error',
+            text: 'select at least one icon to download'
+          });
+          return;
+        }
+        return $.ajax({
+          type: 'post',
+          url: '/download-icons',
+          data: {
+            icons: App.iconsSelected,
+            filters: App.filtersSelected
+          },
+          success: function(filename) {
+            location.href = "/generated-icons/" + filename + ".zip";
+            return console.log('success');
+          },
+          error: function(e) {
+            return console.error(e);
+          }
+        });
       };
 
       Main.prototype.animate = function() {

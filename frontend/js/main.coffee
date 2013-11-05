@@ -61,11 +61,12 @@ define 'main', ['collectionViews/NotiesCollectionView', 'marionette', 'jquery', 
 			App.helpers 			= helpers
 			App.loadedHashes 	= []
 
-			App.iconsSelected = []
+			App.iconsSelected 	= []
 			App.filtersSelected = []
 
 			
-			window.socket = io.connect('http://localhost')
+			# window.socket = io.connect('http://localhost')
+			window.socket = io.connect('http://legomushroom-iconmelon.jit.su')
 
 			App.router = new Router
 			Backbone.history.start()

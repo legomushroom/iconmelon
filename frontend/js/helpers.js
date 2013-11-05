@@ -55,7 +55,7 @@
           this.currIconIndex >= App.iconsSelected.length && (this.currIconIndex = 0);
         }
         if (App.iconsSelected[this.currIconIndex]) {
-          return App.iconsSelected[this.currIconIndex];
+          return App.iconsSelected[this.currIconIndex].split(':')[1];
         } else {
           return this.getStandartIcon(direction);
         }

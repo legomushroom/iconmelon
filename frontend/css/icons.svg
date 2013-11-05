@@ -1,4 +1,4 @@
-<svg id="svg-source" height="0" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg id="svg-source" height="0" version="1.1" xmlns="http://www.w3.org/2000/svg" style="position:absolute" xmlns:xlink="http://www.w3.org/1999/xlink">
 
     <path id="arrow-right-icon" d="M28.551,14.115L15.221,0.778l0,0l0,0c-1.04-1.04-2.735-1.04-3.774,0c-1.039,1.039-1.039,2.73,0,3.773l11.448,11.445
     L11.446,27.445c-1.039,1.041-1.039,2.731,0,3.772s2.734,1.041,3.774,0l13.33-13.336C29.594,16.841,29.594,15.153,28.551,14.115z"/>

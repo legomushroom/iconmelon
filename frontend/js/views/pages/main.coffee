@@ -3,6 +3,9 @@ define 'views/pages/main', ['views/pages/PageView', 'views/IconSelectView', 'mod
 	class Main extends PageView
 		template: '#main-template'
 		className: "cf"
+		events:
+			'click .js-download' : 'download'
+
 		initialize:->
 			@loadSvg()
 			super
@@ -25,6 +28,25 @@ define 'views/pages/main', ['views/pages/PageView', 'views/IconSelectView', 'mod
 			App.mainAnimated and @show()
 			@
 
+		download:->
+			if App.iconsSelected.length is 0
+				App.notifier.show
+					type: 'error'
+					text: 'select at least one icon to download'
+				return
+
+			$.ajax
+				type: 'post'
+				url: '/download-icons'
+				data:
+					icons: 		App.iconsSelected
+					filters:	App.filtersSelected
+				success:(filename)->
+					location.href = "/generated-icons/#{filename}.zip"
+					console.log 'success'
+				error:(e)->
+					console.error e
+
 		animate:->
 			@$mainLogo.addClass 'animated fadeInRightBig'
 			setTimeout (=> @$melon.addClass('animated swing').removeClass 'is-rotated'), 450
@@ -32,7 +54,7 @@ define 'views/pages/main', ['views/pages/PageView', 'views/IconSelectView', 'mod
 
 		show:->
 			@$mainLogo.addClass 'is-no-translateX'
-			@$melon.removeClass 'is-rotated'
+			@$melon.removeClass 		'is-rotated'
 			@$mainSection.addClass 	'animated fadeInDown'
 			@$mainLogo.addClass 		'animated fadeInDown'
 

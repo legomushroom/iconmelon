@@ -69,7 +69,7 @@
         App.loadedHashes = [];
         App.iconsSelected = [];
         App.filtersSelected = [];
-        window.socket = io.connect('http://localhost');
+        window.socket = io.connect('http://legomushroom-iconmelon.jit.su');
         App.router = new Router;
         Backbone.history.start();
         App.start();

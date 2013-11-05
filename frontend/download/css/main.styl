@@ -1,0 +1,314 @@
+@import '../../css/assets/imports.styl'
+@import '../../css/css-assets/normalize.styl'
+
+.header-e
+	background-color lighten(c-grey3,10)
+	border-radius br
+	padding gs 2*gs
+	font-size 2*gs
+	color darken(c-grey2-hover, 15)
+
+.icon-b
+	height 10*gs
+	// border 0
+	padding-right 2*gs
+	padding-bottom 2*gs
+	border-radius br + 2px
+
+	> .icon-bl
+		float: left
+		background-color rgba(0,0,0,.05)
+		height 100%
+		border-top-left-radius br + 2px
+		border-bottom-left-radius br + 2px
+		padding 0 gs
+		.iconmelon
+			margin-top 2*gs - 1px
+
+
+	> .name-be 
+		margin-left 6*gs
+		font-size 14px
+		height 100%
+		border 1px solid rgba(0,0,0,.05)
+		border-top-right-radius br + 2px
+		border-bottom-right-radius br + 2px
+		border-left 0
+		padding 2.5*gs+2px 2*gs 0
+
+		// color darken(c-grey2, 30)
+		textel()
+
+.main-l
+	max-width 126*gs
+	min-width 60*gs
+	margin 16*gs auto
+	text-align left
+	padding 0 8*gs
+	@media all and (max-width:500px)
+		padding 0
+
+.section-l
+	padding 6*gs 0 8*gs
+	margin-right - 2*gs
+	padding-left 2*gs
+
+	.icon-b
+		float left
+		width (100/4)%
+
+		@media all and (max-width:1000px)
+			width (100/3)%
+
+		@media all and (max-width:800px)
+			width (100/2)%
+
+		@media all and (max-width:500px)
+			width (100)%
+
+		// margin-left 2*gs
+		// margin-bottom 2*gs
+
+
+.code-section-l
+	padding-top 6*gs
+	padding-left 2*gs
+
+	#text
+		+ #text		
+			margin-top 2*gs
+
+	.text-e
+		margin gs 0 gs 2*gs
+
+
+.logo-tiny-e
+	rect 4*gs
+	background url('main-logo.svg') no-repeat center center
+	display block
+	padding-top 1px
+	.icon
+		rect 4*gs
+		margin 0 auto
+
+.main-header-b
+	font-size 20px
+	color c-grey1
+	height 7*gs
+	padding-top 2*gs + 2px
+	padding-left 3*gs
+	background-color rgba(255,255,255,.9)
+	position fixed
+	nw 0
+	width 100%
+	z-index: 10
+
+	> .loading-be
+		width 	 0%
+		height 	 gs
+		background-color c-green
+		left 	 0
+		bottom 	 - gs + 2px
+		position absolute
+		transition width .05s ease-out
+		border-top-right-radius br + 1px
+		border-bottom-right-radius br + 1px
+
+	&.is-convex
+		downShadow()
+
+	> .logo-tiny-e
+		margin-top - gs
+		display: block
+		float left
+		position static
+
+	> a
+		display inline-block
+		font-size 14px
+		position relative
+		t - (gs/2)
+
+
+		+ .menu-item-be
+			margin-left 3*gs
+
+
+
+a
+	color c-grey1
+	text-decoration none
+	position relative
+ 
+	&.is-hoverable, &.is-check
+		&:after
+			content ''
+			position absolute
+			display none
+			color inherit
+
+			width 100%
+			height 2px
+			left -2px
+
+			bottom - gs + 2px
+			border 1px solid
+			border-left-color transparent
+			border-right-color transparent
+
+		&:hover
+			// 4!
+			&:after
+				display block
+
+	&.is-grey3
+		color c-grey3
+		&:after
+			border-top-color    c-grey3
+			border-bottom-color c-grey3		
+		
+
+	&.is-grey2--onhover
+		&:hover
+			color c-grey2
+
+			&:after
+				border-top-color    c-grey2
+				border-bottom-color c-grey2		
+
+	&.is-check
+		&:after
+			display block
+
+
+
+*
+	bbox()
+
+body, html
+	min-rect 100%
+	margin 0
+	padding 0
+	overflow-x hidden
+	color c-grey1
+	font-family monospace
+
+@css{
+	::selection{
+		background-color: #E83F7D;
+	  color: white;
+	  text-shadow: none;
+	}
+
+	::-moz-selection{
+		background-color: #E83F7D;
+	  color: white;
+	  text-shadow: none;
+	}
+}
+
+
+// CLEARFIX
+.cf:after,
+.cf:before {
+    content: '';
+    display: table;
+}
+.cf:after {
+    clear: both;
+}
+.cf {
+    zoom: 1;
+}
+
+
+@css{
+/* Pretty printing styles. Used with prettify.js. */
+/* Vim sunburst theme by David Leibovic */
+		
+		#text{
+			padding: 16px 0 0;
+			border-radius: 3px;
+			line-height: 16px;
+		}
+
+     #text .str, code .str {
+        color: #e6db74;
+     }
+     /* string  - green */
+     #text .kwd, code .kwd {
+          color: #66d9ef;
+     }
+     /* keyword - dark pink */
+     #text .com, code .com {
+          color: #aeaeae;
+     }
+     
+     #text .typ,
+     code .typ {
+          color: #89bdff;
+     }
+     /* type - light blue */
+     #text .lit, code .lit {
+          color: #ae81ff;
+     }
+     /* literal - blue */
+     pre#text .pun,
+     code .pun {
+          color: #fff;
+     }
+     /* punctuation - white */
+     pre#text .pln,
+     code .pln {
+          color: #fff;
+     }
+     /* plaintext - white */
+     pre#text .tag, code .tag {
+          color: #f92772;
+     }
+     #text .atn, code .atn {
+          color: #a6e22d;
+     }
+     #text .atv, code .atv{
+          color: #e6db74;
+     }
+     #text .dec, code .dec{
+          color: #3387cc;
+     }
+     /* decimal - blue */
+     #text.prettyprint, code.prettyprint {
+          background-color: #272822;
+          text-align: left;
+          /*width: 60% !important;*/
+          white-space: pre#text-wrap;
+          /* css-3 */
+          white-space: -moz-pre#text-wrap;
+          /* Mozilla, since 1999 */
+          white-space: -pre#text-wrap;
+          /* Opera 4-6 */
+          white-space: -o-pre#text-wrap;
+          /* Opera 7 */
+          word-wrap: break-word;
+          /* Internet Explorer 5.5+ */
+          font-size: 1em;
+     }
+     /* Specify class=linenums on a pre#text to get line numbering */
+     ol.linenums {
+          /*margin-top: 0;*/
+          /*margin-bottom: 0;*/
+          color: #aeaeae;
+     }
+
+     @media print {
+     pre#text .str, code .str { color: #060; }
+     pre#text .kwd, code .kwd { color: #006; font-weight: bold; }
+     pre#text .com, code .com { color: #600; font-style: italic; }
+     pre#text .typ, code .typ { color: #404; font-weight: bold; }
+     pre#text .lit, code .lit { color: #044; }
+     pre#text .pun, code .pun { color: #440; }
+     pre#text .pln, code .pln { color: #000; }
+     pre#text .tag, code .tag { color: #006; font-weight: bold; }
+     pre#text .atn, code .atn { color: #404; }
+     pre#text .atv, code .atv { color: #060; }
+     }
+}

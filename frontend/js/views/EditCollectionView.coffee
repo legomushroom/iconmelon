@@ -153,7 +153,7 @@ define 'views/EditCollectionView', [ 'views/ProtoView', 'views/IconEditView', 'c
 				@model.set 'icons', @iconsCollection.collection.toJSON()
 				@model.save().then( =>
 					@$submitButton.removeClass 'loading-eff'
-					(new ThanxModalView).onClose =>
+					(new ThanxModalView).onClose = =>
 
 				).fail (err)=>
 					@$submitButton.removeClass 'loading-eff is-inactive'
@@ -192,7 +192,7 @@ define 'views/EditCollectionView', [ 'views/ProtoView', 'views/IconEditView', 'c
 					@filesLoaded++
 					name = data.files[0].name.split('.svg')[0]
 					data = 
-						shape: data.result #.replace(/fill=\"+[#]\d{3,6}"/gi, '')
+						shape: data.result
 						name: name
 						hash: helpers.generateHash()
 						isValid: true
@@ -201,7 +201,7 @@ define 'views/EditCollectionView', [ 'views/ProtoView', 'views/IconEditView', 'c
 					@filesLoaded is @filesDropped and @finishFilesLoading()
 
 				error:(e, data)->
-					App.notifier
+					App.notifier.show
 						text: 'loading error'
 						type: 'error'
 				progressall:(e, data)=>

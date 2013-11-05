@@ -34,7 +34,7 @@ define 'helpers', ['md5'], (md5)->
 				@currIconIndex--; @currIconIndex < 0 and (@currIconIndex = App.iconsSelected.length - 1)
 			else
 				@currIconIndex++; @currIconIndex >= App.iconsSelected.length and (@currIconIndex = 0)
-			if App.iconsSelected[@currIconIndex] then App.iconsSelected[@currIconIndex] else @getStandartIcon direction
+			if App.iconsSelected[@currIconIndex] then App.iconsSelected[@currIconIndex].split(':')[1] else @getStandartIcon direction
 
 		getStandartIcon:(direction)->
 			iconsSource = App.sectionsCollectionView.collection.at(0).get 'icons'
@@ -82,6 +82,12 @@ define 'helpers', ['md5'], (md5)->
 			indexOfItem = _.indexOf(newArray, item)
 			if (indexOfItem is -1) then newArray.push(item) else (if (isSingle) then newArray.splice(indexOfItem, 1) else newArray = _.without(newArray, item))
 			newArray
+
+		# addSection:(sectionName)->
+		# 	App.sectionsSelected = _.uniq(App.sectionsSelected.push(sectionName))
+
+		# removeSection:(sectionName)->
+		# 	App.sectionsSelected = App.sectionsSelected.without sectionName
 
 
 	new Helpers

@@ -146,6 +146,12 @@ body {
 	    color: white;
 	    text-shadow: none;
 	}
+
+	::-moz-selection{
+		background-color: #E83F7D;
+	  color: white;
+	  text-shadow: none;
+	}
 .op-5-gm {
   opacity: 0.5;
 }
@@ -2588,6 +2594,7 @@ a.is-check:after {
 .main-header-b {
   font-size: 20px;
   color: #3b3b3a;
+  min-width: 576px;
   height: 56px;
   padding-top: 18px;
   padding-left: 24px;
@@ -3013,7 +3020,7 @@ a.is-check:after {
   max-width: 1168px;
   margin: 0 auto;
   padding-bottom: 160px;
-  min-width: 480px;
+  min-width: 576px;
 }
 .box-shadow-down-eff {
   box-shadow: 0 4px 0 rgba(59,59,58,0.2);
@@ -3465,16 +3472,16 @@ a.is-check:after {
 }
 .main-page-p .header-pm {
   font-size: 32px;
-  color: #d7d8d8;
+  color: #cacbcb;
   margin-bottom: 32px;
   text-align: center;
-  background-color: rgba(0,0,0,0.01);
+  background-color: rgba(0,0,0,0.03);
   border-radius: 3px;
   margin-right: 24px;
   padding: 4px 0;
 }
 .main-page-p .section-pm + .header-pm {
-  margin-top: 64px;
+  margin-top: 32px;
 }
 .submit-p {
   padding-top: 112px;

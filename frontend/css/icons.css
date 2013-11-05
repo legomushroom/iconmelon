@@ -1,0 +1,23 @@
+.iconmelon,
+.im {
+  width: 32px;
+  height: 32px;
+  fill: #d7d8d8;
+  display: block;
+  position: relative;
+}
+.iconmelon:after,
+.im:after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.iconmelon svg,
+.im svg {
+  float: left;
+  width: 100%;
+  height: 100%;
+}

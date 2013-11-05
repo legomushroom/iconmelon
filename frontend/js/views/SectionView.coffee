@@ -34,6 +34,8 @@ define 'views/SectionView', ['views/ProtoView', 'models/SectionModel', 'collecti
 
 			@iconsCollectionView.collection.onFilter = _.bind @onFilter, @
 
+			@iconsCollectionView.collection.parentModel = @model
+
 			@model.iconsCollectionView = @iconsCollectionView
 
 		toggleClasses:->

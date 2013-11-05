@@ -44,7 +44,7 @@
 
       IconSelectView.prototype.toggleSelected = function() {
         this.model.toggleSelected();
-        return App.iconsSelected = helpers.toggleArray(App.iconsSelected, this.model.get('hash'));
+        return App.iconsSelected = helpers.toggleArray(App.iconsSelected, "" + (this.model.collection.parentModel.get('name')) + ":" + (this.model.get('hash')));
       };
 
       return IconSelectView;

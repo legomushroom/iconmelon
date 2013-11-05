@@ -4,7 +4,7 @@
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define('collections/IconsCollection', ['backbone', 'models/IconModel', 'underscore'], function(B, IconModel, _) {
+  define('collections/IconsCollection', ['backbone', 'models/IconModel', 'underscore', 'helpers'], function(B, IconModel, _, helpers) {
     var IconsCollection, _ref;
 
     IconsCollection = (function(_super) {
@@ -58,15 +58,16 @@
         var _this = this;
 
         this.each(function(model) {
-          var hash;
+          var hash, sectionName;
 
           if (!model.get('isFiltered')) {
             model.set('isSelected', val);
             hash = model.get('hash');
+            sectionName = _this.parentModel.get('name');
             if (!val) {
-              return App.iconsSelected = _.without(App.iconsSelected, hash);
+              return App.iconsSelected = _.without(App.iconsSelected, "" + sectionName + ":" + hash);
             } else {
-              return App.iconsSelected.push(hash);
+              return App.iconsSelected.push("" + sectionName + ":" + hash);
             }
           }
         });

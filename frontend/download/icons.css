@@ -1,0 +1,30 @@
+.iconmelon,
+.im {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  display: block;
+  fill: #858484;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.iconmelon svg,
+.im svg,
+.iconmelon g,
+.im g,
+.iconmelon use,
+.im use {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.iconmelon:after,
+.im:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}

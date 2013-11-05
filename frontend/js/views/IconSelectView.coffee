@@ -15,7 +15,7 @@ define 'views/IconSelectView', ['views/ProtoView', 'collectionViews/SectionsColl
 			@
 
 		toggleEffects:->
-			@$('#js-filter-block').slideToggle()
+			@$('#js-filter-block').show().addClass('animated fadeInDown').find('#js-filters-place').trigger 'show'
 			@$el.addClass 'is-filter-show'
 
 		filter:(e)->

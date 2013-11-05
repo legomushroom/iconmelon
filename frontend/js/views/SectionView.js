@@ -52,6 +52,7 @@
           collection: new IconsCollection(this.model.get('icons'))
         });
         this.iconsCollectionView.collection.onFilter = _.bind(this.onFilter, this);
+        this.iconsCollectionView.collection.parentModel = this.model;
         return this.model.iconsCollectionView = this.iconsCollectionView;
       };
 

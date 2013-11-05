@@ -1,4 +1,4 @@
-define 'collections/IconsCollection', ['backbone', 'models/IconModel', 'underscore'], (B, IconModel, _)=>
+define 'collections/IconsCollection', ['backbone', 'models/IconModel', 'underscore', 'helpers'], (B, IconModel, _, helpers)=>
 	class IconsCollection extends B.Collection
 		model: IconModel
 
@@ -33,9 +33,12 @@ define 'collections/IconsCollection', ['backbone', 'models/IconModel', 'undersco
 					model.set 'isSelected', val
 
 					hash = model.get 'hash'
+					sectionName = @parentModel.get 'name'
 					if !val
-						App.iconsSelected = _.without App.iconsSelected, hash
-					else App.iconsSelected.push hash
+						App.iconsSelected = _.without App.iconsSelected, "#{ sectionName }:#{hash}"
+					else
+						App.iconsSelected.push "#{ sectionName }:#{hash}"
+
 
 			App.iconsSelected = _.uniq App.iconsSelected
 

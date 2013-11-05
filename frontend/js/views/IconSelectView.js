@@ -33,7 +33,7 @@
       };
 
       IconSelectView.prototype.toggleEffects = function() {
-        this.$('#js-filter-block').slideToggle();
+        this.$('#js-filter-block').show().addClass('animated fadeInDown').find('#js-filters-place').trigger('show');
         return this.$el.addClass('is-filter-show');
       };
 

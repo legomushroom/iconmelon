@@ -204,7 +204,7 @@
           _this.model.set('icons', _this.iconsCollection.collection.toJSON());
           return _this.model.save().then(function() {
             _this.$submitButton.removeClass('loading-eff');
-            return (new ThanxModalView).onClose(function() {});
+            return (new ThanxModalView).onClose = function() {};
           }).fail(function(err) {
             return _this.$submitButton.removeClass('loading-eff is-inactive');
           });
@@ -264,7 +264,7 @@
             return _this.filesLoaded === _this.filesDropped && _this.finishFilesLoading();
           },
           error: function(e, data) {
-            return App.notifier({
+            return App.notifier.show({
               text: 'loading error',
               type: 'error'
             });
