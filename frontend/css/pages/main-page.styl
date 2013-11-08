@@ -3,18 +3,21 @@
 	padding 0 8*gs
 	text-align center
 
-	.section-b
-		display none
+	// .section-b
+	// 	// display none
+	// 	// opacity 0
+	// 	visibility hidden
+	// 	transform(translateZ(0))
 
 	.main-logo-b
 		margin 0 auto
 		margin-top 16*gs
-		// -webkit-transform translateX(2000px) translateZ(0)
-		// -moz-transform translateX(2000px) translateZ(0)
-		// -ms-transform translateX(2000px) translateZ(0)
-		// -o-transform translateX(2000px) translateZ(0)
-		// transform translateX(2000px) translateZ(0)
-		transform(translateX(2000px))
+		-webkit-transform translateX(2000px) translateZ(0)
+		-moz-transform translateX(2000px) translateZ(0)
+		-ms-transform translateX(2000px) translateZ(0)
+		-o-transform translateX(2000px) translateZ(0)
+		transform translateX(2000px) translateZ(0)
+		// transform(translateX(2000px))
 
 		&.is-no-translateX
 			transform(translateX(0))

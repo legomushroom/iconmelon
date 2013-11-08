@@ -123,11 +123,11 @@ table {
   border-spacing: 0;
 }
 .header-e {
-  background-color: #f1f1f1;
+  background-color: #d7d8d8;
   border-radius: 3px;
   padding: 8px 16px;
   font-size: 16px;
-  color: #797777;
+  color: #5f5d5d;
 }
 .icon-b {
   height: 80px;
@@ -293,18 +293,18 @@ a.is-check:hover:after {
   display: block;
 }
 a.is-grey3 {
-  color: #d7d8d8;
+  color: #bdbfbf;
 }
 a.is-grey3:after {
-  border-top-color: #d7d8d8;
-  border-bottom-color: #d7d8d8;
+  border-top-color: #bdbfbf;
+  border-bottom-color: #bdbfbf;
 }
 a.is-grey2--onhover:hover {
-  color: #b8b7b7;
+  color: #9f9d9d;
 }
 a.is-grey2--onhover:hover:after {
-  border-top-color: #b8b7b7;
-  border-bottom-color: #b8b7b7;
+  border-top-color: #9f9d9d;
+  border-bottom-color: #9f9d9d;
 }
 a.is-check:after {
   display: block;

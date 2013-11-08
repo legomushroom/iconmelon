@@ -6,11 +6,31 @@ html
 		link(href="favicon.ico", rel="icon", type="image/png")
 		link(rel="stylesheet", type="text/css", href="css/main.css")
 		link(rel="stylesheet", href="css/css-assets/font/stylesheet.css", type="text/css", charset="utf-8")
+
+		//- for Google 
+		meta(name='description', content='svg icons library for web')
+		meta(name='keywords', content='svg library, web, css managable')
+		meta(name='author', content='LegoMushroom')
+		meta(name='copyright', content='LegoMushroom, MIT')
+		meta(name='application-name', content='iconmelon')
+		//- for Facebook 
+		meta(property='og:title', content='iconmelon')
+		meta(property='og:type', content='website')
+		meta(property='og:image', content='http://iconmelon.com/css/icons/logo-large.png')
+		meta(property='og:url', content='http://iconmelon.com')
+		meta(property='og:description', content='svg icons library for web')
+		//- for Twitter 
+		meta(name='twitter:card', content='summary')
+		meta(name='twitter:title', content='iconmelon')
+		meta(name='twitter:description', content='svg icons library for web')
+		meta(name='twitter:image', content='http://iconmelon.com/css/icons/logo-large.png')
+
 	body
 		.blinded-e#js-blinded.h-gm
 		- var iconClass = ''
 		- var text = ''		
 		- var filter = ''
+		- var viewBox = '0 0 32 32'
 		#js-svg-wrap	
 			include css/icons.svg
 
@@ -24,7 +44,7 @@ html
 			a(href="#").menu-item-be.is-hoverable#js-main why yummy
 			a(href="#/submit").menu-item-be.is-hoverable#js-submit submit icons
 			a(href="#").menu-item-be.is-hoverable.f-r-gm.m-r-x6-gm#js-main contacts
-			a(href="#").menu-item-be.is-hoverable.f-r-gm.m-r-x2-gm#js-main support us
+			a(href="#/support-us").menu-item-be.is-hoverable.f-r-gm.m-r-x2-gm#js-support-us support us
 			//- a(href="#/editr").menu-item-be.is-hoverable#js-editr editr
 			.loading-be.loading-eff#js-loadin-line
 
@@ -32,6 +52,9 @@ html
 
 		script(id="main-template", type="template")
 			include templates/main-page
+
+		script(id="support-page-template", type="template")
+			include templates/support-page
 
 		script(id="submit-page-template", type="template")
 			include templates/submit-page

@@ -17,7 +17,8 @@
       Router.prototype.routes = {
         '': 'main',
         'submit': 'submit',
-        'editr': 'editr'
+        'editr': 'editr',
+        'support-us': 'support'
       };
 
       Router.prototype.main = function() {
@@ -35,6 +36,12 @@
       Router.prototype.editr = function() {
         this.startPage(pc.editr);
         this.chechMainMenuItem('#js-editr');
+        return this.showHeader();
+      };
+
+      Router.prototype.support = function() {
+        this.startPage(pc.support);
+        this.chechMainMenuItem('#js-support-us');
         return this.showHeader();
       };
 

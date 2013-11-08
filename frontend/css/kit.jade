@@ -26,6 +26,8 @@ html
 			- var arrowClass	 = ''
 			- var nameId = ''
 			- var shapeId = ''
+			- var viewBox = '0 0 32 32'
+
 			.section-kl
 				.header-ke Icons
 				.cf 
@@ -98,6 +100,30 @@ html
 					.icon-sample-kl
 						.hash-e 30311088476bfb29aa9eb9f1f5d09fe5
 						- var path = 'sprout-icon'
+						- var iconClass = ''
+						include partials/icon
+
+					.icon-sample-kl
+						.hash-e c703d76a41826802273a79934d23376e
+						- var path = 'git-icon'
+						- var iconClass = ''
+						include partials/icon
+
+					.icon-sample-kl
+						.hash-e 55ec4fdbb1b437628ec35345fce3a1d4
+						- var path = 'friends-icon'
+						- var iconClass = ''
+						include partials/icon
+
+					.icon-sample-kl
+						.hash-e a393f2ae12118a982010e604c0ca06f5
+						- var path = 'sun-icon'
+						- var iconClass = ''
+						include partials/icon
+
+					.icon-sample-kl
+						.hash-e 9c636d674db27235306862d82676e7e4
+						- var path = 'invest-icon'
 						- var iconClass = ''
 						include partials/icon
 					
@@ -568,7 +594,7 @@ html
 						.text-be Consider yourself as one of iconmelon's parents now. Find out if you can help your child to rise up.
 
 				.hash-e	38c06112c6e3e24b5f57202103de26e6
-				.modal-b
+				.modal-b(style="position: relative")
 					- var path = 'close-icon'
 					- var iconClass = 'is-hoverable'
 					include partials/icon
@@ -628,6 +654,50 @@ html
 						include partials/input-with-icon
 
 					.content-bl
+
+				.hash-e aa8b5b01656750c20ce09dd8e90fe1a2
+				a(href="#").support-block-b
+					- var path = 'sun-icon'
+					- var iconClass = ''
+					include partials/icon
+					.header-be Make a donation.
+					.text-be Iconmelon was build on enthusiasm and faith in free and open WEB,
+						| but it's still consuming about 
+						i.c-grey2-hover-gm.bold-gm 20$/month 
+						| for powering up the 
+						i.line-thru-gm sun
+						|  server.
+						| Our budget now is 
+						i.c-grey2-hover-gm.bold-gm 40.2$ 
+						| so iconmelon has about 
+						i.c-grey2-hover-gm.bold-gm 2 month 
+						| of blossoming. We need your support.
+
+				.hash-e 6ac3003c28e91d4cf630e51f190294da
+				a(href="#").support-block-b
+					- var path = 'git-icon'
+					- var iconClass = ''
+					include partials/icon
+					.header-be Contibute.
+					.text-be Iconmelon is open source project and needs your care to be hilled up and watered well. We need your support.
+
+
+
+				.hash-e 68a4158ff79a16ef12710a1f173cdc23
+				a(href="#").support-block-b
+					- var path = 'invest-icon'
+					- var iconClass = ''
+					include partials/icon
+					.header-be Submit icons.
+					.text-be Invest to the better WEB - make iconmelon grow. We need your support.
+
+				.hash-e 8af355443def034f9b383bd18758a33e
+				a(href="#").support-block-b.is-friends
+					- var path = 'friends-icon'
+					- var iconClass = ''
+					include partials/icon
+					.header-be Share iconmelon with your friends.
+					.text-be Everybody must get a slice. We need your support.
 
 
 

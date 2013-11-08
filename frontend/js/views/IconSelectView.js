@@ -51,7 +51,8 @@
         IconSelectView.__super__.render.apply(this, arguments);
         this.renderButton();
         _.defer(function() {
-          return _this.renderView();
+          _this.renderView();
+          return _this.initFileUpload();
         });
         return this;
       };
@@ -80,6 +81,119 @@
 
       IconSelectView.prototype.renderButton = function() {
         return this.$('.icon-set-l').replaceWith(this.buttonCounterTemplate(this.model.toJSON()));
+      };
+
+      IconSelectView.prototype.initFileUpload = function() {
+        var _this = this;
+
+        return this.$('#fileupload').fileupload({
+          url: '/file-upload',
+          acceptFileTypes: /(\.|\/)(svg)$/i,
+          dataType: 'text',
+          limitMultiFileUploads: 999,
+          add: function(e, data) {
+            _this.filesDropped = data.originalFiles.length;
+            _this.filesLoaded = 0;
+            return data.submit();
+          },
+          done: function(e, data) {
+            _this.filesLoaded++;
+            _this.parseFile(data.result);
+            return _this.filesLoaded === _this.filesDropped && _this.finishFilesLoading();
+          },
+          error: function(e, data) {
+            return App.notifier.show({
+              text: 'loading error',
+              type: 'error'
+            });
+          },
+          progressall: function(e, data) {
+            var progress;
+
+            progress = parseInt(data.loaded / data.total * 100, 10);
+            return App.$loadingLine.css({
+              'width': "" + progress + "%"
+            });
+          }
+        });
+      };
+
+      IconSelectView.prototype.finishFilesLoading = function() {
+        var _this = this;
+
+        return setTimeout(function() {
+          return App.$loadingLine.fadeOut(100, function() {
+            App.$loadingLine.width("0%");
+            return App.$loadingLine.show();
+          });
+        }, 2000);
+      };
+
+      IconSelectView.prototype.parseFile = function(file) {
+        var i, icon, parsedFile, sections, _i, _len, _name, _ref1;
+
+        parsedFile = file.match(/(data\-iconmelon\s?=\s?\")(.+?)\"/gi);
+        sections = {};
+        for (i = _i = 0, _len = parsedFile.length; _i < _len; i = ++_i) {
+          icon = parsedFile[i];
+          icon = icon.split('data-iconmelon')[1].replace(/[\"\=]/gi, '');
+          icon = icon.split(':');
+          if ((_ref1 = sections[_name = icon[0]]) == null) {
+            sections[_name] = [];
+          }
+          sections[icon[0]].push(icon[1]);
+        }
+        return this.checkLoadedIcons(sections);
+      };
+
+      IconSelectView.prototype.checkLoadedIcons = function(sections) {
+        var filter, i, icon, icons, j, sectionModel, sectionModels, sectionName, _results;
+
+        _results = [];
+        for (sectionName in sections) {
+          icons = sections[sectionName];
+          if (sectionName !== 'filter') {
+            sectionModels = this.sectionsCollectionView.collection.where({
+              'name': sectionName
+            });
+            _results.push((function() {
+              var _i, _len, _results1;
+
+              _results1 = [];
+              for (i = _i = 0, _len = sectionModels.length; _i < _len; i = ++_i) {
+                sectionModel = sectionModels[i];
+                _results1.push((function() {
+                  var _j, _len1, _results2;
+
+                  _results2 = [];
+                  for (j = _j = 0, _len1 = icons.length; _j < _len1; j = ++_j) {
+                    icon = icons[j];
+                    icon = sectionModel.iconsCollection.where({
+                      'hash': icon
+                    })[0];
+                    _results2.push(icon.set('isSelected', true));
+                  }
+                  return _results2;
+                })());
+              }
+              return _results1;
+            })());
+          } else {
+            _results.push((function() {
+              var _i, _len, _results1;
+
+              _results1 = [];
+              for (i = _i = 0, _len = icons.length; _i < _len; i = ++_i) {
+                filter = icons[i];
+                _results1.push(this.filtersCollectionView.collection.where({
+                  'hash': filter
+                })[0].set('isSelected', true));
+              }
+              return _results1;
+            }).call(this));
+          }
+        }
+        return _results;
       };
 
       return IconSelectView;

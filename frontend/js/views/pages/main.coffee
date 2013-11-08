@@ -1,4 +1,4 @@
-define 'views/pages/main', ['views/pages/PageView', 'views/IconSelectView', 'models/IconSelectModel'],( PageView, IconSelectView, IconSelectModel )->
+define 'views/pages/main', ['views/pages/PageView', 'views/IconSelectView', 'models/IconSelectModel', 'underscore'],( PageView, IconSelectView, IconSelectModel, _)->
 
 	class Main extends PageView
 		template: '#main-template'
@@ -24,8 +24,10 @@ define 'views/pages/main', ['views/pages/PageView', 'views/IconSelectView', 'mod
 			@$mainLogo 			= @$('.main-logo-b')
 			@$melon 				= @$('.logo-large-e')
 			@$mainSection 	= @$('#js-icons-select-view-place')
-			!App.mainAnimated and @animate()
-			App.mainAnimated and @show()
+			
+			_.defer =>
+				!App.mainAnimated and @animate()
+				App.mainAnimated and @show()
 			@
 
 		download:->
@@ -53,7 +55,7 @@ define 'views/pages/main', ['views/pages/PageView', 'views/IconSelectView', 'mod
 			setTimeout (=> @$mainSection.addClass('animated fadeInDown'); App.mainAnimated = true), 1000
 
 		show:->
-			@$mainLogo.addClass 'is-no-translateX'
+			@$mainLogo.addClass 		'is-no-translateX'
 			@$melon.removeClass 		'is-rotated'
 			@$mainSection.addClass 	'animated fadeInDown'
 			@$mainLogo.addClass 		'animated fadeInDown'

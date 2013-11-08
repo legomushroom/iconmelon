@@ -1,7 +1,7 @@
 .icon {
   width: 32px;
   height: 32px;
-  fill: #d7d8d8;
+  fill: #bdbfbf;
   display: block;
   position: relative;
 }
@@ -48,10 +48,10 @@
   transition: transform 0.3s linear;
 }
 .icon.is-grey3 {
-  fill: #d7d8d8;
+  fill: #bdbfbf;
 }
 .icon.is-hoverable:hover {
-  fill: #cacbcb;
+  fill: #b0b2b2;
   cursor: pointer;
 }
 .icon.is-green--onhover:hover {

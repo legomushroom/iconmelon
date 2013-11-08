@@ -18,7 +18,7 @@
 
       SectionView.prototype.template = '#section-view-template';
 
-      SectionView.prototype.className = 'section-b cf';
+      SectionView.prototype.className = 'section-b cf h-gm';
 
       SectionView.prototype.events = {
         'click #js-hide': 'toggleHide',
@@ -53,6 +53,7 @@
         });
         this.iconsCollectionView.collection.onFilter = _.bind(this.onFilter, this);
         this.iconsCollectionView.collection.parentModel = this.model;
+        this.model.iconsCollection = this.iconsCollectionView.collection;
         return this.model.iconsCollectionView = this.iconsCollectionView;
       };
 

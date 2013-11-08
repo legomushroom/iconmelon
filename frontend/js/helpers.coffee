@@ -7,7 +7,7 @@ define 'helpers', ['md5'], (md5)->
 		listenLinks:->
 			$(document.body).on 'click', 'a', (e)->
 				$it = $(@)
-				if $it.attr('target') is '_blank' or $it.attr('href').match(/mailto:/g) then return
+				if $it.attr('target') is '_blank' or $it.attr('href').match(/mailto:/g) or $it.hasClass 'js-no-follow' then return
 				e.preventDefault()
 				# $it = $(@).addClass 'is-check'
 

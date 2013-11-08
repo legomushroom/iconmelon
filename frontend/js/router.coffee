@@ -1,9 +1,10 @@
 define 'router', ['backbone','controllers/PagesController'], (B, pc)->
 	class Router extends B.Router
 		routes:
-			'': 			'main'
-			'submit': 		'submit'
-			'editr': 		'editr'
+			'': 						'main'
+			'submit': 			'submit'
+			'editr': 				'editr'
+			'support-us': 	'support'
 
 		main:->
 			@startPage pc.main
@@ -15,10 +16,14 @@ define 'router', ['backbone','controllers/PagesController'], (B, pc)->
 			@chechMainMenuItem '#js-submit'
 			@showHeader()
 
-
 		editr:->
 			@startPage pc.editr
 			@chechMainMenuItem '#js-editr'
+			@showHeader()
+
+		support:->
+			@startPage pc.support
+			@chechMainMenuItem '#js-support-us'
 			@showHeader()
 
 

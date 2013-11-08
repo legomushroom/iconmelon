@@ -21,6 +21,38 @@ body
 	
 }
 
+
+// COLORS
+.c-grey1-gm
+	color c-grey1
+.c-grey2-gm
+	color c-grey2
+.c-grey2-hover-gm
+	color c-grey2-hover
+
+.c-grey3-gm
+	color c-grey3
+// COLORS
+
+// FONT
+.line-thru-gm, .line-through-gm
+	position: relative
+	&:after
+		content ''
+		position: absolute
+		top 50%
+		left 0
+		width 100%
+		margin-top 1px
+		border-top 2px solid
+
+.bold-gm
+	font-weight bold
+
+// FONT
+
+
+
 .op-5-gm
 	opacity .5
 
@@ -133,3 +165,11 @@ colors()
 			
 metrics()
 colors()
+
+// ADD THIS SOCIAL WIDGET
+#at16lb
+	opacity 0 !important
+#at15s
+	display none !important
+	opacity 0 !important
+// ADD THIS SOCIAL WIDGET

@@ -159,7 +159,8 @@ define 'views/EditCollectionView', [ 'views/ProtoView', 'views/IconEditView', 'c
 					@$submitButton.removeClass 'loading-eff is-inactive'
 
 		delete:->
-			@model.destroy()
+			if confirm('Are you sure?')
+				@model.destroy()
 
 		save:->
 			_.defer =>

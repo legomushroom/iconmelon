@@ -1,0 +1,76 @@
+.header-pe 'Allo! There is 4 ways to support us:
+
+.support-blocks-pl.cf
+	.support-block-b
+		- var path = 'sun-icon', filter = ''
+		- var iconClass = '', idAttribute = ''
+		- var title = '', viewBox = '0 0 32 32'
+		include ../css/partials/icon
+		.header-be Make a donation.
+		.text-be Iconmelon was build on enthusiasm and faith in free and open WEB,
+			| but it's still consuming about 
+			i.c-grey2-hover-gm.bold-gm.js-monthly 20
+			i.c-grey2-hover-gm.bold-gm $/month 
+			| for powering up the 
+			i.line-thru-gm sun
+			|  server.
+			| Our budget now is 
+			i.c-grey2-hover-gm.bold-gm.js-budget 40.2
+			i.c-grey2-hover-gm.bold-gm $ 
+			| so iconmelon has about 
+			i.c-grey2-hover-gm.bold-gm.js-time-left 2
+			i.c-grey2-hover-gm.bold-gm  month
+			|  of blossoming. We need your support.
+
+		- var text = 'donate', cnt = ''
+		- var className = 'is-block'
+		include ../css/partials/button
+
+			form(action='https://www.paypal.com/cgi-bin/webscr', method='post', target='_top')
+				input(type='hidden', name='cmd', value='_s-xclick')
+				input(type='hidden', name='encrypted', value='-----BEGIN PKCS7-----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-----END PKCS7-----')
+				input(type='image', src='https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif', border='0', name='submit', alt='PayPal - The safer, easier way to pay online!')
+				img(alt='', border='0', src='https://www.paypalobjects.com/en_US/i/scr/pixel.gif', width='1', height='1')
+
+
+
+	.support-block-b
+		- var path = 'git-icon', filter = ''
+		- var title = '', viewBox = '0 0 32 32'
+		- var iconClass = '', idAttribute = ''
+		include ../css/partials/icon
+		.header-be Contibute.
+		.text-be Iconmelon is open source project and needs your care to be hilled up and watered well. We need your support.
+
+		a(target="_blank", href="https://github.com/sol0mka/iconmelon").btn-b contribute
+
+
+	.support-block-b
+		- var path = 'invest-icon', filter = ''
+		- var iconClass = '', idAttribute = ''
+		- var title = '', viewBox = '0 0 32 32'
+		include ../css/partials/icon
+		.header-be Submit icons.
+		.text-be So you are designer and whant to invest to the better WEB? Submit your icons under open source license - make iconmelon grow. We need your support.
+
+		a(href="#/submit").btn-b submit
+
+	.support-block-b.is-friends
+		- var path = 'friends-icon', filter = ''
+		- var iconClass = '', idAttribute = ''
+		- var title = '', viewBox = '0 0 32 32'
+		include ../css/partials/icon
+		.header-be Share iconmelon with your friends.
+		.text-be Everybody must get a slice. We need your support.
+
+		- var text = 'share', cnt = ''
+		- var className = 'is-block'
+		include ../css/partials/button
+			<!-- AddThis Button BEGIN -->
+			<div class="addthis_toolbox addthis_floating_style addthis_32x32_style" style="left:50px;top:50px;">
+			<a class="addthis_button_compact js-no-follow"></a>
+			</div>
+			<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+			<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4fb4033d0a07d6d5"></script>
+			<!-- AddThis Button END -->
+

@@ -1,12 +1,10 @@
 {
   "name": "iconmelon",
-  "version": "0.0.1-7",
+  "version": "0.0.1-22",
   "private": false,
-  "subdomain": "legomushroom-iconmelon",
-  "domains": [
-    "iconmelon.com",
-    "www.iconmelon.com"
-  ],
+  "scripts": {
+    "start": "nodemon app.js"
+  },
   "dependencies": {
     "express": "3.3.7",
     "jade": "*",
@@ -16,12 +14,14 @@
     "node-promise": "latest",
     "lodash": "latest",
     "node-native-zip": "latest",
-    "MD5": "latest"
+    "MD5": "latest",
+    "mkdirp": "latest"
   },
+  "devDependencies": {
+    "nodemon": "*"
+  },
+  "subdomain": "legomushroom-iconmelon",
   "engines": {
     "node": "0.10.x"
-  },
-  "scripts": {
-    "start": "node app.js"
   }
 }

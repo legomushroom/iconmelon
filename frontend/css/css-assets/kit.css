@@ -1,6 +1,9 @@
+body {
+  margin-bottom: 160px;
+}
 .hash-e {
   font-size: 16px;
-  color: #d7d8d8;
+  color: #bdbfbf;
   margin-bottom: 8px;
   margin-top: 16px;
   max-width: 100%;

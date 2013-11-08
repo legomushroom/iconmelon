@@ -8,7 +8,11 @@ Promise = require('node-promise').Promise
 _       = require 'lodash'
 zip     = require 'node-native-zip'
 md5     = require 'MD5'
+mkdirp  = require 'mkdirp'
 
+mkdirp 'frontend/generated-icons', ->
+mkdirp 'uploads', ->
+  
 port    = 3000
 app     = express()
 
@@ -49,6 +53,13 @@ FilterSchema = new mongo.Schema
       moderated:      Boolean
 
 Filter = mongo.model 'Filter', FilterSchema
+
+
+BudgetSchema = new mongo.Schema
+      budget:         String
+      monthly:        String
+
+Budget = mongo.model 'Budget', BudgetSchema
 
 io = require('socket.io').listen(app.listen(process.env.PORT or port), { log: false })
 
@@ -197,9 +208,11 @@ class Main
         htmlData  += '<div class="header-e">Filters:</div><div class="section-l cf">'
         for doc, i in docs
           filterName = @safeCssName(doc.name)
-          str = doc.filter.replace /\<filter\s?/ , "<filter id='#{filterName}' "
+          str = doc.filter.replace /\<filter\s?/ , "<filter id='#{filterName}' data-iconmelon='filter:#{doc.hash}'"
           svgData  += str
-          htmlData += firstIcon.replace(/filter=\"(.+)?\"/, "filter=\"url(##{filterName})\"").replace /\>.+?\</, ">##{filterName}<"
+          htmlStr   = firstIcon.replace(/filter=\"(.+)?\"/, "filter=\"url(##{filterName})\"").replace /\>.+?\</, ">##{filterName}<"
+          htmlStr   = htmlStr.replace /0 0 32 32/, '0 0 34 34'
+          htmlData += htmlStr
       
         prm.resolve 
                 svgData: svgData
@@ -291,16 +304,25 @@ app.post '/download-icons', (req,res,next)->
     res.send fileName
 
 app.post '/file-upload', (req,res,next)->
-  console.log req.files.files[0].path
   fs.readFile req.files.files[0].path, {encoding: 'utf8'}, (err,data)->
     $ = che.load data
     res.send $('svg').html()
-    # fs.unlink req.files.files[0].path, (err)->
-    #     err and console.error err
+    fs.unlink req.files.files[0].path, (err)->
+        err and console.error err
 
 app.get '/generate-main-svg-data', (req,res,next)->
   main.generateMainPageSvg().then (msg)->
     res.send msg
+
+app.get '/budget-counters', (req,res,next)->
+  Budget.find {}, (err, docs)->
+    doc = docs[0]
+    res.send doc
+
+# new Budget(
+#       budget: '-40'
+#       monthly: '20'
+#     ).save()
 
 # new Filter({
 #   name: 'outline color'

@@ -2,7 +2,7 @@ define 'views/SectionView', ['views/ProtoView', 'models/SectionModel', 'collecti
 	class SectionView extends ProtoView
 		model: SectionModel
 		template: '#section-view-template'
-		className: 'section-b cf'
+		className: 'section-b cf h-gm'
 
 		events: 
 			'click #js-hide': 					'toggleHide'
@@ -21,6 +21,7 @@ define 'views/SectionView', ['views/ProtoView', 'models/SectionModel', 'collecti
 
 		render:->
 			super
+
 			@renderIcons()
 			@toggleClasses()
 			@$content = @$('#js-icons-place')
@@ -33,10 +34,9 @@ define 'views/SectionView', ['views/ProtoView', 'models/SectionModel', 'collecti
 							collection: new IconsCollection @model.get 'icons'
 
 			@iconsCollectionView.collection.onFilter = _.bind @onFilter, @
-
 			@iconsCollectionView.collection.parentModel = @model
-
-			@model.iconsCollectionView = @iconsCollectionView
+			@model.iconsCollection 			= @iconsCollectionView.collection
+			@model.iconsCollectionView 	= @iconsCollectionView
 
 		toggleClasses:->
 			@$el.toggleClass 'is-closed', !!@model.get('isClosed')

@@ -1,6 +1,65 @@
 // BLOCKS
 @import '../assets/imports.styl'
 
+
+/* aa8b5b01656750c20ce09dd8e90fe1a2 */
+.support-block-b
+	width 72*gs
+	display block
+	padding 8*gs 6*gs
+	&.is-friends
+		> .icon
+			rect 53*gs
+			margin-top - 9*gs
+			@media all and (max-width:1200px)
+				rect 43*gs
+				margin-top: - 5*gs
+
+
+		> .header-be 
+			margin-top: -12*gs
+		> .text-be , > .header-be 
+			position: relative
+			top - 5*gs
+			@media all and (max-width:1200px)
+				position static
+
+	.btn-b
+		position: absolute
+		bottom 4*gs
+		width 24*gs
+
+	> .icon
+		rect 35*gs
+		margin 0 auto
+	> .header-be 
+		font-size 5*gs - 2px
+		color c-grey2-hover
+		margin-top 4*gs
+		font-weight bold
+	> .text-be 
+		margin-top  3px
+		font-size 4*gs
+		line-height 5*gs - 1px
+		color c-grey2
+
+		.line-thru-gm
+			color c-grey3
+
+	@media all and (max-width:1200px)
+		> .icon
+			rect 25*gs
+			margin 0 auto
+		> .header-be 
+			font-size 4*gs - 2px
+			margin-top 3*gs
+		> .text-be 
+			margin-top  3px
+			font-size 3*gs
+			line-height 4*gs - 1px
+
+
+
 /* 38c06112c6e3e24b5f57202103de26e6 */
 .modal-b
 	position: relative
@@ -282,8 +341,12 @@
 	> .icon
 		rect 5*gs
 		margin 0 auto
-		svg 
-			padding (gs/2)
+		// svg 
+		// 	padding (gs/2)
+		// g
+		// 	margin - (gs/2)
+		// use
+		// 	margin (gs/2)
 
 	> .name-be
 		font-size 2.5*gs
@@ -863,8 +926,33 @@ shadowSize = 2px
 		nw 0
 		rect 100%
 	&:active
-		&:before
+		&:before, .addthis_internal_container, > input[type="file"]
 			transform translate(- shadowSize,- shadowSize)
+		
+	> input[type="file"]
+		padding-left 110%
+		cursor: pointer
+		rect 100%
+		opacity 0
+		nw 0
+		position absolute
+
+	&.is-block
+		display block
+
+	// add this share block
+	.addthis_internal_container
+		width 100% II
+	.addthis_toolbox
+		rect 100%
+		height 6*gs
+		top  - gs + 2px II
+		left 0 II
+		position: absolute
+		opacity: 0
+	.addthis_button_compact
+		height 6*gs
+		margin-top - gs
 
 	
 	/* 9343b5637912148f603dc8c154382c2c */

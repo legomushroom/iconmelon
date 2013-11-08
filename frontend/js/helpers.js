@@ -15,7 +15,7 @@
           var $it;
 
           $it = $(this);
-          if ($it.attr('target') === '_blank' || $it.attr('href').match(/mailto:/g)) {
+          if ($it.attr('target') === '_blank' || $it.attr('href').match(/mailto:/g) || $it.hasClass('js-no-follow')) {
             return;
           }
           e.preventDefault();

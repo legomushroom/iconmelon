@@ -212,7 +212,9 @@
       };
 
       EditCollectionView.prototype["delete"] = function() {
-        return this.model.destroy();
+        if (confirm('Are you sure?')) {
+          return this.model.destroy();
+        }
       };
 
       EditCollectionView.prototype.save = function() {

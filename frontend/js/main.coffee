@@ -5,17 +5,17 @@ require.config
 		underscore: 	'lib/lodash.underscore'
 		marionette:		'lib/backbone.marionette'
 		babysitter:		'lib/backbone.babysitter'
-		wreq:			'lib/backbone.wreqr'
-		socketio:		'lib/socket.io'
+		wreq:					'lib/backbone.wreqr'
+		socketio:			'lib/socket.io'
 		backboneiosync:	'lib/backbone.iosync'
 		backboneiobind:	'lib/backbone.iobind'
 		Modernizr: 		'lib/Modernizr'
-		hammer: 		'lib/jquery.hammer'
+		hammer: 			'lib/jquery.hammer'
 		baresize: 		'lib/jquery.ba-resize'
 		fileupload: 	'lib/jquery.fileupload'
 		'jquery.ui.widget':'lib/jquery.ui.widget'
 		stickIt: 		'lib/backbone.stickit'
-		md5: 			'lib/md5'
+		md5: 				'lib/md5'
 		text: 			'lib/text'
 		themes: 		'../themes.js'
 
@@ -65,8 +65,8 @@ define 'main', ['collectionViews/NotiesCollectionView', 'marionette', 'jquery', 
 			App.filtersSelected = []
 
 			
-			# window.socket = io.connect('http://localhost')
-			window.socket = io.connect('http://legomushroom-iconmelon.jit.su')
+			window.socket = io.connect('http://localhost')
+			# window.socket = io.connect('http://legomushroom-iconmelon.jit.su')
 
 			App.router = new Router
 			Backbone.history.start()
