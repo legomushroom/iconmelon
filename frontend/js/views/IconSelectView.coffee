@@ -42,7 +42,6 @@ define 'views/IconSelectView', ['views/ProtoView', 'collectionViews/SectionsColl
 			@filtersCollectionView.collection.fetch()
 
 			@sectionsCollection = new SectionsCollection
-			
 			@sectionsCollection.fetch().then =>
 				@sectionsCollectionView = new SectionsCollectionView
 					collection: @sectionsCollection

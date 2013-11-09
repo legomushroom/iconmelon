@@ -23,25 +23,25 @@
 
       Router.prototype.main = function() {
         this.startPage(pc.main);
-        this.chechMainMenuItem();
+        this.checkMainMenuItem();
         return this.animateHeader();
       };
 
       Router.prototype.submit = function() {
         this.startPage(pc.submit);
-        this.chechMainMenuItem('#js-submit');
+        this.checkMainMenuItem('#js-submit');
         return this.showHeader();
       };
 
       Router.prototype.editr = function() {
         this.startPage(pc.editr);
-        this.chechMainMenuItem('#js-editr');
+        this.checkMainMenuItem('#js-editr');
         return this.showHeader();
       };
 
       Router.prototype.support = function() {
         this.startPage(pc.support);
-        this.chechMainMenuItem('#js-support-us');
+        this.checkMainMenuItem('#js-support-us');
         return this.showHeader();
       };
 
@@ -70,7 +70,7 @@
         }).addClass('no-animation');
       };
 
-      Router.prototype.chechMainMenuItem = function(selector) {
+      Router.prototype.checkMainMenuItem = function(selector) {
         return App.$mainHeader.find('a').removeClass('is-check').filter(selector).addClass('is-check');
       };
 

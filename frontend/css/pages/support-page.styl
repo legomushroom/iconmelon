@@ -1,21 +1,19 @@
 @import '../assets/imports'
 
 .support-p
-	padding 10*gs 4*gs
+	padding 12*gs 4*gs
 	opacity: 0
 
 	> .header-pe
-		font-size 4*gs
-		line-height 4*gs
+		font-size 3*gs
+		line-height 3*gs
 		color c-grey2
-		margin-bottom 6*gs
+		margin-bottom 3*gs
 		margin-top - (gs/2)
 		padding-left 4*gs
 		@media all and (max-width:1200px)
-			font-size 	3*gs
-			line-height 3*gs
-			margin-bottom 3*gs
 			text-align center
+
 
 	.support-blocks-pl
 		box-shadow 0 0 0 gs rgba(0,0,0,.03)
@@ -25,17 +23,17 @@
 
 		.support-block-b
 			float left
-			width 50%
-			height 92*gs
+			height 68*gs
 			border gs solid rgba(0,0,0,.03)
 			position relative
 			@media all and (max-width:1200px)
+				width 62*gs
 				clear both
-				width 64*gs
 				margin: 0 auto
 				float none
 				height auto
 				padding 4*gs 4*gs 12*gs
+				border-radius br + 2px
 
 				+ .support-block-b
 					margin-top 2*gs

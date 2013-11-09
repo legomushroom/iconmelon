@@ -25,7 +25,7 @@
 
       SectionsCollectionView.prototype.render = function() {
         SectionsCollectionView.__super__.render.apply(this, arguments);
-        this.items = this.children.toArray();
+        this.$el.addClass('animated fadeInDown');
         return this;
       };
 

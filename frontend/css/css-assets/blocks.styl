@@ -2,27 +2,71 @@
 @import '../assets/imports.styl'
 
 
+/* 18d44e1e888afe365824a57f57134c93 */
+.use-text-b
+	color 		c-grey2
+	font-size 	3*gs
+	line-height 4*gs - 3px
+
+/* 2e6c139ac99102313c8ab2e8ea1eafb0 */
+.use-preview-b
+	rect 15.5*gs
+	border (gs/2) solid c-green
+	border-radius 50%
+	background-color white
+
+/* ce7a4a29b02dbe1afc9923dd19c0a782 */
+.use-or-b
+	position relative
+	overflow hidden
+	rect 40*gs
+	border-radius br
+
+	&:after
+		content ''
+		border-top (gs/2) solid c-grey4
+		width 200%
+		position absolute
+		z-index: 0
+		transform rotate(-45deg)
+		t 50%
+		l -50%
+		margin-top - 2px
+	.use-num-b
+		position: absolute
+		nw 50%
+		margin-top  - 2.75*gs
+		margin-left - 2.75*gs
+		z-index: 1
+
+/* e5e06d7c4c91714a20371c7716c047fb */
+.use-num-b
+	color 	c-grey4
+	border 	(gs/2) solid c-grey4
+	border-radius 50%
+	rect 5.5*gs
+	text-align center
+	font-size 3*gs
+	line-height 5*gs
+	background-color white
+
 /* aa8b5b01656750c20ce09dd8e90fe1a2 */
 .support-block-b
 	width 72*gs
 	display block
 	padding 8*gs 6*gs
+	width 50%
+	
 	&.is-friends
 		> .icon
-			rect 53*gs
-			margin-top - 9*gs
-			@media all and (max-width:1200px)
 				rect 43*gs
-				margin-top: - 5*gs
-
+				margin-top: - 10*gs
 
 		> .header-be 
 			margin-top: -12*gs
 		> .text-be , > .header-be 
 			position: relative
 			top - 5*gs
-			@media all and (max-width:1200px)
-				position static
 
 	.btn-b
 		position: absolute
@@ -30,33 +74,36 @@
 		width 24*gs
 
 	> .icon
-		rect 35*gs
+		rect 25*gs
 		margin 0 auto
 	> .header-be 
-		font-size 5*gs - 2px
+		font-size 4*gs - 2px
 		color c-grey2-hover
-		margin-top 4*gs
+		margin-top 3*gs
 		font-weight bold
 	> .text-be 
 		margin-top  3px
-		font-size 4*gs
-		line-height 5*gs - 1px
+		font-size 3*gs
+		line-height 4*gs - 1px
 		color c-grey2
 
 		.line-thru-gm
 			color c-grey3
 
-	@media all and (max-width:1200px)
-		> .icon
-			rect 25*gs
-			margin 0 auto
-		> .header-be 
-			font-size 4*gs - 2px
-			margin-top 3*gs
-		> .text-be 
-			margin-top  3px
-			font-size 3*gs
-			line-height 4*gs - 1px
+	// @media all and (max-width:1500px)
+	// 	> .icon
+	// 		rect 30*gs
+	// 		margin 0 auto
+	// 	> .header-be 
+	// 		font-size 4.5*gs - 2px
+	// 		margin-top 3.5*gs
+	// 	> .text-be 
+	// 		margin-top  5px
+	// 		font-size 	3.5*gs
+	// 		line-height 4.5*gs - 1px
+
+		
+	
 
 
 

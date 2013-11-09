@@ -8,22 +8,22 @@ define 'router', ['backbone','controllers/PagesController'], (B, pc)->
 
 		main:->
 			@startPage pc.main
-			@chechMainMenuItem()
+			@checkMainMenuItem()
 			@animateHeader()
 
 		submit:->
 			@startPage pc.submit
-			@chechMainMenuItem '#js-submit'
+			@checkMainMenuItem '#js-submit'
 			@showHeader()
 
 		editr:->
 			@startPage pc.editr
-			@chechMainMenuItem '#js-editr'
+			@checkMainMenuItem '#js-editr'
 			@showHeader()
 
 		support:->
 			@startPage pc.support
-			@chechMainMenuItem '#js-support-us'
+			@checkMainMenuItem '#js-support-us'
 			@showHeader()
 
 
@@ -41,7 +41,7 @@ define 'router', ['backbone','controllers/PagesController'], (B, pc)->
 		showHeader:->
 			App.$mainHeader.css('opacity': 1).addClass 'no-animation'
 
-		chechMainMenuItem:(selector)->
+		checkMainMenuItem:(selector)->
 			App.$mainHeader.find('a').removeClass('is-check').filter(selector).addClass('is-check')
 
 	Router

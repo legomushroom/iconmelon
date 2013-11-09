@@ -9,13 +9,12 @@ define 'collectionViews/SectionsCollectionView', ['collectionViews/ProtoCollecti
 
 		render:->
 				super
-				@items = @children.toArray()
-				# @fadeInAll()
+				@$el.addClass 'animated fadeInDown'
 				@
 
 		# fadeInAll:(i=0)->
 		# 	if i < @items.length 
-		# 		@items[i].$el.fadeIn(); setTimeout (=> @fadeInAll i), 100
+		# 		@items[i].$el.fadeIn(); setTimeout (=> @fadeInAll i), 250
 		# 		i++
 
 	SectionsCollectionView
