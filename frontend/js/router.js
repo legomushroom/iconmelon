@@ -18,7 +18,8 @@
         '': 'main',
         'submit': 'submit',
         'editr': 'editr',
-        'support-us': 'support'
+        'support-us': 'support',
+        'how-to-use': 'how'
       };
 
       Router.prototype.main = function() {
@@ -42,6 +43,12 @@
       Router.prototype.support = function() {
         this.startPage(pc.support);
         this.checkMainMenuItem('#js-support-us');
+        return this.showHeader();
+      };
+
+      Router.prototype.how = function() {
+        this.startPage(pc.how);
+        this.checkMainMenuItem('#js-how');
         return this.showHeader();
       };
 

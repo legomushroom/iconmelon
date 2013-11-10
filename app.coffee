@@ -103,7 +103,7 @@ class Main
 
       Filter.find search, (err, docs)->
         for doc, i in docs
-          iconData += doc.filter.replace /\<filter/, "<filter id='#{doc.hash}'"
+          iconData += doc.filter.replace /\<filter/, "<filter id='#{doc.hash}' "
         prm.resolve iconData
 
     prm

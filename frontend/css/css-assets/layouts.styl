@@ -2,29 +2,84 @@
 @import '../assets/imports.styl'
 
 
+/* bef76143e419e0eeaedd7c605f324c64 */
+.use-2-options-line-l
+	> .left-ll, > .right-ll, > .center-ll
+		width 40%
+		float: left
+	> .right-ll
+		padding-left 4*gs
+
+	@media all and (max-width: 1150px)
+		> .right-ll, > .center-ll
+			clear both
+		> .left-ll, > .right-ll
+			width 100%
+		> .right-ll
+			padding-left 0
+		> .center-ll
+			margin-top 2*gs
+			margin-left: -2*gs
+
+	> .center-ll
+		width 20%
+
+	.use-or-b
+		rect 20*gs
+		margin 0 auto
+		position: relative
+		t - 2*gs
+
 /* 40786efe0e3396f01135b7557644635b */
 .use-line-l
 	> .left-ll, > .right-ll
 		float left
 	> .left-ll
-		width 30%
+		width 20%
+		&.is-no-num
+			max-width 15*gs
+
 	> .right-ll
-		width 70%
-		padding-left 4*gs
+		width 80%
+		padding-left 8*gs
 		text-align left
 		display table
 		vertical-align middle
-		height 15.5*gs
-
+		height 15*gs
 		.use-text-b
 			display table-cell
-			// display inline-block
 			vertical-align middle
+
+	@media all and (max-width: 1150px)
+		> .left-ll
+			width 30%
+		> .right-ll
+			width 70%
+			padding-left 4*gs
 
 
 /* f0da073515e3bf86be77b0b224b3e280 */
 .numed-use-preview-l
 	position: relative
+	padding-right 15*gs
+	height 15*gs
+
+	&.is-no-num
+		padding-right 0
+		> .connector-le, .use-num-b
+			display none
+		.use-preview-b
+			right 100%
+			margin-right - 15*gs
+			&:hover
+				margin-right: - 5*gs
+				@media all and (max-width: 1150px)
+					margin-right 0
+
+
+	&.is-no-preview
+		.use-preview-b
+			display none
 	
 	> .connector-le
 		border-top (gs/2) solid c-grey4
@@ -40,12 +95,22 @@
 		margin-top - 2.75*gs
 		t 50%
 		l 0
-
+	duration = .25s
+	easing = linear
 	.use-preview-b
-		position: relative
+		position: absolute
 		z-index: 1
 		margin-left 7.5*gs
-		float right
+		right 0
+		transition all .25s ease-out
+		&:hover
+			top 		- 12.5*gs
+			right: 	- 12.5*gs
+			rect 40*gs
+			background-size 75%
+			z-index: 11
+
+		
 	
 
 /* f609e06a5e7b6776445a78e6c90fe6fa */

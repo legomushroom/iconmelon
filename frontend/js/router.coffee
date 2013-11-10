@@ -5,6 +5,7 @@ define 'router', ['backbone','controllers/PagesController'], (B, pc)->
 			'submit': 			'submit'
 			'editr': 				'editr'
 			'support-us': 	'support'
+			'how-to-use': 	'how'
 
 		main:->
 			@startPage pc.main
@@ -24,6 +25,11 @@ define 'router', ['backbone','controllers/PagesController'], (B, pc)->
 		support:->
 			@startPage pc.support
 			@checkMainMenuItem '#js-support-us'
+			@showHeader()
+
+		how:->
+			@startPage pc.how
+			@checkMainMenuItem '#js-how'
 			@showHeader()
 
 

@@ -285,11 +285,21 @@ html
 				.hash-e 2e6c139ac99102313c8ab2e8ea1eafb0
 				.use-preview-b
 
+				.hash-e d6357edaaf3a9db383e8191aa395c0af
+				.use-preview-b.is-copy-svg
+
+				.hash-e 223a4c8108f0be566ff9e86ecd2aced6
+				.use-preview-b.is-copy-js
+
+				.hash-e c5acd2f44594d68d2716b7c647f0041f
+				.use-preview-b.is-add-icon
+
+				.hash-e a6b114e4e811f2f593bb5dbf53794f85
+				.use-preview-b.is-add-css
+
 				.hash-e f0da073515e3bf86be77b0b224b3e280
-				.numed-use-preview-l.cf
-					.use-num-b 1
-					.use-preview-b
-					.connector-le
+				- var data = { className: '', num: 2, previewClassName: ''}
+				include partials/numed-use-preview
 
 				.hash-e 18d44e1e888afe365824a57f57134c93
 				.use-text-b Select icons and maybe filter effects then click download button.
@@ -297,12 +307,59 @@ html
 				.hash-e 40786efe0e3396f01135b7557644635b
 				.use-line-l.cf
 					.left-ll
-						.numed-use-preview-l.cf
-							.use-num-b 1
-							.use-preview-b
-							.connector-le
+						- var data = { className: '', num: 2, previewClassName: ''}
+						include partials/numed-use-preview
 					.right-ll
 						.use-text-b Select icons and maybe filter effects then click download button. 
+
+				.hash-e bef76143e419e0eeaedd7c605f324c64
+				.use-2-options-line-l.cf
+					.left-ll
+						.use-line-l.cf
+							.left-ll
+								- var data = { className: 'is-no-num', num: 2, previewClassName: ''}
+								include partials/numed-use-preview
+							.right-ll
+								.use-text-b Copy contents of icons.svg file just before opening <body> tag.
+					.center-ll
+						.use-or-b
+							.use-num-b OR
+
+					.right-ll
+						.use-line-l.cf
+							.left-ll
+								- var data = { className: 'is-no-num', num: 2, previewClassName: ''}
+								include partials/numed-use-preview
+							.right-ll
+								.use-text-b Or copy the js snippet from the bottom of the index.html and specify url to icons.svg file. (webserver only)
+
+				.hash-e 5865aaa5b346c5aaef5f3b0e3931b09d
+				.numed-block-l.cf
+					.num-ll
+						- var data = { className: 'is-no-preview', num: 2, previewClassName: ''}
+						include partials/numed-use-preview
+
+					.block-ll	
+						.use-2-options-line-l.cf
+							.left-ll
+								.use-line-l.cf
+									.left-ll
+										- var data = { className: 'is-no-num', num: 2, previewClassName: ''}
+										include partials/numed-use-preview
+									.right-ll
+										.use-text-b Copy contents of icons.svg file just before opening <body> tag.
+							.center-ll
+								.use-or-b
+									.use-num-b OR
+
+							.right-ll
+								.use-line-l.cf
+									.left-ll
+										- var data = { className: 'is-no-num', num: 2, previewClassName: ''}
+										include partials/numed-use-preview
+									.right-ll
+										.use-text-b Or copy the js snippet from the bottom of the index.html and specify url to icons.svg file. (webserver only)
+
 
 
 				.hash-e 8d92942b39756658a1fc398019ca1af8
@@ -658,6 +715,13 @@ html
 					- var path = 'main-logo-icon'
 					- var iconClass = ''
 					include partials/icon
+
+				.hash-e	a3c04187903038745cfd8388b6846a61
+				a(href="").small-logo-b.is-hoverable
+					- var path = 'main-logo-icon'
+					- var iconClass = ''
+					include partials/icon
+					p support us
 
 				.hash-e	19d8650be161cd15c32961dab15941ab
 				- var className = ''

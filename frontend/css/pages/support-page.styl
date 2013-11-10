@@ -11,32 +11,22 @@
 		margin-bottom 3*gs
 		margin-top - (gs/2)
 		padding-left 4*gs
-		@media all and (max-width:1200px)
-			text-align center
-
+		text-align center
 
 	.support-blocks-pl
-		box-shadow 0 0 0 gs rgba(0,0,0,.03)
 		border-radius br + 2px
-		@media all and (max-width:1200px)
-			box-shadow none
+		box-shadow none
 
 		.support-block-b
-			float left
-			height 68*gs
 			border gs solid rgba(0,0,0,.03)
-			position relative
-			@media all and (max-width:1200px)
-				width 62*gs
-				clear both
-				margin: 0 auto
-				float none
-				height auto
-				padding 4*gs 4*gs 12*gs
-				border-radius br + 2px
+			width 62*gs
+			margin: 0 auto
+			height auto
+			padding 4*gs 4*gs 12*gs
+			border-radius br + 2px
 
-				+ .support-block-b
-					margin-top 2*gs
+			+ .support-block-b
+				margin-top 2*gs
 
 		form
 			opacity 0

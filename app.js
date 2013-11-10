@@ -163,7 +163,7 @@
 
           for (i = _k = 0, _len2 = docs.length; _k < _len2; i = ++_k) {
             doc = docs[i];
-            iconData += doc.filter.replace(/\<filter/, "<filter id='" + doc.hash + "'");
+            iconData += doc.filter.replace(/\<filter/, "<filter id='" + doc.hash + "' ");
           }
           return prm.resolve(iconData);
         });

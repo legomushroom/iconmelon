@@ -2,6 +2,35 @@
 @import '../assets/imports.styl'
 
 
+/* 5865aaa5b346c5aaef5f3b0e3931b09d */
+.numed-block-l
+	> .num-ll, > .block-ll
+		float left
+	> .num-ll
+		width 10%
+	> .block-ll
+		width 90%
+		position: relative
+		left - gs
+	@media all and (max-width: 1150px)
+		> .num-ll
+			width 20%
+		> .block-ll
+			width 80%
+
+	@media all and (max-width: 1000px)
+		> .num-ll
+			width 18.5%
+		> .block-ll
+			width 81.5%
+
+	@media all and (max-width: 825px)
+		> .num-ll
+			width 15%
+		> .block-ll
+			width 85%
+
+
 /* 18d44e1e888afe365824a57f57134c93 */
 .use-text-b
 	color 		c-grey2
@@ -10,10 +39,29 @@
 
 /* 2e6c139ac99102313c8ab2e8ea1eafb0 */
 .use-preview-b
-	rect 15.5*gs
+	rect 15*gs
 	border (gs/2) solid c-green
 	border-radius 50%
 	background-color white
+	position: relative
+	background white url('i/select-icons.gif') no-repeat center center
+	background-size 100%
+
+	/* d6357edaaf3a9db383e8191aa395c0af */
+	&.is-copy-svg
+		background-image url('i/copy-svg.gif') 
+
+	/* 223a4c8108f0be566ff9e86ecd2aced6 */
+	&.is-copy-js
+		background-image url('i/copy-js.gif') 
+
+	/* c5acd2f44594d68d2716b7c647f0041f */
+	&.is-add-icon
+		background-image url('i/add-icon.gif') 
+
+	/* a6b114e4e811f2f593bb5dbf53794f85 */
+	&.is-add-css
+		background-image url('i/add-css.gif') 
 
 /* ce7a4a29b02dbe1afc9923dd19c0a782 */
 .use-or-b
@@ -52,6 +100,7 @@
 
 /* aa8b5b01656750c20ce09dd8e90fe1a2 */
 .support-block-b
+	position relative
 	width 72*gs
 	display block
 	padding 8*gs 6*gs

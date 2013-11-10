@@ -127,7 +127,7 @@ table {
   border-radius: 3px;
   padding: 8px 16px;
   font-size: 16px;
-  color: #5f5d5d;
+  color: #454545;
 }
 .icon-b {
   height: 80px;
@@ -300,11 +300,11 @@ a.is-grey3:after {
   border-bottom-color: #bdbfbf;
 }
 a.is-grey2--onhover:hover {
-  color: #9f9d9d;
+  color: #858484;
 }
 a.is-grey2--onhover:hover:after {
-  border-top-color: #9f9d9d;
-  border-bottom-color: #9f9d9d;
+  border-top-color: #858484;
+  border-bottom-color: #858484;
 }
 a.is-check:after {
   display: block;

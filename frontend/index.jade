@@ -40,18 +40,20 @@ html
 			- var className = '', id = 'js-main'
 			- var link = '#/'
 			include css/partials/tiny-logo-link
-			a(href="#").menu-item-be.is-hoverable#js-how-to-use how to use
-			a(href="#").menu-item-be.is-hoverable#js-main why yummy
-			a(href="#/submit").menu-item-be.is-hoverable#js-submit submit icons
+			a(href="#/how-to-use").menu-item-be.is-hoverable#js-how how to use
+			//- a(href="#").menu-item-be.is-hoverable#js-main why yummy
+			//- a(href="#/submit").menu-item-be.is-hoverable#js-submit submit icons
 			a(href="#").menu-item-be.is-hoverable.f-r-gm.m-r-x6-gm#js-main contacts
-			a(href="#/support-us").menu-item-be.is-hoverable.f-r-gm.m-r-x2-gm#js-support-us support us
-			//- a(href="#/editr").menu-item-be.is-hoverable#js-editr editr
+			a(href="#/support-us").menu-item-be.is-hoverable.m-r-x2-gm#js-support-us support us
 			.loading-be.loading-eff#js-loadin-line
 
 		section#main-l
 
 		script(id="main-template", type="template")
 			include templates/main-page
+
+		script(id="how-page-template", type="template")
+			include templates/how-page
 
 		script(id="support-page-template", type="template")
 			include templates/support-page
