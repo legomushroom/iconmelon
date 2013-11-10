@@ -23,6 +23,7 @@
       };
 
       Main.prototype.initialize = function() {
+        this.isNoPageAnima = true;
         this.loadSvg();
         Main.__super__.initialize.apply(this, arguments);
         return this;

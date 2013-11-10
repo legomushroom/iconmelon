@@ -5,7 +5,6 @@ define 'views/pages/submit', [ 	'views/pages/PageView', 'views/EditCollectionVie
 
 		render:->
 			super
-			@$el.addClass 'animated fadeInDown'
 			@renderEditCollectionView()
 			@
 

@@ -6,7 +6,6 @@ define 'views/pages/support', [ 	'views/pages/PageView' ], (PageView)->
 
 		render:->
 			super
-			@$el.addClass 'animated fadeInDown'
 			@$monthly 		= @$ '.js-monthly'
 			@$budget 			= @$ '.js-budget'
 			@$timeLeft 		= @$ '.js-time-left'

@@ -18,7 +18,6 @@
 
       Edit.prototype.render = function() {
         Edit.__super__.render.apply(this, arguments);
-        this.$el.addClass('animated fadeInDown');
         this.renderEditCollectionView();
         return this;
       };

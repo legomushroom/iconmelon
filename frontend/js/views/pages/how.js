@@ -18,12 +18,6 @@
 
       How.prototype.className = 'how-p';
 
-      How.prototype.render = function() {
-        How.__super__.render.apply(this, arguments);
-        this.$el.addClass('animated fadeInDown');
-        return this;
-      };
-
       return How;
 
     })(PageView);

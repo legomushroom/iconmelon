@@ -20,7 +20,6 @@
 
       Support.prototype.render = function() {
         Support.__super__.render.apply(this, arguments);
-        this.$el.addClass('animated fadeInDown');
         this.$monthly = this.$('.js-monthly');
         this.$budget = this.$('.js-budget');
         this.$timeLeft = this.$('.js-time-left');

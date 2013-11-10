@@ -18,12 +18,6 @@
 
       Hire.prototype.className = 'hire-p';
 
-      Hire.prototype.render = function() {
-        Hire.__super__.render.apply(this, arguments);
-        this.$el.addClass('animated fadeInDown');
-        return this;
-      };
-
       return Hire;
 
     })(PageView);

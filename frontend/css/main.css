@@ -1888,8 +1888,8 @@ a.is-check:after {
 }
 .legomushroom-e {
   display: block;
-  width: 120px;
-  height: 120px;
+  width: 240px;
+  height: 240px;
   background: #fff url("i/legomushroom.png") no-repeat center center;
   border-radius: 50%;
   background-size: 100%;
@@ -2015,6 +2015,7 @@ a.is-check:after {
 }
 .lego-n-text-b .legomushroom-e {
   margin: 0 auto;
+  margin-bottom: 32px;
 }
 .lego-n-text-b .social-btns-l {
   display: inline-block;
@@ -4093,7 +4094,6 @@ a.is-check:after {
   text-align: center;
 }
 .hire-p .lego-n-text-b {
-  margin-top: 112px;
   display: inline-block;
 }
 .notyfier-b {

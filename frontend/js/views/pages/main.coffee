@@ -7,6 +7,7 @@ define 'views/pages/main', ['views/pages/PageView', 'views/IconSelectView', 'mod
 			'click .js-download' : 'download'
 
 		initialize:->
+			@isNoPageAnima = true
 			@loadSvg()
 			super
 			@
