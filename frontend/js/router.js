@@ -19,7 +19,8 @@
         'submit': 'submit',
         'editr': 'editr',
         'support-us': 'support',
-        'how-to-use': 'how'
+        'how-to-use': 'how',
+        'hire-me': 'hire'
       };
 
       Router.prototype.main = function() {
@@ -49,6 +50,12 @@
       Router.prototype.how = function() {
         this.startPage(pc.how);
         this.checkMainMenuItem('#js-how');
+        return this.showHeader();
+      };
+
+      Router.prototype.hire = function() {
+        this.startPage(pc.hire);
+        this.checkMainMenuItem('#js-hire');
         return this.showHeader();
       };
 

@@ -6,6 +6,7 @@ define 'router', ['backbone','controllers/PagesController'], (B, pc)->
 			'editr': 				'editr'
 			'support-us': 	'support'
 			'how-to-use': 	'how'
+			'hire-me': 			'hire'
 
 		main:->
 			@startPage pc.main
@@ -30,6 +31,11 @@ define 'router', ['backbone','controllers/PagesController'], (B, pc)->
 		how:->
 			@startPage pc.how
 			@checkMainMenuItem '#js-how'
+			@showHeader()
+
+		hire:->
+			@startPage pc.hire
+			@checkMainMenuItem '#js-hire'
 			@showHeader()
 
 

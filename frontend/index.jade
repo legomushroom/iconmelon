@@ -43,14 +43,28 @@ html
 			a(href="#/how-to-use").menu-item-be.is-hoverable#js-how how to use
 			//- a(href="#").menu-item-be.is-hoverable#js-main why yummy
 			//- a(href="#/submit").menu-item-be.is-hoverable#js-submit submit icons
-			a(href="#").menu-item-be.is-hoverable.f-r-gm.m-r-x6-gm#js-main contacts
+			//- a(href="#").menu-item-be.is-hoverable.f-r-gm.m-r-x6-gm#js-main contacts
 			a(href="#/support-us").menu-item-be.is-hoverable.m-r-x2-gm#js-support-us support us
+			a(href="#/hire-me").menu-item-be.is-hoverable.m-r-x3-gm.f-r-gm#js-hire hire me
 			.loading-be.loading-eff#js-loadin-line
+
+			.social-btns-l.cf.f-r-gm
+				- var data = { className: 'is-email', link: 'mailto:we@iconmelon.com', title: "mail us", iconPath: 'email-logo-icon' }
+				include css/partials/social-btn
+
+				- var data = { className: 'is-gplus', link: 'http://legomushroom.com', title: "g+", iconPath: 'gplus-logo-icon' }
+				include css/partials/social-btn
+
+				- var data = { className: 'is-github', link: 'https://github.com/sol0mka/iconmelon', title: "github", iconPath: 'github-logo-icon' }
+				include css/partials/social-btn
 
 		section#main-l
 
 		script(id="main-template", type="template")
 			include templates/main-page
+
+		script(id="hire-page-template", type="template")
+			include templates/hire-page
 
 		script(id="how-page-template", type="template")
 			include templates/how-page

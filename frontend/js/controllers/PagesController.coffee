@@ -4,7 +4,8 @@ define 'controllers/PagesController', [
 	'views/pages/editr',
 	'views/pages/support',
 	'views/pages/how',
-	], (main, submit, editr, support, how)->
+	'views/pages/hire',
+	], (main, submit, editr, support, how, hire)->
 		class Controller 
 			constructor:->
 				@main 	= main
@@ -12,5 +13,6 @@ define 'controllers/PagesController', [
 				@editr  = editr
 				@support= support
 				@how  	= how
+				@hire  	= hire
 
 		new Controller

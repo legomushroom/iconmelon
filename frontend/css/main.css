@@ -1886,6 +1886,14 @@ a.is-check:after {
   display: none !important;
   opacity: 0 !important;
 }
+.legomushroom-e {
+  display: block;
+  width: 120px;
+  height: 120px;
+  background: #fff url("i/legomushroom.png") no-repeat center center;
+  border-radius: 50%;
+  background-size: 100%;
+}
 .small-logo-b {
   display: inline-block;
   text-align: center;
@@ -1994,6 +2002,137 @@ a.is-check:after {
   border-width: 1px;
   border-style: solid;
   border-color: #ff3d7f;
+}
+.lego-n-text-b {
+  width: 400px;
+  text-align: center;
+}
+.lego-n-text-b .text-be {
+  font-size: 24px;
+  line-height: 28px;
+  color: #858484;
+  margin-top: 16px;
+}
+.lego-n-text-b .legomushroom-e {
+  margin: 0 auto;
+}
+.lego-n-text-b .social-btns-l {
+  display: inline-block;
+  padding-top: 16px;
+}
+.lego-n-text-b .social-btn-b {
+  width: 32px;
+  height: 32px;
+}
+.lego-n-text-b .social-btn-b.is-codepen,
+.lego-n-text-b .social-btn-b.is-github,
+.lego-n-text-b .social-btn-b.is-behance {
+  background-color: #3b3b3a;
+}
+.lego-n-text-b .social-btn-b.is-codepen:hover,
+.lego-n-text-b .social-btn-b.is-github:hover,
+.lego-n-text-b .social-btn-b.is-behance:hover {
+  background-color: #555553;
+}
+.lego-n-text-b .social-btn-b.is-codepen .icon,
+.lego-n-text-b .social-btn-b.is-github .icon,
+.lego-n-text-b .social-btn-b.is-behance .icon {
+  width: 20px;
+  height: 20px;
+  margin-top: -10px;
+  margin-left: -10px;
+}
+.lego-n-text-b .social-btn-b.is-behance {
+  background-color: #3fb8af;
+}
+.lego-n-text-b .social-btn-b.is-behance:hover {
+  background-color: #4ec2ba;
+}
+.lego-n-text-b .social-btn-b.is-email .icon {
+  width: 16px;
+  height: 16px;
+  margin-top: -8px;
+  margin-left: -8px;
+}
+.lego-n-text-b .social-btn-b.is-skype .icon {
+  width: 16px;
+  height: 16px;
+  margin-top: -8px;
+  margin-left: -8px;
+}
+.social-btn-b {
+  display: block;
+  width: 24px;
+  height: 24px;
+  background: #ff3d7f;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+/* 6008fb04617fe842dba0645f7c21bd1a */
+/* 53ac120ec620ec38a8c83740c93e9e49 */
+/* 90795aeac71bb381f23e536dec17767a */
+/* 33bf11da5695cd9f8b27250272882a1c */
+/* 90795aeac71bb381f23e536dec17767a */
+/* 875ade41f9b8598fd88c3bca223a932b */
+/* 875ade41f9b8598fd88c3bca223a932b */
+/* 9c6ccb3d55768fb8e3aafa0719926b9b */
+}
+.social-btn-b:hover {
+  background-color: #ff5790;
+}
+.social-btn-b.is-codepen,
+.social-btn-b.is-github,
+.social-btn-b.is-behance {
+  background-color: #3b3b3a;
+}
+.social-btn-b.is-codepen:hover,
+.social-btn-b.is-github:hover,
+.social-btn-b.is-behance:hover {
+  background-color: #555553;
+}
+.social-btn-b.is-codepen .icon,
+.social-btn-b.is-github .icon,
+.social-btn-b.is-behance .icon {
+  width: 16px;
+  height: 16px;
+  margin-top: -8px;
+  margin-left: -8px;
+}
+.social-btn-b.is-skype {
+  background-color: #1eb9ea;
+}
+.social-btn-b.is-skype:hover {
+  background-color: #4dc8ee;
+}
+.social-btn-b.is-behance,
+.social-btn-b.is-gplus {
+  background-color: #3fb8af;
+}
+.social-btn-b.is-behance:hover,
+.social-btn-b.is-gplus:hover {
+  background-color: #4ec2ba;
+}
+.social-btn-b.is-gplus .icon {
+  width: 16px;
+  height: 16px;
+  margin-top: -8px;
+  margin-left: -8px;
+}
+.social-btn-b.is-email .icon {
+  width: 14px;
+  height: 14px;
+  margin-top: -7px;
+  margin-left: -7px;
+}
+.social-btn-b .icon {
+  width: 12px;
+  height: 12px;
+  margin-top: -6px;
+  margin-left: -6px;
+  fill: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
 }
 .numed-block-l > .num-ll,
 .numed-block-l > .block-ll {
@@ -2814,6 +2953,9 @@ a.is-check:after {
   z-index: 10;
   opacity: 0;
 }
+.main-header-b.is-convex {
+  box-shadow: 0 4px 0 rgba(59,59,58,0.2);
+}
 .main-header-b > .loading-be {
   width: 0%;
   height: 8px;
@@ -2828,9 +2970,6 @@ a.is-check:after {
   border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;
 }
-.main-header-b.is-convex {
-  box-shadow: 0 4px 0 rgba(59,59,58,0.2);
-}
 .main-header-b > .logo-tiny-e {
   margin-top: -8px;
   display: block;
@@ -2841,6 +2980,10 @@ a.is-check:after {
 }
 .main-header-b > a + .menu-item-be {
   margin-left: 24px;
+}
+.main-header-b .social-btns-l {
+  margin-top: -3px;
+  margin-right: 8px;
 }
 .section-b + .section-b {
   margin-top: 24px;
@@ -3212,6 +3355,12 @@ a.is-check:after {
 .btn-b.is-counter.is-3-digits:after {
   width: 26px;
   font-size: 16px;
+}
+.social-btns-l .social-btn-b {
+  float: left;
+}
+.social-btns-l .social-btn-b + .social-btn-b {
+  margin-left: 16px;
 }
 .use-2-options-line-l > .left-ll,
 .use-2-options-line-l > .right-ll,
@@ -3936,6 +4085,16 @@ a.is-check:after {
     -o-transform: rotate(90deg);
     transform: rotate(90deg);
   }
+}
+.hire-p {
+  padding: 0 32px;
+  padding-top: 160px;
+  opacity: 0;
+  text-align: center;
+}
+.hire-p .lego-n-text-b {
+  margin-top: 112px;
+  display: inline-block;
 }
 .notyfier-b {
   position: fixed;
