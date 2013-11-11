@@ -15,7 +15,9 @@
     "lodash": "latest",
     "node-native-zip": "latest",
     "MD5": "latest",
-    "mkdirp": "latest"
+    "mkdirp": "latest",
+    "jade": "latest",
+    "node-markdown": "latest"
   },
   "devDependencies": {
     "nodemon": "*"

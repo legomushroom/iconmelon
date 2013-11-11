@@ -33,16 +33,16 @@
           observe: 'author',
           onSet: 'authorSet'
         },
+        '#js-license': {
+          observe: 'license',
+          onSet: 'licenseSet'
+        },
         '#js-email': {
           observe: 'email',
           onSet: 'emailSet'
         },
         '#js-website': 'website',
         '#js-moderated input': 'moderated',
-        '#js-license   input': {
-          observe: 'license',
-          onSet: 'licenseSet'
-        },
         '#js-multicolor  input': {
           observe: 'isMulticolor',
           onSet: 'multicolorChange'
@@ -151,7 +151,7 @@
       };
 
       EditCollectionView.prototype.authorSet = function(val) {
-        this.authorValid = !($.trim(val.length) < 4 ? true : false);
+        this.authorValid = !($.trim(val.length) < 3 ? true : false);
         this.$('#js-author').toggleClass('is-error', !this.authorValid);
         this.checkIfValidCollection();
         return val;
@@ -168,7 +168,8 @@
       };
 
       EditCollectionView.prototype.licenseSet = function(val) {
-        this.licenseValid = val;
+        this.licenseValid = $.trim(val).length >= 3;
+        this.$('#js-license').toggleClass('is-error', !this.licenseValid);
         this.checkIfValidCollection();
         return val;
       };

@@ -9,6 +9,8 @@ _       = require 'lodash'
 zip     = require 'node-native-zip'
 md5     = require 'MD5'
 mkdirp  = require 'mkdirp'
+jade    = require 'jade'
+markdown= require('node-markdown').Markdown
 
 mkdirp 'frontend/generated-icons', ->
 mkdirp 'uploads', ->
@@ -30,9 +32,9 @@ mongo.connect DB_STR
 SectionSchema = new mongo.Schema
       name:           String
       author:         String
+      license:        String
       email:          String
       website:        String
-      creationDate:   String
       isMulticolor:   Boolean
       icons:          Array
       moderated:      Boolean
@@ -66,6 +68,13 @@ io = require('socket.io').listen(app.listen(process.env.PORT or port), { log: fa
 class Main
   SVG_PATH: 'frontend/css/'
   constructor:(@o={})->
+    @licensesLinks = 
+      'MIT':       'http://opensource.org/licenses/MIT'
+      'GPL-v3':    'http://www.gnu.org/licenses/gpl-3.0.html'
+      'GPL-v2':    'http://www.gnu.org/licenses/gpl-2.0.html'
+      'GPL-v1':    'http://www.gnu.org/licenses/gpl-1.0.html'
+      'CC by 3.0': 'http://creativecommons.org/licenses/by/3.0/'
+      'BSD':      'http://opensource.org/licenses/BSD-3-Clause'
   
   generateMainPageSvg:()->
     prm = new Promise()
@@ -119,6 +128,7 @@ class Main
             @makeZipFireball(
               htmlData: htmlData
               svgData:  svgData
+              licenseData: xmlData.licenseData
             ).then (archive)=>
               prm.resolve archive
 
@@ -129,6 +139,7 @@ class Main
     archive = new zip
     archive.add 'icons.svg',  new Buffer data.svgData, 'utf8'
     archive.add 'index.html', new Buffer data.htmlData, 'utf8'
+    archive.add 'license.md', new Buffer data.licenseData, 'utf8'
     SYSTEM_FILES = 'you-dont-need-this-assets-folder'
     archive.addFiles([
       {name: "#{SYSTEM_FILES}/main.css", path: 'frontend/download/css/main.css'}
@@ -160,37 +171,44 @@ class Main
       prm.resolve data
     prm
 
-  generateProductionSvgData:(data)->
+  addAuthor:(doc)->
+    @licenses ?= []
+    if _.indexOf(@licenses, doc.license) is -1 then @licenses.push doc.license
+    "#{(new Date).getFullYear()} #{doc.author} #{doc.email} #{doc.website or ''} \n#{doc.license} #{@licensesLinks[doc.license]} \n\n" 
 
+
+  makeLicense:(data)->
+    licenses = ''
+    for license, i in @licenses
+      licenses += "\n\n#{fs.readFileSync("views/licenses/#{license}.md").toString()}"
+    
+    data += "#{licenses}"
+
+  generateProductionSvgData:(data)->
     prm = new Promise()
     svgData   = ''
-    htmlData  = '<div class="header-e">Icons:</div><div class="section-l cf">'
+    htmlData  = jade.renderFile('views/header.jade', name: 'Icons')
+    licenseData = ''
     htmlIcon  = ''
     firstIcon = null
     Section.find { name:  $in: data.sections }, (err, docs)=>
       for doc, i in docs
         icons = data.icons[doc.name]
         iconsDB = doc.icons
+
+        licenseData += @addAuthor doc
+        
         for icon, j in icons
           for iconDB, k in iconsDB
             if iconDB.hash is icon
               name = @ensureUniq(@safeCssName(iconDB.name))
-              str = "<g id='#{name}' data-iconmelon='#{doc.name}:#{iconDB.hash}'>#{iconDB.shape}</g>"
+              renderData = 
+                iconDB: iconDB
+                name:   name
+                doc:    doc
+              str = jade.renderFile('views/g.jade', renderData)
               str = if !doc.isMulticolor then str.replace(/fill=\"\s?#[0-9A-Fa-f]{3,6}\s?\"/gi, '') else str
-              htmlIcon = """
-                            <div class="icon-b cf">
-                              <div class="icon-bl">
-                                <div class="iconmelon">
-                                  <svg viewBox="0 0 32 32">
-                                    <g filter="">
-                                      <use xlink:href="##{name}"></use>
-                                    </g>
-                                  </svg>
-                                </div>
-                              </div>
-                              <div class="name-be">##{name}</div>
-                            </div>
-                          """
+              htmlIcon = jade.renderFile('views/icon.jade', data: name: name)
 
               htmlData += htmlIcon
               firstIcon ?= htmlIcon
@@ -198,28 +216,34 @@ class Main
 
       htmlData += '</div>'
 
+      licenseData = @makeLicense licenseData
+
       if !data.filters
         prm.resolve 
-                svgData: svgData
-                htmlData: htmlData
+                svgData:      svgData
+                htmlData:     htmlData
+                licenseData:  licenseData
         return
 
       Filter.find { hash: $in: data.filters  }, (err, docs)=>
-        htmlData  += '<div class="header-e">Filters:</div><div class="section-l cf">'
+        htmlData  += jade.renderFile('views/header.jade', name: 'Filters')
         for doc, i in docs
           filterName = @safeCssName(doc.name)
-          str = doc.filter.replace /\<filter\s?/ , "<filter id='#{filterName}' data-iconmelon='filter:#{doc.hash}'"
+          str = doc.filter.replace /\<filter\s?/ , "<filter id='#{filterName}' data-iconmelon='filter:#{doc.hash}' "
           svgData  += str
-          htmlStr   = firstIcon.replace(/filter=\"(.+)?\"/, "filter=\"url(##{filterName})\"").replace /\>.+?\</, ">##{filterName}<"
-          htmlStr   = htmlStr.replace /0 0 32 32/, '0 0 34 34'
-          htmlData += htmlStr
+          data =
+            filter: filterName
+            name:   name
+            viewBox: '0 0 34 34'
+
+          htmlData += jade.renderFile('views/icon.jade', data: data)
       
         prm.resolve 
-                svgData: svgData
-                htmlData: htmlData += '</div>'
+                svgData:      svgData
+                htmlData:     htmlData += '</div>'
+                licenseData:  licenseData
 
     prm
-
 
 
   safeCssName:(name)->

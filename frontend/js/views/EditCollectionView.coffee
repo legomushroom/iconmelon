@@ -19,6 +19,10 @@ define 'views/EditCollectionView', [ 'views/ProtoView', 'views/IconEditView', 'c
 				observe: 	'author'
 				onSet: 		'authorSet'
 
+			'#js-license': 	
+				observe: 	'license'
+				onSet: 		'licenseSet'
+
 			'#js-email': 	
 				observe: 	'email'
 				onSet: 		'emailSet'
@@ -26,9 +30,9 @@ define 'views/EditCollectionView', [ 'views/ProtoView', 'views/IconEditView', 'c
 			'#js-website': 	'website'
 
 			'#js-moderated input': 'moderated'
-			'#js-license   input': 
-				observe: 'license'
-				onSet: 	'licenseSet'
+			# '#js-license   input': 
+			# 	observe: 'license'
+			# 	onSet: 	'licenseSet'
 
 			'#js-multicolor  input':
 				observe: 'isMulticolor'
@@ -112,7 +116,7 @@ define 'views/EditCollectionView', [ 'views/ProtoView', 'views/IconEditView', 'c
 			val
 
 		authorSet:(val)->
-			@authorValid = ! if $.trim(val.length) < 4 then true else false
+			@authorValid = ! if $.trim(val.length) < 3 then true else false
 			@$('#js-author').toggleClass 'is-error', !@authorValid
 			@checkIfValidCollection()
 			val
@@ -125,7 +129,8 @@ define 'views/EditCollectionView', [ 'views/ProtoView', 'views/IconEditView', 'c
 			val
 
 		licenseSet:(val)->
-			@licenseValid = val
+			@licenseValid = $.trim(val).length >= 3
+			@$('#js-license').toggleClass 'is-error', !@licenseValid
 			@checkIfValidCollection()
 			val
 
@@ -175,8 +180,6 @@ define 'views/EditCollectionView', [ 'views/ProtoView', 'views/IconEditView', 'c
 						type: 'error'
 						text: 'saving sadness'
 						delay: 4000
-						
-
 
 
 		initFileUpload:->

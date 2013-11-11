@@ -21,7 +21,7 @@
         author: '',
         email: '',
         website: '',
-        license: false,
+        license: '',
         isMulticolor: false,
         isClosed: false,
         moderated: false,

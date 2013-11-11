@@ -1045,7 +1045,7 @@
         <div class="num-ll">
           <div class="numed-use-preview-l cf is-no-preview">
             <div class="use-num-b">2</div>
-            <div class="use-preview-b is-copy-svg"></div>
+            <div class="use-preview-b "></div>
             <div class="connector-le"></div>
           </div>
         </div>
@@ -1056,7 +1056,7 @@
                 <div class="left-ll is-no-num">
                   <div class="numed-use-preview-l cf is-no-num">
                     <div class="use-num-b">2</div>
-                    <div class="use-preview-b is-copy-js"></div>
+                    <div class="use-preview-b is-copy-svg"></div>
                     <div class="connector-le"></div>
                   </div>
                 </div>
@@ -1075,7 +1075,7 @@
                 <div class="left-ll is-no-num">
                   <div class="numed-use-preview-l cf is-no-num">
                     <div class="use-num-b">2</div>
-                    <div class="use-preview-b "></div>
+                    <div class="use-preview-b is-copy-js"></div>
                     <div class="connector-le"></div>
                   </div>
                 </div>
@@ -1457,6 +1457,7 @@
           <input id="js-collection-name" placeholder="collection name" class="input-e ">
           <input id="js-author" placeholder="author" class="input-e ">
           <input id="js-email" placeholder="email" class="input-e ">
+          <input id="js-license" placeholder="license" class="input-e ">
           <input id="js-website" placeholder="website(optional)" class="input-e ">
           <div id="js-multicolor" class="switcher-with-texts-b ">
             <div class="left-text-be">Normal</div>
@@ -1467,34 +1468,12 @@
             </div>
             <div class="right-text-be">Multicolor</div>
           </div>
-          <div id="js-license" class="checkbox-with-label-b license-bh">
-            <div id="" class="checkbox-b input-e ">
-              <input type="checkbox" id="license">
-              <div id="" title="" class="icon ">
-                <svg viewBox="0 0 34 34">
-                  <g filter="">
-                    <use xlink:href="#tick-icon"></use>
-                  </g>
-                </svg>
-              </div>
-            </div>
-            <label for="license">apply MIT license<a target="_blank" href="http://opensource.org/licenses/mit-license.html">
-                <div id="" title="info" class="plus-btn-b ">
-                  <div id="" title="info" class="icon ">
-                    <svg viewBox="0 0 34 34">
-                      <g filter="info-icon">
-                        <use xlink:href="#info-icon"></use>
-                      </g>
-                    </svg>
-                  </div>
-                </div></a></label>
-          </div>
           <div id="js-moderated" class="checkbox-with-label-b moderated-bh">
             <div id="" class="checkbox-b input-e ">
               <input type="checkbox" id="moderated">
               <div id="" title="" class="icon ">
                 <svg viewBox="0 0 34 34">
-                  <g filter="info-icon">
+                  <g filter="">
                     <use xlink:href="#tick-icon"></use>
                   </g>
                 </svg>
@@ -1507,7 +1486,7 @@
               <div title="" class="btn-b js-delete is-iconed is-red1">
                 <div id="" title="" class="icon ">
                   <svg viewBox="0 0 34 34">
-                    <g filter="info-icon">
+                    <g filter="">
                       <use xlink:href="#close-icon"></use>
                     </g>
                   </svg>
@@ -1527,7 +1506,7 @@
             <div id="js-add-icon" title="add icon" class="plus-btn-b ">
               <div id="" title="add icon" class="icon ">
                 <svg viewBox="0 0 34 34">
-                  <g filter="info-icon">
+                  <g filter="">
                     <use xlink:href="#cross-icon"></use>
                   </g>
                 </svg>
@@ -1537,7 +1516,7 @@
               <input id="fileupload" type="file" name="files[]" multiple="multiple">
               <div id="" title="upload icon from svg file" class="icon ">
                 <svg viewBox="0 0 34 34">
-                  <g filter="info-icon">
+                  <g filter="">
                     <use xlink:href="#arrow-down-icon"></use>
                   </g>
                 </svg>
@@ -1551,14 +1530,14 @@
       <div class="submit-icon-b">
         <div id="js-destroy" title="remove" class="icon is-hoverable close-bh">
           <svg viewBox="0 0 34 34">
-            <g filter="info-icon">
+            <g filter="">
               <use xlink:href="#close-icon"></use>
             </g>
           </svg>
         </div>
         <div id="" title="" class="icon icon-sample-bh &lt;%= hash || 'is-grey3' %&gt;">
           <svg viewBox="0 0 34 34">
-            <g filter="info-icon">
+            <g filter="">
               <use xlink:href="#&lt;%= hash || &quot;b5282d4ecdc7ae3d0799023622c560a5&quot; %&gt;"></use>
             </g>
           </svg>
@@ -1574,7 +1553,7 @@
         <div id="" title="right" class="plus-btn-b right-arrow-bh">
           <div id="" title="right" class="icon ">
             <svg viewBox="0 0 34 34">
-              <g filter="info-icon">
+              <g filter="">
                 <use xlink:href="#arrow-right-icon"></use>
               </g>
             </svg>
@@ -1583,7 +1562,7 @@
         <div id="" title="left" class="plus-btn-b left-arrow-bh">
           <div id="" title="left" class="icon ">
             <svg viewBox="0 0 34 34">
-              <g filter="info-icon">
+              <g filter="">
                 <use xlink:href="#arrow-left-icon"></use>
               </g>
             </svg>
