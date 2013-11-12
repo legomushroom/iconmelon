@@ -6,10 +6,10 @@
 	appDir: "../frontend",
 	baseUrl: "js",
 	//- this is the directory that the new files will be. it will be created if it doesn't exist
-	dir: "../app-build",
+	dir: "../dist",
 	optimizeCss: "standard.keepLines",
       optimize: "uglify",
-      preserveLicenseComments: true,
+      preserveLicenseComments: false,
 	paths: {
             jquery: 'lib/jquery-2.0.1',
             backbone: 'lib/backbone',

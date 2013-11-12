@@ -2,6 +2,7 @@
   .icon-bl
     .iconmelon
       svg(viewBox="#{data.viewBox || '0 0 32 32'}")
-        g(filter="url(##{data.filter || ''})")
+        - var filter = (data.filter ? "url(##{data.filter})" : "")
+        g(filter=filter)
           use(xlink:href="##{data.name}")
   .name-be ##{data.name}

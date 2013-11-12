@@ -32,15 +32,15 @@
 
   pretty = require('pretty-data').pd;
 
-  mkdirp('frontend/generated-icons', function() {});
-
-  mkdirp('uploads', function() {});
-
   port = 3000;
 
   app = express();
 
   folder = 'frontend';
+
+  mkdirp("" + folder + "/generated-icons", function() {});
+
+  mkdirp('uploads', function() {});
 
   app.set('port', process.env.PORT || port);
 
@@ -108,7 +108,7 @@
   });
 
   Main = (function() {
-    Main.prototype.SVG_PATH = 'frontend/css/';
+    Main.prototype.SVG_PATH = "" + folder + "/css/";
 
     function Main(o) {
       this.o = o != null ? o : {};
@@ -132,7 +132,7 @@
       }).then(function(iconsData) {
         return _this.makeMainSvgFile(iconsData).then(function(data) {
           return _this.writeFile("" + _this.SVG_PATH + "icons-main-page.svg", data).then(function() {
-            return prm.resolve();
+            return prm.resolve('ok');
           });
         });
       });
@@ -230,16 +230,16 @@
       archive.addFiles([
         {
           name: "" + SYSTEM_FILES + "/main.css",
-          path: 'frontend/download/css/main.css'
+          path: "" + folder + "/download/css/main.css"
         }, {
           name: "" + SYSTEM_FILES + "/favicon.ico",
-          path: 'frontend/download/css/favicon.ico'
+          path: "" + folder + "/download/css/favicon.ico"
         }, {
           name: "" + SYSTEM_FILES + "/main-logo.svg",
-          path: 'frontend/download/css/main-logo.svg'
+          path: "" + folder + "/download/css/main-logo.svg"
         }, {
           name: 'icons.css',
-          path: 'frontend/download/icons.css'
+          path: "" + folder + "/download/icons.css"
         }
       ], function(err) {
         var fileName;
@@ -248,7 +248,7 @@
           return console.log("err while adding files", err);
         }
         fileName = "iconmelon-" + (md5(new Date + (new Date).getMilliseconds() + Math.random(9999999999999) + Math.random(9999999999999) + Math.random(9999999999999)));
-        return fs.writeFile("frontend/generated-icons/" + fileName + ".zip", archive.toBuffer(), function(err) {
+        return fs.writeFile("" + folder + "/generated-icons/" + fileName + ".zip", archive.toBuffer(), function(err) {
           return prm.resolve(fileName);
         });
       });
@@ -259,7 +259,7 @@
       var prm;
 
       prm = new Promise();
-      fs.readFile("frontend/download/kit.html", {
+      fs.readFile("" + folder + "/download/kit.html", {
         encoding: 'utf8'
       }, function(err, data) {
         data = data.replace(/\<\!-- svg-icons-place --\>/gi, xmlData.svgData);
@@ -273,7 +273,7 @@
       var prm;
 
       prm = new Promise();
-      fs.readFile("frontend/download/icons-template.svg", {
+      fs.readFile("" + folder + "/download/icons-template.svg", {
         encoding: 'utf8'
       }, function(err, data) {
         data = data.replace(/\<\/svg\>/gi, '');
@@ -302,7 +302,9 @@
       _ref = this.licenses;
       for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
         license = _ref[i];
-        licenses += "\n\n" + (fs.readFileSync("views/licenses/" + license + ".md").toString());
+        if (license.length >= 2) {
+          licenses += "";
+        }
       }
       return data += "" + licenses;
     };
@@ -580,6 +582,10 @@
     return main.generateMainPageSvg().then(function(msg) {
       return res.send(msg);
     });
+  });
+
+  app.get('/clean-generated-data', function(req, res, next) {
+    return res.send('todo');
   });
 
   app.get('/budget-counters', function(req, res, next) {

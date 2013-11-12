@@ -13,15 +13,15 @@ jade    = require 'jade'
 cookies = require 'cookies'
 markdown= require('node-markdown').Markdown
 pretty  = require('pretty-data').pd
-
-mkdirp 'frontend/generated-icons', ->
-mkdirp 'uploads', ->
   
 port    = 3000
 app     = express()
 
-# folder = 'app-build'
+# folder = 'dist'
 folder = 'frontend'
+
+mkdirp "#{folder}/generated-icons", ->
+mkdirp 'uploads', ->
 
 app.set 'port', process.env.PORT or port
 app.use express.favicon __dirname + "/#{folder}/favicon.ico"
@@ -44,8 +44,7 @@ SectionSchema = new mongo.Schema
       icons:          Array
       moderated:      Boolean
 
-SectionSchema.virtual('id').get ->
-  @_id.toHexString()
+SectionSchema.virtual('id').get -> @_id.toHexString()
  # Ensure virtual fields are serialised.
 SectionSchema.set 'toJSON', virtuals: true
 
@@ -76,7 +75,7 @@ Secret = mongo.model 'Secret', SecretSchema
 io = require('socket.io').listen(app.listen(process.env.PORT or port), { log: false })
 
 class Main
-  SVG_PATH: 'frontend/css/'
+  SVG_PATH: "#{folder}/css/"
   constructor:(@o={})->
     @licensesLinks = 
       'MIT':       'http://opensource.org/licenses/MIT'
@@ -91,7 +90,7 @@ class Main
     @getIconsData({moderated: true}).then (iconsData)=>
       @makeMainSvgFile(iconsData).then (data)=>
         @writeFile("#{@SVG_PATH}icons-main-page.svg", data).then ->
-          prm.resolve()
+          prm.resolve 'ok'
     prm
 
   writeFile:(filename, data)->
@@ -147,19 +146,19 @@ class Main
   makeZipFireball:(data)->
     prm = new Promise()
     archive = new zip
-    archive.add 'icons.svg',  new Buffer pretty.xml(data.svgData), 'utf8'
-    archive.add 'index.html', new Buffer pretty.xml(data.htmlData), 'utf8'
-    archive.add 'license.md', new Buffer data.licenseData, 'utf8'
+    archive.add 'icons.svg',  new Buffer pretty.xml(data.svgData),     'utf8'
+    archive.add 'index.html', new Buffer pretty.xml(data.htmlData),    'utf8'
+    archive.add 'license.md', new Buffer data.licenseData,             'utf8'
     SYSTEM_FILES = 'you-dont-need-this-assets-folder'
     archive.addFiles([
-      {name: "#{SYSTEM_FILES}/main.css", path: 'frontend/download/css/main.css'}
-      {name: "#{SYSTEM_FILES}/favicon.ico", path: 'frontend/download/css/favicon.ico'}
-      {name: "#{SYSTEM_FILES}/main-logo.svg", path: 'frontend/download/css/main-logo.svg'}
-      {name: 'icons.css',    path: 'frontend/download/icons.css'}
+      {name: "#{SYSTEM_FILES}/main.css", path: "#{folder}/download/css/main.css"}
+      {name: "#{SYSTEM_FILES}/favicon.ico", path: "#{folder}/download/css/favicon.ico"}
+      {name: "#{SYSTEM_FILES}/main-logo.svg", path: "#{folder}/download/css/main-logo.svg"}
+      {name: 'icons.css',    path: "#{folder}/download/icons.css"}
     ], (err)->
       if (err) then return console.log("err while adding files", err)
       fileName = "iconmelon-#{md5(new Date + (new Date).getMilliseconds() + Math.random(9999999999999) + Math.random(9999999999999) + Math.random(9999999999999))}"
-      fs.writeFile "frontend/generated-icons/#{fileName}.zip", archive.toBuffer(), (err)->
+      fs.writeFile "#{folder}/generated-icons/#{fileName}.zip", archive.toBuffer(), (err)->
         prm.resolve fileName
     )
 
@@ -167,7 +166,7 @@ class Main
 
   makeProductionHtmlFile:(xmlData)->
     prm = new Promise()
-    fs.readFile "frontend/download/kit.html", {encoding: 'utf8'}, (err,data)->
+    fs.readFile "#{folder}/download/kit.html", {encoding: 'utf8'}, (err,data)->
       data = data.replace /\<\!-- svg-icons-place --\>/gi,  xmlData.svgData
       data = data.replace /\<\!-- icons-place --\>/gi,      xmlData.htmlData
       prm.resolve data
@@ -175,7 +174,7 @@ class Main
 
   makeProductionSvgFile:(svgData)->
     prm = new Promise()
-    fs.readFile "frontend/download/icons-template.svg", {encoding: 'utf8'}, (err,data)->
+    fs.readFile "#{folder}/download/icons-template.svg", {encoding: 'utf8'}, (err,data)->
       data = data.replace /\<\/svg\>/gi, ''
       data =  "#{data}#{svgData}</svg>"
       prm.resolve data
@@ -190,7 +189,9 @@ class Main
   makeLicense:(data)->
     licenses = ''
     for license, i in @licenses
-      licenses += "\n\n#{fs.readFileSync("views/licenses/#{license}.md").toString()}"
+      if license.length >= 2
+        # licenses += "\n\n#{fs.readFileSync("views/licenses/#{license}.md").toString()}"
+        licenses += ""
     
     data += "#{licenses}"
 
@@ -364,10 +365,14 @@ app.get '/generate-main-svg-data', (req,res,next)->
   main.generateMainPageSvg().then (msg)->
     res.send msg
 
+app.get '/clean-generated-data', (req,res,next)->
+    res.send 'todo'
+
 app.get '/budget-counters', (req,res,next)->
   Budget.find {}, (err, docs)->
     doc = docs[0]
     res.send doc
+
 
 # new Secret(
 #   hash: 'bb0744e372fd5e83cf94dfaaf21c4b45'

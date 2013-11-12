@@ -123,7 +123,8 @@
 	position fixed
 	bottom 2*gs
 	z-index: 10
-	display none
+	transform(translateY(200px))
+	// display none
 	overflow visible
 
 	&.is-left
@@ -1031,9 +1032,9 @@ marginTop = 2*gs
 
 		> .icon
 			fill darken(c-grey2, 20)
-			transition fill 0s linear
+			// transition fill 0s linear
 		> .text-be
-			transition color 0s linear
+			// transition color 0s linear
 
 
 	&:hover
@@ -1099,7 +1100,7 @@ marginTop = 2*gs
 	> .icon
 		margin 0 auto
 		margin-top 1px
-		transition fill .5s ease-out
+		// transition fill .5s ease-out
 		// rect 3*gs
 	
 	> .text-be
@@ -1109,7 +1110,7 @@ marginTop = 2*gs
 		max-width 100%
 		padding 0 (gs/2)
 		textel()
-		transition color .5s ease-out
+		// transition color .5s ease-out
 
 
 
@@ -1164,7 +1165,8 @@ shadowSize = 2px
 		transform translate(shadowSize,shadowSize)
 		box-shadow none
 		background c-green
-		&:before, .addthis_internal_container, > input[type="file"]
+		// &:before, .addthis_internal_container, > input[type="file"]
+		&:before, > input[type="file"]
 			transform translate(- shadowSize,- shadowSize)
 		
 	> input[type="file"]
@@ -1179,18 +1181,18 @@ shadowSize = 2px
 		display block
 
 	// add this share block
-	.addthis_internal_container
-		width 100% II
-	.addthis_toolbox
-		rect 100%
-		height 6*gs
-		top  - gs + 2px II
-		left 0 II
-		position: absolute
-		opacity: 0
-	.addthis_button_compact
-		height 6*gs
-		margin-top - gs
+	// .addthis_internal_container
+	// 	width 100% II
+	// .addthis_toolbox
+	// 	rect 100%
+	// 	height 6*gs
+	// 	top  - gs + 2px II
+	// 	left 0 II
+	// 	position: absolute
+	// 	opacity: 0
+	// .addthis_button_compact
+	// 	height 6*gs
+	// 	margin-top - gs
 
 	
 	/* 9343b5637912148f603dc8c154382c2c */

@@ -1,0 +1,1258 @@
+// BLOCKS
+@import '../assets/imports.styl'
+
+/* 9820461015c4d69ebc3463a374bf7bd4 */
+.lego-n-text-b
+	width 50*gs
+	text-align center
+	.text-be
+		font-size 	3*gs
+		line-height 3.5*gs
+		color c-grey2
+		margin-top 2*gs
+
+	.legomushroom-e
+		margin 0 auto
+		margin-bottom 4*gs
+		
+	.social-btns-l
+		display inline-block
+		padding-top 2*gs
+
+	.social-btn-b
+		rect 4*gs
+		&.is-codepen, &.is-github, &.is-behance
+			background-color c-grey1
+			&:hover
+				background-color c-grey1-hover
+			iconSize = 2.5*gs
+			.icon
+				rect iconSize
+				margin-top 	- (iconSize/2)
+				margin-left - (iconSize/2)
+
+		&.is-behance
+			background-color c-green
+			&:hover
+				background-color c-green-hover
+
+		&.is-email
+			iconSize = 2*gs
+			.icon
+				rect iconSize
+				margin-top 	- (iconSize/2)
+				margin-left - (iconSize/2)
+
+		&.is-skype
+			iconSize = 2*gs
+			.icon
+				rect iconSize
+				margin-top 	- (iconSize/2)
+				margin-left - (iconSize/2)
+
+/* 1d8bcadcffb99d8bbc08fb270e202492 */
+.social-btn-b
+	display block
+	rect 3*gs
+	background c-red1
+	border-radius 50%
+	position: relative
+	overflow hidden
+
+	&:hover
+		background-color c-red1-hover
+	
+	/* 6008fb04617fe842dba0645f7c21bd1a */
+	/* 53ac120ec620ec38a8c83740c93e9e49 */
+	/* 90795aeac71bb381f23e536dec17767a */
+	&.is-codepen, &.is-github, &.is-behance
+		background-color c-grey1
+		&:hover
+			background-color c-grey1-hover
+		iconSize = 2*gs
+		.icon
+			rect iconSize
+			margin-top 	- (iconSize/2)
+			margin-left - (iconSize/2)
+
+	/* 33bf11da5695cd9f8b27250272882a1c */
+	&.is-skype
+		background-color #1eb9ea
+		&:hover
+			background-color lighten(#1eb9ea, 10)
+	
+	/* 90795aeac71bb381f23e536dec17767a */
+	/* 875ade41f9b8598fd88c3bca223a932b */
+	&.is-behance, &.is-gplus
+		background-color c-green
+		&:hover
+			background-color c-green-hover
+
+	/* 875ade41f9b8598fd88c3bca223a932b */
+	&.is-gplus
+		iconSize = 2*gs
+		.icon
+			rect iconSize
+			margin-top 	- (iconSize/2)
+			margin-left - (iconSize/2)
+	
+	/* 9c6ccb3d55768fb8e3aafa0719926b9b */
+	&.is-email
+		iconSize = 1.75*gs
+		.icon
+			rect iconSize
+			margin-top 	- (iconSize/2)
+			margin-left - (iconSize/2)
+
+	iconSize = 1.5*gs
+	.icon
+		rect iconSize
+		margin-top 	- (iconSize/2)
+		margin-left - (iconSize/2)
+		fill white
+		position: absolute
+		nw 50%
+
+/* 1d23c27230304112b8daff0a924e892d */
+.to-top-btn-b
+	@extend .social-btn-b
+	rect 4*gs
+	downRightShadow 2px
+	background-color c-green
+	cursor: pointer
+	position fixed
+	bottom 2*gs
+	z-index: 10
+	transform(translateY(200px))
+	// display none
+	overflow visible
+
+	&.is-left
+		left 3*gs
+	&.is-right
+		right 3*gs
+	&:hover
+		background-color c-green-hover
+	&:before
+		content ''
+		position absolute
+		nw 0
+		rect 100%
+	&:active
+		transform translate(shadowSize,shadowSize)
+		box-shadow none
+		background c-green
+		&:before
+			transform translate(- shadowSize,- shadowSize)
+
+/* 5865aaa5b346c5aaef5f3b0e3931b09d */
+.numed-block-l
+	> .num-ll, > .block-ll
+		float left
+	> .num-ll
+		width 10%
+	> .block-ll
+		width 90%
+		position: relative
+		left - gs
+	@media all and (max-width: 1150px)
+		> .num-ll
+			width 20%
+		> .block-ll
+			width 80%
+
+	@media all and (max-width: 1000px)
+		> .num-ll
+			width 18.5%
+		> .block-ll
+			width 81.5%
+
+	@media all and (max-width: 825px)
+		> .num-ll
+			width 15%
+		> .block-ll
+			width 85%
+
+
+/* 18d44e1e888afe365824a57f57134c93 */
+.use-text-b
+	color 		c-grey2
+	font-size 	3*gs
+	line-height 4*gs - 3px
+
+/* 2e6c139ac99102313c8ab2e8ea1eafb0 */
+.use-preview-b
+	rect 15*gs
+	border (gs/2) solid c-green
+	border-radius 50%
+	background-color white
+	position: relative
+	background white url('i/select-icons.gif') no-repeat center center
+	background-size 100%
+
+	/* d6357edaaf3a9db383e8191aa395c0af */
+	&.is-copy-svg
+		background-image url('i/copy-svg.gif') 
+
+	/* 223a4c8108f0be566ff9e86ecd2aced6 */
+	&.is-copy-js
+		background-image url('i/copy-js.gif') 
+
+	/* c5acd2f44594d68d2716b7c647f0041f */
+	&.is-add-icon
+		background-image url('i/add-icon.gif') 
+
+	/* a6b114e4e811f2f593bb5dbf53794f85 */
+	&.is-add-css
+		background-image url('i/add-css.gif') 
+
+/* ce7a4a29b02dbe1afc9923dd19c0a782 */
+.use-or-b
+	position relative
+	overflow hidden
+	rect 40*gs
+	border-radius br
+
+	&:after
+		content ''
+		border-top (gs/2) solid c-grey4
+		width 200%
+		position absolute
+		z-index: 0
+		transform rotate(-45deg)
+		t 50%
+		l -50%
+		margin-top - 2px
+	.use-num-b
+		position: absolute
+		nw 50%
+		margin-top  - 2.75*gs
+		margin-left - 2.75*gs
+		z-index: 1
+
+/* e5e06d7c4c91714a20371c7716c047fb */
+.use-num-b
+	color 	c-grey4
+	border 	(gs/2) solid c-grey4
+	border-radius 50%
+	rect 5.5*gs
+	text-align center
+	font-size 3*gs
+	line-height 5*gs
+	background-color white
+
+/* aa8b5b01656750c20ce09dd8e90fe1a2 */
+.support-block-b
+	position relative
+	width 72*gs
+	display block
+	padding 8*gs 6*gs
+	width 50%
+	
+	&.is-friends
+		> .icon
+				rect 43*gs
+				margin-top: - 10*gs
+
+		> .header-be 
+			margin-top: -12*gs
+		> .text-be , > .header-be 
+			position: relative
+			top - 5*gs
+
+	.btn-b
+		position: absolute
+		bottom 4*gs
+		width 24*gs
+
+	> .icon
+		rect 25*gs
+		margin 0 auto
+	> .header-be 
+		font-size 4*gs - 2px
+		color c-grey2-hover
+		margin-top 3*gs
+		font-weight bold
+	> .text-be 
+		margin-top  3px
+		font-size 3*gs
+		line-height 4*gs - 1px
+		color c-grey2
+
+		.line-thru-gm
+			color c-grey3
+
+	// @media all and (max-width:1500px)
+	// 	> .icon
+	// 		rect 30*gs
+	// 		margin 0 auto
+	// 	> .header-be 
+	// 		font-size 4.5*gs - 2px
+	// 		margin-top 3.5*gs
+	// 	> .text-be 
+	// 		margin-top  5px
+	// 		font-size 	3.5*gs
+	// 		line-height 4.5*gs - 1px
+
+		
+	
+
+
+
+/* 38c06112c6e3e24b5f57202103de26e6 */
+.modal-b
+	position: relative
+	padding 4*gs
+	border-radius br + 2px
+	box-shadow gs gs 0 rgba(0,0,0,.2)
+	margin: auto;
+	position: absolute
+	background-color white
+	height 60*gs
+	width 60%
+	nw 0
+	se 0
+	z-index 31
+
+	> .icon
+		position: absolute
+		rect 1.5*gs - 2px
+		ne 4*gs
+
+	> .btns-bl
+		width 32*gs
+		float right
+		margin-top - 5*gs
+		// margin-right 4*gs
+
+	.close-btn-bh
+		display none
+
+	.thanx-modal-with-icon-b
+		width 90%
+		padding-right 2*gs
+		margin-left 4*gs
+		margin-top  	 13.5*gs
+		margin-bottom  17.5*gs
+		margin-left auto
+		margin-right auto
+
+
+
+/* 127f8d904045dfc33124d528e5f6c04c */
+.thanx-modal-with-icon-b
+	position relative
+	> .icon-bl
+		position absolute
+		t 50%
+		margin-top - 4*gs
+	.icon
+		rect 6.5*gs
+
+	.thanx-modal-b
+		margin-left 12*gs
+
+/* 127f8d904045dfc33124d528e5f6c04c */
+.thanx-modal-b
+	padding-left 2*gs + 2px
+	border-left 2px solid c-grey3
+
+	> .header-be
+		font-size 4*gs + 2px
+		color c-grey2
+		font-weight bold
+		margin-bottom gs - 2px
+
+	> .text-be
+		font-size 3*gs + 2px
+		line-height 3.5*gs + 2px
+		color c-grey3
+		+ .text-be
+			margin-top gs + 2px
+
+/* fb37b27f09cb5fb3537f01a90de36adf */
+.switcher-with-texts-b
+	color c-grey3
+	display inline-block
+	font-size 3*gs
+	overflow hidden
+	padding-bottom 1px
+
+	&:hover
+		color c-grey2
+	
+	> .left-text-be, > .right-text-be, .switch-b
+		float left
+	> .left-text-be, > .right-text-be
+		margin-top 2px
+
+	.switch-b
+		input
+			width 100*gs
+			l - 50*gs
+			t - 2px
+
+	> .left-text-be
+		margin-right 1.5*gs
+	> .right-text-be
+		margin-left 1.5*gs
+
+
+/* 3fa6aa94c0c640fbe1a63ee1f0df8f70 */
+.switch-b
+	border-radius 2*gs
+	height 3*gs + 2px
+	width 6*gs
+	box-shadow none
+	position relative
+	cursor pointer
+
+	> .bg-be
+		background-color c-grey3
+		height 3*gs + 1px
+		width 6*gs
+		border-radius 2*gs
+		position absolute
+		nw 0
+		z-index 0
+		transition all .15s ease-out
+
+	> .btn-be
+		content ''
+		rect 3*gs + 2px
+		background-color white
+		box-shadow 2px 2px 0 rgba(0,0,0,.1)
+		position absolute
+		t -1px
+		l 0
+		border-radius 50%
+		z-index 1
+		transition all .15s ease-out
+
+	input
+		rect 100%
+		z-index 2
+		position absolute
+		nw 0
+		background-color red
+		display block
+		opacity 0
+		cursor pointer
+
+		&:checked + .btn-be
+			left 100%
+			margin-left - 3*gs - 1px		
+		&:checked ~ .bg-be
+			background-color c-green
+
+/* 8d92942b39756658a1fc398019ca1af8 */
+.icon-with-text-line-b
+	color c-grey3
+	padding-top 1px
+	display inline-block
+	
+	/* f74ef723f71f2fc674d7183e3be4792f */
+	&.is-hoverable
+		&:hover
+			cursor pointer
+			color c-grey2
+			.plus-btn-b
+				border-color c-grey2
+
+			.icon
+				fill c-grey2
+
+	.icon-bl
+		float left
+	.text-be
+		font-size 2.5*gs
+		margin-left 4*gs
+		margin-top 2px
+
+
+/* 6c7758a7f5cb75603d6bb6f833d321b3 */
+.noty-b
+	background-color c-green
+	border-top-right-radius br
+	border-bottom-right-radius br
+	downRightShadow()
+	position relative
+	padding 1.5*gs 6*gs
+	color white
+	font-size 2.5*gs
+	text-align left
+	cursor pointer
+	width notyWidth
+
+	/* 82d0708b986cd9e95076b7a1486fa5da */
+	&.is-warning
+		background-color c-red2
+		&:hover
+			background-color c-red2-hover
+
+		.info-icon-bh
+			display block
+
+		.tick-icon-bh
+			display none
+
+	/* 71127d559a0a51a2d479fa6cd44fd41a */
+	&.is-error
+		background-color c-red1
+		&:hover
+			background-color c-red1-hover
+
+		.close-icon-bh
+			display block
+
+		.tick-icon-bh
+			display none
+
+	&:hover
+		background-color c-green-hover
+
+	.icon
+		rect 1.5*gs
+		fill white
+		position absolute
+		t 50%
+		r 1.5*gs
+		margin-top - 0.75*gs
+
+	.close-icon-bh, .info-icon-bh
+		display none
+
+	
+/* 7b95f5d5e25620cd774bd8742941cb39 */
+.filter-b
+	position relative
+	// padding 2*gs 0
+	width 14*gs
+	height 10*gs
+	padding-top gs
+	text-align center
+	color c-grey3
+	border-radius br
+	cursor pointer
+
+	&.is-check
+		color darken(c-grey2, 20)
+		> .icon
+			fill darken(c-grey2, 20)
+
+	&:hover
+		background-color rgba(0,0,0,.02)
+		.left-bl, .right-bl
+			display block
+
+	.left-bl, .right-bl
+		position absolute
+		margin-top gs + 2px
+		display none
+		background-color 		white
+		border (gs/2) solid white
+		border-radius 50%
+
+		&:after
+			content ''
+			position absolute
+			rect 100%
+			nw  - 2px
+
+		&:hover
+			downShadow()
+		&:active
+			box-shadow none
+			margin-top 1.5*gs
+			// 4!
+			&:after
+				margin-top - 2px
+
+		.icon
+			rect 1.5*gs
+
+	.left-bl
+		left 1.5*gs
+
+	.right-bl
+		right 1.5*gs
+
+	> .icon
+		rect 5*gs
+		margin 0 auto
+		// svg 
+		// 	padding (gs/2)
+		// g
+		// 	margin - (gs/2)
+		// use
+		// 	margin (gs/2)
+
+	> .name-be
+		font-size 2.5*gs
+		textel()
+		padding 0 (gs/2)
+
+/* 8e2f71e057587b0892bbe4bab889dc32 */
+arrowOffset = 5*gs
+.icon-collections-line-b
+	position relative
+	max-width 100%
+	padding 0 4*gs
+	min-height 12*gs
+
+	> .icons-bl
+		width 100%
+		overflow-y hidden
+		overflow-x hidden
+		white-space nowrap
+
+		> div
+			display inline-block
+		+ div
+			margin-left gs - 3px
+
+	.plus-btn-b
+		position absolute
+		top 50%
+		margin-top - 3*gs
+		z-index: 2
+		background-color rgba(255,255,255,.5)
+	.left-arrow-bh
+		left  0
+
+	.right-arrow-bh
+		right 0
+
+	
+
+
+/* aa37471cadddb8a9885c21df63f63beb */
+.icons-set-b
+	width 11*gs
+	border-radius br
+	cursor pointer
+	padding-top gs + 2px
+
+	&.is-not-moderated
+		opacity .5
+	
+	&:hover, &.is-check
+		background-color rgba(0,0,0,.05)
+
+	> .icons-bl
+		width 9*gs
+		margin-left (gs/2)
+	.icon
+		float left
+		rect 2*gs
+		margin-left gs 
+		margin-bottom gs + 2px
+		fill c-grey2
+
+	> .text-be
+		font-size 2.5*gs
+		color white
+		text-align center
+		background-color rgba(0,0,0,.2)
+		border-bottom-right-radius br
+		border-bottom-left-radius br
+		padding 2px 0
+		textel()
+
+
+/* b3ae71e6b694bf45eec717b27592df6e */
+.checkbox-with-label-b
+	color c-grey3
+	.plus-btn-b
+		rect 2*gs
+		display inline-block
+		color c-grey3
+		position relative
+		top 1px
+		left (gs/2)
+		.icon
+			margin-top 3px
+
+	&:hover
+		color c-grey2
+		.checkbox-b
+			box-shadow 2px 2px 0 c-grey2
+			border 1px solid c-grey2
+			.icon
+				fill c-grey2
+
+	label
+		font-size 3*gs
+		padding-left 1.5*gs
+		display inline-block
+		cursor pointer
+		margin-top - 1px
+		a
+			color inherit
+	.checkbox-b
+		float left
+
+/* d72ce917d1c414ba1d72da724f3a7ec4 */
+.checkbox-b
+	rect 2.5*gs + 1px
+	position relative
+	&:hover
+		box-shadow 2px 2px 0 c-grey2
+		border 1px solid c-grey2
+		.icon
+			fill c-grey2
+
+	input
+		opacity 0
+		rect 100%
+		position absolute
+		nw 0
+		z-index 2
+		cursor pointer
+		&:checked + .icon
+			display block
+	.icon
+		position absolute
+		rect 1.5*gs
+		top  (gs/2)
+		left (gs/2)
+		display none
+		z-index 1
+
+/* df265d9e31b7bad5b31e1545831142ba */
+.submit-icon-collection-b
+	border-left 2px solid c-grey3
+	padding-left 8*gs
+	padding-top 4*gs
+
+	> .icons-bl
+		> .icons-bll
+			overflow hidden
+
+	.plus-btn-b
+		margin-top 3*gs
+		margin-left 3*gs
+		float left
+
+	> .header-be
+		font-size 4*gs
+		color c-grey3
+		margin-bottom gs - 1px
+
+	.submit-icon-b
+		float left
+
+/* 7fc5887b7434ee59fc7d648ff4f4541d */
+.plus-btn-b
+	rect 3*gs
+	border 1px solid c-grey3
+	border-radius 50%
+	cursor pointer
+	overflow hidden
+	position relative
+
+	&:hover
+		// background-color rgba(0,0,0,.05)
+		border-color c-grey2
+		.icon
+			fill c-grey2
+
+
+	.icon
+		rect gs
+		margin 0 auto
+		margin-top gs - 1px
+		// hl c-red1
+
+	#fileupload
+		opacity 0
+		z-index: 1
+		position absolute
+		cursor pointer
+		padding-left 4*gs
+		nw 0
+		rect 100%
+
+		
+
+/* 64fa8abebcd9bc5daf0b64b066612b83 */
+marginTop = 2*gs
+.collection-credits-b
+	text-align center
+	width 36*gs
+	padding-right 5*gs
+	padding-left 5*gs
+	padding-top 4*gs
+	padding-bottom 6*gs
+
+	/* 0d0ce61b4cec5920d846eead8175f609 */
+	&.is-edit
+		.license-bh
+			display none
+		.moderated-bh
+			display block
+
+		.icon-set-l
+			display block
+		> .btn-b
+			display none
+		
+
+	> .header-be
+		font-size 4*gs
+		color c-grey3
+		margin-bottom 2.5*gs
+
+	input, .btn-b
+		width 100%
+		+ input
+			margin-top marginTop
+	.btn-b
+		margin-top marginTop + 2*gs
+
+	.switcher-with-texts-b
+		margin-top 3*gs
+
+	.checkbox-with-label-b
+		margin-top  2*gs
+		margin-left 2*gs
+		text-align left
+	
+	.moderated-bh
+		display none
+
+	.icon-set-l
+		display none
+
+
+/* 1a4f5ba6fd48663826fe4d9ef3f3a2dd */
+.submit-icon-b
+	width 22*gs
+	padding 2*gs
+	position relative
+	brad()
+
+	&.is-error
+		border 1px solid c-red1
+
+	&:hover
+		background-color rgba(0,0,0,.025)
+
+		.close-bh
+			display block
+
+	.icon-sample-bh
+		float left
+		fill c-grey2
+		margin-left (gs/2)
+		margin-top 2px
+		rect 4*gs
+
+	.close-bh
+		position absolute
+		rect gs + 2px
+		ne (gs/2)
+		display none
+		// fill c-grey3
+
+	.input-e
+		width 100%
+	.name-bh
+		margin-left 6*gs	
+
+	.shape-bh
+		margin-top  1.5*gs
+
+/* 47a89f9dc70629feb99b65583ce49f4a */
+.icon-select-view-b
+	> .controls-bl
+		margin-bottom 3*gs
+
+		> .icon-set-l
+			float right
+			width 26*gs
+			margin-right 3*gs + 1px
+
+		> .input-with-icon-b
+			float left
+			width 20*gs
+
+	> .content-bl
+		clear both
+		margin-top 8*gs
+
+
+
+/* 19d8650be161cd15c32961dab15941ab */
+.main-logo-b
+	width 22*gs
+	text-align center
+
+	> .logo-large-e
+		margin 0 auto
+
+	> .name-be
+		font-size 52px
+		margin-top - 2*gs + 2px
+
+	> .description-be
+		font-size 19px
+		margin-top - (gs/2)
+
+
+/* 9f594b08a3b87a497c4f5b4592e970e4 */
+.main-header-b
+	font-size 20px
+	color c-grey1
+	min-width 72*gs
+	height 7*gs
+	padding-top 2*gs + 2px
+	padding-left 3*gs
+	background-color rgba(255,255,255,.9)
+	position fixed
+	nw 0
+	width 100%
+	z-index: 10
+	opacity 0
+	&.is-convex
+		downShadow()
+	> .loading-be
+		width 	 0%
+		height 	 gs
+		background-color c-green
+		left 	 0
+		bottom 	 - gs + 2px
+		position absolute
+		transition width .05s ease-out
+		border-top-right-radius br + 1px
+		border-bottom-right-radius br + 1px
+	> .logo-tiny-e
+		margin-top - gs
+		display: block
+		float left
+	> a
+		display inline-block
+		+ .menu-item-be
+			margin-left 3*gs
+
+	.social-btns-l
+		margin-top - 3px
+		margin-right gs
+
+
+/* d31599d6c04918e3e54b3383d136855e */
+.section-b
+	+ .section-b
+		margin-top 3*gs
+
+	&.is-closed
+		// > .content-bl
+		// 	height 0
+		// 	overflow hidden
+
+		.close-bh
+			transform rotate(-180deg)
+
+	> .content-bl
+		margin-top 3*gs
+
+	.close-bh
+			transition -webkit-transform .25s linear
+			transition -moz-transform .25s linear
+			transition -ms-transform .25s linear
+			transition -o-transform .25s linear
+			transition transform .25s linear
+
+	.icon-with-text-b
+		float left
+		margin (gs)
+		margin-top 0
+
+/* 22c3f29200c646ede875bdad751d0ed5 */
+.section-header-b
+	color c-grey3
+	font-size 4*gs
+	position relative
+	padding-right 3*gs
+	text-align left
+	
+	// background-color rgba(0,0,0,.05)
+	// border-top-left-radius br
+	// border-top-right-radius br
+	// padding gs 2*gs
+
+	// &:after
+	// 	content ''
+	// 	position absolute
+	// 	left 0 
+	// 	bottom - gs
+	// 	width 100%
+	// 	margin-right 3*gs
+	// 	height 2px
+	// 	border-top 1px solid c-grey3
+	// 	border-bottom 1px solid c-grey3
+
+	> .author-be
+		font-size 2.5*gs
+		float right
+		display block
+		color c-grey3
+		margin-top gs + 2px
+
+	> .name-be
+		display inline-block
+
+	> .icons-bl
+		display inline-block
+		margin-left gs
+		position: relative 
+		top -2px
+
+	.icon
+		float left
+		rect 1.5*gs
+
+		+ .icon
+			margin-left gs
+
+/* 79578151cf3186d5d1ece15f3defd4b7 */
+.icon-with-text-b
+	width  7*gs
+	height 7*gs + 2px
+	padding-top 1px
+	border-radius br
+	color c-grey3
+	cursor pointer
+	border 1px solid transparent
+	position relative
+	cbox()
+
+	&:hover, &.is-check
+		color darken(c-grey2, 20)
+
+		> .icon
+			fill darken(c-grey2, 20)
+			// transition fill 0s linear
+		> .text-be
+			// transition color 0s linear
+
+
+	&:hover
+		background-color rgba(0,0,0,.05)
+
+
+	> .bullet-be
+		position absolute
+		display none II
+		rect gs
+		background-color white
+		border-radius 50%
+		border 1px solid c-grey3
+		left 100%
+		margin-left - (gs/2)
+		top 50%
+		bbox()
+		color white
+		font-size 0
+		z-index: 1
+
+		&:hover, &.is-expanded
+			width 7*gs
+			border-radius br
+			font-size 12px
+			line-height 2*gs - 2px
+			padding-left 3*gs
+			height 2*gs
+			z-index: 2
+			border 0
+
+	> .hover-be
+		margin-top - 2*gs - 1px
+		&.is-check, &:hover, &.is-expanded
+			border 0
+			background-color c-red1
+
+		&:hover, &.is-expanded
+			margin-top - 2.5*gs - 1px
+
+
+	> .active-be
+		margin-top - gs + 2px
+		&.is-check, &:hover,  &.is-expanded
+			border 0
+			background-color c-red2
+
+		&:hover, &.is-expanded
+			margin-top - 1.5*gs + 2px
+
+
+	> .focus-be
+		margin-top  5px
+		&.is-check, &:hover,  &.is-expanded
+			border 0
+			background-color c-green
+
+		&:hover, &.is-expanded
+			margin-top - (gs/2) + 5px
+
+
+
+	> .icon
+		margin 0 auto
+		margin-top 1px
+		// transition fill .5s ease-out
+		// rect 3*gs
+	
+	> .text-be
+		font-size 20px
+		text-align center
+		margin-top 2px
+		max-width 100%
+		padding 0 (gs/2)
+		textel()
+		// transition color .5s ease-out
+
+
+
+shadowSize = 2px
+/* caa0608fbfea0f959bf1ce698d2327e6 */
+.input-with-icon-b
+	position relative
+	display inline-block
+
+	.input-e
+		padding-left 5*gs
+		float left
+		width 100%
+
+		&:focus + .icon
+			fill c-green
+
+	.icon
+		position absolute
+		left 	gs + 4
+		top 	50%
+		margin-top - gs - 2px
+		rect 	2.5*gs
+
+	
+
+shadowSize = 2px
+/* e8dcf44767bba63ed03de6691a1a44f7 */
+.btn-b
+	btnHeight = 4.5*gs 
+	background c-green
+	height 		btnHeight
+	line-height btnHeight
+	position relative
+	display: inline-block
+	padding 0 4*gs
+	color white
+	cursor pointer
+	border-radius br
+	box-shadow shadowSize shadowSize 0 rgba(rgb(c-grey1), .2)
+	font-size 20px
+	text-align center
+
+	&:hover
+		background c-green-hover
+	&:before
+		content ''
+		position absolute
+		nw 0
+		rect 100%
+	&:active
+		transform translate(shadowSize,shadowSize)
+		box-shadow none
+		background c-green
+		&:before, .addthis_internal_container, > input[type="file"]
+			transform translate(- shadowSize,- shadowSize)
+		
+	> input[type="file"]
+		padding-left 110%
+		cursor: pointer
+		rect 100%
+		opacity 0
+		nw 0
+		position absolute
+
+	&.is-block
+		display block
+
+	// add this share block
+	.addthis_internal_container
+		width 100% II
+	.addthis_toolbox
+		rect 100%
+		height 6*gs
+		top  - gs + 2px II
+		left 0 II
+		position: absolute
+		opacity: 0
+	.addthis_button_compact
+		height 6*gs
+		margin-top - gs
+
+	
+	/* 9343b5637912148f603dc8c154382c2c */
+	&.is-red1
+		background-color c-red1
+
+		&:hover
+			background c-red1-hover
+		&:active
+			background c-red1
+
+	/* 58b21870f4e247e374c47f1d6d823c88 */
+	&.is-iconed
+		padding 0
+		width 100%
+		// width 4.5*gs
+		.icon
+			rect gs
+			fill white
+			position absolute
+			nw 50%
+			margin-left - (gs/2)
+			margin-top - (gs/2)
+
+	/* 3dd69df51d0449f7f9db27fe23b7cef6 */
+	&.is-inactive
+		background-color c-grey3
+		box-shadow none
+		cursor default
+
+		&:active
+			transform none
+	
+	/* 852b2351c7cfac250ba678d22d731ee3 */
+	&.is-counter
+		padding-left 8*gs
+
+		&:after
+			content attr(data-cnt)
+			rect 3*gs
+			display inline-block
+			background-color c-red1
+			border-radius 50%
+			position absolute
+			top 50%
+			margin-top - (1.5*gs)
+			left 2*gs + (gs/2)
+			text-align center
+			color white
+			line-height 3*gs + 2px
+			bbox()
+
+		&.is-2-digits
+			// 4!
+			&:after
+				width 3*gs + 2px
+				font-size 18px
+
+		&.is-3-digits
+			// 4!
+			&:after
+				width 3*gs + 2px
+				font-size 16px
+
