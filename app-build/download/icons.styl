@@ -1,0 +1,16 @@
+@import '../css/assets/imports.styl'
+
+.iconmelon, .im
+		position relative
+		rect 4*gs
+		display block
+		fill darken(c-grey2, 20)
+		bbox()
+		svg, g, use
+			bbox()
+
+		&:after
+			content: ''
+			position absolute
+			nw 0
+			rect 100%

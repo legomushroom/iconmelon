@@ -1,0 +1,25 @@
+//- .submit-icon-b(class="<%= !(isValid) ? 'is-error' : '' %>")
+.submit-icon-b
+	- var idAttribute 	= 'js-destroy'
+	- var path 			= 'close-icon'
+	- var iconClass 	= 'is-hoverable close-bh'
+	- var title 		= 'remove'
+	include icon
+	- var title 		= ''
+
+	- var iconClass = "icon-sample-bh <%= hash || 'is-grey3' %>"
+	- var path 		= '<%= hash || "b5282d4ecdc7ae3d0799023622c560a5" %>'
+	- var idAttribute 	= ''
+	include icon
+	.name-bh
+		//- - var className = '<%= !(isNameValid) ? "is-error" : "" %>'
+		- var className = ''
+		- var placeholder = 'name'
+		- var idAttribute = nameId || ''
+		include input
+
+	//- - var className = 'shape-bh <%= !(isShapeValid) ? "is-error" : "" %>'
+	- var className = 'shape-bh'
+	- var placeholder = 'shape'
+	- var idAttribute = shapeId || ''
+	include input

@@ -1,0 +1,42 @@
+@import '../assets/imports'
+
+.support-p
+	padding 12*gs 4*gs
+	opacity: 0
+
+	> .header-pe
+		font-size 3*gs
+		line-height 3*gs
+		color c-grey2
+		margin-bottom 3*gs
+		margin-top - (gs/2)
+		padding-left 4*gs
+		text-align center
+
+	.support-blocks-pl
+		border-radius br + 2px
+		box-shadow none
+
+		.support-block-b
+			border gs solid rgba(0,0,0,.03)
+			width 62*gs
+			margin: 0 auto
+			height auto
+			padding 4*gs 4*gs 12*gs
+			border-radius br + 2px
+
+			+ .support-block-b
+				margin-top 2*gs
+
+		form
+			opacity 0
+			position: absolute
+			nw 0
+			rect 100%
+
+		input
+			rect 100%
+
+			
+
+

@@ -1,3 +1,4 @@
+define('backbone.wreqr', ['backbone'], function(Backbone){
 // Backbone.Wreqr (Backbone.Marionette)
 // ----------------------------------
 // v0.2.0
@@ -8,7 +9,7 @@
 // http://github.com/marionettejs/backbone.wreqr
 
 
-Backbone.Wreqr = (function(Backbone, Marionette, _){
+return Backbone.Wreqr = (function(Backbone, Marionette, _){
   "use strict";
   var Wreqr = {};
 
@@ -263,4 +264,5 @@ Wreqr.EventAggregator = (function(Backbone, _){
 
 
   return Wreqr;
-})(Backbone, Backbone.Marionette, _);
+  })(Backbone, Backbone.Marionette, _);
+});

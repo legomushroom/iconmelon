@@ -1,0 +1,47 @@
+// ICONS
+@import '../assets/imports.styl'
+
+.icon
+	rect 4*gs
+	fill c-grey3
+	display block
+	position relative
+
+	&:after
+		content: ''
+		rect 100%
+		position absolute
+		nw 0
+
+	svg
+		float left
+		rect 100%
+
+	&.is-fill-transition
+		transition fill .25s linear
+
+	&.is-reverse
+		transform rotate(-180deg)
+		transition -webkit-transform .3s linear
+		transition -moz-transform .3s linear
+		transition -o-transform .3s linear
+		transition transform .3s linear
+
+	&.is-grey3
+		fill c-grey3
+
+
+	&.is-hoverable
+		&:hover
+			fill c-grey3-hover
+			cursor pointer
+
+	&.is-green--onhover
+		&:hover
+			fill c-green-hover
+			cursor pointer
+
+	&.is-red1--onhover
+		&:hover
+			fill c-red1-hover
+			cursor pointer

@@ -1,0 +1,55 @@
+@import '../assets/imports'
+.main-page-p
+	padding 0 8*gs
+	text-align center
+
+	// .section-b
+	// 	// display none
+	// 	// opacity 0
+	// 	visibility hidden
+	// 	transform(translateZ(0))
+
+	.main-logo-b
+		margin 0 auto
+		margin-top 16*gs
+		-webkit-transform translateX(2000px) translateZ(0)
+		-moz-transform translateX(2000px) translateZ(0)
+		-ms-transform translateX(2000px) translateZ(0)
+		-o-transform translateX(2000px) translateZ(0)
+		transform translateX(2000px) translateZ(0)
+		// transform(translateX(2000px))
+
+		&.is-no-translateX
+			transform(translateX(0))
+
+	.icon-select-view-b
+		margin-top 15*gs
+		opacity 0
+		&.is-filter-show
+			// 4!
+			.add-effects-ph
+				display none
+
+	.add-effects-ph
+		margin-bottom gs
+
+	.filters-block-pl
+		display none
+
+	.icon-collections-line-b
+		margin-right 3*gs
+	.header-pm
+		font-size 4*gs
+		color darken(c-grey3, 5)
+		margin-bottom 4*gs
+		text-align center
+		background-color rgba(0,0,0,.03)
+		border-radius br
+		margin-right 3*gs
+		padding (gs/2) 0
+	
+	.section-pm
+		+ .header-pm
+			margin-top 4*gs
+
+

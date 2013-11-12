@@ -1,0 +1,10 @@
+.icon-set-l
+    .left-ll
+      - var className = 'js-upload is-iconed is-red1'
+      - var iconPath = 'arrow-up-icon'
+      - var title = 'load from file'
+      include ../css/partials/button-with-icon-load
+    .right-ll
+      - var className = 'js-download is-counter is-<%= (selectedCounter + "").length %>-digits', text = 'download'
+      - var cnt = '\<%= selectedCounter %\>'
+      include ../css/partials/button

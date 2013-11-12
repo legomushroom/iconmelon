@@ -1,0 +1,23 @@
+//- d8231e3de7a5cfc54e2a32c99fda48b0
+.section-header-b
+	a(target=linkTarget, href=authorLink).is-grey3.is-hoverable.is-grey2--onhover.author-be #{ author || 'by LegoMushroom' }
+
+	.name-be #{ text || 'Section name' }
+	.icons-bl
+		- var path	      = 'dropup-arrow-icon'
+		- var iconClass   = 'close-bh is-hoverable ' + arrowClass
+		- var idAttribute = 'js-hide'
+		- var title 	  = "close section"
+		include icon
+
+		- var path	      = 'tick-icon'
+		- var iconClass   = 'is-green--onhover '
+		- var idAttribute = 'js-select-all'
+		- var title 	  = "select all"
+		include icon
+
+		- var path	      = 'close-icon'
+		- var iconClass   = 'is-red1--onhover '
+		- var idAttribute = 'js-deselect-all'
+		- var title 	  = "deselect all"
+		include icon

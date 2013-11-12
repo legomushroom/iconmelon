@@ -1,0 +1,25 @@
+@import '../assets/imports'
+
+.how-p
+	padding 0 4*gs
+	padding-top 20*gs
+	opacity: 0
+	text-align center
+
+
+	.page-block-ph
+		+ .page-block-ph
+			margin-top 12*gs
+
+	.small-logo-b
+			margin-top 16*gs
+
+	.use-or-b
+		@media all and (max-width: 1150px)
+			rect 10*gs
+			margin-left 4.5*gs
+			margin-bottom: -2*gs
+			overflow visible
+			&:after
+				transform rotate(90deg)
+

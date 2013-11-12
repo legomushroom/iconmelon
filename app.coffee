@@ -10,7 +10,9 @@ zip     = require 'node-native-zip'
 md5     = require 'MD5'
 mkdirp  = require 'mkdirp'
 jade    = require 'jade'
+cookies = require 'cookies'
 markdown= require('node-markdown').Markdown
+pretty  = require('pretty-data').pd
 
 mkdirp 'frontend/generated-icons', ->
 mkdirp 'uploads', ->
@@ -18,9 +20,12 @@ mkdirp 'uploads', ->
 port    = 3000
 app     = express()
 
+# folder = 'app-build'
+folder = 'frontend'
+
 app.set 'port', process.env.PORT or port
-app.use express.favicon __dirname + '/frontend/favicon.ico'
-app.use express.static  __dirname + '/frontend'
+app.use express.favicon __dirname + "/#{folder}/favicon.ico"
+app.use express.static  __dirname + "/#{folder}"
 
 app.use express.bodyParser(uploadDir: 'uploads')
 app.use express.methodOverride()
@@ -62,6 +67,11 @@ BudgetSchema = new mongo.Schema
       monthly:        String
 
 Budget = mongo.model 'Budget', BudgetSchema
+
+SecretSchema = new mongo.Schema
+  hash:         String
+
+Secret = mongo.model 'Secret', SecretSchema
 
 io = require('socket.io').listen(app.listen(process.env.PORT or port), { log: false })
 
@@ -137,8 +147,8 @@ class Main
   makeZipFireball:(data)->
     prm = new Promise()
     archive = new zip
-    archive.add 'icons.svg',  new Buffer data.svgData, 'utf8'
-    archive.add 'index.html', new Buffer data.htmlData, 'utf8'
+    archive.add 'icons.svg',  new Buffer pretty.xml(data.svgData), 'utf8'
+    archive.add 'index.html', new Buffer pretty.xml(data.htmlData), 'utf8'
     archive.add 'license.md', new Buffer data.licenseData, 'utf8'
     SYSTEM_FILES = 'you-dont-need-this-assets-folder'
     archive.addFiles([
@@ -275,6 +285,13 @@ class Main
 main = new Main
 
 io.sockets.on "connection", (socket) ->
+
+  socket.getCookie = (name)->
+    cookies = {}
+    for cookie, i in socket.handshake.headers.cookie.split(';')
+      cookie = cookie.split '='
+      cookies[cookie[0].replace /\s/, ''] = cookie[1]
+    cookies[name]
   
   socket.on "sections:read", (data, callback) ->
     Section.find {moderated: true}, (err, docs)->
@@ -289,25 +306,34 @@ io.sockets.on "connection", (socket) ->
       callback null, docs
 
   socket.on "sections-all:read", (data, callback) ->
-    Section.find {}, (err, docs)->
-      callback null, docs
+    Secret.find {}, (err, docs)->
+      if docs[0].hash isnt socket.getCookie 'secret' then callback(405, 'no, sorry'); return
+
+      Section.find {}, (err, docs)->
+        callback null, docs
 
   socket.on "section:create", (data, callback) ->
-    data.moderated = false
-    new Section(data).save (err)->
-      if err
-        callback 500, 'DB error'
-        console.error err
-      else callback null, 'ok'
-
-  socket.on "section:update", (data, callback) ->
-    id = data.id; delete data._id
-    Section.update {'_id':id}, data, {upsert:true}, (err)->
-      main.generateMainPageSvg().then =>
+    Secret.find {}, (err, docs)->
+      if docs[0].hash isnt socket.getCookie 'secret' then callback(405, 'no, sorry'); return
+      data.moderated = false
+      new Section(data).save (err)->
         if err
           callback 500, 'DB error'
           console.error err
         else callback null, 'ok'
+
+  socket.on "section:update", (data, callback) ->
+    
+    Secret.find {}, (err, docs)->
+      if docs[0].hash isnt socket.getCookie 'secret' then callback(405, 'no, sorry'); return
+
+      id = data.id; delete data._id
+      Section.update {'_id':id}, data, {upsert:true}, (err)->
+        main.generateMainPageSvg().then =>
+          if err
+            callback 500, 'DB error'
+            console.error err
+          else callback null, 'ok'
 
       # main.generateMainPageSvg()
 
@@ -342,6 +368,10 @@ app.get '/budget-counters', (req,res,next)->
   Budget.find {}, (err, docs)->
     doc = docs[0]
     res.send doc
+
+# new Secret(
+#   hash: 'bb0744e372fd5e83cf94dfaaf21c4b45'
+# ).save()
 
 # new Budget(
 #       budget: '-40'

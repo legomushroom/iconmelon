@@ -1,0 +1,31 @@
+.controls-bl.cf
+  - var placeholder = 'search'
+  - var path  = 'search-icon'
+  - var idAttribute = ''
+  - var className = ''
+  - var title = ''
+  - var iconClass = ''
+  include ../css/partials/input-with-icon
+
+  .icon-set-l
+    .left-ll
+      - var className = 'js-upload is-iconed is-red1'
+      - var iconPath = 'arrow-up-icon'
+      - var title = 'load from file'
+      include ../css/partials/button-with-icon-load
+    .right-ll
+      - var className = 'js-download is-counter', text = 'download', cnt = ''
+      include ../css/partials/button
+
+- var className = 'is-hoverable add-effects-ph', idAttribute = 'js-add-effects'
+- var title = '', text = 'add effects'
+- var iconPath = 'cross-icon'
+include ../css/partials/icon-with-text-line
+
+.filters-block-pl#js-filter-block
+  .header-pm Filters:
+  #js-filters-place.icon-collections-line-b.cf.section-pm
+  
+  .header-pm Icons:
+#js-section-collections-place.cf.section-pm
+

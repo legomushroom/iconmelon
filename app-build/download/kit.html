@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>iconmelon</title><!-- SYSTEM STYLES -->
+    <link rel="stylesheet" href="you-dont-need-this-assets-folder/main.css" type="text/css"><!-- SYSTEM STYLES -->
+    <!-- STYLES YOU NEED -->
+    <link rel="stylesheet" href="icons.css" type="text/css"><!-- STYLES YOU NEED -->
+  </head>
+  <body>
+    <!-- ICONS -->
+    <svg id="svg-source" height="0" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="position: absolute">
+    <!-- svg-icons-place -->
+    </svg>
+    <!-- ICONS -->
+    <!-- HEADER -->
+    <div id="js-main-header" class="main-header-b"><a target="_blank" href="http://iconmelon.com" class="logo-tiny-e"></a><a target="_blank" href="http://iconmelon.com/#/how-to-use" class="menu-item-be is-hoverable">how to use</a><a target="_blank" href="http://iconmelon.com/#/contacts" class="menu-item-be is-hoverable">contacts</a></div><!-- HEADER -->
+    <div class="main-l">
+      
+      <!-- icons-place -->
+      
+    </div>
+    <script>
+      var url ='icons.svg';
+      var c=new XMLHttpRequest(); c.open('GET', url, false); c.setRequestHeader('Content-Type', 'text/xml'); c.send();
+      document.body.insertBefore(c.responseXML.firstChild, document.body.firstChild)
+    </script>
+  </body>
+</html>

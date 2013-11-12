@@ -2061,7 +2061,8 @@ a.is-check:after {
   margin-top: -8px;
   margin-left: -8px;
 }
-.social-btn-b {
+.social-btn-b,
+.to-top-btn-b {
   display: block;
   width: 24px;
   height: 24px;
@@ -2078,54 +2079,73 @@ a.is-check:after {
 /* 875ade41f9b8598fd88c3bca223a932b */
 /* 9c6ccb3d55768fb8e3aafa0719926b9b */
 }
-.social-btn-b:hover {
+.social-btn-b:hover,
+.to-top-btn-b:hover {
   background-color: #ff5790;
 }
 .social-btn-b.is-codepen,
+.to-top-btn-b.is-codepen,
 .social-btn-b.is-github,
-.social-btn-b.is-behance {
+.to-top-btn-b.is-github,
+.social-btn-b.is-behance,
+.to-top-btn-b.is-behance {
   background-color: #3b3b3a;
 }
 .social-btn-b.is-codepen:hover,
+.to-top-btn-b.is-codepen:hover,
 .social-btn-b.is-github:hover,
-.social-btn-b.is-behance:hover {
+.to-top-btn-b.is-github:hover,
+.social-btn-b.is-behance:hover,
+.to-top-btn-b.is-behance:hover {
   background-color: #555553;
 }
 .social-btn-b.is-codepen .icon,
+.to-top-btn-b.is-codepen .icon,
 .social-btn-b.is-github .icon,
-.social-btn-b.is-behance .icon {
+.to-top-btn-b.is-github .icon,
+.social-btn-b.is-behance .icon,
+.to-top-btn-b.is-behance .icon {
   width: 16px;
   height: 16px;
   margin-top: -8px;
   margin-left: -8px;
 }
-.social-btn-b.is-skype {
+.social-btn-b.is-skype,
+.to-top-btn-b.is-skype {
   background-color: #1eb9ea;
 }
-.social-btn-b.is-skype:hover {
+.social-btn-b.is-skype:hover,
+.to-top-btn-b.is-skype:hover {
   background-color: #4dc8ee;
 }
 .social-btn-b.is-behance,
-.social-btn-b.is-gplus {
+.to-top-btn-b.is-behance,
+.social-btn-b.is-gplus,
+.to-top-btn-b.is-gplus {
   background-color: #3fb8af;
 }
 .social-btn-b.is-behance:hover,
-.social-btn-b.is-gplus:hover {
+.to-top-btn-b.is-behance:hover,
+.social-btn-b.is-gplus:hover,
+.to-top-btn-b.is-gplus:hover {
   background-color: #4ec2ba;
 }
-.social-btn-b.is-gplus .icon {
+.social-btn-b.is-gplus .icon,
+.to-top-btn-b.is-gplus .icon {
   width: 16px;
   height: 16px;
   margin-top: -8px;
   margin-left: -8px;
 }
-.social-btn-b.is-email .icon {
+.social-btn-b.is-email .icon,
+.to-top-btn-b.is-email .icon {
   width: 14px;
   height: 14px;
   margin-top: -7px;
   margin-left: -7px;
 }
-.social-btn-b .icon {
+.social-btn-b .icon,
+.to-top-btn-b .icon {
   width: 12px;
   height: 12px;
   margin-top: -6px;
@@ -2134,6 +2154,51 @@ a.is-check:after {
   position: absolute;
   top: 50%;
   left: 50%;
+}
+.to-top-btn-b {
+  width: 32px;
+  height: 32px;
+  box-shadow: 2px 2px 0 rgba(59,59,58,0.2);
+  background-color: #3fb8af;
+  cursor: pointer;
+  position: fixed;
+  bottom: 16px;
+  z-index: 10;
+  display: none;
+  overflow: visible;
+}
+.to-top-btn-b.is-left {
+  left: 24px;
+}
+.to-top-btn-b.is-right {
+  right: 24px;
+}
+.to-top-btn-b:hover {
+  background-color: #4ec2ba;
+}
+.to-top-btn-b:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.to-top-btn-b:active {
+  -webkit-transform: translate(2px, 2px);
+  -moz-transform: translate(2px, 2px);
+  -ms-transform: translate(2px, 2px);
+  -o-transform: translate(2px, 2px);
+  transform: translate(2px, 2px);
+  box-shadow: none;
+  background: #3fb8af;
+}
+.to-top-btn-b:active:before {
+  -webkit-transform: translate(-2px, -2px);
+  -moz-transform: translate(-2px, -2px);
+  -ms-transform: translate(-2px, -2px);
+  -o-transform: translate(-2px, -2px);
+  transform: translate(-2px, -2px);
 }
 .numed-block-l > .num-ll,
 .numed-block-l > .block-ll {
@@ -3238,6 +3303,14 @@ a.is-check:after {
 .btn-b:hover {
   background: #4ec2ba;
 }
+.btn-b:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
 .btn-b:active {
   -webkit-transform: translate(2px, 2px);
   -moz-transform: translate(2px, 2px);
@@ -3246,14 +3319,6 @@ a.is-check:after {
   transform: translate(2px, 2px);
   box-shadow: none;
   background: #3fb8af;
-}
-.btn-b:before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
 }
 .btn-b:active:before,
 .btn-b:active .addthis_internal_container,
@@ -3596,7 +3661,8 @@ a.is-check:after {
 		animation-fill-mode:both;
 	}	
 
-	.animated.hinge{-webkit-animation-duration:1s;-moz-animation-duration:1s;-ms-animation-duration:1s;-o-animation-duration:1s;animation-duration:1s;}
+.animated.hinge{-webkit-animation-duration:1s;-moz-animation-duration:1s;-ms-animation-duration:1s;-o-animation-duration:1s;animation-duration:1s;}
+
 @-webkit-keyframes swing {
 	0%,100% { 
 		-webkit-transform-origin: bottom center; 
@@ -3667,11 +3733,17 @@ a.is-check:after {
 	animation-name: swing;
 
 
-	-webkit-animation-duration:2s;
-	-moz-animation-duration:2s;
-	-ms-animation-duration:2s;
-	-o-animation-duration:2s;
-	animation-duration:2s;
+	-webkit-animation-duration: 2s;
+	-moz-animation-duration: 2s;
+	-ms-animation-duration: 2s;
+	-o-animation-duration: 2s;
+	animation-duration: 2s;
+
+	-webkit-animation-delay: .45s;
+	-moz-animation-delay: .45s;
+	-ms-animation-delay: .45s;
+	-o-animation-delay: .45s;
+	animation-delay: .45s;
 }
 
 @-webkit-keyframes fadeInRightBig {

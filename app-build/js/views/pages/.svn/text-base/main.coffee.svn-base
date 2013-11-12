@@ -1,0 +1,82 @@
+define 'views/pages/main', ['views/pages/PageView'
+							 'backbone'
+							 'fileupload'
+							 'views/Constructor'
+							 'models/constructor-model'
+							 'text!themes'
+							],( PageView
+								B
+								fileUpload
+								Constructor
+								ConstructorModel
+								themesHtml
+								)->
+
+	class Main extends PageView
+		template: '#main-template'
+		className: "cf"
+		initialize:->
+
+			if !App.themes
+				App.themes = $.parseJSON themesHtml
+				App.themes = $.parseJSON App.themes.data
+
+			$('#js-generate').hide()
+			
+			$('.js-nav-link').first().addClass 'is-check'
+			@
+
+		
+
+		render:->
+			super
+
+			# _.defer =>
+			# 	@constructorModel = new ConstructorModel
+			# 							url: 'http://localhost:8/Calypso.Web/ui-kit/icons constructor/php/files/Tollbar-designer_v2e%20%283%29.png'
+			# 							themes: @themes
+			# 	@constructor = new Constructor 
+			# 							model: @constructorModel
+			# 	App.addRegions
+			# 		constructor: '#constructor'
+			# 	App.constructor.show @constructor
+			@initFileUpload()
+			@
+
+		initFileUpload:->
+			@$('#fileupload').fileupload
+				url: 'php/'
+				acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i
+				dataType: 'json'
+				limitMultiFileUploads: 1
+				done:(e, data)=>
+					@constructorModel = new ConstructorModel
+										url: data.result.files[0].url
+					@constructor = new Constructor model: @constructorModel
+					App.addRegions
+						constructor: '#constructor'
+					App.constructor.show @constructor
+				progressall:(e, data)=>
+					console.log 'progress'
+					false
+
+			@
+
+		
+
+	Main
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

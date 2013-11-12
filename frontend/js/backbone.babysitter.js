@@ -1,3 +1,4 @@
+define('backbone.babysitter', ['backbone'], function(Backbone){
 // Backbone.BabySitter
 // -------------------
 // v0.0.6
@@ -13,7 +14,7 @@
 // Provide a container to store, retrieve and
 // shut down child views.
 
-Backbone.ChildViewContainer = (function(Backbone, _){
+return Backbone.ChildViewContainer = (function(Backbone, _){
   
   // Container Constructor
   // ---------------------
@@ -152,6 +153,7 @@ Backbone.ChildViewContainer = (function(Backbone, _){
     };
   });
 
-  // return the public API
-  return Container;
-})(Backbone, _);
+    // return the public API
+    return Container;
+  })(Backbone, _);
+});

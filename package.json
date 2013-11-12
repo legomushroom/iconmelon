@@ -1,13 +1,20 @@
 {
   "name": "iconmelon",
-  "version": "0.0.1-22",
+  "version": "0.0.2-6",
+  "license": "MIT",
+  "author": {
+    "name": "LegoMushroom",
+    "email": "legomushroom@gmail.com",
+    "url": "http://legomushroom.com"
+  },
   "private": false,
   "scripts": {
+    "start-ev": "nodemon app.js",
     "start": "nodemon app.js"
   },
   "dependencies": {
     "express": "3.3.7",
-    "jade": "*",
+    "jade": "latest",
     "mongoose": "*",
     "socket.io": "latest",
     "cheerio": "latest",
@@ -16,12 +23,17 @@
     "node-native-zip": "latest",
     "MD5": "latest",
     "mkdirp": "latest",
-    "jade": "latest",
-    "node-markdown": "latest"
+    "node-markdown": "latest",
+    "cookies": "latest",
+    "pretty-data":"latest"
   },
   "devDependencies": {
     "nodemon": "*"
   },
+  "domains": [
+    "iconmelon.com",
+    "www.iconmelon.com"
+  ],
   "subdomain": "legomushroom-iconmelon",
   "engines": {
     "node": "0.10.x"

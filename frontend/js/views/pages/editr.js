@@ -34,6 +34,11 @@
         this.collectionLine.collection.url = 'sections-all';
         this.collectionLine.collection.fetch().then(function() {
           return _this.showFirstModel();
+        }).fail(function(e) {
+          return App.notifier.show({
+            type: 'error',
+            text: 'np, sorry'
+          });
         });
         this.collectionLine.collection.onSelect = function(model) {
           return _this.renderEditCollectionView(model);

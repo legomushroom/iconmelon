@@ -1,0 +1,7 @@
+.plus-btn-b(id="#{ idAttribute || '' }", title="#{ title || '' }")
+	input#fileupload(type='file', name='files[]', multiple='multiple')
+	- var path = iconPath || 'arrow-down-icon'
+	- var iconClass = iconClass || ''
+	- var title = title || ''
+	- var idAttribute = ''
+	include icon

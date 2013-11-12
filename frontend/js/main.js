@@ -9,17 +9,12 @@
       babysitter: 'lib/backbone.babysitter',
       wreq: 'lib/backbone.wreqr',
       socketio: 'lib/socket.io',
-      backboneiosync: 'lib/backbone.iosync',
-      backboneiobind: 'lib/backbone.iobind',
-      Modernizr: 'lib/Modernizr',
-      hammer: 'lib/jquery.hammer',
-      baresize: 'lib/jquery.ba-resize',
+      'backbone.iosync': 'backbone.iosync',
+      'backbone.iobind': 'backbone.iobind',
       fileupload: 'lib/jquery.fileupload',
       'jquery.ui.widget': 'lib/jquery.ui.widget',
       stickIt: 'lib/backbone.stickit',
-      md5: 'lib/md5',
-      text: 'lib/text',
-      themes: '../themes.js'
+      md5: 'lib/md5'
     },
     shim: {
       stickIt: {
@@ -29,25 +24,22 @@
         exports: 'Backbone',
         deps: ['jquery', 'underscore']
       },
-      backboneiosync: {
+      'backbone.iosync': {
         exports: 'Backbone',
         deps: ['backbone', 'socketio']
       },
-      backboneiobind: {
+      'backbone.iobind': {
         exports: 'Backbone',
-        deps: ['backboneiosync']
+        deps: ['backbone.iosync']
       },
       marionette: {
         exports: 'Backbone.Marionette',
         deps: ['stickIt']
-      },
-      baresize: {
-        deps: ['jquery']
       }
     }
   });
 
-  define('main', ['collectionViews/NotiesCollectionView', 'marionette', 'jquery', 'router', 'socketio', 'helpers'], function(Notyfier, M, jquery, Router, io, helpers) {
+  define('main', ['collectionViews/NotiesCollectionView', 'marionette', 'router', 'socketio', 'helpers', 'backbone.iobind'], function(Notyfier, M, Router, io, helpers) {
     var Application;
 
     Application = (function() {
@@ -70,13 +62,14 @@
         App.iconsSelected = [];
         App.filtersSelected = [];
         window.socket = io.connect('http://localhost');
+        App.$window = $(window);
+        this.$mainHeader = $('#js-main-header');
+        App.$blinded = $('#js-blinded');
+        App.$toTops = $('.js-to-top');
         App.router = new Router;
         Backbone.history.start();
         App.start();
         App.helpers.listenLinks();
-        App.$window = $(window);
-        this.$mainHeader = $('#js-main-header');
-        App.$blinded = $('#js-blinded');
         this.listenEvents();
         this.makeNotyfier();
       }
@@ -90,8 +83,28 @@
       Application.prototype.listenEvents = function() {
         var _this = this;
 
-        return App.$window.on('scroll', function() {
+        App.$window.on('scroll', function() {
           return _this.$mainHeader.toggleClass('is-convex', App.$window.scrollTop() > 0);
+        });
+        App.$window.on('scroll', _.throttle(function() {
+          if (App.$window.scrollTop() < App.$window.outerHeight()) {
+            if (!_this.istoTop) {
+              return;
+            }
+            App.$toTops.fadeOut();
+            return _this.istoTop = false;
+          } else {
+            if (_this.istoTop) {
+              return;
+            }
+            App.$toTops.fadeIn();
+            return _this.istoTop = true;
+          }
+        }, 2000));
+        return App.$toTops.on('click', function() {
+          return App.$bodyHtml.animate({
+            'scrollTop': 300
+          });
         });
       };
 

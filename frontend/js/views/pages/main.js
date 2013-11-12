@@ -68,8 +68,7 @@
             filters: App.filtersSelected
           },
           success: function(filename) {
-            location.href = "/generated-icons/" + filename + ".zip";
-            return console.log('success');
+            return location.href = "/generated-icons/" + filename + ".zip";
           },
           error: function(e) {
             return console.error(e);
@@ -81,9 +80,7 @@
         var _this = this;
 
         this.$mainLogo.addClass('animated fadeInRightBig');
-        setTimeout((function() {
-          return _this.$melon.addClass('animated swing').removeClass('is-rotated');
-        }), 450);
+        this.$melon.addClass('animated swing');
         return setTimeout((function() {
           _this.$mainSection.addClass('animated fadeInDown');
           return App.mainAnimated = true;

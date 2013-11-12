@@ -1,0 +1,8 @@
+.icon-with-text-b(class="#{ className }")
+	- var className = iconClassName
+	include icon
+	.text-be(title="#{ text || 'twitter twitter' }") #{ text || 'twitter twitter' }
+
+	.bullet-be.hover-be 	hover
+	.bullet-be.active-be 	active
+	.bullet-be.focus-be 	focus

@@ -1,0 +1,168 @@
+define 'views/IconView', ['views/ProtoView', 'views/IconEditView', 'underscore'], (ProtoView, IconEditView, _)->
+	class IconView extends ProtoView
+		template: 	'#icon-template'
+		className: 	''
+		id: 		'js-icon'
+
+
+		bindings:
+			'#type': 			'type'
+			'#guid': 			'guid'
+			'#xCoord': 			'xCoord'
+			'#yCoord': 			'yCoord'
+			'#hover-xCoord': 	'xCoordHover'
+			'#hover-yCoord': 	'yCoordHover'
+
+			'#class': 	
+				observe: 	'class'
+				onSet: 		'setValueClass'
+
+			'#name': 	
+				observe: 	'name'
+				onSet: 		'setValueName'
+
+		events:
+			'click #js-delete': 		'toggleDelete'
+			'click #js-hover-state': 	'toggleHoverState'
+			'click #js-expand': 		'expand'
+
+
+		initialize:->
+			super
+			@index = @model.collection.indexOf @model
+			@model.set 'isMainIcon', 0 is @index
+			!@model.get('isMainIcon') 	and 	@listenToCollectionName()
+			
+			@model.set 'isCurrent', if @model.get('isMainIcon') then true else false
+
+			@listenToCollectionNameAll()
+			@model.get('isMainIcon') 	and 	(@model.collection.mainIcon = @model)
+
+			@model.get('isMainIcon') and (@model.collection.class 	= @model.get('class'))
+			@model.get('isMainIcon') and (@model.collection.name 	= @model.get('name'))
+			@model.setRelativeCoordinates @index
+			@validateName()
+
+			@model.on 'change:isCurrent', 			@render
+			@model.on 'change:isDeleted', 			@render
+			@model.on 'change:isCollectionDeleted', @render
+			@model.on 'change:hoverState', 			@render
+			@model.on 'change:isNameValid', 		@render
+			@model.on 'change:class', 				@render
+
+			
+			@model.on 'change:xCoord', 			_.bind @changeCoords, @
+			@model.on 'change:yCoord', 			_.bind @changeCoords, @
+
+			@model.on 'change:xCoordHover', 	_.bind @delayedRender, @
+			@model.on 'change:yCoordHover', 	_.bind @delayedRender, @
+
+			@
+
+		render:->
+			@wasFocusedId  = @$(':focus').attr 'id'
+			super
+			@stickit()
+			@renderInit()
+			@$("##{@wasFocusedId}").focus()
+			@
+
+		validateName:->
+			@model?.validateName()
+
+		toggleHoverState:->
+			@model.toggleHoverState()
+			@$('.icon-sample-b').addClass 'is-expand'
+
+		changeCoords:->
+			@delayedRender()
+			@model.get('isMainIcon') and $(@model.collection).trigger 'change:coords'
+
+
+		delayedRender:->
+			clearTimeout @delayedRenderTimeout
+			@delayedRenderTimeout = setTimeout =>
+				@wasFocusedId  = @$(':focus').attr 'id'
+				@render()
+				@$("##{@wasFocusedId}").focus()
+			, 300
+
+		listenToCollectionNameAll:->
+			$(@model.collection).on 'set:current', (view)=>
+				@model.set 'isCurrent', false
+
+		listenToCollectionName:->
+			$(@model.collection).on 'change:coords', =>
+				!@model.get('isMainIcon') and @model.setRelativeCoordinates @index
+				!@model.get('isMainIcon') and @delayedRender()
+
+			$(@model.collection).on 'delete', =>
+				@model.set 'isCollectionDeleted', true
+
+			$(@model.collection).on 'restore', =>
+				@model.set 'isCollectionDeleted', false
+
+			App.vent.on 'change:adds', (adds)=>
+				@model.set 'class', "#{@model.collection.class or ''}.is-#{App.iconsCollection.pattern?['class'][@index] or ''}"
+				@model.set 'name', "#{@model.collection.name or ''} #{App.iconsCollection.pattern?['name'][@index] or ''}"
+
+			$(@model.collection).on 'set:class', =>
+				@model.set 'class', "#{@model.collection.class}.is-#{App.iconsCollection.pattern?['class'][@index] or ''}"
+
+			$(@model.collection).on 'set:name', =>
+				@model.set 'name', "#{@model.collection.name} #{App.iconsCollection.pattern?['name'][@index] or ''}"
+
+		renderInit:->
+
+		toggleDelete:->
+			if @model.get('isDeleted') is true
+				clearTimeout @preDeleteTimeout
+				@model.set 'isDeleted', false
+				@model.get('isMainIcon') and $(@model.collection).trigger 'restore'
+			else
+				@model.set 'isDeleted', true
+				@model.get('isMainIcon') and $(@model.collection).trigger 'delete'
+				
+				@preDeleteTimeout = setTimeout =>
+					@delete()
+					@renderPreview()
+				, 10000
+
+			@renderPreview()
+
+
+		renderPreview:->
+			App.vent.trigger 'change:preview'
+
+
+		delete:->
+			if !@model.get('isMainIcon')
+				@model.destroy()
+			else @model.collection.reset()
+
+		restore:->
+			@model.set 'isDeleted', false
+			@model.get('isMainIcon') and $(@model.collection).trigger 'restore'
+			clearTimeout @preDeleteTimeout
+
+		expand:->
+			@$('.icon-sample-b').toggleClass 'is-expand'
+
+		setValueClass:(val, o)->
+			prefix = "is-#{ App.iconsCollection.theme }__"
+			val = val.replace "#{ prefix }", ''
+			className = "#{ prefix }#{ val }"
+			if @model.get('isMainIcon')
+				@model.collection.class = className
+				$(@model.collection).trigger 'set:class'
+			return if val then className else ''
+			
+
+		setValueName:(val, o)->
+			if @model.get('isMainIcon')
+				@model.collection.name = val
+				$(@model.collection).trigger 'set:name'
+			val
+
+
+	IconView
