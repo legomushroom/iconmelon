@@ -937,7 +937,7 @@ marginTop = 2*gs
 
 	.social-btns-l
 		margin-top - 3px
-		margin-right gs
+		// margin-right gs
 
 
 /* d31599d6c04918e3e54b3383d136855e */
@@ -1165,7 +1165,7 @@ shadowSize = 2px
 		transform translate(shadowSize,shadowSize)
 		box-shadow none
 		background c-green
-		&:before, .addthis_internal_container, > input[type="file"]
+		&:before, > input[type="file"]
 			transform translate(- shadowSize,- shadowSize)
 		
 	> input[type="file"]
@@ -1179,19 +1179,13 @@ shadowSize = 2px
 	&.is-block
 		display block
 
-	// add this share block
-	.addthis_internal_container
-		width 100% II
-	.addthis_toolbox
-		rect 100%
-		height 6*gs
-		top  - gs + 2px II
-		left 0 II
+	.st_sharethis_large
+		display block
 		position: absolute
+		rect 100%
+		nw 0
+		z-index: 1
 		opacity: 0
-	.addthis_button_compact
-		height 6*gs
-		margin-top - gs
 
 	
 	/* 9343b5637912148f603dc8c154382c2c */

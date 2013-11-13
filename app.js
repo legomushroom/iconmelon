@@ -36,7 +36,7 @@
 
   app = express();
 
-  folder = 'frontend';
+  folder = 'dist';
 
   mkdirp("" + folder + "/generated-icons", function() {});
 
@@ -131,7 +131,7 @@
         moderated: true
       }).then(function(iconsData) {
         return _this.makeMainSvgFile(iconsData).then(function(data) {
-          return _this.writeFile("" + _this.SVG_PATH + "icons-main-page.svg", data).then(function() {
+          return _this.writeFile("" + _this.SVG_PATH + "icons-main-page.svg", pretty.xmlmin(data)).then(function() {
             return prm.resolve('ok');
           });
         });

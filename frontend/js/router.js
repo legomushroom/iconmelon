@@ -20,7 +20,8 @@
         'editr': 'editr',
         'support-us': 'support',
         'how-to-use': 'how',
-        'hire-me': 'hire'
+        'hire-me': 'hire',
+        '*path': 'main'
       };
 
       Router.prototype.main = function() {

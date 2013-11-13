@@ -17,8 +17,8 @@ pretty  = require('pretty-data').pd
 port    = 3000
 app     = express()
 
-# folder = 'dist'
-folder = 'frontend'
+folder = 'dist'
+# folder = 'frontend'
 
 mkdirp "#{folder}/generated-icons", ->
 mkdirp 'uploads', ->
@@ -30,7 +30,7 @@ app.use express.static  __dirname + "/#{folder}"
 app.use express.bodyParser(uploadDir: 'uploads')
 app.use express.methodOverride()
 
-DB_STR = if process.env.NODE_ENV is 'production' then 'mongodb://nodejitsu:d888e7ec238ea03b04322c8bdf6e2a23@paulo.mongohq.com:10007/nodejitsudb5316778635' else 'mongodb://localhost/iconmelon'
+DB_STR = if process.env.NODE_ENV is 'production' then '' else 'mongodb://localhost/iconmelon'
 
 mongo.connect DB_STR
 
@@ -89,7 +89,7 @@ class Main
     prm = new Promise()
     @getIconsData({moderated: true}).then (iconsData)=>
       @makeMainSvgFile(iconsData).then (data)=>
-        @writeFile("#{@SVG_PATH}icons-main-page.svg", data).then ->
+        @writeFile("#{@SVG_PATH}icons-main-page.svg", pretty.xmlmin(data) ).then ->
           prm.resolve 'ok'
     prm
 

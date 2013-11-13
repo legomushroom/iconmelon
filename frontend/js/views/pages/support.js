@@ -19,11 +19,16 @@
       Support.prototype.className = 'support-p';
 
       Support.prototype.render = function() {
+        var _this = this;
+
         Support.__super__.render.apply(this, arguments);
         this.$monthly = this.$('.js-monthly');
         this.$budget = this.$('.js-budget');
         this.$timeLeft = this.$('.js-time-left');
         this.setCounters();
+        _.defer(function() {
+          return _this.addShareWidget();
+        });
         return this;
       };
 
@@ -45,6 +50,10 @@
             return console.error(e);
           }
         });
+      };
+
+      Support.prototype.addShareWidget = function() {
+        return $(document.head).append('<script type="text/javascript">var switchTo5x=true;</script><script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script><script type="text/javascript">stLight.options({publisher: "183e364f-5cd1-4e73-bfd9-939e94de67a5", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>');
       };
 
       return Support;

@@ -10,6 +10,7 @@ define 'views/pages/support', [ 	'views/pages/PageView' ], (PageView)->
 			@$budget 			= @$ '.js-budget'
 			@$timeLeft 		= @$ '.js-time-left'
 			@setCounters()
+			_.defer => @addShareWidget()
 			@
 
 		setCounters:->
@@ -22,6 +23,9 @@ define 'views/pages/support', [ 	'views/pages/PageView' ], (PageView)->
 					timeLeft = ~~data.budget/~~data.monthly
 					@$timeLeft.text ~~(if timeLeft < 0 then 0 else timeLeft)
 				error:(e)-> console.error e
+
+		addShareWidget:->
+			$(document.head).append '<script type="text/javascript">var switchTo5x=true;</script><script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script><script type="text/javascript">stLight.options({publisher: "183e364f-5cd1-4e73-bfd9-939e94de67a5", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>'
 
 
 	Support
