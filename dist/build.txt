@@ -11,15 +11,6 @@ css/assets/mixins.css
 ----------------
 css/assets/mixins.css
 
-css/css-assets/font/specimen_files/grid_12-825-55-15.css
-----------------
-css/css-assets/font/specimen_files/grid_12-825-55-15.css
-
-css/css-assets/font/specimen_files/specimen_stylesheet.css
-----------------
-css/css-assets/font/specimen_files/grid_12-825-55-15.css
-css/css-assets/font/specimen_files/specimen_stylesheet.css
-
 css/css-assets/font/stylesheet.css
 ----------------
 css/css-assets/font/stylesheet.css

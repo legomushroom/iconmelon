@@ -195,6 +195,9 @@ body {
 .bold-gm {
   font-weight: bold;
 }
+.op-0-gm {
+  opacity: 0;
+}
 .op-5-gm {
   opacity: 0.5;
 }
@@ -1895,8 +1898,14 @@ a.is-check:after {
   width: 240px;
   height: 240px;
   background: #fff url("i/legomushroom.png") no-repeat center center;
-  border-radius: 50%;
   background-size: 100%;
+  border-radius: 50%;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2), (min-resolution: 144dpi) {
+  .legomushroom-e {
+    background: #fff url("i/legomushroom-@2x.png") no-repeat center center;
+    background-size: 100%;
+  }
 }
 .small-logo-b {
   display: inline-block;
@@ -3057,7 +3066,6 @@ a.is-check:after {
 }
 .main-header-b .social-btns-l {
   margin-top: -3px;
-  margin-right: 8px;
 }
 .section-b + .section-b {
   margin-top: 24px;
@@ -3329,6 +3337,16 @@ a.is-check:after {
 }
 .btn-b.is-block {
   display: block;
+}
+.btn-b .st_sharethis_large {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  opacity: 0;
 }
 .btn-b.is-red1 {
   background-color: #ff3d7f;

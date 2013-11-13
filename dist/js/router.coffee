@@ -7,6 +7,7 @@ define 'router', ['backbone','controllers/PagesController'], (B, pc)->
 			'support-us': 	'support'
 			'how-to-use': 	'how'
 			'hire-me': 			'hire'
+			'*path': 				'main'
 
 		main:->
 			@startPage pc.main

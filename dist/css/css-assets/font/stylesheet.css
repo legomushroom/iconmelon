@@ -1,11 +1,1 @@
-
-@font-face {
-    font-family: 'dense';
-    src: url('css-assets/font/dense-regular-webfont.eot');
-    src: url('css-assets/font/dense-regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('css-assets/font/dense-regular-webfont.woff') format('woff'),
-         url('css-assets/font/dense-regular-webfont.ttf') format('truetype'),
-         url('css-assets/font/dense-regular-webfont.svg#denseregular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
+ @font-face {font-family: 'dense'; src: url('css-assets/font/dense-regular-webfont.eot'); src: url('css-assets/font/dense-regular-webfont.eot?#iefix') format('embedded-opentype'), url('css-assets/font/dense-regular-webfont.woff') format('woff'), url('css-assets/font/dense-regular-webfont.ttf') format('truetype'), url('css-assets/font/dense-regular-webfont.svg#denseregular') format('svg'); font-weight: normal; font-style: normal;}

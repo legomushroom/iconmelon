@@ -18,6 +18,23 @@
 
       Hire.prototype.className = 'hire-p';
 
+      Hire.prototype.render = function() {
+        Hire.__super__.render.apply(this, arguments);
+        this.loadImage();
+        return this;
+      };
+
+      Hire.prototype.loadImage = function() {
+        var imageObj,
+          _this = this;
+
+        imageObj = new Image();
+        imageObj.onload = function() {
+          return _this.$('#js-lego-img').addClass('animate fadeInUp').removeClass('op-0-gm');
+        };
+        return imageObj.src = window.devicePixelRatio > 1 ? 'css/i/legomushroom-@2x.png' : 'css/i/legomushroom.png';
+      };
+
       return Hire;
 
     })(PageView);

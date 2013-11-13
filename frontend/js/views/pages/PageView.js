@@ -16,8 +16,12 @@
 
       PageView.prototype.render = function() {
         PageView.__super__.render.apply(this, arguments);
-        !this.isNoPageAnima && this.$el.addClass('animated fadeInDown');
+        !this.isNoPageAnima && this.animateIn();
         return this;
+      };
+
+      PageView.prototype.animateIn = function() {
+        return this.$el.addClass('animated fadeInDown');
       };
 
       return PageView;
