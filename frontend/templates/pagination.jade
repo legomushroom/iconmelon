@@ -1,0 +1,26 @@
+
+
+<% if(pages > 1) { %>
+.pages-nav-l
+  <% if(prev) { %>
+  .pages-nav-b#js-prev
+    - var path = 'slim-arrow-left-icon', filter = ''
+    - var iconClass = '', title = '', idAttribute = ''
+    - var viewBox = null
+    include ../css/partials/icon
+    .text-be prev page
+  <% } %>
+
+  .pages-nav-nums-b.cf
+    <% for (var i=0; i < pages; i++) { %>
+    .btn-be.top-bottom-stripes-eff.is-hoverable#js-page(class="<%= (page === i+1) ? 'is-check' : '' %>") <%= i+1 %>
+    <% } %>
+  <% if(next) { %>
+  .pages-nav-b.is-right#js-next
+    - var path = 'slim-arrow-right-icon', filter = ''
+    - var iconClass = '', title = '', idAttribute = ''
+    - var viewBox = null
+    include ../css/partials/icon
+    .text-be next page
+  <% } %>
+<% } %>

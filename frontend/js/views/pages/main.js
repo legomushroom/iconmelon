@@ -40,6 +40,7 @@
         this.$mainLogo = this.$('.main-logo-b');
         this.$melon = this.$('.logo-large-e');
         this.$mainSection = this.$('#js-icons-select-view-place');
+        this.$downloadBtn = this.$('.js-download');
         _.defer(function() {
           !App.mainAnimated && _this.animate();
           return App.mainAnimated && _this.show();
@@ -55,6 +56,7 @@
           });
           return;
         }
+        this.$downloadBtn.addClass('loading-eff');
         return $.ajax({
           type: 'post',
           url: '/download-icons',
@@ -67,6 +69,9 @@
           },
           error: function(e) {
             return console.error(e);
+          },
+          complete: function() {
+            return this.$downloadBtn.removeClass('loading-eff');
           }
         });
       };

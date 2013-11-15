@@ -162,6 +162,18 @@ html
 						- var path = 'skype-logo-icon'
 						- var iconClass = ''
 						include partials/icon
+
+					.icon-sample-kl
+						.hash-e 42452cc0791952c0a58b2eaac51df3c0
+						- var path = 'slim-arrow-left-icon'
+						- var iconClass = ''
+						include partials/icon
+
+					.icon-sample-kl
+						.hash-e 32bc9722e474978046a2a1fe8f070b81
+						- var path = 'slim-arrow-right-icon'
+						- var iconClass = ''
+						include partials/icon
 					
 
 			.section-kl
@@ -249,7 +261,7 @@ html
 					include partials/social-btn
 
 				.hash-e 1d23c27230304112b8daff0a924e892d
-				.to-top-btn-b(style="position:relative;display:block;")
+				.to-top-btn-b(style="position:relative;display:block;top:0;left:0")
 					- var path = 'arrow-up-icon', filter = ''
 					- var iconClass = '', idAttribute = ''
 					- var title = '', viewBox = null
@@ -353,6 +365,55 @@ html
 				.hash-e 54c9947f169329dee397b29e9c02e578
 				- var iconPath = 'arrow-left-icon', title = 'left', iconClass = '', idAttribute = ''
 				include partials/plus-btn
+
+				.hash-e d0e8aa737b2ceea8bd9f7b998c83d1a4
+				.pages-nav-b
+					- var path = 'slim-arrow-left-icon', filter = ''
+					- var iconClass = '', title = ''
+					include partials/icon
+					.text-be prev page
+
+				.hash-e 77c782cc8bf0813a0b50c5aa92017919
+				.pages-nav-b.is-right(style="display:inline-block")
+					- var path = 'slim-arrow-right-icon', filter = ''
+					- var iconClass = '', title = ''
+					include partials/icon
+					.text-be next page
+
+				.hash-e fbb4d34de952f1f0711d294f68b2f4e9
+				.pages-nav-nums-b.cf
+					.btn-be.top-bottom-stripes-eff.is-hoverable 1
+					.btn-be.top-bottom-stripes-eff.is-hoverable.is-check 2
+					.btn-be.top-bottom-stripes-eff.is-hoverable 3
+					.btn-be.top-bottom-stripes-eff.is-hoverable 4
+					.btn-be.is-inactive ...
+					.btn-be.top-bottom-stripes-eff.is-hoverable 5
+					.btn-be.top-bottom-stripes-eff.is-hoverable 6
+
+				.hash-e 52dcba70eccc4bceddf48d0b927eee58
+				.pages-nav-l
+					.pages-nav-b
+						- var path = 'slim-arrow-left-icon', filter = ''
+						- var iconClass = '', title = ''
+						include partials/icon
+						.text-be prev page
+
+					.pages-nav-nums-b.cf
+						.btn-be.top-bottom-stripes-eff.is-hoverable 1
+						.btn-be.top-bottom-stripes-eff.is-hoverable.is-check 2
+						.btn-be.top-bottom-stripes-eff.is-hoverable 3
+						.btn-be.top-bottom-stripes-eff.is-hoverable 4
+						.btn-be.is-inactive ...
+						.btn-be.top-bottom-stripes-eff.is-hoverable 5
+						.btn-be.top-bottom-stripes-eff.is-hoverable 6
+
+					.pages-nav-b.is-right(style="display:inline-block")
+						- var path = 'slim-arrow-right-icon', filter = ''
+						- var iconClass = '', title = ''
+						include partials/icon
+						.text-be next page
+
+
 
 				.hash-e e5e06d7c4c91714a20371c7716c047fb
 				.use-num-b 1

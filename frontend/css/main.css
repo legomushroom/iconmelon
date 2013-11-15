@@ -201,13 +201,16 @@ body {
 .op-5-gm {
   opacity: 0.5;
 }
-a {
+a,
+.link-e {
   color: #3b3b3a;
   text-decoration: none;
   position: relative;
 }
 a.is-hoverable:after,
-a.is-check:after {
+.link-e.is-hoverable:after,
+a.is-check:after,
+.link-e.is-check:after {
   content: '';
   position: absolute;
   display: none;
@@ -220,31 +223,40 @@ a.is-check:after {
   border-bottom: 1px solid;
 }
 a.is-hoverable:hover:after,
-a.is-check:hover:after {
+.link-e.is-hoverable:hover:after,
+a.is-check:hover:after,
+.link-e.is-check:hover:after {
   display: block;
 }
-a.is-grey3 {
+a.is-grey3,
+.link-e.is-grey3 {
   color: #bdbfbf;
 }
-a.is-grey3:after {
+a.is-grey3:after,
+.link-e.is-grey3:after {
   border-top-color: #bdbfbf;
   border-bottom-color: #bdbfbf;
 }
-a.is-grey2-hover {
+a.is-grey2-hover,
+.link-e.is-grey2-hover {
   color: #6b6b6b;
 }
-a.is-grey2-hover:after {
+a.is-grey2-hover:after,
+.link-e.is-grey2-hover:after {
   border-top-color: #6b6b6b;
   border-bottom-color: #6b6b6b;
 }
-a.is-grey2--onhover:hover {
+a.is-grey2--onhover:hover,
+.link-e.is-grey2--onhover:hover {
   color: #858484;
 }
-a.is-grey2--onhover:hover:after {
+a.is-grey2--onhover:hover:after,
+.link-e.is-grey2--onhover:hover:after {
   border-top-color: #858484;
   border-bottom-color: #858484;
 }
-a.is-check:after {
+a.is-check:after,
+.link-e.is-check:after {
   display: block;
 }
 .f-s-x3-gm {
@@ -2016,6 +2028,54 @@ a.is-check:after {
   border-style: solid;
   border-color: #ff3d7f;
 }
+.pages-nav-nums-b {
+  cursor: default;
+  color: #bdbfbf;
+  font-size: 20px;
+}
+.pages-nav-nums-b > .btn-be {
+  display: inline-block;
+  cursor: pointer;
+  min-width: 8px;
+  text-align: center;
+}
+.pages-nav-nums-b > .btn-be.is-inactive {
+  cursor: default;
+  color: #bdbfbf !important;
+}
+.pages-nav-nums-b > .btn-be:hover,
+.pages-nav-nums-b > .btn-be.is-check {
+  color: #b0b2b2;
+}
+.pages-nav-b {
+  color: #bdbfbf;
+  font-size: 20px;
+  cursor: pointer;
+}
+.pages-nav-b:hover {
+  color: #b0b2b2;
+}
+.pages-nav-b:hover .icon {
+  fill: #b0b2b2;
+}
+.pages-nav-b.is-right > .text-be {
+  margin-right: 24px;
+  margin-left: 0;
+}
+.pages-nav-b.is-right .icon {
+  float: right;
+}
+.pages-nav-b > .text-be {
+  margin-left: 24px;
+  position: relative;
+  top: -2px;
+}
+.pages-nav-b .icon {
+  fill: #bdbfbf;
+  float: left;
+  width: 16px;
+  height: 16px;
+}
 .lego-n-text-b {
   width: 400px;
   text-align: center;
@@ -3412,6 +3472,20 @@ a.is-check:after {
   width: 26px;
   font-size: 16px;
 }
+.pages-nav-l {
+  position: relative;
+  text-align: center;
+}
+.pages-nav-l .pages-nav-b {
+  position: absolute;
+  top: 0;
+}
+.pages-nav-l .pages-nav-b.is-right {
+  right: 0;
+}
+.pages-nav-l .pages-nav-nums-b {
+  display: inline-block;
+}
 .social-btns-l .social-btn-b {
   float: left;
 }
@@ -3592,6 +3666,41 @@ a.is-check:after {
   margin: 0 auto;
   padding-bottom: 160px;
   min-width: 576px;
+}
+.top-bottom-stripes-eff {
+  position: relative;
+}
+.top-bottom-stripes-eff.is-hoverable:after,
+.top-bottom-stripes-eff.is-check:after,
+.top-bottom-stripes-eff.is-hoverable:before,
+.top-bottom-stripes-eff.is-check:before {
+  content: '';
+  position: absolute;
+  display: none;
+  color: inherit;
+  width: 100%;
+  height: 2px;
+  left: -1px;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+}
+.top-bottom-stripes-eff.is-hoverable:after,
+.top-bottom-stripes-eff.is-check:after {
+  bottom: -4px;
+}
+.top-bottom-stripes-eff.is-hoverable:before,
+.top-bottom-stripes-eff.is-check:before {
+  top: -6px;
+}
+.top-bottom-stripes-eff.is-hoverable:hover:after,
+.top-bottom-stripes-eff.is-check:hover:after,
+.top-bottom-stripes-eff.is-hoverable.is-check:after,
+.top-bottom-stripes-eff.is-check.is-check:after,
+.top-bottom-stripes-eff.is-hoverable:hover:before,
+.top-bottom-stripes-eff.is-check:hover:before,
+.top-bottom-stripes-eff.is-hoverable.is-check:before,
+.top-bottom-stripes-eff.is-check.is-check:before {
+  display: block;
 }
 .box-shadow-down-eff {
   box-shadow: 0 4px 0 rgba(59,59,58,0.2);
@@ -4290,6 +4399,9 @@ a.is-check:after {
 .main-page-p {
   padding: 0 64px;
   text-align: center;
+}
+.main-page-p .pages-nav-l {
+  margin-top: 64px;
 }
 .main-page-p .main-logo-b {
   margin: 0 auto;

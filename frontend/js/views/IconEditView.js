@@ -53,9 +53,12 @@
         this.model.set('hash', hash);
         if (!this.model.collection.parentModel.get('isMulticolor')) {
           $shape.find('*').each(function(i, child) {
+            var $child;
+
             if (!this.model.get('isMulticolor')) {
-              if ($(child).attr('fill') !== 'none') {
-                return $(child).removeAttr('fill');
+              $child = $(child);
+              if (($child.attr('fill') !== 'none') && !($child.attr('fill').match(/url/gi))) {
+                return $child.removeAttr('fill');
               }
             }
           });

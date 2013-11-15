@@ -36,7 +36,7 @@
 
   app = express();
 
-  folder = 'dist';
+  folder = 'frontend';
 
   mkdirp("" + folder + "/generated-icons", function() {});
 
@@ -54,7 +54,7 @@
 
   app.use(express.methodOverride());
 
-  DB_STR = process.env.NODE_ENV === 'production' ? 'mongodb://nodejitsu:d888e7ec238ea03b04322c8bdf6e2a23@paulo.mongohq.com:10007/nodejitsudb5316778635' : 'mongodb://localhost/iconmelon';
+  DB_STR = process.env.NODE_ENV === 'production' ? '' : 'mongodb://localhost/iconmelon';
 
   mongo.connect(DB_STR);
 
@@ -443,6 +443,38 @@
       };
     };
 
+    Main.prototype.deleteOldGeneratedFiles = function() {
+      var dirPath;
+
+      dirPath = "" + folder + "/generated-icons/";
+      return fs.readdir(dirPath, function(err, files) {
+        if (err) {
+          return console.log(err);
+        }
+        return files.forEach(function(file) {
+          var filePath;
+
+          filePath = dirPath + file;
+          return fs.stat(filePath, function(err, stat) {
+            var livesUntil;
+
+            if (err) {
+              return console.log(err);
+            }
+            livesUntil = new Date();
+            livesUntil.setHours(livesUntil.getHours() - 1);
+            if (stat.ctime < livesUntil) {
+              return fs.unlink(filePath, function(err) {
+                if (err) {
+                  return console.log(err);
+                }
+              });
+            }
+          });
+        });
+      });
+    };
+
     return Main;
 
   })();
@@ -462,13 +494,6 @@
       }
       return cookies[name];
     };
-    socket.on("sections:read", function(data, callback) {
-      return Section.find({
-        moderated: true
-      }, function(err, docs) {
-        return callback(null, docs);
-      });
-    });
     socket.on("filters:read", function(data, callback) {
       return Filter.find({
         moderated: true
@@ -478,6 +503,26 @@
           console.error(err);
         }
         return callback(null, docs);
+      });
+    });
+    socket.on("sections:read", function(data, callback) {
+      var options;
+
+      options = {
+        skip: (data.page - 1) * data.perPage,
+        limit: data.perPage
+      };
+      return Section.find({
+        moderated: true
+      }, null, options, function(err, docs) {
+        return Section.find({
+          moderated: true
+        }, function(err, docs2) {
+          return callback(null, data = {
+            models: docs,
+            total: docs2.length
+          });
+        });
       });
     });
     socket.on("sections-all:read", function(data, callback) {
@@ -585,7 +630,8 @@
   });
 
   app.get('/clean-generated-data', function(req, res, next) {
-    return res.send('todo');
+    main.deleteOldGeneratedFiles();
+    return res.send('ok');
   });
 
   app.get('/budget-counters', function(req, res, next) {

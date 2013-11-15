@@ -17,8 +17,8 @@ pretty  = require('pretty-data').pd
 port    = 3000
 app     = express()
 
-folder = 'dist'
-# folder = 'frontend'
+# folder = 'dist'
+folder = 'frontend'
 
 mkdirp "#{folder}/generated-icons", ->
 mkdirp 'uploads', ->
@@ -283,6 +283,22 @@ class Main
     sections: sections
     filters: data.filters
 
+  deleteOldGeneratedFiles:->
+    dirPath = "#{folder}/generated-icons/"
+    fs.readdir dirPath, (err, files) ->
+      return console.log(err) if err
+      files.forEach (file) ->
+        filePath = dirPath + file
+        fs.stat filePath, (err, stat) ->
+          return console.log(err)  if err
+          livesUntil = new Date()
+          livesUntil.setHours livesUntil.getHours() - 1
+          # console.log "livesUntil: #{livesUntil}"
+          # console.log "stat.ctime: #{stat.ctime}"
+          if stat.ctime < livesUntil
+            fs.unlink filePath, (err) ->
+              console.log err  if err
+
 main = new Main
 
 io.sockets.on "connection", (socket) ->
@@ -293,10 +309,6 @@ io.sockets.on "connection", (socket) ->
       cookie = cookie.split '='
       cookies[cookie[0].replace /\s/, ''] = cookie[1]
     cookies[name]
-  
-  socket.on "sections:read", (data, callback) ->
-    Section.find {moderated: true}, (err, docs)->
-      callback null, docs
 
   socket.on "filters:read", (data, callback) ->
     Filter.find {moderated: true}, (err, docs)->
@@ -305,6 +317,18 @@ io.sockets.on "connection", (socket) ->
         console.error err
 
       callback null, docs
+
+  socket.on "sections:read", (data, callback) ->
+    # console.log data
+    options = 
+      skip: (data.page-1)*data.perPage
+      limit: data.perPage
+    Section.find {moderated: true}, null, options, (err, docs)->
+      Section.find {moderated: true}, (err, docs2)->
+        callback null, data =
+                        models: docs
+                        total: docs2.length
+
 
   socket.on "sections-all:read", (data, callback) ->
     Secret.find {}, (err, docs)->
@@ -366,7 +390,8 @@ app.get '/generate-main-svg-data', (req,res,next)->
     res.send msg
 
 app.get '/clean-generated-data', (req,res,next)->
-    res.send 'todo'
+    main.deleteOldGeneratedFiles()
+    res.send 'ok'
 
 app.get '/budget-counters', (req,res,next)->
   Budget.find {}, (err, docs)->

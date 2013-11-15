@@ -37,8 +37,9 @@ define 'views/IconEditView', ['views/ProtoView', 'models/IconModel', 'underscore
 
 				$shape.find('*').each (i, child)->
 					if !@model.get 'isMulticolor'
-						if ($(child).attr('fill') isnt 'none')
-							$(child).removeAttr('fill')
+						$child = $(child)
+						if ($child.attr('fill') isnt 'none') and !($child.attr('fill').match /url/gi)
+							$child.removeAttr('fill')
 
 			$svgRef = @$svg.find "##{hash}"
 			

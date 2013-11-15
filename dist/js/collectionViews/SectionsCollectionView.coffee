@@ -3,10 +3,6 @@ define 'collectionViews/SectionsCollectionView', ['collectionViews/ProtoCollecti
 		itemView: SectionView
 		template: '#sections-collection-view-template'
 
-		initialize:->
-			super
-			@
-
 		render:->
 				super
 				@$el.addClass 'animated fadeInDown'

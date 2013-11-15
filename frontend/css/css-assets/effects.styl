@@ -1,6 +1,29 @@
 // EFFECTS
 @import '../assets/imports.styl'
 
+
+.top-bottom-stripes-eff
+	position relative
+	&.is-hoverable, &.is-check
+		&:after, &:before
+			content ''
+			position absolute
+			display none
+			color inherit
+			width 100%
+			height 2px
+			left -1px
+			border-top 1px solid
+			border-bottom 1px solid
+		&:after
+			bottom - (gs/2)
+		&:before
+			top - (gs - 2px)
+		&:hover, &.is-check
+			// 4!
+			&:after, &:before
+				display block
+
 .box-shadow-down-eff
 	downShadow()
 

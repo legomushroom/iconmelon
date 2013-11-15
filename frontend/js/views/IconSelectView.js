@@ -20,16 +20,49 @@
 
       IconSelectView.prototype.events = {
         'keyup': 'debouncedFilter',
-        'click #js-add-effects': 'toggleEffects'
+        'click #js-add-effects': 'toggleEffects',
+        'click #js-next': 'next',
+        'click #js-prev': 'prev',
+        'click #js-page': 'loadPage'
       };
 
       IconSelectView.prototype.initialize = function(o) {
         this.o = o != null ? o : {};
+        this.paginationTemplate = _.template(helpers.unescape($("#pagination-template").text()));
         this.buttonCounterTemplate = _.template(helpers.unescape($("#button-counter-template").text()));
         this.bindModelEvents();
         this.debouncedFilter = _.debounce(this.filter, 250);
         IconSelectView.__super__.initialize.apply(this, arguments);
+        this.sectionsCollection.on('sync', _.bind(this.renderPagination, this));
         return this;
+      };
+
+      IconSelectView.prototype.next = function() {
+        var _this = this;
+
+        this.scrollTop();
+        return _.defer(function() {
+          return _this.sectionsCollection.nextPage();
+        });
+      };
+
+      IconSelectView.prototype.prev = function() {
+        var _this = this;
+
+        this.scrollTop();
+        return _.defer(function() {
+          return _this.sectionsCollection.prevPage();
+        });
+      };
+
+      IconSelectView.prototype.scrollTop = function() {
+        return App.$bodyHtml.animate({
+          'scrollTop': this.$el.position().top
+        });
+      };
+
+      IconSelectView.prototype.loadPage = function(e) {
+        return this.sectionsCollection.loadPage(parseInt($(e.target).text(), 10) || 0);
       };
 
       IconSelectView.prototype.toggleEffects = function() {
@@ -46,15 +79,16 @@
       };
 
       IconSelectView.prototype.render = function() {
-        var _this = this;
-
         IconSelectView.__super__.render.apply(this, arguments);
+        this.renderView();
+        this.$paginationPlace = this.$('#js-pagination-place');
+        this.initFileUpload();
         this.renderButton();
-        _.defer(function() {
-          _this.renderView();
-          return _this.initFileUpload();
-        });
         return this;
+      };
+
+      IconSelectView.prototype.renderPagination = function() {
+        return this.$paginationPlace.html(this.paginationTemplate(this.sectionsCollection.pageInfo()));
       };
 
       IconSelectView.prototype.renderView = function() {

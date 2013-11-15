@@ -1,5 +1,5 @@
-define 'collections/SectionsCollection', ['backbone', 'models/SectionModel'], (B, SectionModel)=>
-	class SectionsCollection extends B.Collection
+define 'collections/SectionsCollection', ['collections/PaginatedCollection', 'models/SectionModel'], (PagenatedCollection, SectionModel)=>
+	class SectionsCollection extends PagenatedCollection
 		model: SectionModel
 		url: 'sections'
 	SectionsCollection

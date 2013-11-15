@@ -26,6 +26,7 @@ define 'views/pages/main', ['views/pages/PageView', 'views/IconSelectView', 'mod
 			@$mainLogo 			= @$('.main-logo-b')
 			@$melon 				= @$('.logo-large-e')
 			@$mainSection 	= @$('#js-icons-select-view-place')
+			@$downloadBtn 	= @$('.js-download')
 			
 			_.defer =>
 				!App.mainAnimated and @animate()
@@ -39,6 +40,8 @@ define 'views/pages/main', ['views/pages/PageView', 'views/IconSelectView', 'mod
 					text: 'select at least one icon to download'
 				return
 
+			@$downloadBtn.addClass 'loading-eff'
+
 			$.ajax
 				type: 'post'
 				url: '/download-icons'
@@ -49,6 +52,8 @@ define 'views/pages/main', ['views/pages/PageView', 'views/IconSelectView', 'mod
 					location.href = "/generated-icons/#{filename}.zip"
 				error:(e)->
 					console.error e
+				complete:->
+					@$downloadBtn.removeClass 'loading-eff'
 
 		animate:->
 			@$mainLogo.addClass 'animated fadeInRightBig'

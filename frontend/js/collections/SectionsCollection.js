@@ -4,7 +4,7 @@
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define('collections/SectionsCollection', ['backbone', 'models/SectionModel'], function(B, SectionModel) {
+  define('collections/SectionsCollection', ['collections/PaginatedCollection', 'models/SectionModel'], function(PagenatedCollection, SectionModel) {
     var SectionsCollection, _ref;
 
     SectionsCollection = (function(_super) {
@@ -21,7 +21,7 @@
 
       return SectionsCollection;
 
-    })(B.Collection);
+    })(PagenatedCollection);
     return SectionsCollection;
   });
 
