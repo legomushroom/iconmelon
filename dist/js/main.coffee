@@ -39,6 +39,7 @@ define 'main', ['collectionViews/NotiesCollectionView', 'marionette', 'router', 
 	class Application
 		constructor:->
 			App = new M.Application()
+			App.name = 'iconmelon'
 			window.App = App
 			App.addRegions
 				main: 	'#main-l'
@@ -50,7 +51,7 @@ define 'main', ['collectionViews/NotiesCollectionView', 'marionette', 'router', 
 			App.$mainHeader 	= @$mainHeader
 			App.$bodyHtml 		= $('body, html')
 			App.$svgWrap 			= $('#js-svg-wrap')
-			@loadSvg()
+			# @loadSvg()
 
 			App.helpers 			= helpers
 			App.loadedHashes 	= []
@@ -97,7 +98,7 @@ define 'main', ['collectionViews/NotiesCollectionView', 'marionette', 'router', 
 
 			App.$toTops.on 'click', => App.$bodyHtml.animate 'scrollTop': 300
 
-		loadSvg:()->
-			App.$svgWrap.load 'css/icons-main-page.svg'
+		# loadSvg:()->
+		# 	App.$svgWrap.load 'css/icons-main-page.svg'
 
 	new Application

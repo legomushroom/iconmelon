@@ -22,9 +22,8 @@
         return this;
       };
 
-      ProtoView.prototype.render = function() {
-        ProtoView.__super__.render.apply(this, arguments);
-        return this;
+      ProtoView.prototype.animateIn = function() {
+        return this.$el.addClass('animated fadeInDown');
       };
 
       ProtoView.prototype.teardown = function() {

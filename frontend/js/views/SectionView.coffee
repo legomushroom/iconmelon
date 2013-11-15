@@ -25,6 +25,7 @@ define 'views/SectionView', ['views/ProtoView', 'models/SectionModel', 'collecti
 			@renderIcons()
 			@toggleClasses()
 			@$content = @$('#js-icons-place')
+			@animateIn()
 			@
 
 		renderIcons:->

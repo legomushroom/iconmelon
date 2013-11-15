@@ -47,6 +47,7 @@
         var App, socketAdress;
 
         App = new M.Application();
+        App.name = 'iconmelon';
         window.App = App;
         App.addRegions({
           main: '#main-l'
@@ -57,7 +58,6 @@
         App.$mainHeader = this.$mainHeader;
         App.$bodyHtml = $('body, html');
         App.$svgWrap = $('#js-svg-wrap');
-        this.loadSvg();
         App.helpers = helpers;
         App.loadedHashes = [];
         App.iconsSelected = [];
@@ -108,10 +108,6 @@
             'scrollTop': 300
           });
         });
-      };
-
-      Application.prototype.loadSvg = function() {
-        return App.$svgWrap.load('css/icons-main-page.svg');
       };
 
       return Application;

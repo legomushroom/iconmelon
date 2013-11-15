@@ -1,21 +1,13 @@
-define 'collectionViews/SectionsCollectionView', ['collectionViews/ProtoCollectionView', 'views/SectionView'], (ProtoView, SectionView)->
+define 'collectionViews/SectionsCollectionView', ['collectionViews/ProtoCollectionView', 'views/SectionView', 'helpers'], (ProtoView, SectionView, helpers)->
 	class SectionsCollectionView extends ProtoView
 		itemView: SectionView
 		template: '#sections-collection-view-template'
 
-		initialize:->
-			super
-			@
-
 		render:->
+			_.defer =>
 				super
 				@$el.addClass 'animated fadeInDown'
-				@
-
-		# fadeInAll:(i=0)->
-		# 	if i < @items.length 
-		# 		@items[i].$el.fadeIn(); setTimeout (=> @fadeInAll i), 250
-		# 		i++
+			@
 
 	SectionsCollectionView
 

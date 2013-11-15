@@ -42,6 +42,7 @@
         this.renderIcons();
         this.toggleClasses();
         this.$content = this.$('#js-icons-place');
+        this.animateIn();
         return this;
       };
 

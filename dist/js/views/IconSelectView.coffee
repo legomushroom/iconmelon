@@ -4,15 +4,31 @@ define 'views/IconSelectView', ['views/ProtoView', 'collectionViews/SectionsColl
 		className: ''
 
 		events:
-			'keyup': 'debouncedFilter'
-			'click #js-add-effects': 'toggleEffects'
+			'keyup': 									'debouncedFilter'
+			'click #js-add-effects': 	'toggleEffects'
+			'click #js-next': 				'next'
+			'click #js-prev': 				'prev'
+			'click #js-page': 				'loadPage'
 
 		initialize:(@o={})->
-			@buttonCounterTemplate = _.template helpers.unescape $("#button-counter-template").text()
+			@paginationTemplate 		= _.template helpers.unescape $("#pagination-template").text()
+			@buttonCounterTemplate 	= _.template helpers.unescape $("#button-counter-template").text()
 			@bindModelEvents()
 			@debouncedFilter = 	_.debounce @filter, 250
 			super
+			@sectionsCollection.on 'sync', _.bind @renderPagination, @
 			@
+
+		next:->
+			@scrollTop(); _.defer => @sectionsCollection.nextPage()
+		prev:->
+			@scrollTop(); _.defer => @sectionsCollection.prevPage()
+		scrollTop:->
+			App.$bodyHtml.animate 'scrollTop': @$el.position().top
+
+		loadPage:(e)->
+			@sectionsCollection.loadPage parseInt($(e.target).text(), 10) or 0
+
 
 		toggleEffects:->
 			@$('#js-filter-block').show().addClass('animated fadeInDown').find('#js-filters-place').trigger 'show'
@@ -26,12 +42,17 @@ define 'views/IconSelectView', ['views/ProtoView', 'collectionViews/SectionsColl
 
 		render:->
 			super
-			@renderButton()
-			_.defer =>
-				@renderView()
-				@initFileUpload()
+			@renderView()
+			@$paginationPlace = @$('#js-pagination-place')
 
+			@initFileUpload()
+
+			@renderButton()
 			@
+
+		renderPagination:->
+			@$paginationPlace.html @paginationTemplate @sectionsCollection.pageInfo()
+
 
 		renderView:->
 			@filtersCollectionView = new FiltersCollectionView
@@ -40,9 +61,9 @@ define 'views/IconSelectView', ['views/ProtoView', 'collectionViews/SectionsColl
 				$el: @$('#js-filters-place')
 
 			@filtersCollectionView.collection.fetch()
-
 			@sectionsCollection = new SectionsCollection
 			@sectionsCollection.fetch().then =>
+				@sectionsCollection.generateSvgData()
 				@sectionsCollectionView = new SectionsCollectionView
 					collection: @sectionsCollection
 					isRender: true

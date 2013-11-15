@@ -15,9 +15,9 @@
         return _ref;
       }
 
-      PaginatedCollection.prototype.page = 3;
+      PaginatedCollection.prototype.page = 1;
 
-      PaginatedCollection.prototype.perPage = 1;
+      PaginatedCollection.prototype.perPage = 4;
 
       PaginatedCollection.prototype.initialize = function() {
         return this.options = {
@@ -64,27 +64,39 @@
       };
 
       PaginatedCollection.prototype.nextPage = function() {
+        var _this = this;
+
         if (!this.pageInfo().next) {
           return false;
         }
         this.options.page++;
-        return this.fetch();
+        return this.fetch().then(function() {
+          return typeof _this.afterFetch === "function" ? _this.afterFetch() : void 0;
+        });
       };
 
       PaginatedCollection.prototype.prevPage = function() {
+        var _this = this;
+
         if (!this.pageInfo().prev) {
           return false;
         }
         this.options.page--;
-        return this.fetch();
+        return this.fetch().then(function() {
+          return typeof _this.afterFetch === "function" ? _this.afterFetch() : void 0;
+        });
       };
 
       PaginatedCollection.prototype.loadPage = function(n) {
+        var _this = this;
+
         if (n === this.options.page) {
           return false;
         }
         this.options.page = n;
-        return this.fetch();
+        return this.fetch().then(function() {
+          return typeof _this.afterFetch === "function" ? _this.afterFetch() : void 0;
+        });
       };
 
       return PaginatedCollection;

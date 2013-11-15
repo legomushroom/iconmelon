@@ -102,6 +102,7 @@
         this.filtersCollectionView.collection.fetch();
         this.sectionsCollection = new SectionsCollection;
         this.sectionsCollection.fetch().then(function() {
+          _this.sectionsCollection.generateSvgData();
           _this.sectionsCollectionView = new SectionsCollectionView({
             collection: _this.sectionsCollection,
             isRender: true,

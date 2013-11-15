@@ -36,7 +36,7 @@
 
   app = express();
 
-  folder = 'frontend';
+  folder = 'dist';
 
   mkdirp("" + folder + "/generated-icons", function() {});
 
@@ -54,7 +54,7 @@
 
   app.use(express.methodOverride());
 
-  DB_STR = process.env.NODE_ENV === 'production' ? '' : 'mongodb://localhost/iconmelon';
+  DB_STR = process.env.NODE_ENV === 'production' ? 'mongodb://nodejitsu:84997700fae857ad2c88deee88d2ef78@dharma.mongohq.com:10009/nodejitsudb1148323225' : 'mongodb://localhost/iconmelon';
 
   mongo.connect(DB_STR);
 

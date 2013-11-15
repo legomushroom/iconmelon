@@ -34,6 +34,7 @@ define 'helpers', ['md5'], (md5)->
 				@currIconIndex--; @currIconIndex < 0 and (@currIconIndex = App.iconsSelected.length - 1)
 			else
 				@currIconIndex++; @currIconIndex >= App.iconsSelected.length and (@currIconIndex = 0)
+				@currIconIndex++; @currIconIndex >= App.iconsSelected.length and (@currIconIndex = 0)
 			if App.iconsSelected[@currIconIndex] then App.iconsSelected[@currIconIndex].split(':')[1] else @getStandartIcon direction
 
 		getStandartIcon:(direction)->
@@ -75,6 +76,14 @@ define 'helpers', ['md5'], (md5)->
 		addToSvg:($shapes)->
 			App.$svgWrap.find('#svg-source').append $shapes.html()
 			@refreshSvg()
+
+		placeInSvg:(data)->
+			hook = 'js-icons-data-place'
+			App.$svgWrap.find('#js-icons-data-place').remove()
+			svg = App.$svgWrap.html()
+			svg = svg.replace /<!-- icons data marker -->/gi, "<!-- icons data marker --><defs id='#{hook}'>#{data}</defs>"
+			App.$svgWrap.html svg
+			data
 
 		toggleArray:(array, item, isSingle)->
 			return undefined  unless array?

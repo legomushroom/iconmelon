@@ -20,10 +20,6 @@
         return this;
       };
 
-      PageView.prototype.animateIn = function() {
-        return this.$el.addClass('animated fadeInDown');
-      };
-
       return PageView;
 
     })(ProtoView);

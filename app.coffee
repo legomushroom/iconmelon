@@ -17,8 +17,8 @@ pretty  = require('pretty-data').pd
 port    = 3000
 app     = express()
 
-# folder = 'dist'
-folder = 'frontend'
+folder = 'dist'
+# folder = 'frontend'
 
 mkdirp "#{folder}/generated-icons", ->
 mkdirp 'uploads', ->
@@ -30,7 +30,7 @@ app.use express.static  __dirname + "/#{folder}"
 app.use express.bodyParser(uploadDir: 'uploads')
 app.use express.methodOverride()
 
-DB_STR = if process.env.NODE_ENV is 'production' then '' else 'mongodb://localhost/iconmelon'
+DB_STR = if process.env.NODE_ENV is 'production' then 'mongodb://nodejitsu:84997700fae857ad2c88deee88d2ef78@dharma.mongohq.com:10009/nodejitsudb1148323225' else 'mongodb://localhost/iconmelon'
 
 mongo.connect DB_STR
 

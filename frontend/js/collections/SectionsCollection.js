@@ -4,7 +4,7 @@
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define('collections/SectionsCollection', ['collections/PaginatedCollection', 'models/SectionModel'], function(PagenatedCollection, SectionModel) {
+  define('collections/SectionsCollection', ['collections/PaginatedCollection', 'models/SectionModel', 'helpers'], function(PaginatedCollection, SectionModel, helpers) {
     var SectionsCollection, _ref;
 
     SectionsCollection = (function(_super) {
@@ -19,9 +19,35 @@
 
       SectionsCollection.prototype.url = 'sections';
 
+      SectionsCollection.prototype.afterFetch = function() {
+        this.generateSvgData();
+        return this;
+      };
+
+      SectionsCollection.prototype.generateSvgData = function() {
+        var shapes,
+          _this = this;
+
+        shapes = '';
+        this.each(function(model) {
+          var i, icon, isMulticolor, _i, _len, _ref1, _results;
+
+          isMulticolor = model.get('isMulticolor');
+          _ref1 = model.get('icons');
+          _results = [];
+          for (i = _i = 0, _len = _ref1.length; _i < _len; i = ++_i) {
+            icon = _ref1[i];
+            icon = "<g id='" + icon.hash + "'>" + icon.shape + "</g>";
+            _results.push(shapes += !isMulticolor ? icon.replace(/fill=\"\s?#[0-9A-Fa-f]{3,6}\s?\"/gi, '') : icon);
+          }
+          return _results;
+        });
+        return helpers.placeInSvg(shapes);
+      };
+
       return SectionsCollection;
 
-    })(PagenatedCollection);
+    })(PaginatedCollection);
     return SectionsCollection;
   });
 

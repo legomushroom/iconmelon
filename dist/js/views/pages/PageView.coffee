@@ -5,7 +5,4 @@ define 'views/pages/PageView', ['views/ProtoView'], (ProtoView)->
 			super; !@isNoPageAnima and @animateIn()
 			@
 
-		animateIn:->
-			@$el.addClass 'animated fadeInDown'
-
 	PageView

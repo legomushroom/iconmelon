@@ -53,6 +53,8 @@
         } else {
           this.currIconIndex++;
           this.currIconIndex >= App.iconsSelected.length && (this.currIconIndex = 0);
+          this.currIconIndex++;
+          this.currIconIndex >= App.iconsSelected.length && (this.currIconIndex = 0);
         }
         if (App.iconsSelected[this.currIconIndex]) {
           return App.iconsSelected[this.currIconIndex].split(':')[1];
@@ -115,6 +117,17 @@
       Helpers.prototype.addToSvg = function($shapes) {
         App.$svgWrap.find('#svg-source').append($shapes.html());
         return this.refreshSvg();
+      };
+
+      Helpers.prototype.placeInSvg = function(data) {
+        var hook, svg;
+
+        hook = 'js-icons-data-place';
+        App.$svgWrap.find('#js-icons-data-place').remove();
+        svg = App.$svgWrap.html();
+        svg = svg.replace(/<!-- icons data marker -->/gi, "<!-- icons data marker --><defs id='" + hook + "'>" + data + "</defs>");
+        App.$svgWrap.html(svg);
+        return data;
       };
 
       Helpers.prototype.toggleArray = function(array, item, isSingle) {

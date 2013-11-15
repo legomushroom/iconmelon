@@ -7,9 +7,8 @@ define 'views/ProtoView', ['marionette'], (M)->
 			@o.isRender and @render()
 			@
 
-		render:->
-			super
-			@
+		animateIn:->
+			@$el.addClass 'animated fadeInDown'
 
 		teardown:->
 			@undelegateEvents()

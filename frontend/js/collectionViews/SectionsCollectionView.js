@@ -3,7 +3,7 @@
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define('collectionViews/SectionsCollectionView', ['collectionViews/ProtoCollectionView', 'views/SectionView'], function(ProtoView, SectionView) {
+  define('collectionViews/SectionsCollectionView', ['collectionViews/ProtoCollectionView', 'views/SectionView', 'helpers'], function(ProtoView, SectionView, helpers) {
     var SectionsCollectionView, _ref;
 
     SectionsCollectionView = (function(_super) {
@@ -18,14 +18,13 @@
 
       SectionsCollectionView.prototype.template = '#sections-collection-view-template';
 
-      SectionsCollectionView.prototype.initialize = function() {
-        SectionsCollectionView.__super__.initialize.apply(this, arguments);
-        return this;
-      };
-
       SectionsCollectionView.prototype.render = function() {
-        SectionsCollectionView.__super__.render.apply(this, arguments);
-        this.$el.addClass('animated fadeInDown');
+        var _this = this;
+
+        _.defer(function() {
+          SectionsCollectionView.__super__.render.apply(_this, arguments);
+          return _this.$el.addClass('animated fadeInDown');
+        });
         return this;
       };
 

@@ -53,6 +53,7 @@ define 'views/IconSelectView', ['views/ProtoView', 'collectionViews/SectionsColl
 		renderPagination:->
 			@$paginationPlace.html @paginationTemplate @sectionsCollection.pageInfo()
 
+
 		renderView:->
 			@filtersCollectionView = new FiltersCollectionView
 				collection: new FiltersCollection
@@ -60,9 +61,9 @@ define 'views/IconSelectView', ['views/ProtoView', 'collectionViews/SectionsColl
 				$el: @$('#js-filters-place')
 
 			@filtersCollectionView.collection.fetch()
-
 			@sectionsCollection = new SectionsCollection
 			@sectionsCollection.fetch().then =>
+				@sectionsCollection.generateSvgData()
 				@sectionsCollectionView = new SectionsCollectionView
 					collection: @sectionsCollection
 					isRender: true
