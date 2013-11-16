@@ -17,10 +17,11 @@ define 'collections/PaginatedCollection', ['backbone'], (B)=>
       @
 
     fetchFun:(options)->
+        @loadFromFile = if options?.sectionNames then true else false
         Backbone.Collection::fetch.call @, data: $.extend @options, options or {}
 
     parseFun: (resp) ->
-      @options.total    = resp.total
+      @options.total = resp.total if resp.total
       resp.models
 
     pageInfo: ->
@@ -40,6 +41,7 @@ define 'collections/PaginatedCollection', ['backbone'], (B)=>
       info
 
     nextPage:->
+      @loadFromFile and @clearSelectedIcons()
       return false unless @pageInfo().next
       @options.page++; @fetch().then => @trigger 'afterFetch'
 
@@ -50,5 +52,8 @@ define 'collections/PaginatedCollection', ['backbone'], (B)=>
     loadPage:(n)->
       return false if n is @options.page
       @options.page = n; @fetch().then => @trigger 'afterFetch'
+
+    clearSelectedIcons:->
+      App.vent.trigger 'icon:deselect'
 
   PaginatedCollection

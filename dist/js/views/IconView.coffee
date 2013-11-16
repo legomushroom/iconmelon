@@ -18,13 +18,14 @@ define 'views/IconView', ['views/ProtoView', 'models/IconModel', 'underscore', '
 		render:->
 			super
 			@$el.toggleClass 'is-check', 	@model.get 'isSelected'
-			@$el.toggleClass 'h-gm', 		@model.get 'isFiltered'
+			@$el.toggleClass 'h-gm', 			@model.get 'isFiltered'
+			App.vent.on 'icon:deselect', _.bind @deselect, @
 			@
+
+		deselect:->
+			@model.deselect()
 
 		toggleSelected:->
 			@model.toggleSelected()
-			App.iconsSelected = helpers.toggleArray(App.iconsSelected, 	"#{ @model.collection.parentModel.get 'name' }:#{ @model.get 'hash' }")
-			console.log App.iconsSelected.length
-
 
 	IconSelectView

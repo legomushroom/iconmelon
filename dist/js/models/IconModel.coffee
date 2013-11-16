@@ -1,4 +1,4 @@
-define 'models/IconModel', ['models/ProtoModel'], (ProtoModel)->
+define 'models/IconModel', ['models/ProtoModel', 'helpers'], (ProtoModel, helpers)->
 	class IconModel extends ProtoModel
 		defaults:
 			isSelected: false
@@ -18,20 +18,27 @@ define 'models/IconModel', ['models/ProtoModel'], (ProtoModel)->
 
 			@collection.selectedCnt ?= 0
 			if @get 'isSelected' then @collection.selectedCnt++ else @collection.selectedCnt--
+			App.iconsSelected = helpers.toggleArray(App.iconsSelected, 	"#{ @collection.parentModel.get 'name' }:#{ @get 'hash' }")
 
 			@calcSelected()
 
 		deselect:->
-			@set 'isSelected', false
-			@calcSelected()
+			@select false
 
-		select:->
-			@set 'isSelected', true
+		select:(val=true)->
+			@.set 'isSelected', val
+			if val then App.iconsSelected.push "#{ @collection.parentModel.get 'name' }:#{ @get 'hash' }" 
+			else App.iconsSelected = _.without App.iconsSelected, "#{ @collection.parentModel.get 'name' }:#{ @get 'hash' }"
+			
+			val and (iconsSelected = _.uniq App.iconsSelected )
+		
 			@calcSelected()
+			# if val 
+			# 	App.iconsSelected = App.iconsSelected.push "#{ @collection.parentModel.get 'name' }:#{ @get 'hash' }")
+			# else
+			# 	App.iconsSelected = _.without App.iconsSelected, "#{ @collection.parentModel.get 'name' }:#{ @get 'hash' }")
 
 		calcSelected:->
-			App.iconsSelected = helpers.toggleArray(App.iconsSelected, 	"#{ @collection.parentModel.get 'name' }:#{ @model.get 'hash' }")
-			App.vent.tigger 'icon:select'
-
+			App.vent.trigger 'icon:select'
 
 	IconModel

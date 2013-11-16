@@ -3229,7 +3229,7 @@ a.is-check:after,
   box-sizing: border-box;
 }
 .icon-with-text-b:active {
-  background-color: rgba(0,0,0,0.05);
+  background-color: rgba(0,0,0,0.035);
 }
 .icon-with-text-b:active > .icon {
   -webkit-transform: scale(2);
@@ -3261,11 +3261,6 @@ a.is-check:after,
   -moz-transition: opacity 0.1s ease-in 0.5s;
   -o-transition: opacity 0.1s ease-in 0.5s;
   transition: opacity 0.1s ease-in 0.5s;
-}
-.icon-with-text-b.is-check:hover {
-  border-width: 1px;
-  border-style: solid;
-  border-color: #ff3d7f;
 }
 .icon-with-text-b:hover,
 .icon-with-text-b.is-check {
@@ -3366,7 +3361,7 @@ a.is-check:after,
   content: '';
   width: 160%;
   height: 160%;
-  background-color: #f1f1f1;
+  background-color: #fff;
   position: absolute;
   z-index: -1;
   top: -30%;

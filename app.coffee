@@ -32,9 +32,7 @@ app.use express.static  __dirname + "/#{folder}", maxAge: oneDay
 app.use express.bodyParser(uploadDir: 'uploads')
 app.use express.methodOverride()
 
-DB_STR = if process.env.NODE_ENV is 'production' then 'mongodb://nodejitsu:84997700fae857ad2c88deee88d2ef78@dharma.mongohq.com:10009/nodejitsudb1148323225' else 'mongodb://localhost/iconmelon'
-
-mongo.connect DB_STR
+mongo.connect if !process.env.NODE_ENV then fs.readFileSync("db.md").toString() else 'mongodb://localhost/iconmelon'
 
 SectionSchema = new mongo.Schema
       name:           String

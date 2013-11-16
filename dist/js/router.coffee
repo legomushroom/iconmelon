@@ -11,6 +11,7 @@ define 'router', ['backbone','controllers/PagesController'], (B, pc)->
 			'*path': 				'main'
 
 		main:(pageNum=1)->
+			pageNum = pageNum.match(/\d/gi)?[0] or 1
 			@startPage pc.main, pageNum: ~~pageNum
 			@checkMainMenuItem()
 			@animateHeader()

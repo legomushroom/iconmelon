@@ -94,13 +94,13 @@ js/models/FilterModel.js
 js/views/FilterView.js
 js/collectionViews/FiltersCollectionView.js
 js/collections/FiltersCollection.js
+js/lib/jquery.ui.widget.js
+js/lib/jquery.fileupload.js
 js/views/IconSelectView.js
 js/models/IconSelectModel.js
 js/views/pages/main.js
 js/views/IconEditView.js
 js/views/ThanxModalView.js
-js/lib/jquery.ui.widget.js
-js/lib/jquery.fileupload.js
 js/views/EditCollectionView.js
 js/views/pages/submit.js
 js/views/SectionLineView.js

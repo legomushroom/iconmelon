@@ -53,7 +53,7 @@ define 'views/pages/main', ['views/pages/PageView', 'views/IconSelectView', 'mod
 					location.href = "/generated-icons/#{filename}.zip"
 				error:(e)->
 					console.error e
-				complete:->
+				complete:=>
 					@$downloadBtn.removeClass 'loading-eff'
 
 		animate:->

@@ -65,18 +65,18 @@ cbox()
 	   -moz-box-sizing: content-box;
 	        box-sizing: content-box;
 
-transform(property)
+transform(property,property2='')
 	-webkit-transform property
 	-moz-transform property
 	-ms-transform property
 	-o-transform property
 	transform property
 
-transition(property, time, easing)
-	-webkit-transition property time easing
-	-moz-transition property time easing
-	-o-transition property time easing
-	transition property time easing
+transition(property, time, easing, delay=0)
+	-webkit-transition property time easing delay
+	-moz-transition property time easing delay
+	-o-transition property time easing delay
+	transition property time easing delay
 
 rect(size)
 	width size
