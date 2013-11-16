@@ -16,15 +16,20 @@ define 'views/IconSelectView', ['views/ProtoView', 'collectionViews/SectionsColl
 			@bindModelEvents()
 			@debouncedFilter = 	_.debounce @filter, 250
 			super
-			@sectionsCollection.on 'sync', _.bind @renderPagination, @
+			@sectionsCollection.on 'afterFetch', _.bind @renderPagination, @
 			@
 
 		next:->
+			@showLoader();
 			@scrollTop(); _.defer => @sectionsCollection.nextPage()
 		prev:->
+			@showLoader();
 			@scrollTop(); _.defer => @sectionsCollection.prevPage()
 		scrollTop:->
 			App.$bodyHtml.animate 'scrollTop': @$el.position().top
+
+		showLoader:->
+			helpers.showLoaderLine('is-long').setLoaderLineProgress 100
 
 		loadPage:(e)->
 			@sectionsCollection.loadPage parseInt($(e.target).text(), 10) or 0
@@ -46,12 +51,14 @@ define 'views/IconSelectView', ['views/ProtoView', 'collectionViews/SectionsColl
 			@$paginationPlace = @$('#js-pagination-place')
 
 			@initFileUpload()
-
 			@renderButton()
 			@
 
 		renderPagination:->
-			@$paginationPlace.html @paginationTemplate @sectionsCollection.pageInfo()
+			helpers.hideLoaderLine 'is-long'
+			App.router.navigate "#/page-#{@sectionsCollection.options.page}"
+			_.defer =>
+				@$paginationPlace.html @paginationTemplate @sectionsCollection.pageInfo()
 
 
 		renderView:->
@@ -59,9 +66,12 @@ define 'views/IconSelectView', ['views/ProtoView', 'collectionViews/SectionsColl
 				collection: new FiltersCollection
 				isRender: true
 				$el: @$('#js-filters-place')
-
 			@filtersCollectionView.collection.fetch()
-			@sectionsCollection = new SectionsCollection
+
+			@sectionsCollection = new SectionsCollection 
+																	isPaginated: true
+																	pageNum: @o.pageNum
+
 			@sectionsCollection.fetch().then =>
 				@sectionsCollection.generateSvgData()
 				@sectionsCollectionView = new SectionsCollectionView
@@ -69,6 +79,7 @@ define 'views/IconSelectView', ['views/ProtoView', 'collectionViews/SectionsColl
 					isRender: true
 					$el: @$('#js-section-collections-place')
 
+				@renderPagination()
 				App.sectionsCollectionView = @sectionsCollectionView 
 
 				@model.sectionsView = @sectionsCollectionView

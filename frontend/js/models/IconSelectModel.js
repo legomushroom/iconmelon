@@ -28,10 +28,7 @@
         var counter;
 
         counter = 0;
-        this.sectionsView.collection.each(function(model) {
-          return counter += model.iconsCollectionView.collection.selectedCnt || 0;
-        });
-        return this.set('selectedCounter', counter + App.filtersSelected.length);
+        return this.set('selectedCounter', App.iconsSelected.length + App.filtersSelected.length);
       };
 
       return IconSelectModel;

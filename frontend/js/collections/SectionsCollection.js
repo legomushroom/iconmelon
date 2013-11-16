@@ -4,7 +4,7 @@
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define('collections/SectionsCollection', ['collections/PaginatedCollection', 'models/SectionModel', 'helpers'], function(PaginatedCollection, SectionModel, helpers) {
+  define('collections/SectionsCollection', ['collections/PaginatedCollection', 'models/SectionModel', 'helpers', 'underscore'], function(PaginatedCollection, SectionModel, helpers, _) {
     var SectionsCollection, _ref;
 
     SectionsCollection = (function(_super) {
@@ -19,8 +19,14 @@
 
       SectionsCollection.prototype.url = 'sections';
 
-      SectionsCollection.prototype.afterFetch = function() {
-        this.generateSvgData();
+      SectionsCollection.prototype.initialize = function(o) {
+        this.o = o != null ? o : {};
+        if (this.o.pageNum) {
+          this.page = this.o.pageNum;
+        }
+        this.isPaginated = this.o.paginated;
+        this.on('afterFetch', _.bind(this.generateSvgData, this));
+        SectionsCollection.__super__.initialize.apply(this, arguments);
         return this;
       };
 

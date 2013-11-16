@@ -13,7 +13,7 @@ define 'views/pages/editr', [ 	'views/pages/PageView', 'views/EditCollectionView
 			@collectionLine = new SectionsCollectionView
 				$el: @$('#js-collection-line-place')
 				isRender: true
-				collection: new SectionsCollection []
+				collection: new SectionsCollection
 			
 			@collectionLine.collection.url = 'sections-all'
 			@collectionLine.collection.fetch().then( => @showFirstModel()).fail (e)=>
@@ -26,6 +26,7 @@ define 'views/pages/editr', [ 	'views/pages/PageView', 'views/EditCollectionView
 			@collectionLine.collection.on 'remove', _.bind @showFirstModel, @
 
 		showFirstModel:->
+			console.log @collectionLine.collection
 			@renderEditCollectionView @collectionLine.collection.at(0)?.set 'isSelected', true
 
 		renderEditCollectionView:(model)->

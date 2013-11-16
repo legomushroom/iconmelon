@@ -39,12 +39,16 @@
         IconSelectView.__super__.render.apply(this, arguments);
         this.$el.toggleClass('is-check', this.model.get('isSelected'));
         this.$el.toggleClass('h-gm', this.model.get('isFiltered'));
+        App.vent.on('icon:deselect', _.bind(this.deselect, this));
         return this;
       };
 
+      IconSelectView.prototype.deselect = function() {
+        return this.model.deselect();
+      };
+
       IconSelectView.prototype.toggleSelected = function() {
-        this.model.toggleSelected();
-        return App.iconsSelected = helpers.toggleArray(App.iconsSelected, "" + (this.model.collection.parentModel.get('name')) + ":" + (this.model.get('hash')));
+        return this.model.toggleSelected();
       };
 
       return IconSelectView;

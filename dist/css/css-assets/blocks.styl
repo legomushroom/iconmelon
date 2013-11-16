@@ -970,6 +970,9 @@ marginTop = 2*gs
 		transition width .05s ease-out
 		border-top-right-radius br + 1px
 		border-bottom-right-radius br + 1px
+		&.is-long
+			transition width 1s ease-out
+
 	> .logo-tiny-e
 		margin-top - gs
 		display: block
@@ -1292,5 +1295,11 @@ shadowSize = 2px
 			// 4!
 			&:after
 				width 3*gs + 2px
+				font-size 16px
+
+		&.is-4-digits
+			// 4!
+			&:after
+				width 5*gs
 				font-size 16px
 

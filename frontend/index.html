@@ -1291,7 +1291,7 @@
             </div>
           </div>
           <div class="right-ll">
-            <div data-cnt="0" class="btn-b js-download is-counter">download</div>
+            <div id="js-counter-btn-place"></div>
           </div>
         </div>
       </div>
@@ -1318,23 +1318,7 @@
       <div id="js-pagination-place"></div>
     </script>
     <script id="button-counter-template" type="template">
-      <div class="icon-set-l">
-        <div class="left-ll">
-          <div title="load from file" class="btn-b js-upload is-iconed is-red1">
-            <div id="" title="" class="icon ">
-              <svg viewBox="0 0 32 32">
-                <g filter="">
-                  <use xlink:href="#arrow-up-icon"></use>
-                </g>
-              </svg>
-            </div>
-            <input id="fileupload" type="file" name="files[]" multiple="multiple">
-          </div>
-        </div>
-        <div class="right-ll">
-          <div data-cnt="&lt;%= selectedCounter %&gt;" class="btn-b js-download is-counter is-&lt;%= (selectedCounter + &quot;&quot;).length %&gt;-digits">download</div>
-        </div>
-      </div>
+      <div data-cnt="&lt;%= selectedCounter %&gt;" class="btn-b js-download is-counter is-&lt;%= (selectedCounter + &quot;&quot;).length %&gt;-digits">download</div>
     </script>
     <script id="icon-view-template" type="template">
       <div id="" title="" class="icon ">

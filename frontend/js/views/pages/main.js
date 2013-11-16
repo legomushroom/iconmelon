@@ -22,7 +22,8 @@
         'click .js-download': 'download'
       };
 
-      Main.prototype.initialize = function() {
+      Main.prototype.initialize = function(o) {
+        this.o = o != null ? o : {};
         this.isNoPageAnima = true;
         Main.__super__.initialize.apply(this, arguments);
         return this;
@@ -35,7 +36,8 @@
         this.iconSelectView = new IconSelectView({
           model: new IconSelectModel,
           $el: this.$('#js-icons-select-view-place'),
-          isRender: true
+          isRender: true,
+          pageNum: this.o.pageNum
         });
         this.$mainLogo = this.$('.main-logo-b');
         this.$melon = this.$('.logo-large-e');
@@ -49,6 +51,8 @@
       };
 
       Main.prototype.download = function() {
+        var _this = this;
+
         if (App.iconsSelected.length === 0) {
           App.notifier.show({
             type: 'error',
@@ -71,7 +75,7 @@
             return console.error(e);
           },
           complete: function() {
-            return this.$downloadBtn.removeClass('loading-eff');
+            return _this.$downloadBtn.removeClass('loading-eff');
           }
         });
       };

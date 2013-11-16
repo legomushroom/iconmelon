@@ -970,6 +970,9 @@ marginTop = 2*gs
 		transition width .05s ease-out
 		border-top-right-radius br + 1px
 		border-bottom-right-radius br + 1px
+		&.is-long
+			transition width 1s ease-out
+
 	> .logo-tiny-e
 		margin-top - gs
 		display: block
@@ -1069,21 +1072,38 @@ marginTop = 2*gs
 	cursor pointer
 	border 1px solid transparent
 	position relative
-	cbox()
+	padding-top 5*gs 
+	padding-bottom gs
+	height 8.25*gs
+	bbox()
+
+	time = .1s; easing = ease-in; delay = .5s
+	&:active
+		background-color rgba(0,0,0,.05)
+
+		> .icon
+			transform(scale(2))
+			transform-origin 50% 50%
+
+			transition -webkit-transform time easing delay
+			transition -moz-transform time easing delay
+			transition -o-transform time easing delay
+			transition transform time easing delay
+
+			&:before
+				opacity: 1
+				transition opacity time easing delay
+
+	&.is-check
+		&:hover
+			border 1px solid c-red1
 
 	&:hover, &.is-check
 		color darken(c-grey2, 20)
+		border 1px solid c-grey4
 
 		> .icon
 			fill darken(c-grey2, 20)
-			// transition fill 0s linear
-		> .text-be
-			// transition color 0s linear
-
-
-	&:hover
-		background-color rgba(0,0,0,.05)
-
 
 	> .bullet-be
 		position absolute
@@ -1139,13 +1159,21 @@ marginTop = 2*gs
 		&:hover, &.is-expanded
 			margin-top - (gs/2) + 5px
 
-
-
 	> .icon
-		margin 0 auto
-		margin-top 1px
-		// transition fill .5s ease-out
-		// rect 3*gs
+		position: absolute
+		z-index:  1
+		top (gs/2)
+		left 1.5*gs
+		&:before
+			content ''
+			rect 160%
+			background-color #f1f1f1
+			position: absolute
+			z-index:  -1
+			nw -30%
+			border-radius 50%
+			opacity 0
+			box-shadow 0 0 0 (gs/2) rgba(0,0,0,.2)
 	
 	> .text-be
 		font-size 20px
@@ -1154,7 +1182,7 @@ marginTop = 2*gs
 		max-width 100%
 		padding 0 (gs/2)
 		textel()
-		// transition color .5s ease-out
+		position relative
 
 
 
@@ -1292,5 +1320,11 @@ shadowSize = 2px
 			// 4!
 			&:after
 				width 3*gs + 2px
+				font-size 16px
+
+		&.is-4-digits
+			// 4!
+			&:after
+				width 5*gs
 				font-size 16px
 

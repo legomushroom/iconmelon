@@ -1,19 +1,25 @@
 define 'collections/PaginatedCollection', ['backbone'], (B)=>
   class PaginatedCollection extends B.Collection
     page: 1
-    perPage: 4
+    perPage: 2
 
     initialize: ->
+     
       # _.bindAll @, "parse", "url", "pageInfo", "nextPage", "previousPage"
       @options = 
         page: @page
         perPage: @perPage
         total: 10
 
-    fetch: (options) ->
-      Backbone.Collection::fetch.call @, data: $.extend @options, options or {}
+      @o.isPaginated and @fetch = @fetchFun
+      @o.isPaginated and @parse = @parseFun
+      super
+      @
 
-    parse: (resp) ->
+    fetchFun:(options)->
+        Backbone.Collection::fetch.call @, data: $.extend @options, options or {}
+
+    parseFun: (resp) ->
       @options.total    = resp.total
       resp.models
 
@@ -35,14 +41,14 @@ define 'collections/PaginatedCollection', ['backbone'], (B)=>
 
     nextPage:->
       return false unless @pageInfo().next
-      @options.page++; @fetch().then => @afterFetch?()
+      @options.page++; @fetch().then => @trigger 'afterFetch'
 
     prevPage:->
       return false unless @pageInfo().prev
-      @options.page--; @fetch().then => @afterFetch?()
+      @options.page--; @fetch().then => @trigger 'afterFetch'
 
     loadPage:(n)->
       return false if n is @options.page
-      @options.page = n; @fetch().then => @afterFetch?()
+      @options.page = n; @fetch().then => @trigger 'afterFetch'
 
   PaginatedCollection

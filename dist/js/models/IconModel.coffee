@@ -19,6 +19,19 @@ define 'models/IconModel', ['models/ProtoModel'], (ProtoModel)->
 			@collection.selectedCnt ?= 0
 			if @get 'isSelected' then @collection.selectedCnt++ else @collection.selectedCnt--
 
-			App.vent.trigger 'icon:select'
+			@calcSelected()
+
+		deselect:->
+			@set 'isSelected', false
+			@calcSelected()
+
+		select:->
+			@set 'isSelected', true
+			@calcSelected()
+
+		calcSelected:->
+			App.iconsSelected = helpers.toggleArray(App.iconsSelected, 	"#{ @collection.parentModel.get 'name' }:#{ @model.get 'hash' }")
+			App.vent.tigger 'icon:select'
+
 
 	IconModel

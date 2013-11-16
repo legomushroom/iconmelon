@@ -1905,6 +1905,12 @@ a.is-check:after,
 .c-grey3-bg-gm {
   background-color: #bdbfbf;
 }
+.loader-e {
+  width: 32px;
+  height: 32px;
+  background: #3fb8af;
+  border-radius: 50%;
+}
 .legomushroom-e {
   display: block;
   width: 240px;
@@ -2554,10 +2560,10 @@ a.is-check:after,
   top: 0;
   left: 0;
   z-index: 0;
-  -webkit-transition: all 0.15s ease-out;
-  -moz-transition: all 0.15s ease-out;
-  -o-transition: all 0.15s ease-out;
-  transition: all 0.15s ease-out;
+  -webkit-transition: all 0.15s ease-out 0;
+  -moz-transition: all 0.15s ease-out 0;
+  -o-transition: all 0.15s ease-out 0;
+  transition: all 0.15s ease-out 0;
 }
 .switch-b > .btn-be {
   content: '';
@@ -2570,10 +2576,10 @@ a.is-check:after,
   left: 0;
   border-radius: 50%;
   z-index: 1;
-  -webkit-transition: all 0.15s ease-out;
-  -moz-transition: all 0.15s ease-out;
-  -o-transition: all 0.15s ease-out;
-  transition: all 0.15s ease-out;
+  -webkit-transition: all 0.15s ease-out 0;
+  -moz-transition: all 0.15s ease-out 0;
+  -o-transition: all 0.15s ease-out 0;
+  transition: all 0.15s ease-out 0;
 }
 .switch-b input {
   width: 100%;
@@ -3106,12 +3112,18 @@ a.is-check:after,
   left: 0;
   bottom: -6px;
   position: absolute;
-  -webkit-transition: width 0.05s ease-out;
-  -moz-transition: width 0.05s ease-out;
-  -o-transition: width 0.05s ease-out;
-  transition: width 0.05s ease-out;
+  -webkit-transition: width 0.05s ease-out 0;
+  -moz-transition: width 0.05s ease-out 0;
+  -o-transition: width 0.05s ease-out 0;
+  transition: width 0.05s ease-out 0;
   border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;
+}
+.main-header-b > .loading-be.is-long {
+  -webkit-transition: width 1s ease-out 0;
+  -moz-transition: width 1s ease-out 0;
+  -o-transition: width 1s ease-out 0;
+  transition: width 1s ease-out 0;
 }
 .main-header-b > .logo-tiny-e {
   margin-top: -8px;
@@ -3141,26 +3153,26 @@ a.is-check:after,
   margin-top: 24px;
 }
 .section-b .close-bh {
-  -webkit-transition: -webkit-transform 0.25s linear;
-  -moz-transition: -webkit-transform 0.25s linear;
-  -o-transition: -webkit-transform 0.25s linear;
-  transition: -webkit-transform 0.25s linear;
-  -webkit-transition: -moz-transform 0.25s linear;
-  -moz-transition: -moz-transform 0.25s linear;
-  -o-transition: -moz-transform 0.25s linear;
-  transition: -moz-transform 0.25s linear;
-  -webkit-transition: -ms-transform 0.25s linear;
-  -moz-transition: -ms-transform 0.25s linear;
-  -o-transition: -ms-transform 0.25s linear;
-  transition: -ms-transform 0.25s linear;
-  -webkit-transition: -o-transform 0.25s linear;
-  -moz-transition: -o-transform 0.25s linear;
-  -o-transition: -o-transform 0.25s linear;
-  transition: -o-transform 0.25s linear;
-  -webkit-transition: transform 0.25s linear;
-  -moz-transition: transform 0.25s linear;
-  -o-transition: transform 0.25s linear;
-  transition: transform 0.25s linear;
+  -webkit-transition: -webkit-transform 0.25s linear 0;
+  -moz-transition: -webkit-transform 0.25s linear 0;
+  -o-transition: -webkit-transform 0.25s linear 0;
+  transition: -webkit-transform 0.25s linear 0;
+  -webkit-transition: -moz-transform 0.25s linear 0;
+  -moz-transition: -moz-transform 0.25s linear 0;
+  -o-transition: -moz-transform 0.25s linear 0;
+  transition: -moz-transform 0.25s linear 0;
+  -webkit-transition: -ms-transform 0.25s linear 0;
+  -moz-transition: -ms-transform 0.25s linear 0;
+  -o-transition: -ms-transform 0.25s linear 0;
+  transition: -ms-transform 0.25s linear 0;
+  -webkit-transition: -o-transform 0.25s linear 0;
+  -moz-transition: -o-transform 0.25s linear 0;
+  -o-transition: -o-transform 0.25s linear 0;
+  transition: -o-transform 0.25s linear 0;
+  -webkit-transition: transform 0.25s linear 0;
+  -moz-transition: transform 0.25s linear 0;
+  -o-transition: transform 0.25s linear 0;
+  transition: transform 0.25s linear 0;
 }
 .section-b .icon-with-text-b {
   float: left;
@@ -3209,20 +3221,62 @@ a.is-check:after,
   border-style: solid;
   border-color: transparent;
   position: relative;
-  -webkit-box-sizing: content-box;
-  -moz-box-sizing: content-box;
-  box-sizing: content-box;
+  padding-top: 40px;
+  padding-bottom: 8px;
+  height: 66px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.icon-with-text-b:active {
+  background-color: rgba(0,0,0,0.05);
+}
+.icon-with-text-b:active > .icon {
+  -webkit-transform: scale(2);
+  -moz-transform: scale(2);
+  -ms-transform: scale(2);
+  -o-transform: scale(2);
+  transform: scale(2);
+  transform-origin: 50% 50%;
+  -webkit-transition: -webkit-transform 0.1s ease-in 0.5s;
+  -moz-transition: -webkit-transform 0.1s ease-in 0.5s;
+  -o-transition: -webkit-transform 0.1s ease-in 0.5s;
+  transition: -webkit-transform 0.1s ease-in 0.5s;
+  -webkit-transition: -moz-transform 0.1s ease-in 0.5s;
+  -moz-transition: -moz-transform 0.1s ease-in 0.5s;
+  -o-transition: -moz-transform 0.1s ease-in 0.5s;
+  transition: -moz-transform 0.1s ease-in 0.5s;
+  -webkit-transition: -o-transform 0.1s ease-in 0.5s;
+  -moz-transition: -o-transform 0.1s ease-in 0.5s;
+  -o-transition: -o-transform 0.1s ease-in 0.5s;
+  transition: -o-transform 0.1s ease-in 0.5s;
+  -webkit-transition: transform 0.1s ease-in 0.5s;
+  -moz-transition: transform 0.1s ease-in 0.5s;
+  -o-transition: transform 0.1s ease-in 0.5s;
+  transition: transform 0.1s ease-in 0.5s;
+}
+.icon-with-text-b:active > .icon:before {
+  opacity: 1;
+  -webkit-transition: opacity 0.1s ease-in 0.5s;
+  -moz-transition: opacity 0.1s ease-in 0.5s;
+  -o-transition: opacity 0.1s ease-in 0.5s;
+  transition: opacity 0.1s ease-in 0.5s;
+}
+.icon-with-text-b.is-check:hover {
+  border-width: 1px;
+  border-style: solid;
+  border-color: #ff3d7f;
 }
 .icon-with-text-b:hover,
 .icon-with-text-b.is-check {
   color: #525151;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #d7d8d8;
 }
 .icon-with-text-b:hover > .icon,
 .icon-with-text-b.is-check > .icon {
   fill: #525151;
-}
-.icon-with-text-b:hover {
-  background-color: rgba(0,0,0,0.05);
 }
 .icon-with-text-b > .bullet-be {
   position: absolute;
@@ -3303,8 +3357,23 @@ a.is-check:after,
   margin-top: 1px;
 }
 .icon-with-text-b > .icon {
-  margin: 0 auto;
-  margin-top: 1px;
+  position: absolute;
+  z-index: 1;
+  top: 4px;
+  left: 12px;
+}
+.icon-with-text-b > .icon:before {
+  content: '';
+  width: 160%;
+  height: 160%;
+  background-color: #f1f1f1;
+  position: absolute;
+  z-index: -1;
+  top: -30%;
+  left: -30%;
+  border-radius: 50%;
+  opacity: 0;
+  box-shadow: 0 0 0 4px rgba(0,0,0,0.2);
 }
 .icon-with-text-b > .text-be {
   font-size: 20px;
@@ -3318,6 +3387,7 @@ a.is-check:after,
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
   overflow: hidden;
+  position: relative;
 }
 .input-with-icon-b {
   position: relative;
@@ -3472,6 +3542,10 @@ a.is-check:after,
   width: 26px;
   font-size: 16px;
 }
+.btn-b.is-counter.is-4-digits:after {
+  width: 40px;
+  font-size: 16px;
+}
 .pages-nav-l {
   position: relative;
   text-align: center;
@@ -3606,10 +3680,10 @@ a.is-check:after,
   z-index: 1;
   margin-left: 60px;
   right: 0;
-  -webkit-transition: all 0.25s ease-out;
-  -moz-transition: all 0.25s ease-out;
-  -o-transition: all 0.25s ease-out;
-  transition: all 0.25s ease-out;
+  -webkit-transition: all 0.25s ease-out 0;
+  -moz-transition: all 0.25s ease-out 0;
+  -o-transition: all 0.25s ease-out 0;
+  transition: all 0.25s ease-out 0;
 }
 .numed-use-preview-l .use-preview-b:hover {
   top: -100px;
@@ -3634,10 +3708,10 @@ a.is-check:after,
 .noties-l .noty-l .noty-b {
   position: relative;
   left: -340px;
-  -webkit-transition: left 0.25s ease-out;
-  -moz-transition: left 0.25s ease-out;
-  -o-transition: left 0.25s ease-out;
-  transition: left 0.25s ease-out;
+  -webkit-transition: left 0.25s ease-out 0;
+  -moz-transition: left 0.25s ease-out 0;
+  -o-transition: left 0.25s ease-out 0;
+  transition: left 0.25s ease-out 0;
 }
 .icon-set-l .btn-b {
   width: 100%;
@@ -4353,10 +4427,10 @@ a.is-check:after,
   height: 100%;
 }
 .icon.is-fill-transition {
-  -webkit-transition: fill 0.25s linear;
-  -moz-transition: fill 0.25s linear;
-  -o-transition: fill 0.25s linear;
-  transition: fill 0.25s linear;
+  -webkit-transition: fill 0.25s linear 0;
+  -moz-transition: fill 0.25s linear 0;
+  -o-transition: fill 0.25s linear 0;
+  transition: fill 0.25s linear 0;
 }
 .icon.is-reverse {
   -webkit-transform: rotate(-180deg);
@@ -4364,22 +4438,22 @@ a.is-check:after,
   -ms-transform: rotate(-180deg);
   -o-transform: rotate(-180deg);
   transform: rotate(-180deg);
-  -webkit-transition: -webkit-transform 0.3s linear;
-  -moz-transition: -webkit-transform 0.3s linear;
-  -o-transition: -webkit-transform 0.3s linear;
-  transition: -webkit-transform 0.3s linear;
-  -webkit-transition: -moz-transform 0.3s linear;
-  -moz-transition: -moz-transform 0.3s linear;
-  -o-transition: -moz-transform 0.3s linear;
-  transition: -moz-transform 0.3s linear;
-  -webkit-transition: -o-transform 0.3s linear;
-  -moz-transition: -o-transform 0.3s linear;
-  -o-transition: -o-transform 0.3s linear;
-  transition: -o-transform 0.3s linear;
-  -webkit-transition: transform 0.3s linear;
-  -moz-transition: transform 0.3s linear;
-  -o-transition: transform 0.3s linear;
-  transition: transform 0.3s linear;
+  -webkit-transition: -webkit-transform 0.3s linear 0;
+  -moz-transition: -webkit-transform 0.3s linear 0;
+  -o-transition: -webkit-transform 0.3s linear 0;
+  transition: -webkit-transform 0.3s linear 0;
+  -webkit-transition: -moz-transform 0.3s linear 0;
+  -moz-transition: -moz-transform 0.3s linear 0;
+  -o-transition: -moz-transform 0.3s linear 0;
+  transition: -moz-transform 0.3s linear 0;
+  -webkit-transition: -o-transform 0.3s linear 0;
+  -moz-transition: -o-transform 0.3s linear 0;
+  -o-transition: -o-transform 0.3s linear 0;
+  transition: -o-transform 0.3s linear 0;
+  -webkit-transition: transform 0.3s linear 0;
+  -moz-transition: transform 0.3s linear 0;
+  -o-transition: transform 0.3s linear 0;
+  transition: transform 0.3s linear 0;
 }
 .icon.is-grey3 {
   fill: #bdbfbf;
@@ -4468,6 +4542,9 @@ a.is-check:after,
 }
 .editr-p .icon-collections-line-b {
   margin: 32px 0;
+}
+.editr-p .icon-collections-line-b > .icons-bl {
+  overflow-x: visible;
 }
 .support-p {
   padding: 96px 32px;

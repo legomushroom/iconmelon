@@ -13,19 +13,21 @@ jade    = require 'jade'
 cookies = require 'cookies'
 markdown= require('node-markdown').Markdown
 pretty  = require('pretty-data').pd
-  
+
 port    = 3000
 app     = express()
 
-folder = 'dist'
-# folder = 'frontend'
+# folder = 'dist'
+folder = 'frontend' 
 
 mkdirp "#{folder}/generated-icons", ->
 mkdirp 'uploads', ->
 
+oneDay = 86400000
 app.set 'port', process.env.PORT or port
+app.use express.compress()
 app.use express.favicon __dirname + "/#{folder}/favicon.ico"
-app.use express.static  __dirname + "/#{folder}"
+app.use express.static  __dirname + "/#{folder}", maxAge: oneDay
 
 app.use express.bodyParser(uploadDir: 'uploads')
 app.use express.methodOverride()
@@ -319,15 +321,20 @@ io.sockets.on "connection", (socket) ->
       callback null, docs
 
   socket.on "sections:read", (data, callback) ->
-    # console.log data
-    options = 
-      skip: (data.page-1)*data.perPage
-      limit: data.perPage
-    Section.find {moderated: true}, null, options, (err, docs)->
-      Section.find {moderated: true}, (err, docs2)->
+    console.log data.sectionNames
+    if data.sectionNames
+      Section.find {moderated: true, name: $in:data.sectionNames }, null, options, (err, docs)->
         callback null, data =
                         models: docs
-                        total: docs2.length
+    else 
+      options = 
+        skip: (data.page-1)*data.perPage
+        limit: data.perPage
+      Section.find {moderated: true}, null, options, (err, docs)->
+        Section.find {moderated: true}, (err, docs2)->
+          callback null, data =
+                          models: docs
+                          total: docs2.length
 
 
   socket.on "sections-all:read", (data, callback) ->

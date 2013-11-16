@@ -1,10 +1,13 @@
-define 'collections/SectionsCollection', ['collections/PaginatedCollection', 'models/SectionModel', 'helpers'], (PaginatedCollection, SectionModel, helpers)=>
+define 'collections/SectionsCollection', ['collections/PaginatedCollection', 'models/SectionModel', 'helpers', 'underscore'], (PaginatedCollection, SectionModel, helpers, _)=>
 	class SectionsCollection extends PaginatedCollection
 		model: SectionModel
 		url: 'sections'
 
-		afterFetch:->
-			@generateSvgData()
+		initialize:(@o={})->
+			@page = @o.pageNum if @o.pageNum
+			@isPaginated = @o.paginated
+			@on 'afterFetch', _.bind @generateSvgData, @
+			super
 			@
 
 		generateSvgData:->

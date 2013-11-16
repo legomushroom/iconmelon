@@ -10,9 +10,7 @@ define 'models/IconSelectModel', ['models/ProtoModel'], (ProtoModel)->
 
 		refreshCounter:->
 			counter = 0
-			@sectionsView.collection.each (model)->
-				counter += model.iconsCollectionView.collection.selectedCnt or 0
+			@set 'selectedCounter', App.iconsSelected.length + App.filtersSelected.length
 
-			@set 'selectedCounter', counter + App.filtersSelected.length
 
 	IconSelectModel

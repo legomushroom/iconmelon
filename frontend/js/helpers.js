@@ -10,6 +10,33 @@
         return Math.floor((Math.random() * ((max + 1) - min)) + min);
       };
 
+      Helpers.prototype.showLoaderLine = function(className) {
+        if (className == null) {
+          className = '';
+        }
+        App.$loadingLine.show().addClass(className);
+        return this;
+      };
+
+      Helpers.prototype.hideLoaderLine = function(className) {
+        if (className == null) {
+          className = '';
+        }
+        App.$loadingLine.fadeOut(200, function() {
+          return App.$loadingLine.css({
+            'width': '0'
+          }).removeClass(className);
+        });
+        return this;
+      };
+
+      Helpers.prototype.setLoaderLineProgress = function(n) {
+        App.$loadingLine.css({
+          'width': "" + n + "%"
+        });
+        return this;
+      };
+
       Helpers.prototype.listenLinks = function() {
         return $(document.body).on('click', 'a', function(e) {
           var $it;
@@ -115,7 +142,10 @@
       };
 
       Helpers.prototype.addToSvg = function($shapes) {
-        App.$svgWrap.find('#svg-source').append($shapes.html());
+        var data;
+
+        data = $shapes instanceof $ ? $shapes.htnl() : $shapes;
+        App.$svgWrap.find('#svg-source').append(data);
         return this.refreshSvg();
       };
 

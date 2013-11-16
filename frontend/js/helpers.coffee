@@ -4,6 +4,19 @@ define 'helpers', ['md5'], (md5)->
 		getRandom:(min,max)->
         	Math.floor((Math.random() * ((max + 1) - min)) + min)
 
+    showLoaderLine:(className='')->
+    	App.$loadingLine.show().addClass className
+    	@
+
+    hideLoaderLine:(className='')->
+    	App.$loadingLine.fadeOut 200, ->
+    		App.$loadingLine.css('width': '0').removeClass className
+    	@
+
+    setLoaderLineProgress:(n)->
+    	App.$loadingLine.css 'width': "#{n}%"
+    	@
+
 		listenLinks:->
 			$(document.body).on 'click', 'a', (e)->
 				$it = $(@)
@@ -74,7 +87,8 @@ define 'helpers', ['md5'], (md5)->
 				App.loadedHashes.push o.hash
 
 		addToSvg:($shapes)->
-			App.$svgWrap.find('#svg-source').append $shapes.html()
+			data = if $shapes instanceof $ then $shapes.htnl() else $shapes
+			App.$svgWrap.find('#svg-source').append data
 			@refreshSvg()
 
 		placeInSvg:(data)->

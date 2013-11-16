@@ -6,7 +6,7 @@ define 'views/pages/main', ['views/pages/PageView', 'views/IconSelectView', 'mod
 		events:
 			'click .js-download' : 'download'
 
-		initialize:->
+		initialize:(@o={})->
 			@isNoPageAnima = true
 			# @loadSvg()
 			super
@@ -22,6 +22,7 @@ define 'views/pages/main', ['views/pages/PageView', 'views/IconSelectView', 'mod
 				model: new IconSelectModel
 				$el: @$ '#js-icons-select-view-place'
 				isRender: true
+				pageNum: @o.pageNum
 
 			@$mainLogo 			= @$('.main-logo-b')
 			@$melon 				= @$('.logo-large-e')

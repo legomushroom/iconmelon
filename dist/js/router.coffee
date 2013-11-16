@@ -2,6 +2,7 @@ define 'router', ['backbone','controllers/PagesController'], (B, pc)->
 	class Router extends B.Router
 		routes:
 			'': 						'main'
+			'/:pageNum': 		'main'
 			'submit': 			'submit'
 			'editr': 				'editr'
 			'support-us': 	'support'
@@ -9,8 +10,8 @@ define 'router', ['backbone','controllers/PagesController'], (B, pc)->
 			'hire-me': 			'hire'
 			'*path': 				'main'
 
-		main:->
-			@startPage pc.main
+		main:(pageNum=1)->
+			@startPage pc.main, pageNum: ~~pageNum
 			@checkMainMenuItem()
 			@animateHeader()
 
@@ -40,10 +41,10 @@ define 'router', ['backbone','controllers/PagesController'], (B, pc)->
 			@showHeader()
 
 
-		startPage:(View)->
+		startPage:(View, options={})->
 			if @currentPage is View then return
 			@currentPage = View
-			App.main.show new View @o
+			App.main.show new View options
 			App.$bodyHtml.animate 'scrollTop': 0
 
 		animateHeader:->

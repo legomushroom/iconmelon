@@ -17,24 +17,31 @@
 
       PaginatedCollection.prototype.page = 1;
 
-      PaginatedCollection.prototype.perPage = 4;
+      PaginatedCollection.prototype.perPage = 2;
 
       PaginatedCollection.prototype.initialize = function() {
-        return this.options = {
+        this.options = {
           page: this.page,
           perPage: this.perPage,
           total: 10
         };
+        this.o.isPaginated && (this.fetch = this.fetchFun);
+        this.o.isPaginated && (this.parse = this.parseFun);
+        PaginatedCollection.__super__.initialize.apply(this, arguments);
+        return this;
       };
 
-      PaginatedCollection.prototype.fetch = function(options) {
+      PaginatedCollection.prototype.fetchFun = function(options) {
+        this.loadFromFile = (options != null ? options.sectionNames : void 0) ? true : false;
         return Backbone.Collection.prototype.fetch.call(this, {
           data: $.extend(this.options, options || {})
         });
       };
 
-      PaginatedCollection.prototype.parse = function(resp) {
-        this.options.total = resp.total;
+      PaginatedCollection.prototype.parseFun = function(resp) {
+        if (resp.total) {
+          this.options.total = resp.total;
+        }
         return resp.models;
       };
 
@@ -66,12 +73,13 @@
       PaginatedCollection.prototype.nextPage = function() {
         var _this = this;
 
+        this.loadFromFile && this.clearSelectedIcons();
         if (!this.pageInfo().next) {
           return false;
         }
         this.options.page++;
         return this.fetch().then(function() {
-          return typeof _this.afterFetch === "function" ? _this.afterFetch() : void 0;
+          return _this.trigger('afterFetch');
         });
       };
 
@@ -83,7 +91,7 @@
         }
         this.options.page--;
         return this.fetch().then(function() {
-          return typeof _this.afterFetch === "function" ? _this.afterFetch() : void 0;
+          return _this.trigger('afterFetch');
         });
       };
 
@@ -95,8 +103,12 @@
         }
         this.options.page = n;
         return this.fetch().then(function() {
-          return typeof _this.afterFetch === "function" ? _this.afterFetch() : void 0;
+          return _this.trigger('afterFetch');
         });
+      };
+
+      PaginatedCollection.prototype.clearSelectedIcons = function() {
+        return App.vent.trigger('icon:deselect');
       };
 
       return PaginatedCollection;

@@ -16,6 +16,7 @@
 
       Router.prototype.routes = {
         '': 'main',
+        '/:pageNum': 'main',
         'submit': 'submit',
         'editr': 'editr',
         'support-us': 'support',
@@ -24,8 +25,16 @@
         '*path': 'main'
       };
 
-      Router.prototype.main = function() {
-        this.startPage(pc.main);
+      Router.prototype.main = function(pageNum) {
+        var _ref1;
+
+        if (pageNum == null) {
+          pageNum = 1;
+        }
+        pageNum = ((_ref1 = pageNum.match(/\d/gi)) != null ? _ref1[0] : void 0) || 1;
+        this.startPage(pc.main, {
+          pageNum: ~~pageNum
+        });
         this.checkMainMenuItem();
         return this.animateHeader();
       };
@@ -60,12 +69,15 @@
         return this.showHeader();
       };
 
-      Router.prototype.startPage = function(View) {
+      Router.prototype.startPage = function(View, options) {
+        if (options == null) {
+          options = {};
+        }
         if (this.currentPage === View) {
           return;
         }
         this.currentPage = View;
-        App.main.show(new View(this.o));
+        App.main.show(new View(options));
         return App.$bodyHtml.animate({
           'scrollTop': 0
         });

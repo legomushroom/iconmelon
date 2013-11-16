@@ -29,7 +29,7 @@
         this.collectionLine = new SectionsCollectionView({
           $el: this.$('#js-collection-line-place'),
           isRender: true,
-          collection: new SectionsCollection([])
+          collection: new SectionsCollection
         });
         this.collectionLine.collection.url = 'sections-all';
         this.collectionLine.collection.fetch().then(function() {
@@ -49,6 +49,7 @@
       Edit.prototype.showFirstModel = function() {
         var _ref1;
 
+        console.log(this.collectionLine.collection);
         return this.renderEditCollectionView((_ref1 = this.collectionLine.collection.at(0)) != null ? _ref1.set('isSelected', true) : void 0);
       };
 
