@@ -1079,7 +1079,7 @@ marginTop = 2*gs
 
 	time = .1s; easing = ease-in; delay = .5s
 	&:active
-		background-color rgba(0,0,0,.05)
+		background-color rgba(0,0,0,.035)
 
 		> .icon
 			transform(scale(2))
@@ -1093,10 +1093,6 @@ marginTop = 2*gs
 			&:before
 				opacity: 1
 				transition opacity time easing delay
-
-	&.is-check
-		&:hover
-			border 1px solid c-red1
 
 	&:hover, &.is-check
 		color darken(c-grey2, 20)
@@ -1167,7 +1163,7 @@ marginTop = 2*gs
 		&:before
 			content ''
 			rect 160%
-			background-color #f1f1f1
+			background-color white
 			position: absolute
 			z-index:  -1
 			nw -30%

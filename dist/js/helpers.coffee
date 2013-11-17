@@ -87,7 +87,7 @@ define 'helpers', ['md5'], (md5)->
 				App.loadedHashes.push o.hash
 
 		addToSvg:($shapes)->
-			data = if $shapes instanceof $ then $shapes.htnl() else $shapes
+			data = if $shapes instanceof $ then $shapes.html() else $shapes
 			App.$svgWrap.find('#svg-source').append data
 			@refreshSvg()
 

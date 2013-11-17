@@ -144,7 +144,7 @@
       Helpers.prototype.addToSvg = function($shapes) {
         var data;
 
-        data = $shapes instanceof $ ? $shapes.htnl() : $shapes;
+        data = $shapes instanceof $ ? $shapes.html() : $shapes;
         App.$svgWrap.find('#svg-source').append(data);
         return this.refreshSvg();
       };

@@ -17,8 +17,8 @@ pretty  = require('pretty-data').pd
 port    = 3000
 app     = express()
 
-# folder = 'dist'
-folder = 'frontend' 
+folder = 'dist'
+# folder = 'frontend' 
 
 mkdirp "#{folder}/generated-icons", ->
 mkdirp 'uploads', ->
@@ -32,7 +32,7 @@ app.use express.static  __dirname + "/#{folder}", maxAge: oneDay
 app.use express.bodyParser(uploadDir: 'uploads')
 app.use express.methodOverride()
 
-mongo.connect if !process.env.NODE_ENV then fs.readFileSync("db.md").toString() else 'mongodb://localhost/iconmelon'
+mongo.connect if process.env.NODE_ENV then fs.readFileSync("db").toString() else 'mongodb://localhost/iconmelon'
 
 SectionSchema = new mongo.Schema
       name:           String

@@ -36,7 +36,7 @@
 
   app = express();
 
-  folder = 'frontend';
+  folder = 'dist';
 
   mkdirp("" + folder + "/generated-icons", function() {});
 
@@ -60,7 +60,7 @@
 
   app.use(express.methodOverride());
 
-  mongo.connect(!process.env.NODE_ENV ? fs.readFileSync("db.md").toString() : 'mongodb://localhost/iconmelon');
+  mongo.connect(process.env.NODE_ENV ? fs.readFileSync("db").toString() : 'mongodb://localhost/iconmelon');
 
   SectionSchema = new mongo.Schema({
     name: String,

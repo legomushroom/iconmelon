@@ -29,7 +29,7 @@
         var _ref1;
 
         if (pageNum == null) {
-          pageNum = 1;
+          pageNum = '1';
         }
         pageNum = ((_ref1 = pageNum.match(/\d/gi)) != null ? _ref1[0] : void 0) || 1;
         this.startPage(pc.main, {
