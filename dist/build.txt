@@ -7,11 +7,11 @@ js/lib/backbone.js
 js/backbone.wreqr.js
 js/backbone.babysitter.js
 js/lib/backbone.marionette.js
+js/views/ProtoView.js
 js/collectionViews/ProtoCollectionView.js
 js/models/ProtoModel.js
 js/models/NotyModel.js
 js/collections/NotiesCollection.js
-js/views/ProtoView.js
 js/lib/md5.js
 js/helpers.js
 js/views/NotyView.js

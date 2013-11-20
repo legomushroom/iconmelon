@@ -124,15 +124,20 @@
           pageNum: this.o.pageNum
         });
         this.sectionsCollection.fetch().then(function() {
-          _this.sectionsCollection.generateSvgData();
-          _this.sectionsCollectionView = new SectionsCollectionView({
-            collection: _this.sectionsCollection,
-            isRender: true,
-            $el: _this.$('#js-section-collections-place')
+          if (_this.isClosed) {
+            return;
+          }
+          return _this.$('#js-loader').fadeOut('fast', function() {
+            _this.sectionsCollection.generateSvgData();
+            _this.sectionsCollectionView = new SectionsCollectionView({
+              collection: _this.sectionsCollection,
+              isRender: true,
+              $el: _this.$('#js-section-collections-place')
+            });
+            _this.renderPagination();
+            App.sectionsCollectionView = _this.sectionsCollectionView;
+            return _this.model.sectionsView = _this.sectionsCollectionView;
           });
-          _this.renderPagination();
-          App.sectionsCollectionView = _this.sectionsCollectionView;
-          return _this.model.sectionsView = _this.sectionsCollectionView;
         });
         return this;
       };
@@ -314,6 +319,16 @@
           _this.sectionsCollection.options.sectionNames = null;
           return _this.renderPagination();
         });
+      };
+
+      IconSelectView.prototype.teardown = function() {
+        var _ref1;
+
+        helpers.hideLoaderLine('is-long');
+        if ((_ref1 = this.sectionsCollectionView) != null) {
+          _ref1.teardown();
+        }
+        return IconSelectView.__super__.teardown.apply(this, arguments);
       };
 
       return IconSelectView;

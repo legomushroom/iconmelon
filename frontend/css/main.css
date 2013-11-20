@@ -2034,6 +2034,18 @@ a.is-check:after,
   border-style: solid;
   border-color: #ff3d7f;
 }
+.loader-with-text-b {
+  display: inline-block;
+}
+.loader-with-text-b .loader-e {
+  float: left;
+}
+.loader-with-text-b > .text-be {
+  font-size: 20px;
+  color: #858484;
+  margin-left: 40px;
+  margin-top: 7px;
+}
 .pages-nav-nums-b {
   cursor: default;
   color: #bdbfbf;
@@ -2217,7 +2229,7 @@ a.is-check:after,
 .to-top-btn-b.is-stackoverflow .icon {
   width: 16px;
   height: 16px;
-  margin-top: -8px;
+  margin-top: -10px;
   margin-left: -8px;
 }
 .social-btn-b.is-email .icon,
@@ -4472,6 +4484,9 @@ a.is-check:after,
 .main-page-p {
   padding: 0 64px;
   text-align: center;
+}
+.main-page-p .loader-with-text-b {
+  margin-top: 80px;
 }
 .main-page-p .pages-nav-l {
   margin-top: 64px;

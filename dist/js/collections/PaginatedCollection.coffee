@@ -1,7 +1,7 @@
 define 'collections/PaginatedCollection', ['backbone'], (B)=>
   class PaginatedCollection extends B.Collection
     page: 1
-    perPage: 2
+    perPage: 8
 
     initialize: ->
      

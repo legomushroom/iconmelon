@@ -1,4 +1,4 @@
-define 'collectionViews/ProtoCollectionView', ['marionette'], (M)->
+define 'collectionViews/ProtoCollectionView', ['marionette', 'views/ProtoView'], (M)->
 	class ProtoCollectionView extends M.CompositeView
 		
 		initialize:(@o={})->
@@ -17,6 +17,9 @@ define 'collectionViews/ProtoCollectionView', ['marionette'], (M)->
 
 				@collection.parentCollection = @model.collection
 
+		teardown:->
+			@isClosed 						= true
+			@collection?.isClosed = true
 
 	ProtoCollectionView
 

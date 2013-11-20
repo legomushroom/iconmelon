@@ -36,7 +36,7 @@
 
   app = express();
 
-  folder = 'dist';
+  folder = 'frontend';
 
   mkdirp("" + folder + "/generated-icons", function() {});
 
@@ -345,7 +345,7 @@
                 name = _this.ensureUniq(_this.safeCssName(iconDB.name));
                 renderData = {
                   iconDB: iconDB,
-                  name: name,
+                  name: name.toLowerCase(),
                   doc: doc
                 };
                 str = jade.renderFile('views/g.jade', renderData);

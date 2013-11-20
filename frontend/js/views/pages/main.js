@@ -98,6 +98,12 @@
         return this.$mainLogo.addClass('animated fadeInDown');
       };
 
+      Main.prototype.teardown = function() {
+        this.iconSelectView.teardown();
+        Main.__super__.teardown.apply(this, arguments);
+        return this;
+      };
+
       return Main;
 
     })(PageView);

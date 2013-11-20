@@ -75,16 +75,18 @@ define 'views/IconSelectView', ['views/ProtoView', 'collectionViews/SectionsColl
 																	pageNum: @o.pageNum
 
 			@sectionsCollection.fetch().then =>
-				@sectionsCollection.generateSvgData()
-				@sectionsCollectionView = new SectionsCollectionView
-					collection: @sectionsCollection
-					isRender: true
-					$el: @$('#js-section-collections-place')
+				return if @isClosed
+				@$('#js-loader').fadeOut 'fast', =>
+					@sectionsCollection.generateSvgData()
+					@sectionsCollectionView = new SectionsCollectionView
+						collection: @sectionsCollection
+						isRender: true
+						$el: @$('#js-section-collections-place')
 
-				@renderPagination()
-				App.sectionsCollectionView = @sectionsCollectionView 
+					@renderPagination()
+					App.sectionsCollectionView = @sectionsCollectionView 
 
-				@model.sectionsView = @sectionsCollectionView
+					@model.sectionsView = @sectionsCollectionView
 
 			@
 
@@ -166,6 +168,12 @@ define 'views/IconSelectView', ['views/ProtoView', 'collectionViews/SectionsColl
 				@sectionsCollection.options.page = 0
 				@sectionsCollection.options.sectionNames = null
 				@renderPagination()
+
+		teardown:->
+			helpers.hideLoaderLine 'is-long'
+			@sectionsCollectionView?.teardown()
+			# delete @sectionsCollectionView
+			super
 
 
 	IconSelectView

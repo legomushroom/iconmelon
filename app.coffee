@@ -17,8 +17,8 @@ pretty  = require('pretty-data').pd
 port    = 3000
 app     = express()
 
-folder = 'dist'
-# folder = 'frontend' 
+# folder = 'dist'
+folder = 'frontend' 
 
 mkdirp "#{folder}/generated-icons", ->
 mkdirp 'uploads', ->
@@ -215,7 +215,7 @@ class Main
               name = @ensureUniq(@safeCssName(iconDB.name))
               renderData = 
                 iconDB: iconDB
-                name:   name
+                name:   name.toLowerCase()
                 doc:    doc
               str = jade.renderFile('views/g.jade', renderData)
               str = if !doc.isMulticolor then str.replace(/fill=\"\s?#[0-9A-Fa-f]{3,6}\s?\"/gi, '') else str

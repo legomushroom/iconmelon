@@ -67,6 +67,10 @@ define 'views/pages/main', ['views/pages/PageView', 'views/IconSelectView', 'mod
 			@$mainSection.addClass 	'animated fadeInDown'
 			@$mainLogo.addClass 		'animated fadeInDown'
 
+		teardown:->
+			@iconSelectView.teardown()
+			super
+			@
 	Main
 
 

@@ -70,14 +70,20 @@
       };
 
       Router.prototype.startPage = function(View, options) {
+        var _ref1;
+
         if (options == null) {
           options = {};
         }
-        if (this.currentPage === View) {
+        if (this.currentPageView === View) {
           return;
         }
-        this.currentPage = View;
-        App.main.show(new View(options));
+        this.currentPageView = View;
+        if ((_ref1 = this.currentPage) != null) {
+          _ref1.teardown();
+        }
+        this.currentPage = new View(options);
+        App.main.show(this.currentPage);
         return App.$bodyHtml.animate({
           'scrollTop': 0
         });

@@ -3,7 +3,7 @@
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define('collectionViews/ProtoCollectionView', ['marionette'], function(M) {
+  define('collectionViews/ProtoCollectionView', ['marionette', 'views/ProtoView'], function(M) {
     var ProtoCollectionView, _ref;
 
     ProtoCollectionView = (function(_super) {
@@ -39,6 +39,13 @@
           modelAttr = null;
           return this.collection.parentCollection = this.model.collection;
         }
+      };
+
+      ProtoCollectionView.prototype.teardown = function() {
+        var _ref1;
+
+        this.isClosed = true;
+        return (_ref1 = this.collection) != null ? _ref1.isClosed = true : void 0;
       };
 
       return ProtoCollectionView;

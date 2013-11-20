@@ -43,9 +43,11 @@ define 'router', ['backbone','controllers/PagesController'], (B, pc)->
 
 
 		startPage:(View, options={})->
-			if @currentPage is View then return
-			@currentPage = View
-			App.main.show new View options
+			if @currentPageView is View then return
+			@currentPageView = View
+			@currentPage?.teardown()
+			@currentPage = new View options
+			App.main.show @currentPage
 			App.$bodyHtml.animate 'scrollTop': 0
 
 		animateHeader:->
