@@ -1,1 +1,28 @@
-.how-p {padding: 0 32px; padding-top: 160px; opacity: 0; text-align: center;} .how-p .page-block-ph + .page-block-ph {margin-top: 96px;} .how-p .small-logo-b {margin-top: 128px;} @media all and (max-width: 1150px) {.how-p .use-or-b {width: 80px; height: 80px; margin-left: 36px; margin-bottom: -16px; overflow: visible;} .how-p .use-or-b:after {-webkit-transform: rotate(90deg); -moz-transform: rotate(90deg); -ms-transform: rotate(90deg); -o-transform: rotate(90deg); transform: rotate(90deg);}} 
+.how-p {
+  padding: 0 32px;
+  padding-top: 160px;
+  opacity: 0;
+  text-align: center;
+}
+.how-p .page-block-ph + .page-block-ph {
+  margin-top: 96px;
+}
+.how-p .small-logo-b {
+  margin-top: 128px;
+}
+@media all and (max-width: 1150px) {
+  .how-p .use-or-b {
+    width: 80px;
+    height: 80px;
+    margin-left: 36px;
+    margin-bottom: -16px;
+    overflow: visible;
+  }
+  .how-p .use-or-b:after {
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg);
+  }
+}

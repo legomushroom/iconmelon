@@ -57,7 +57,7 @@ define 'views/IconEditView', ['views/ProtoView', 'models/IconModel', 'underscore
 
 		setName:(val)->
 			@model.set 'isNameValid',  if $.trim(val).length > 0 then true else false
-			val
+			val?.toLowerCase()
 
 		initialize:(@o={})->
 			@$svg = $('#svg-source')

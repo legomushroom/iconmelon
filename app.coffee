@@ -219,7 +219,7 @@ class Main
                 doc:    doc
               str = jade.renderFile('views/g.jade', renderData)
               str = if !doc.isMulticolor then str.replace(/fill=\"\s?#[0-9A-Fa-f]{3,6}\s?\"/gi, '') else str
-              htmlIcon = jade.renderFile('views/icon.jade', data: name: name)
+              htmlIcon = jade.renderFile('views/icon.jade', data: name: name.toLowerCase())
 
               htmlData += htmlIcon
               firstIcon ?= htmlIcon

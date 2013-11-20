@@ -20,18 +20,17 @@ define 'views/IconSelectView', ['views/ProtoView', 'collectionViews/SectionsColl
 			@
 
 		next:->
-			@showLoader();
-			@scrollTop(); _.defer => @sectionsCollection.nextPage()
+			@changePageNoty(); _.defer => @sectionsCollection.nextPage()
 		prev:->
-			@showLoader();
-			@scrollTop(); _.defer => @sectionsCollection.prevPage()
+			@changePageNoty(); _.defer => @sectionsCollection.prevPage()
 		scrollTop:->
 			App.$bodyHtml.animate 'scrollTop': @$el.position().top
-
 		showLoader:->
 			helpers.showLoaderLine('is-long').setLoaderLineProgress 100
-
+		changePageNoty:->
+			@showLoader(); @scrollTop()
 		loadPage:(e)->
+			@changePageNoty()
 			@sectionsCollection.loadPage parseInt($(e.target).text(), 10) or 0
 
 

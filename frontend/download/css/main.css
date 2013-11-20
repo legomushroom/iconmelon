@@ -131,24 +131,22 @@ table {
 }
 .icon-b {
   height: 80px;
-  padding-right: 16px;
   padding-bottom: 16px;
   border-radius: 5px;
 }
 .icon-b > .icon-bl {
   float: left;
   background-color: rgba(0,0,0,0.05);
-  height: 100%;
+  height: 64px;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
   padding: 0 8px;
+  position: absolute;
 }
 .icon-b > .icon-bl .iconmelon {
   margin-top: 15px;
 }
-.icon-b > .name-be {
-  margin-left: 48px;
-  font-size: 14px;
+.icon-b > .name-bl {
   height: 100%;
   border-width: 1px;
   border-style: solid;
@@ -156,13 +154,29 @@ table {
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
   border-left: 0;
-  padding: 22px 16px 0;
+  overflow: hidden;
+  margin-left: 48px;
+}
+.icon-b > .name-bl > .name-ble {
+  margin-top: 24px;
+  font-size: 14px;
+  border-width: 0;
+  border-style: solid;
+  border-color: #000;
+  padding: 0 16px 0;
+  max-width: 100%;
+  display: block;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  outline: 0;
   white-space: nowrap;
   -webkit-text-overflow: ellipsis;
   -moz-text-overflow: ellipsis;
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
   overflow: hidden;
+  font-family: monospace;
 }
 .main-l {
   max-width: 1008px;
@@ -184,6 +198,7 @@ table {
 .section-l .icon-b {
   float: left;
   width: 25%;
+  margin-right: 16px;
 }
 @media all and (max-width:1000px) {
   .section-l .icon-b {

@@ -7,7 +7,9 @@
 	baseUrl: "js",
 	//- this is the directory that the new files will be. it will be created if it doesn't exist
 	dir: "../dist",
-	optimizeCss: "standard",
+	
+      optimizeCss: "none",
+
       optimize: "uglify",
       preserveLicenseComments: false,
 	paths: {

@@ -17,7 +17,7 @@
 
       PaginatedCollection.prototype.page = 1;
 
-      PaginatedCollection.prototype.perPage = 8;
+      PaginatedCollection.prototype.perPage = 2;
 
       PaginatedCollection.prototype.initialize = function() {
         this.options = {
@@ -79,7 +79,7 @@
         }
         this.options.page++;
         return this.fetch().then(function() {
-          return _this.trigger('afterFetch');
+          return !_this.isClosed && _this.trigger('afterFetch');
         });
       };
 
@@ -91,7 +91,7 @@
         }
         this.options.page--;
         return this.fetch().then(function() {
-          return _this.trigger('afterFetch');
+          return !_this.isClosed && _this.trigger('afterFetch');
         });
       };
 
@@ -103,7 +103,7 @@
         }
         this.options.page = n;
         return this.fetch().then(function() {
-          return _this.trigger('afterFetch');
+          return !_this.isClosed && _this.trigger('afterFetch');
         });
       };
 

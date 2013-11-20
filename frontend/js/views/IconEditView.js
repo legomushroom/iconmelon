@@ -77,7 +77,7 @@
 
       IconEditView.prototype.setName = function(val) {
         this.model.set('isNameValid', $.trim(val).length > 0 ? true : false);
-        return val;
+        return val != null ? val.toLowerCase() : void 0;
       };
 
       IconEditView.prototype.initialize = function(o) {

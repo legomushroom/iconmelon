@@ -197,7 +197,7 @@ define 'views/EditCollectionView', [ 'views/ProtoView', 'views/IconEditView', 'c
 					name = data.files[0].name.split('.svg')[0]
 					data = 
 						shape: data.result
-						name: name
+						name: name?.toLowerCase()
 						hash: helpers.generateHash()
 						isValid: true
 

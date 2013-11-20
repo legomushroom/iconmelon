@@ -352,7 +352,7 @@
                 str = !doc.isMulticolor ? str.replace(/fill=\"\s?#[0-9A-Fa-f]{3,6}\s?\"/gi, '') : str;
                 htmlIcon = jade.renderFile('views/icon.jade', {
                   data: {
-                    name: name
+                    name: name.toLowerCase()
                   }
                 });
                 htmlData += htmlIcon;

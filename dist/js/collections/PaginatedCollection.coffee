@@ -1,7 +1,7 @@
 define 'collections/PaginatedCollection', ['backbone'], (B)=>
   class PaginatedCollection extends B.Collection
     page: 1
-    perPage: 8
+    perPage: 2
 
     initialize: ->
      
@@ -18,7 +18,7 @@ define 'collections/PaginatedCollection', ['backbone'], (B)=>
 
     fetchFun:(options)->
         @loadFromFile = if options?.sectionNames then true else false
-        Backbone.Collection::fetch.call @, data: $.extend @options, options or {}
+        Backbone.Collection::fetch.call(@, data: $.extend @options, options or {})
 
     parseFun: (resp) ->
       @options.total = resp.total if resp.total
@@ -43,15 +43,15 @@ define 'collections/PaginatedCollection', ['backbone'], (B)=>
     nextPage:->
       @loadFromFile and @clearSelectedIcons()
       return false unless @pageInfo().next
-      @options.page++; @fetch().then => @trigger 'afterFetch'
+      @options.page++; @fetch().then => !@isClosed and @trigger 'afterFetch'
 
     prevPage:->
       return false unless @pageInfo().prev
-      @options.page--; @fetch().then => @trigger 'afterFetch'
+      @options.page--; @fetch().then => !@isClosed and @trigger 'afterFetch'
 
     loadPage:(n)->
       return false if n is @options.page
-      @options.page = n; @fetch().then => @trigger 'afterFetch'
+      @options.page = n; @fetch().then => !@isClosed and @trigger 'afterFetch'
 
     clearSelectedIcons:->
       App.vent.trigger 'icon:deselect'

@@ -40,8 +40,7 @@
       IconSelectView.prototype.next = function() {
         var _this = this;
 
-        this.showLoader();
-        this.scrollTop();
+        this.changePageNoty();
         return _.defer(function() {
           return _this.sectionsCollection.nextPage();
         });
@@ -50,8 +49,7 @@
       IconSelectView.prototype.prev = function() {
         var _this = this;
 
-        this.showLoader();
-        this.scrollTop();
+        this.changePageNoty();
         return _.defer(function() {
           return _this.sectionsCollection.prevPage();
         });
@@ -67,7 +65,13 @@
         return helpers.showLoaderLine('is-long').setLoaderLineProgress(100);
       };
 
+      IconSelectView.prototype.changePageNoty = function() {
+        this.showLoader();
+        return this.scrollTop();
+      };
+
       IconSelectView.prototype.loadPage = function(e) {
+        this.changePageNoty();
         return this.sectionsCollection.loadPage(parseInt($(e.target).text(), 10) || 0);
       };
 

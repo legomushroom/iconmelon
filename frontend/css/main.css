@@ -2209,8 +2209,12 @@ a.is-check:after,
 .to-top-btn-b.is-gplus:hover {
   background-color: #4ec2ba;
 }
-.social-btn-b.is-gplus .icon,
-.to-top-btn-b.is-gplus .icon {
+.social-btn-b.is-stackoverflow,
+.to-top-btn-b.is-stackoverflow {
+  background-color: #ff963d;
+}
+.social-btn-b.is-stackoverflow .icon,
+.to-top-btn-b.is-stackoverflow .icon {
   width: 16px;
   height: 16px;
   margin-top: -8px;

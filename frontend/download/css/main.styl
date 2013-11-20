@@ -11,33 +11,40 @@
 .icon-b
 	height 10*gs
 	// border 0
-	padding-right 2*gs
 	padding-bottom 2*gs
 	border-radius br + 2px
 
 	> .icon-bl
 		float: left
 		background-color rgba(0,0,0,.05)
-		height 100%
+		height 8*gs
 		border-top-left-radius br + 2px
 		border-bottom-left-radius br + 2px
 		padding 0 gs
+		position: absolute
 		.iconmelon
 			margin-top 2*gs - 1px
-
-
-	> .name-be 
-		margin-left 6*gs
-		font-size 14px
+	> .name-bl 
 		height 100%
 		border 1px solid rgba(0,0,0,.05)
 		border-top-right-radius br + 2px
 		border-bottom-right-radius br + 2px
 		border-left 0
-		padding 2.5*gs+2px 2*gs 0
+		overflow: hidden
+		margin-left 6*gs
 
-		// color darken(c-grey2, 30)
-		textel()
+		> .name-ble 
+			margin-top 3*gs
+			font-size 14px
+			border 0
+			padding 0 2*gs 0
+			max-width 100%
+			display block
+			bbox()
+			outline 0
+			textel()
+			font-family monospace
+
 
 .main-l
 	max-width 126*gs
@@ -56,6 +63,7 @@
 	.icon-b
 		float left
 		width (100/4)%
+		margin-right 2*gs
 
 		@media all and (max-width:1000px)
 			width (100/3)%

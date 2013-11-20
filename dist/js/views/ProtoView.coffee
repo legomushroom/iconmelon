@@ -11,6 +11,9 @@ define 'views/ProtoView', ['marionette'], (M)->
 			@$el.addClass 'animated fadeInDown'
 
 		teardown:->
+			@isClosed 						= true
+			@collection?.isClosed = true
+			@model?.isClosed			 = true
 			@undelegateEvents()
 
 

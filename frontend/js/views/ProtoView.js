@@ -27,6 +27,15 @@
       };
 
       ProtoView.prototype.teardown = function() {
+        var _ref1, _ref2;
+
+        this.isClosed = true;
+        if ((_ref1 = this.collection) != null) {
+          _ref1.isClosed = true;
+        }
+        if ((_ref2 = this.model) != null) {
+          _ref2.isClosed = true;
+        }
         return this.undelegateEvents();
       };
 
