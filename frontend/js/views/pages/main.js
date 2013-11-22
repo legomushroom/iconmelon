@@ -6,6 +6,7 @@
   define('views/pages/main', ['views/pages/PageView', 'views/IconSelectView', 'models/IconSelectModel', 'underscore', 'hammer', 'tween', 'helpers'], function(PageView, IconSelectView, IconSelectModel, _, hammer, TWEEN, helpers) {
     var Main, _ref;
 
+    console.log(hammer);
     Main = (function(_super) {
       __extends(Main, _super);
 

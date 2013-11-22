@@ -26,6 +26,8 @@
             'jquery.ui.widget': 'lib/jquery.ui.widget',
             stickIt: 'lib/backbone.stickit',
             md5: 'lib/md5',
+            hammer:   'lib/hammer',
+            tween:    'lib/tween.min'
       },
       modules:[
             {name: "main"},

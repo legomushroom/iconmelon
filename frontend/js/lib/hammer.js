@@ -1,4 +1,6 @@
-/*! Hammer.JS - v1.0.5 - 2013-04-07
+define('hammer', ['jquery'], function($){
+
+    /*! Hammer.JS - v1.0.5 - 2013-04-07
  * http://eightmedia.github.com/hammer.js
  *
  * Copyright (c) 2013 Jorik Tangelder <j.tangelder@gmail.com>;
@@ -1423,6 +1425,8 @@ else {
 (function($, undefined) {
     'use strict';
 
+   
+
     // no jQuery or Zepto!
     if($ === undefined) {
         return;
@@ -1527,3 +1531,4 @@ else {
     };
 
 })(window.jQuery || window.Zepto);
+});

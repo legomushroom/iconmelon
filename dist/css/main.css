@@ -1975,6 +1975,15 @@ a.is-check:after,
   height: 144px;
   margin: 0 auto;
   margin-top: 8px;
+  -webkit-transform-origin: bottom center;
+  -moz-transform-origin: bottom center;
+  -o-transform-origin: bottom center;
+  transform-origin: bottom center;
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
 }
 .logo-tiny-e {
   width: 32px;

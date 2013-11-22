@@ -34,6 +34,8 @@ js/lib/jquery.ui.widget.js
 js/lib/jquery.fileupload.js
 js/views/IconSelectView.js
 js/models/IconSelectModel.js
+js/lib/hammer.js
+js/lib/tween.min.js
 js/views/pages/main.js
 js/views/IconEditView.js
 js/views/ThanxModalView.js

@@ -1,5 +1,7 @@
-define 'views/pages/main', ['views/pages/PageView', 'views/IconSelectView', 'models/IconSelectModel', 'underscore'],( PageView, IconSelectView, IconSelectModel, _)->
+define 'views/pages/main', ['views/pages/PageView', 'views/IconSelectView', 'models/IconSelectModel', 'underscore', 'hammer', 'tween', 'helpers'],( PageView, IconSelectView, IconSelectModel, _, hammer, TWEEN, helpers)->
 
+	console.log hammer
+	
 	class Main extends PageView
 		template: '#main-template'
 		className: "cf"
@@ -31,11 +33,44 @@ define 'views/pages/main', ['views/pages/PageView', 'views/IconSelectView', 'mod
 			_.defer =>
 				!App.mainAnimated and @animate()
 				App.mainAnimated and @show()
+
+			@hammerTime()
 			@
 
-		download:->
-			console.log @$downloadBtn
+		hammerTime:->
+			$el = @$('#js-main-logo-icon')
+			hamerTime = $el.hammer()
+			maxDeg = 20
+			deg = 0
+			prefix = helpers.prefix()
 
+			hamerTime.on 'drag', (e)=> 
+				TWEEN.removeAll()
+				deg = e.gesture.deltaX
+				deg = if deg >  maxDeg then  maxDeg else deg
+				deg = if deg < -maxDeg then -maxDeg else deg
+				$el.css "#{prefix}transform", "rotate(#{deg}deg)" 
+
+			hamerTime.on 'release', (e)=> 
+				twn = new TWEEN.Tween(amount: deg).to({amount: 0}, 2000)
+							.easing((t)-> 
+								b = Math.exp(-t*5)*Math.cos(Math.PI*2*t*5)
+								1 - b
+							)
+							.onUpdate(-> $el.css "#{prefix}transform", "rotate(#{@amount}deg)" ).start()
+				twn.start()
+				!@animateStarted and @animateTween()
+
+
+
+
+		animateTween:->
+			@animateStarted = true
+			requestAnimationFrame => @animateTween()
+			TWEEN.update();
+
+
+		download:->
 			if App.iconsSelected.length is 0
 				App.notifier.show
 					type: 'error'

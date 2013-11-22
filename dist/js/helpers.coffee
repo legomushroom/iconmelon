@@ -1,6 +1,12 @@
 define 'helpers', ['md5'], (md5)->
 	class Helpers
 
+		prefix: ->
+			styles = window.getComputedStyle(document.documentElement, "")
+			pre = (Array::slice.call(styles).join("").match(/-(moz|webkit|ms)-/) or (styles.OLink is "" and ["", "o"]))[1]
+			dom = ("WebKit|Moz|MS|O").match(new RegExp("(" + pre + ")", "i"))[1]
+			"-" + pre + "-"
+
 		getRandom:(min,max)->
         	Math.floor((Math.random() * ((max + 1) - min)) + min)
 
