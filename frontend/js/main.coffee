@@ -13,6 +13,8 @@ require.config
 		'jquery.ui.widget':'lib/jquery.ui.widget'
 		'backbone.stickit': 		'backbone.stickit'
 		md5: 				'lib/md5'
+		hammer: 		'lib/hammer'
+		tween: 			'lib/tween.min'
 
 	shim:
 		'backbone.stickit':

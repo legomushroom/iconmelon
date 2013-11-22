@@ -555,20 +555,14 @@
       });
     });
     socket.on("section:create", function(data, callback) {
-      return Secret.find({}, function(err, docs) {
-        if (docs[0].hash !== socket.getCookie('secret')) {
-          callback(405, 'no, sorry');
-          return;
+      data.moderated = false;
+      return new Section(data).save(function(err) {
+        if (err) {
+          callback(500, 'DB error');
+          return console.error(err);
+        } else {
+          return callback(null, 'ok');
         }
-        data.moderated = false;
-        return new Section(data).save(function(err) {
-          if (err) {
-            callback(500, 'DB error');
-            return console.error(err);
-          } else {
-            return callback(null, 'ok');
-          }
-        });
       });
     });
     socket.on("section:update", function(data, callback) {
@@ -600,20 +594,26 @@
       });
     });
     return socket.on("section:delete", function(data, callback) {
-      return Section.findById(data.id, function(err, doc) {
-        if (err) {
-          callback(500, 'DB error');
-          console.error(err);
-        } else {
-          callback(null, 'ok');
+      return Secret.find({}, function(err, docs) {
+        if (docs[0].hash !== socket.getCookie('secret')) {
+          callback(405, 'no, sorry');
+          return;
         }
-        return doc.remove(function(err) {
+        return Section.findById(data.id, function(err, doc) {
           if (err) {
-            callback(500, 'fs error');
-            return console.error(err);
+            callback(500, 'DB error');
+            console.error(err);
           } else {
-            return callback(null, 'ok');
+            callback(null, 'ok');
           }
+          return doc.remove(function(err) {
+            if (err) {
+              callback(500, 'fs error');
+              return console.error(err);
+            } else {
+              return callback(null, 'ok');
+            }
+          });
         });
       });
     });

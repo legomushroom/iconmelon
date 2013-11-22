@@ -491,7 +491,7 @@ define('backbone',['underscore','jquery'],function (_, $) {
 
         method = this.isNew() ? 'create' : (options.patch ? 'patch' : 'update');
         if (method === 'patch') options.attrs = attrs;
-        xhr = this.ne(method, this, options);
+        xhr = this.sync(method, this, options);
 
         // Restore attributes.
         if (attrs && options.wait) this.attributes = attributes;

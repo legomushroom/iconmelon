@@ -27,7 +27,6 @@ define 'views/pages/main', ['views/pages/PageView', 'views/IconSelectView', 'mod
 			@$mainLogo 			= @$('.main-logo-b')
 			@$melon 				= @$('.logo-large-e')
 			@$mainSection 	= @$('#js-icons-select-view-place')
-			@$downloadBtn 	= @$('.js-download')
 			
 			_.defer =>
 				!App.mainAnimated and @animate()
@@ -35,12 +34,15 @@ define 'views/pages/main', ['views/pages/PageView', 'views/IconSelectView', 'mod
 			@
 
 		download:->
+			console.log @$downloadBtn
+
 			if App.iconsSelected.length is 0
 				App.notifier.show
 					type: 'error'
 					text: 'select at least one icon to download'
 				return
 
+			@$downloadBtn = @$('.js-download')
 			@$downloadBtn.addClass 'loading-eff'
 
 			$.ajax

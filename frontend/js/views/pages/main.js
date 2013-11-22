@@ -3,7 +3,7 @@
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define('views/pages/main', ['views/pages/PageView', 'views/IconSelectView', 'models/IconSelectModel', 'underscore'], function(PageView, IconSelectView, IconSelectModel, _) {
+  define('views/pages/main', ['views/pages/PageView', 'views/IconSelectView', 'models/IconSelectModel', 'underscore', 'hammer', 'tween'], function(PageView, IconSelectView, IconSelectModel, _, hammer, TWEEN) {
     var Main, _ref;
 
     Main = (function(_super) {
@@ -42,12 +42,65 @@
         this.$mainLogo = this.$('.main-logo-b');
         this.$melon = this.$('.logo-large-e');
         this.$mainSection = this.$('#js-icons-select-view-place');
-        this.$downloadBtn = this.$('.js-download');
         _.defer(function() {
           !App.mainAnimated && _this.animate();
           return App.mainAnimated && _this.show();
         });
+        this.hammerTime();
         return this;
+      };
+
+      Main.prototype.hammerTime = function() {
+        var $el, deg, maxDeg, prefix,
+          _this = this;
+
+        $el = this.$('#js-main-logo-icon');
+        maxDeg = 20;
+        deg = 0;
+        prefix = this.prefix();
+        hammer(this.$el[0]).on('drag', function(e) {
+          TWEEN.removeAll();
+          deg = e.gesture.deltaX;
+          deg = deg > maxDeg ? maxDeg : deg;
+          deg = deg < -maxDeg ? -maxDeg : deg;
+          return $el.css("" + prefix + "transform", "rotate(" + deg + "deg)");
+        });
+        return hammer(this.$el[0]).on('release', function(e) {
+          var twn;
+
+          twn = new TWEEN.Tween({
+            amount: deg
+          }).to({
+            amount: 0
+          }, 2000).easing(function(t) {
+            var b;
+
+            b = Math.exp(-t * 5) * Math.cos(Math.PI * 2 * t * 5);
+            return 1 - b;
+          }).onUpdate(function() {
+            return $el.css('-webkit-transform', "rotate(" + this.amount + "deg)");
+          }).start();
+          twn.start();
+          return _this.animateA();
+        });
+      };
+
+      Main.prototype.animateA = function() {
+        var _this = this;
+
+        requestAnimationFrame(function() {
+          return _this.animateA();
+        });
+        return TWEEN.update();
+      };
+
+      Main.prototype.prefix = function() {
+        var dom, pre, styles;
+
+        styles = window.getComputedStyle(document.documentElement, "");
+        pre = (Array.prototype.slice.call(styles).join("").match(/-(moz|webkit|ms)-/) || (styles.OLink === "" && ["", "o"]))[1];
+        dom = "WebKit|Moz|MS|O".match(new RegExp("(" + pre + ")", "i"))[1];
+        return "-" + pre + "-";
       };
 
       Main.prototype.download = function() {
@@ -60,6 +113,7 @@
           });
           return;
         }
+        this.$downloadBtn = this.$('.js-download');
         this.$downloadBtn.addClass('loading-eff');
         return $.ajax({
           type: 'post',

@@ -343,8 +343,6 @@ io.sockets.on "connection", (socket) ->
         callback null, docs
 
   socket.on "section:create", (data, callback) ->
-    Secret.find {}, (err, docs)->
-      if docs[0].hash isnt socket.getCookie 'secret' then callback(405, 'no, sorry'); return
       data.moderated = false
       new Section(data).save (err)->
         if err
@@ -353,7 +351,6 @@ io.sockets.on "connection", (socket) ->
         else callback null, 'ok'
 
   socket.on "section:update", (data, callback) ->
-    
     Secret.find {}, (err, docs)->
       if docs[0].hash isnt socket.getCookie 'secret' then callback(405, 'no, sorry'); return
 
@@ -368,16 +365,19 @@ io.sockets.on "connection", (socket) ->
       # main.generateMainPageSvg()
 
   socket.on "section:delete", (data, callback) ->
-    Section.findById data.id, (err, doc)->
-      if err
-        callback 500, 'DB error'
-        console.error err
-      else callback null, 'ok'
-      doc.remove (err)->
+    Secret.find {}, (err, docs)->
+      if docs[0].hash isnt socket.getCookie 'secret' then callback(405, 'no, sorry'); return
+      
+      Section.findById data.id, (err, doc)->
         if err
-          callback 500, 'fs error'
+          callback 500, 'DB error'
           console.error err
         else callback null, 'ok'
+        doc.remove (err)->
+          if err
+            callback 500, 'fs error'
+            console.error err
+          else callback null, 'ok'
 
 app.post '/download-icons', (req,res,next)->
   main.generateProductionIcons(req.body).then (fileName)=>
