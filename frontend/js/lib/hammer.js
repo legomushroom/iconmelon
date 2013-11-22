@@ -26,12 +26,12 @@ Hammer.defaults = {
     // the contextmenu, tap highlighting etc
     // set to false to disable this
     stop_browser_behavior: {
-		// this also triggers onselectstart=false for IE
+        // this also triggers onselectstart=false for IE
         userSelect: 'none',
-		// this makes the element blocking in IE10 >, you could experiment with the value
-		// see for more options this issue; https://github.com/EightMedia/hammer.js/issues/241
+        // this makes the element blocking in IE10 >, you could experiment with the value
+        // see for more options this issue; https://github.com/EightMedia/hammer.js/issues/241
         touchAction: 'none',
-		touchCallout: 'none',
+        touchCallout: 'none',
         contentZooming: 'none',
         userDrag: 'none',
         tapHighlightColor: 'rgba(0,0,0,0)'
@@ -185,8 +185,8 @@ Hammer.Instance.prototype = {
     trigger: function triggerEvent(gesture, eventData){
         // create DOM event
         var event = Hammer.DOCUMENT.createEvent('Event');
-		event.initEvent(gesture, true, true);
-		event.gesture = eventData;
+        event.initEvent(gesture, true, true);
+        event.gesture = eventData;
 
         // trigger on the target if it is in the instance element,
         // this is for event delegation tricks
@@ -256,7 +256,7 @@ Hammer.event = {
      * @param   {Function}      handler
      */
     onTouch: function onTouch(element, eventType, handler) {
-		var self = this;
+        var self = this;
 
         this.bindDom(element, Hammer.EVENT_TYPES[eventType], function bindDomOnTouch(ev) {
             var sourceEventType = ev.type.toLowerCase();
@@ -542,14 +542,14 @@ Hammer.utils = {
      * also used for cloning when dest is an empty object
      * @param   {Object}    dest
      * @param   {Object}    src
-	 * @parm	{Boolean}	merge		do a merge
+     * @parm    {Boolean}   merge       do a merge
      * @returns {Object}    dest
      */
     extend: function extend(dest, src, merge) {
         for (var key in src) {
-			if(dest[key] !== undefined && merge) {
-				continue;
-			}
+            if(dest[key] !== undefined && merge) {
+                continue;
+            }
             dest[key] = src[key];
         }
         return dest;
@@ -1040,8 +1040,8 @@ Hammer.gestures.Hold = {
     name: 'hold',
     index: 10,
     defaults: {
-        hold_timeout	: 500,
-        hold_threshold	: 1
+        hold_timeout    : 500,
+        hold_threshold  : 1
     },
     timer: null,
     handler: function holdGesture(ev, inst) {
@@ -1086,17 +1086,17 @@ Hammer.gestures.Tap = {
     name: 'tap',
     index: 100,
     defaults: {
-        tap_max_touchtime	: 250,
-        tap_max_distance	: 10,
-		tap_always			: true,
-        doubletap_distance	: 20,
-        doubletap_interval	: 300
+        tap_max_touchtime   : 250,
+        tap_max_distance    : 10,
+        tap_always          : true,
+        doubletap_distance  : 20,
+        doubletap_interval  : 300
     },
     handler: function tapGesture(ev, inst) {
         if(ev.eventType == Hammer.EVENT_END) {
             // previous gesture, for the double tap since these are two different gesture detections
             var prev = Hammer.detection.previous,
-				did_doubletap = false;
+                did_doubletap = false;
 
             // when the touchtime is higher then the max touch time
             // or when the moving distance is too much
@@ -1109,15 +1109,15 @@ Hammer.gestures.Tap = {
             if(prev && prev.name == 'tap' &&
                 (ev.timeStamp - prev.lastEvent.timeStamp) < inst.options.doubletap_interval &&
                 ev.distance < inst.options.doubletap_distance) {
-				inst.trigger('doubletap', ev);
-				did_doubletap = true;
+                inst.trigger('doubletap', ev);
+                did_doubletap = true;
             }
 
-			// do a single tap
-			if(!did_doubletap || inst.options.tap_always) {
-				Hammer.detection.current.name = 'tap';
-				inst.trigger(Hammer.detection.current.name, ev);
-			}
+            // do a single tap
+            if(!did_doubletap || inst.options.tap_always) {
+                Hammer.detection.current.name = 'tap';
+                inst.trigger(Hammer.detection.current.name, ev);
+            }
         }
     }
 };
@@ -1419,3 +1419,111 @@ else {
     }
 }
 })(this);
+
+(function($, undefined) {
+    'use strict';
+
+    // no jQuery or Zepto!
+    if($ === undefined) {
+        return;
+    }
+
+    /**
+     * bind dom events
+     * this overwrites addEventListener
+     * @param   {HTMLElement}   element
+     * @param   {String}        eventTypes
+     * @param   {Function}      handler
+     */
+    Hammer.event.bindDom = function(element, eventTypes, handler) {
+        $(element).on(eventTypes, function(ev) {
+            var data = ev.originalEvent || ev;
+
+            // IE pageX fix
+            if(data.pageX === undefined) {
+                data.pageX = ev.pageX;
+                data.pageY = ev.pageY;
+            }
+
+            // IE target fix
+            if(!data.target) {
+                data.target = ev.target;
+            }
+
+            // IE button fix
+            if(data.which === undefined) {
+                data.which = data.button;
+            }
+
+            // IE preventDefault
+            if(!data.preventDefault) {
+                data.preventDefault = ev.preventDefault;
+            }
+
+            // IE stopPropagation
+            if(!data.stopPropagation) {
+                data.stopPropagation = ev.stopPropagation;
+            }
+
+            handler.call(this, data);
+        });
+    };
+
+    /**
+     * the methods are called by the instance, but with the jquery plugin
+     * we use the jquery event methods instead.
+     * @this    {Hammer.Instance}
+     * @return  {jQuery}
+     */
+    Hammer.Instance.prototype.on = function(types, handler) {
+        return $(this.element).on(types, handler);
+    };
+    Hammer.Instance.prototype.off = function(types, handler) {
+        return $(this.element).off(types, handler);
+    };
+
+
+    /**
+     * trigger events
+     * this is called by the gestures to trigger an event like 'tap'
+     * @this    {Hammer.Instance}
+     * @param   {String}    gesture
+     * @param   {Object}    eventData
+     * @return  {jQuery}
+     */
+    Hammer.Instance.prototype.trigger = function(gesture, eventData){
+        var el = $(this.element);
+        if(el.has(eventData.target).length) {
+            el = $(eventData.target);
+        }
+
+        return el.trigger({
+            type: gesture,
+            gesture: eventData
+        });
+    };
+
+
+    /**
+     * jQuery plugin
+     * create instance of Hammer and watch for gestures,
+     * and when called again you can change the options
+     * @param   {Object}    [options={}]
+     * @return  {jQuery}
+     */
+    $.fn.hammer = function(options) {
+        return this.each(function() {
+            var el = $(this);
+            var inst = el.data('hammer');
+            // start new hammer instance
+            if(!inst) {
+                el.data('hammer', new Hammer(this, options || {}));
+            }
+            // change the options
+            else if(inst && options) {
+                Hammer.utils.extend(inst.options, options);
+            }
+        });
+    };
+
+})(window.jQuery || window.Zepto);

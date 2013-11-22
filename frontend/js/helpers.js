@@ -6,6 +6,15 @@
     Helpers = (function() {
       function Helpers() {}
 
+      Helpers.prototype.prefix = function() {
+        var dom, pre, styles;
+
+        styles = window.getComputedStyle(document.documentElement, "");
+        pre = (Array.prototype.slice.call(styles).join("").match(/-(moz|webkit|ms)-/) || (styles.OLink === "" && ["", "o"]))[1];
+        dom = "WebKit|Moz|MS|O".match(new RegExp("(" + pre + ")", "i"))[1];
+        return "-" + pre + "-";
+      };
+
       Helpers.prototype.getRandom = function(min, max) {
         return Math.floor((Math.random() * ((max + 1) - min)) + min);
       };

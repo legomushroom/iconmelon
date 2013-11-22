@@ -1,4 +1,4 @@
-define 'views/pages/main', ['views/pages/PageView', 'views/IconSelectView', 'models/IconSelectModel', 'underscore', 'hammer', 'tween'],( PageView, IconSelectView, IconSelectModel, _, hammer, TWEEN)->
+define 'views/pages/main', ['views/pages/PageView', 'views/IconSelectView', 'models/IconSelectModel', 'underscore', 'hammer', 'tween', 'helpers'],( PageView, IconSelectView, IconSelectModel, _, hammer, TWEEN, helpers)->
 
 	class Main extends PageView
 		template: '#main-template'
@@ -37,39 +37,35 @@ define 'views/pages/main', ['views/pages/PageView', 'views/IconSelectView', 'mod
 
 		hammerTime:->
 			$el = @$('#js-main-logo-icon')
+			hamerTime = $el.hammer()
 			maxDeg = 20
 			deg = 0
-			prefix = @prefix()
+			prefix = helpers.prefix()
 
-			hammer(@$el[0]).on 'drag', (e)=> 
+			hamerTime.on 'drag', (e)=> 
 				TWEEN.removeAll()
 				deg = e.gesture.deltaX
 				deg = if deg >  maxDeg then  maxDeg else deg
 				deg = if deg < -maxDeg then -maxDeg else deg
 				$el.css "#{prefix}transform", "rotate(#{deg}deg)" 
 
-			hammer(@$el[0]).on 'release', (e)=> 
+			hamerTime.on 'release', (e)=> 
 				twn = new TWEEN.Tween(amount: deg).to({amount: 0}, 2000)
 							.easing((t)-> 
 								b = Math.exp(-t*5)*Math.cos(Math.PI*2*t*5)
 								1 - b
 							)
-							.onUpdate(-> $el.css '-webkit-transform', "rotate(#{@amount}deg)" ).start()
+							.onUpdate(-> $el.css "#{prefix}transform", "rotate(#{@amount}deg)" ).start()
 				twn.start()
-				@animateA()
+				!@animateStarted and @animateTween()
 
 
 
 
-		animateA:->
-			requestAnimationFrame => @animateA()
+		animateTween:->
+			@animateStarted = true
+			requestAnimationFrame => @animateTween()
 			TWEEN.update();
-
-		prefix: ->
-			styles = window.getComputedStyle(document.documentElement, "")
-			pre = (Array::slice.call(styles).join("").match(/-(moz|webkit|ms)-/) or (styles.OLink is "" and ["", "o"]))[1]
-			dom = ("WebKit|Moz|MS|O").match(new RegExp("(" + pre + ")", "i"))[1]
-			"-" + pre + "-"
 
 
 		download:->
