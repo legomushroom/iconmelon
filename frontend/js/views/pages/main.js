@@ -6,7 +6,6 @@
   define('views/pages/main', ['views/pages/PageView', 'views/IconSelectView', 'models/IconSelectModel', 'underscore', 'hammer', 'tween', 'helpers'], function(PageView, IconSelectView, IconSelectModel, _, hammer, TWEEN, helpers) {
     var Main, _ref;
 
-    console.log(hammer);
     Main = (function(_super) {
       __extends(Main, _super);
 
@@ -52,20 +51,23 @@
       };
 
       Main.prototype.hammerTime = function() {
-        var $el, deg, hamerTime, maxDeg, prefix,
+        var $el, deg, hamerTime, prefix,
           _this = this;
 
         $el = this.$('#js-main-logo-icon');
         hamerTime = $el.hammer();
-        maxDeg = 20;
+        this.maxDeg = 20;
         deg = 0;
         prefix = helpers.prefix();
         hamerTime.on('drag', function(e) {
           TWEEN.removeAll();
           deg = e.gesture.deltaX;
-          deg = deg > maxDeg ? maxDeg : deg;
-          deg = deg < -maxDeg ? -maxDeg : deg;
+          deg = _this.sliceDeg(deg);
           return $el.css("" + prefix + "transform", "rotate(" + deg + "deg)");
+        });
+        hamerTime.on('touch', function(e) {
+          deg = -($el.position().left + ($el.outerWidth() / 2) - e.gesture.center.pageX);
+          return deg = _this.sliceDeg(deg);
         });
         return hamerTime.on('release', function(e) {
           var twn;
@@ -85,6 +87,11 @@
           twn.start();
           return !_this.animateStarted && _this.animateTween();
         });
+      };
+
+      Main.prototype.sliceDeg = function(deg) {
+        deg = deg > this.maxDeg ? this.maxDeg : deg;
+        return deg = deg < -this.maxDeg ? -this.maxDeg : deg;
       };
 
       Main.prototype.animateTween = function() {
