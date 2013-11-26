@@ -8,3 +8,8 @@
 include ../css/partials/section-header
 
 .content-bl.cf#js-icons-place
+
+
+.show-more-bl
+	- var viewBox = '', filter= ''
+	.btn-b.is-block.is-expand#js-show-more <%= (isExpanded) ? 'show less' : 'show more' %>

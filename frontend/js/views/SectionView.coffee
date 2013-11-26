@@ -8,6 +8,7 @@ define 'views/SectionView', ['views/ProtoView', 'models/SectionModel', 'collecti
 			'click #js-hide': 					'toggleHide'
 			'click #js-select-all': 		'selectAll'
 			'click #js-deselect-all': 	'deSelectAll'
+			'click #js-show-more': 		'toggleExpand'
 
 		initialize:->
 			@bindModelEvents()
@@ -16,8 +17,9 @@ define 'views/SectionView', ['views/ProtoView', 'models/SectionModel', 'collecti
 
 
 		bindModelEvents:->
-			@model.on 'change:isFiltered', 	_.bind @toggleClasses, @
+			@model.on 'change:isFiltered', 		_.bind @toggleClasses, @
 			@model.on 'change:isClosed', 		_.bind @toggleClasses, @
+			@model.on 'change:isExpanded', 		_.bind @toggleClasses, @
 
 		render:->
 			super
@@ -27,6 +29,9 @@ define 'views/SectionView', ['views/ProtoView', 'models/SectionModel', 'collecti
 			@$content = @$('#js-icons-place')
 			@animateIn()
 			@
+
+		toggleExpand:->
+			@model.toggleAttr 'isExpanded'
 
 		renderIcons:->
 			@iconsCollectionView = new IconsCollectionView
@@ -40,8 +45,11 @@ define 'views/SectionView', ['views/ProtoView', 'models/SectionModel', 'collecti
 			@model.iconsCollectionView 	= @iconsCollectionView
 
 		toggleClasses:->
-			@$el.toggleClass 'is-closed', !!@model.get('isClosed')
-			@$el.toggleClass 'h-gm', 			!!@model.get('isFiltered')
+			@$el.toggleClass 'is-closed', 			!!@model.get('isClosed')
+			@$el.toggleClass 'h-gm', 				!!@model.get('isFiltered')
+			@$el.toggleClass 'is-expanded', 		!!@model.get('isExpanded')
+
+			@$('#js-show-more').text  if !!@model.get('isExpanded') then 'show less' else 'show more'
 
 		onFilter:(state)->
 			@model.set 'isFiltered', state

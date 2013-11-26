@@ -36,7 +36,7 @@
 
   app = express();
 
-  folder = 'dist';
+  folder = 'frontend';
 
   mkdirp("" + folder + "/generated-icons", function() {});
 
@@ -512,7 +512,6 @@
     socket.on("sections:read", function(data, callback) {
       var options;
 
-      console.log(data.sectionNames);
       if (data.sectionNames) {
         return Section.find({
           moderated: true,
@@ -532,6 +531,7 @@
         return Section.find({
           moderated: true
         }, null, options, function(err, docs) {
+          console.log(docs);
           return Section.find({
             moderated: true
           }, function(err, docs2) {

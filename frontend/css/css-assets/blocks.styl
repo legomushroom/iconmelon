@@ -1001,19 +1001,18 @@ marginTop = 2*gs
 
 /* d31599d6c04918e3e54b3383d136855e */
 .section-b
-	+ .section-b
-		margin-top 3*gs
-
 	&.is-closed
-		// > .content-bl
-		// 	height 0
-		// 	overflow hidden
-
 		.close-bh
 			transform rotate(-180deg)
 
+	&.is-expanded
+		> .content-bl
+			height auto
+
 	> .content-bl
 		margin-top 3*gs
+		height 27*gs
+		overflow hidden
 
 	.close-bh
 			transition -webkit-transform .25s linear
@@ -1026,6 +1025,10 @@ marginTop = 2*gs
 		float left
 		margin (gs)
 		margin-top 0
+
+	.show-more-bl
+		width 100%
+		padding 2*gs 6*gs 0 2*gs
 
 /* 22c3f29200c646ede875bdad751d0ed5 */
 .section-header-b
@@ -1267,7 +1270,19 @@ shadowSize = 2px
 		z-index: 1
 		opacity: 0
 
-	
+	&.is-expand
+		background-color transparent
+		color c-grey3
+		border 1px solid c-grey4
+		box-shadow none
+
+		&:hover
+			background-color rgba(0,0,0,.02)
+			color c-grey2
+
+
+
+
 	/* 9343b5637912148f603dc8c154382c2c */
 	&.is-red1
 		background-color c-red1

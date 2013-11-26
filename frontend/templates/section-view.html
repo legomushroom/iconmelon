@@ -2,23 +2,23 @@
 <div class="section-header-b"><a target="&lt;%= (website.length &gt; 0) ? &quot;_blank&quot; : undefined %&gt;" href="&lt;%= (website.length &gt; 0) ? &quot;http://&quot; + website.replace(/http:\/\//g, &quot;&quot;) : &quot;mailto:&quot; + email %&gt;" class="is-grey3 is-hoverable is-grey2--onhover author-be">by &lt;%= author %&gt;</a>
   <div class="name-be">&lt;%= name %&gt;</div>
   <div class="icons-bl">
-    <div id="js-hide" title="close section" class="icon is-hoverable &lt;%= (isClosed) ? &quot;is-reverse&quot; : &quot;&quot; %&gt;">
+    <div id="js-hide" title="close section" class="icon close-bh is-hoverable &lt;%= (isClosed) ? &quot;is-reverse&quot; : &quot;&quot; %&gt;">
       <svg viewBox="0 0 32 32">
-        <g>
+        <g filter="">
           <use xlink:href="#dropup-arrow-icon"></use>
         </g>
       </svg>
     </div>
     <div id="js-select-all" title="select all" class="icon is-green--onhover ">
       <svg viewBox="0 0 32 32">
-        <g>
+        <g filter="">
           <use xlink:href="#tick-icon"></use>
         </g>
       </svg>
     </div>
     <div id="js-deselect-all" title="deselect all" class="icon is-red1--onhover ">
       <svg viewBox="0 0 32 32">
-        <g>
+        <g filter="">
           <use xlink:href="#close-icon"></use>
         </g>
       </svg>
@@ -26,3 +26,6 @@
   </div>
 </div>
 <div id="js-icons-place" class="content-bl cf"></div>
+<div class="show-more-bl">
+  <div id="js-show-more" class="btn-b is-block is-expand"><%= (isExpanded) ? 'show less' : 'show more' %></div>
+</div>

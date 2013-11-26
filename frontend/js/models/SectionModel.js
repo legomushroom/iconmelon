@@ -23,6 +23,7 @@
         website: '',
         license: '',
         isMulticolor: false,
+        isExpanded: false,
         isClosed: false,
         moderated: false,
         icons: []

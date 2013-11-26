@@ -17,7 +17,7 @@
 
       PaginatedCollection.prototype.page = 1;
 
-      PaginatedCollection.prototype.perPage = 8;
+      PaginatedCollection.prototype.perPage = 2;
 
       PaginatedCollection.prototype.initialize = function() {
         this.options = {

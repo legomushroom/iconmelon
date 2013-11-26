@@ -23,7 +23,8 @@
       SectionView.prototype.events = {
         'click #js-hide': 'toggleHide',
         'click #js-select-all': 'selectAll',
-        'click #js-deselect-all': 'deSelectAll'
+        'click #js-deselect-all': 'deSelectAll',
+        'click #js-show-more': 'toggleExpand'
       };
 
       SectionView.prototype.initialize = function() {
@@ -34,7 +35,8 @@
 
       SectionView.prototype.bindModelEvents = function() {
         this.model.on('change:isFiltered', _.bind(this.toggleClasses, this));
-        return this.model.on('change:isClosed', _.bind(this.toggleClasses, this));
+        this.model.on('change:isClosed', _.bind(this.toggleClasses, this));
+        return this.model.on('change:isExpanded', _.bind(this.toggleClasses, this));
       };
 
       SectionView.prototype.render = function() {
@@ -44,6 +46,10 @@
         this.$content = this.$('#js-icons-place');
         this.animateIn();
         return this;
+      };
+
+      SectionView.prototype.toggleExpand = function() {
+        return this.model.toggleAttr('isExpanded');
       };
 
       SectionView.prototype.renderIcons = function() {
@@ -60,7 +66,9 @@
 
       SectionView.prototype.toggleClasses = function() {
         this.$el.toggleClass('is-closed', !!this.model.get('isClosed'));
-        return this.$el.toggleClass('h-gm', !!this.model.get('isFiltered'));
+        this.$el.toggleClass('h-gm', !!this.model.get('isFiltered'));
+        this.$el.toggleClass('is-expanded', !!this.model.get('isExpanded'));
+        return this.$('#js-show-more').text(!!this.model.get('isExpanded') ? 'show less' : 'show more');
       };
 
       SectionView.prototype.onFilter = function(state) {

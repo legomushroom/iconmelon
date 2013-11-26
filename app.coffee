@@ -17,8 +17,8 @@ pretty  = require('pretty-data').pd
 port    = 3000
 app     = express()
 
-folder = 'dist'
-# folder = 'frontend' 
+# folder = 'dist'
+folder = 'frontend' 
 
 mkdirp "#{folder}/generated-icons", ->
 mkdirp 'uploads', ->
@@ -319,7 +319,6 @@ io.sockets.on "connection", (socket) ->
       callback null, docs
 
   socket.on "sections:read", (data, callback) ->
-    console.log data.sectionNames
     if data.sectionNames
       Section.find {moderated: true, name: $in:data.sectionNames }, null, options, (err, docs)->
         callback null, data =
