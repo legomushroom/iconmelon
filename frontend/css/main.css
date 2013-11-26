@@ -3171,12 +3171,15 @@ a.is-check:after,
   -o-transform: rotate(-180deg);
   transform: rotate(-180deg);
 }
+.section-b.is-closed .show-more-bl {
+  display: none;
+}
 .section-b.is-expanded > .content-bl {
   height: auto;
 }
 .section-b > .content-bl {
   margin-top: 24px;
-  height: 216px;
+  height: 222px;
   overflow: hidden;
 }
 .section-b .close-bh {

@@ -45,7 +45,24 @@
         this.toggleClasses();
         this.$content = this.$('#js-icons-place');
         this.animateIn();
+        this.listenToOverflow();
         return this;
+      };
+
+      SectionView.prototype.listenToOverflow = function() {
+        var _this = this;
+
+        this.$content.overflow({
+          axis: 'y'
+        });
+        this.$el.on('overflow', function() {
+          console.log('overflow');
+          return _this.model.set('isExpanded', true);
+        });
+        return this.$el.on('flow', function() {
+          console.log('release');
+          return _this.model.set('isExpanded', false);
+        });
       };
 
       SectionView.prototype.toggleExpand = function() {

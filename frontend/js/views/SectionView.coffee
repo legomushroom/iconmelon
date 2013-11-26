@@ -28,7 +28,19 @@ define 'views/SectionView', ['views/ProtoView', 'models/SectionModel', 'collecti
 			@toggleClasses()
 			@$content = @$('#js-icons-place')
 			@animateIn()
+			@listenToOverflow()
 			@
+
+		listenToOverflow:->
+			@$content.overflow
+				axis: 'y'
+
+			@$el.on 'overflow', => 
+				console.log 'overflow'
+				@model.set 'isExpanded', true
+			@$el.on 'flow', => 
+				console.log 'release'
+				@model.set 'isExpanded', false
 
 		toggleExpand:->
 			@model.toggleAttr 'isExpanded'
