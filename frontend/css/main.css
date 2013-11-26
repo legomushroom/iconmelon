@@ -3175,7 +3175,7 @@ a.is-check:after,
   display: none;
 }
 .section-b.is-expanded > .content-bl {
-  height: auto;
+  max-height: 100%;
 }
 .section-b.is-no-expanded-btn .show-more-bl {
   display: none;
