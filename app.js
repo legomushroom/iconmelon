@@ -36,7 +36,7 @@
 
   app = express();
 
-  folder = 'frontend';
+  folder = 'dist';
 
   mkdirp("" + folder + "/generated-icons", function() {});
 
@@ -531,7 +531,6 @@
         return Section.find({
           moderated: true
         }, null, options, function(err, docs) {
-          console.log(docs);
           return Section.find({
             moderated: true
           }, function(err, docs2) {

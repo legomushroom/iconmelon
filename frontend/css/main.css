@@ -3513,9 +3513,6 @@ a.is-check:after,
 .btn-b.is-expand {
   background-color: transparent;
   color: #bdbfbf;
-  border-width: 1px;
-  border-style: solid;
-  border-color: #d7d8d8;
   box-shadow: none;
 }
 .btn-b.is-expand:hover {
@@ -4622,9 +4619,17 @@ a.is-check:after,
   height: auto;
   padding: 32px 32px 96px;
   border-radius: 5px;
+  float: left;
+  min-height: 544px;
+  margin-left: 32px;
+  margin-top: 32px;
 }
-.support-p .support-blocks-pl .support-block-b + .support-block-b {
-  margin-top: 16px;
+@media screen and (max-width: 1120px) {
+  .support-p .support-blocks-pl .support-block-b {
+    float: none;
+    margin: 0 auto;
+    margin-top: 32px;
+  }
 }
 .support-p .support-blocks-pl form {
   opacity: 0;

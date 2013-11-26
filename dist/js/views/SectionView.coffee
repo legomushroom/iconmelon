@@ -8,25 +8,39 @@ define 'views/SectionView', ['views/ProtoView', 'models/SectionModel', 'collecti
 			'click #js-hide': 					'toggleHide'
 			'click #js-select-all': 		'selectAll'
 			'click #js-deselect-all': 	'deSelectAll'
+			'click #js-show-more': 		'toggleExpand'
 
 		initialize:->
 			@bindModelEvents()
 			super
+			@listenToOverflow()
 			@
 
 
 		bindModelEvents:->
-			@model.on 'change:isFiltered', 	_.bind @toggleClasses, @
+			@model.on 'change:isFiltered', 		_.bind @toggleClasses, @
 			@model.on 'change:isClosed', 		_.bind @toggleClasses, @
+			@model.on 'change:isExpanded', 		_.bind @toggleClasses, @
 
 		render:->
 			super
 
 			@renderIcons()
-			@toggleClasses()
 			@$content = @$('#js-icons-place')
+			@toggleClasses(false)
+			_.defer => @toggleExpandedBtn()
 			@animateIn()
 			@
+
+		listenToOverflow:-> 	$(window).on 'resize', _.bind @toggleExpandedBtn, @
+		
+		isExpandBtnNeeded:-> 	@$el.hasClass('is-expanded') or @$content.outerHeight() < @$content[0].scrollHeight
+		
+		toggleExpand:-> 		@model.toggleAttr 'isExpanded'
+
+		toggleExpandedBtn:-> 	@$el.toggleClass 'is-no-expanded-btn', !@isExpandBtnNeeded()
+
+		onFilter:(state)-> 		@toggleExpandedBtn(); @model.set 'isFiltered', state
 
 		renderIcons:->
 			@iconsCollectionView = new IconsCollectionView
@@ -39,12 +53,14 @@ define 'views/SectionView', ['views/ProtoView', 'models/SectionModel', 'collecti
 			@model.iconsCollection 			= @iconsCollectionView.collection
 			@model.iconsCollectionView 	= @iconsCollectionView
 
-		toggleClasses:->
-			@$el.toggleClass 'is-closed', !!@model.get('isClosed')
-			@$el.toggleClass 'h-gm', 			!!@model.get('isFiltered')
+		toggleClasses:(isToggleBtn=true)->
+			@$el.toggleClass 'is-closed', 			!!@model.get('isClosed')
+			@$el.toggleClass 'h-gm', 				!!@model.get('isFiltered')
+			@$el.toggleClass 'is-expanded', 		!!@model.get('isExpanded')
+			isToggleBtn and @toggleExpandedBtn()
+			@$('#js-show-more').text  if !!@model.get('isExpanded') then 'show less' else 'show more'
 
-		onFilter:(state)->
-			@model.set 'isFiltered', state
+		
 		
 		selectAll:->
 			@iconsCollectionView.collection.selectAll()

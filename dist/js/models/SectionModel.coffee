@@ -8,6 +8,7 @@ define 'models/SectionModel', ['models/ProtoModel', 'helpers'], (ProtoModel, hel
 			website: ''
 			license: ''
 			isMulticolor: false
+			isExpanded: false
 			isClosed: false
 			moderated: false
 			icons: []

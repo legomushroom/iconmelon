@@ -24,9 +24,19 @@
 			height auto
 			padding 4*gs 4*gs 12*gs
 			border-radius br + 2px
+			float: left
+			min-height 68*gs
+			margin-left 4*gs
+			margin-top  4*gs
 
-			+ .support-block-b
-				margin-top 2*gs
+			@media screen and (max-width: 1120px)
+				float: none
+				margin 0 auto
+				margin-top 4*gs
+
+
+			// + .support-block-b
+			// 	margin-top 2*gs
 
 		form
 			opacity 0
