@@ -3177,9 +3177,12 @@ a.is-check:after,
 .section-b.is-expanded > .content-bl {
   height: auto;
 }
+.section-b.is-no-expanded-btn .show-more-bl {
+  display: none;
+}
 .section-b > .content-bl {
   margin-top: 24px;
-  height: 222px;
+  max-height: 222px;
   overflow: hidden;
 }
 .section-b .close-bh {

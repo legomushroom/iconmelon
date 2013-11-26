@@ -13,6 +13,7 @@ define 'views/SectionView', ['views/ProtoView', 'models/SectionModel', 'collecti
 		initialize:->
 			@bindModelEvents()
 			super
+			@listenToOverflow()
 			@
 
 
@@ -25,25 +26,21 @@ define 'views/SectionView', ['views/ProtoView', 'models/SectionModel', 'collecti
 			super
 
 			@renderIcons()
-			@toggleClasses()
 			@$content = @$('#js-icons-place')
+			@toggleClasses(false)
+			_.defer => @toggleExpandedBtn()
 			@animateIn()
-			@listenToOverflow()
 			@
 
-		listenToOverflow:->
-			@$content.overflow
-				axis: 'y'
+		listenToOverflow:-> 	$(window).on 'resize', _.bind @toggleExpandedBtn, @
+		
+		isExpandBtnNeeded:-> 	@$el.hasClass('is-expanded') or @$content.outerHeight() < @$content[0].scrollHeight
+		
+		toggleExpand:-> 		@model.toggleAttr 'isExpanded'
 
-			@$el.on 'overflow', => 
-				console.log 'overflow'
-				@model.set 'isExpanded', true
-			@$el.on 'flow', => 
-				console.log 'release'
-				@model.set 'isExpanded', false
+		toggleExpandedBtn:-> 	@$el.toggleClass 'is-no-expanded-btn', !@isExpandBtnNeeded()
 
-		toggleExpand:->
-			@model.toggleAttr 'isExpanded'
+		onFilter:(state)-> 		@toggleExpandedBtn(); @model.set 'isFiltered', state
 
 		renderIcons:->
 			@iconsCollectionView = new IconsCollectionView
@@ -56,15 +53,14 @@ define 'views/SectionView', ['views/ProtoView', 'models/SectionModel', 'collecti
 			@model.iconsCollection 			= @iconsCollectionView.collection
 			@model.iconsCollectionView 	= @iconsCollectionView
 
-		toggleClasses:->
+		toggleClasses:(isToggleBtn=true)->
 			@$el.toggleClass 'is-closed', 			!!@model.get('isClosed')
 			@$el.toggleClass 'h-gm', 				!!@model.get('isFiltered')
 			@$el.toggleClass 'is-expanded', 		!!@model.get('isExpanded')
-
+			isToggleBtn and @toggleExpandedBtn()
 			@$('#js-show-more').text  if !!@model.get('isExpanded') then 'show less' else 'show more'
 
-		onFilter:(state)->
-			@model.set 'isFiltered', state
+		
 		
 		selectAll:->
 			@iconsCollectionView.collection.selectAll()

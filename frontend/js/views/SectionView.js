@@ -30,6 +30,7 @@
       SectionView.prototype.initialize = function() {
         this.bindModelEvents();
         SectionView.__super__.initialize.apply(this, arguments);
+        this.listenToOverflow();
         return this;
       };
 
@@ -40,33 +41,38 @@
       };
 
       SectionView.prototype.render = function() {
+        var _this = this;
+
         SectionView.__super__.render.apply(this, arguments);
         this.renderIcons();
-        this.toggleClasses();
         this.$content = this.$('#js-icons-place');
+        this.toggleClasses(false);
+        _.defer(function() {
+          return _this.toggleExpandedBtn();
+        });
         this.animateIn();
-        this.listenToOverflow();
         return this;
       };
 
       SectionView.prototype.listenToOverflow = function() {
-        var _this = this;
+        return $(window).on('resize', _.bind(this.toggleExpandedBtn, this));
+      };
 
-        this.$content.overflow({
-          axis: 'y'
-        });
-        this.$el.on('overflow', function() {
-          console.log('overflow');
-          return _this.model.set('isExpanded', true);
-        });
-        return this.$el.on('flow', function() {
-          console.log('release');
-          return _this.model.set('isExpanded', false);
-        });
+      SectionView.prototype.isExpandBtnNeeded = function() {
+        return this.$el.hasClass('is-expanded') || this.$content.outerHeight() < this.$content[0].scrollHeight;
       };
 
       SectionView.prototype.toggleExpand = function() {
         return this.model.toggleAttr('isExpanded');
+      };
+
+      SectionView.prototype.toggleExpandedBtn = function() {
+        return this.$el.toggleClass('is-no-expanded-btn', !this.isExpandBtnNeeded());
+      };
+
+      SectionView.prototype.onFilter = function(state) {
+        this.toggleExpandedBtn();
+        return this.model.set('isFiltered', state);
       };
 
       SectionView.prototype.renderIcons = function() {
@@ -81,15 +87,15 @@
         return this.model.iconsCollectionView = this.iconsCollectionView;
       };
 
-      SectionView.prototype.toggleClasses = function() {
+      SectionView.prototype.toggleClasses = function(isToggleBtn) {
+        if (isToggleBtn == null) {
+          isToggleBtn = true;
+        }
         this.$el.toggleClass('is-closed', !!this.model.get('isClosed'));
         this.$el.toggleClass('h-gm', !!this.model.get('isFiltered'));
         this.$el.toggleClass('is-expanded', !!this.model.get('isExpanded'));
+        isToggleBtn && this.toggleExpandedBtn();
         return this.$('#js-show-more').text(!!this.model.get('isExpanded') ? 'show less' : 'show more');
-      };
-
-      SectionView.prototype.onFilter = function(state) {
-        return this.model.set('isFiltered', state);
       };
 
       SectionView.prototype.selectAll = function() {
