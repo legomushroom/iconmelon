@@ -1,4 +1,12 @@
 
+0.3.0 / 2013-07-25
+==================
+
+  * updated; sliced to 0.0.5
+  * fixed; then is passed all fulfillment values
+  * use setImmediate if available
+  * conform to Promises A+ 1.1
+
 0.2.1 / 2013-02-09
 ==================
 

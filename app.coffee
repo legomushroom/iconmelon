@@ -6,7 +6,7 @@ path    = require 'path'
 che     = require 'cheerio'
 Promise = require('node-promise').Promise
 _       = require 'lodash'
-zip     = require 'node-native-zip'
+zip     = require 'node-native-zip-compression'
 md5     = require 'MD5'
 mkdirp  = require 'mkdirp'
 jade    = require 'jade'
@@ -17,8 +17,8 @@ pretty  = require('pretty-data').pd
 port    = 3000
 app     = express()
 
-folder = 'dist'
-# folder = 'frontend' 
+# folder = 'dist'
+folder = 'frontend' 
 
 mkdirp "#{folder}/generated-icons", ->
 mkdirp 'uploads', ->
@@ -146,20 +146,21 @@ class Main
   makeZipFireball:(data)->
     prm = new Promise()
     archive = new zip
-    archive.add 'icons.svg',  new Buffer pretty.xml(data.svgData),     'utf8'
-    archive.add 'index.html', new Buffer pretty.xml(data.htmlData),    'utf8'
-    archive.add 'license.md', new Buffer data.licenseData,             'utf8'
+    archive.add 'icons.svg',  (new Buffer pretty.xml(data.svgData),     'utf8'), 'deflate'
+    archive.add 'index.html', (new Buffer pretty.xml(data.htmlData),    'utf8'), 'deflate'
+    archive.add 'license.md', (new Buffer data.licenseData,             'utf8'), 'deflate'
     SYSTEM_FILES = 'you-dont-need-this-assets-folder'
     archive.addFiles([
-      {name: "#{SYSTEM_FILES}/main.css", path: "#{folder}/download/css/main.css"}
-      {name: "#{SYSTEM_FILES}/favicon.ico", path: "#{folder}/download/css/favicon.ico"}
-      {name: "#{SYSTEM_FILES}/main-logo.svg", path: "#{folder}/download/css/main-logo.svg"}
-      {name: 'icons.css',    path: "#{folder}/download/icons.css"}
+      {name: "#{SYSTEM_FILES}/main.css", path: "#{folder}/download/css/main.css", compression: 'store'}
+      {name: "#{SYSTEM_FILES}/favicon.ico", path: "#{folder}/download/css/favicon.ico", compression: 'store'}
+      {name: "#{SYSTEM_FILES}/main-logo.svg", path: "#{folder}/download/css/main-logo.svg", compression: 'store'}
+      {name: 'icons.css',    path: "#{folder}/download/icons.css", compression: 'store'}
     ], (err)->
       if (err) then return console.log("err while adding files", err)
       fileName = "iconmelon-#{md5(new Date + (new Date).getMilliseconds() + Math.random(9999999999999) + Math.random(9999999999999) + Math.random(9999999999999))}"
-      fs.writeFile "#{folder}/generated-icons/#{fileName}.zip", archive.toBuffer(), (err)->
-        prm.resolve fileName
+      archive.toBuffer (result)->
+        fs.writeFile "#{folder}/generated-icons/#{fileName}.zip", result, (err)->
+          prm.resolve fileName
     )
 
     prm

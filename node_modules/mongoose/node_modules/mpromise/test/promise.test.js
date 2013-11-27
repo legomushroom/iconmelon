@@ -159,43 +159,59 @@ describe('promise', function(){
     })
   })
 
-  describe('then catching', function(){
-    it('should not catch returned promise fulfillments', function(done){
-      var p1 = new Promise;
+  describe('then', function(){
+    describe('catching', function(){
+      it('should not catch returned promise fulfillments', function(done){
+        var p1 = new Promise;
 
-      var p2 = p1.then(function () { return 'step 1' })
+        var p2 = p1.then(function () { return 'step 1' })
 
-      p2.onFulfill(function () { throw new Error('fulfill threw me') })
-      p2.reject = assert.ifError.bind(assert, new Error('reject should not have been called'));
-
-      setTimeout(function () {
-        assert.throws(function () {
-          p1.fulfill();
-        }, /fulfill threw me/)
-        done();
-      }, 10);
-
-    })
-
-    it('can be disabled using .end()', function(done){
-      var p = new Promise;
-
-      var p2 = p.then(function () { throw new Error('shucks') })
-      p2.end();
-
-      setTimeout(function () {
-        try {
-          p.fulfill();
-        } catch (err) {
-          assert.ok(/shucks/.test(err))
-          done();
-        }
+        p2.onFulfill(function () { throw new Error('fulfill threw me') })
+        p2.reject = assert.ifError.bind(assert, new Error('reject should not have been called'));
 
         setTimeout(function () {
-          done(new Error('error was swallowed'));
+          assert.throws(function () {
+            p1.fulfill();
+          }, /fulfill threw me/)
+          done();
         }, 10);
 
-      }, 10);
+      })
+
+      it('can be disabled using .end()', function(done){
+        var p = new Promise;
+
+        var p2 = p.then(function () { throw new Error('shucks') })
+        p2.end();
+
+        setTimeout(function () {
+          try {
+            p.fulfill();
+          } catch (err) {
+            assert.ok(/shucks/.test(err))
+            done();
+          }
+
+          setTimeout(function () {
+            done(new Error('error was swallowed'));
+          }, 10);
+
+        }, 10);
+      })
+    });
+
+    it('accepts multiple completion values', function(done){
+      var p = new Promise;
+
+      p.then(function (a, b) {
+        assert.equal(2, arguments.length);
+        assert.equal('hi', a);
+        assert.equal(4, b);
+        done();
+      }, done).end();
+
+      p.fulfill('hi', 4);
     })
   })
+
 })

@@ -1,6 +1,6 @@
 {
   "name": "iconmelon",
-  "version": "0.1.4-2",
+  "version": "0.1.4-3",
   "license": "MIT",
   "author": {
     "name": "LegoMushroom",
@@ -19,7 +19,7 @@
     "cheerio": "latest",
     "node-promise": "latest",
     "lodash": "latest",
-    "node-native-zip": "latest",
+    "node-native-zip-compression": "latest",
     "MD5": "latest",
     "mkdirp": "latest",
     "node-markdown": "latest",
