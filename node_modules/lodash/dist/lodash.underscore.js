@@ -1,6 +1,6 @@
 /**
  * @license
- * Lo-Dash 2.3.0 (Custom Build) <http://lodash.com/>
+ * Lo-Dash 2.4.0 (Custom Build) <http://lodash.com/>
  * Build: `lodash underscore exports="amd,commonjs,global,node" -o ./dist/lodash.underscore.js`
  * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
  * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
@@ -115,22 +115,29 @@
    */
   function compareAscending(a, b) {
     var ac = a.criteria,
-        bc = b.criteria;
+        bc = b.criteria,
+        index = -1,
+        length = ac.length;
 
-    // ensure a stable sort in V8 and other engines
-    // http://code.google.com/p/v8/issues/detail?id=90
-    if (ac !== bc) {
-      if (ac > bc || typeof ac == 'undefined') {
-        return 1;
-      }
-      if (ac < bc || typeof bc == 'undefined') {
-        return -1;
+    while (++index < length) {
+      var value = ac[index],
+          other = bc[index];
+
+      if (value !== other) {
+        if (value > other || typeof value == 'undefined') {
+          return 1;
+        }
+        if (value < other || typeof other == 'undefined') {
+          return -1;
+        }
       }
     }
-    // The JS engine embedded in Adobe applications like InDesign has a buggy
-    // `Array#sort` implementation that causes it, under certain circumstances,
-    // to return the same value for `a` and `b`.
-    // See https://github.com/jashkenas/underscore/pull/1247
+    // Fixes an `Array#sort` bug in the JS engine embedded in Adobe applications
+    // that causes it, under certain circumstances, to return the same value for
+    // `a` and `b`. See https://github.com/jashkenas/underscore/pull/1247
+    //
+    // This also ensures a stable sort in V8 and other engines.
+    // See http://code.google.com/p/v8/issues/detail?id=90
     return a.index - b.index;
   }
 
@@ -204,7 +211,6 @@
   var ceil = Math.ceil,
       floor = Math.floor,
       hasOwnProperty = objectProto.hasOwnProperty,
-      now = reNative.test(now = Date.now) && now || function() { return +new Date; },
       push = arrayRef.push,
       propertyIsEnumerable = objectProto.propertyIsEnumerable;
 
@@ -1209,22 +1215,22 @@
   }
 
   /**
-   * Checks if the specified object `property` exists and is a direct property,
+   * Checks if the specified property name exists as a direct property of `object`,
    * instead of an inherited property.
    *
    * @static
    * @memberOf _
    * @category Objects
-   * @param {Object} object The object to check.
-   * @param {string} property The property to check for.
+   * @param {Object} object The object to inspect.
+   * @param {string} key The name of the property to check.
    * @returns {boolean} Returns `true` if key is a direct property, else `false`.
    * @example
    *
    * _.has({ 'a': 1, 'b': 2, 'c': 3 }, 'b');
    * // => true
    */
-  function has(object, property) {
-    return object ? hasOwnProperty.call(object, property) : false;
+  function has(object, key) {
+    return object ? hasOwnProperty.call(object, key) : false;
   }
 
   /**
@@ -1237,7 +1243,7 @@
    * @returns {Object} Returns the created inverted object.
    * @example
    *
-   *  _.invert({ 'first': 'fred', 'second': 'barney' });
+   * _.invert({ 'first': 'fred', 'second': 'barney' });
    * // => { 'fred': 'first', 'barney': 'second' }
    */
   function invert(object) {
@@ -2435,7 +2441,7 @@
    * @type Function
    * @category Collections
    * @param {Array|Object|string} collection The collection to iterate over.
-   * @param {string} property The property to pluck.
+   * @param {string} property The name of the property to pluck.
    * @returns {Array} Returns a new array of property values.
    * @example
    *
@@ -2447,18 +2453,7 @@
    * _.pluck(characters, 'name');
    * // => ['barney', 'fred']
    */
-  function pluck(collection, property) {
-    var index = -1,
-        length = collection ? collection.length : 0;
-
-    if (typeof length == 'number') {
-      var result = Array(length);
-      while (++index < length) {
-        result[index] = collection[index][property];
-      }
-    }
-    return result || map(collection, property);
-  }
+  var pluck = map;
 
   /**
    * Reduces a collection to a value which is the accumulated result of running
@@ -2666,7 +2661,7 @@
    * // => 3
    *
    * _.size('pebbles');
-   * // => 5
+   * // => 7
    */
   function size(collection) {
     var length = collection ? collection.length : 0;
@@ -2746,6 +2741,9 @@
    * If a property name is provided for `callback` the created "_.pluck" style
    * callback will return the property value of the given element.
    *
+   * If an array of property names is provided for `callback` the collection
+   * will be sorted by each property value.
+   *
    * If an object is provided for `callback` the created "_.where" style callback
    * will return `true` for elements that have the properties of the given object,
    * else `false`.
@@ -2754,7 +2752,7 @@
    * @memberOf _
    * @category Collections
    * @param {Array|Object|string} collection The collection to iterate over.
-   * @param {Function|Object|string} [callback=identity] The function called
+   * @param {Array|Function|Object|string} [callback=identity] The function called
    *  per iteration. If a property name or object is provided it will be used
    *  to create a "_.pluck" or "_.where" style callback, respectively.
    * @param {*} [thisArg] The `this` binding of `callback`.
@@ -2767,9 +2765,20 @@
    * _.sortBy([1, 2, 3], function(num) { return this.sin(num); }, Math);
    * // => [3, 1, 2]
    *
+   * var characters = [
+   *   { 'name': 'barney',  'age': 36 },
+   *   { 'name': 'fred',    'age': 40 },
+   *   { 'name': 'barney',  'age': 26 },
+   *   { 'name': 'fred',    'age': 30 }
+   * ];
+   *
    * // using "_.pluck" callback shorthand
-   * _.sortBy(['banana', 'strawberry', 'apple'], 'length');
-   * // => ['apple', 'banana', 'strawberry']
+   * _.map(_.sortBy(characters, 'age'), _.values);
+   * // => [['barney', 26], ['fred', 30], ['barney', 36], ['fred', 40]]
+   *
+   * // sorting by multiple properties
+   * _.map(_.sortBy(characters, ['name', 'age']), _.values);
+   * // = > [['barney', 26], ['barney', 36], ['fred', 30], ['fred', 40]]
    */
   function sortBy(collection, callback, thisArg) {
     var index = -1,
@@ -2779,7 +2788,7 @@
     callback = createCallback(callback, thisArg, 3);
     forEach(collection, function(value, key, collection) {
       result[++index] = {
-        'criteria': callback(value, key, collection),
+        'criteria': [callback(value, key, collection)],
         'index': index,
         'value': value
       };
@@ -2826,7 +2835,7 @@
    * @type Function
    * @category Collections
    * @param {Array|Object|string} collection The collection to iterate over.
-   * @param {Object} properties The object of property values to filter by.
+   * @param {Object} props The object of property values to filter by.
    * @returns {Array} Returns a new array of elements that have the given properties.
    * @example
    *
@@ -3120,15 +3129,24 @@
    * @memberOf _
    * @category Arrays
    * @param {...Array} [array] The arrays to inspect.
-   * @returns {Array} Returns an array of composite values.
+   * @returns {Array} Returns an array of shared values.
    * @example
    *
-   * _.intersection([1, 2, 3], [101, 2, 1, 10], [2, 1]);
+   * _.intersection([1, 2, 3], [5, 2, 1, 4], [2, 1]);
    * // => [1, 2]
    */
-  function intersection(array) {
-    var args = arguments,
-        argsLength = args.length,
+  function intersection() {
+    var args = [],
+        argsIndex = -1,
+        argsLength = arguments.length;
+
+    while (++argsIndex < argsLength) {
+      var value = arguments[argsIndex];
+       if (isArray(value) || isArguments(value)) {
+         args.push(value);
+       }
+    }
+    var array = args[0],
         index = -1,
         indexOf = getIndexOf(),
         length = array ? array.length : 0,
@@ -3136,7 +3154,7 @@
 
     outer:
     while (++index < length) {
-      var value = array[index];
+      value = array[index];
       if (indexOf(result, value) < 0) {
         var argsIndex = argsLength;
         while (--argsIndex) {
@@ -3453,13 +3471,13 @@
    * @memberOf _
    * @category Arrays
    * @param {...Array} [array] The arrays to inspect.
-   * @returns {Array} Returns an array of composite values.
+   * @returns {Array} Returns an array of combined values.
    * @example
    *
-   * _.union([1, 2, 3], [101, 2, 1, 10], [2, 1]);
-   * // => [1, 2, 3, 101, 10]
+   * _.union([1, 2, 3], [5, 2, 1, 4], [2, 1]);
+   * // => [1, 2, 3, 5, 4]
    */
-  function union(array) {
+  function union() {
     return baseUniq(baseFlatten(arguments, true, true));
   }
 
@@ -3589,6 +3607,9 @@
         length = keys ? keys.length : 0,
         result = {};
 
+    if (!values && length && !isArray(keys[0])) {
+      values = [];
+    }
     while (++index < length) {
       var key = keys[index];
       if (values) {
@@ -3681,8 +3702,8 @@
    * @example
    *
    * var view = {
-   *  'label': 'docs',
-   *  'onClick': function() { console.log('clicked ' + this.label); }
+   *   'label': 'docs',
+   *   'onClick': function() { console.log('clicked ' + this.label); }
    * };
    *
    * _.bindAll(view);
@@ -3748,62 +3769,6 @@
         args = [funcs[length].apply(this, args)];
       }
       return args[0];
-    };
-  }
-
-  /**
-   * Produces a callback bound to an optional `thisArg`. If `func` is a property
-   * name the created callback will return the property value for a given element.
-   * If `func` is an object the created callback will return `true` for elements
-   * that contain the equivalent object properties, otherwise it will return `false`.
-   *
-   * @static
-   * @memberOf _
-   * @category Functions
-   * @param {*} [func=identity] The value to convert to a callback.
-   * @param {*} [thisArg] The `this` binding of the created callback.
-   * @param {number} [argCount] The number of arguments the callback accepts.
-   * @returns {Function} Returns a callback function.
-   * @example
-   *
-   * var characters = [
-   *   { 'name': 'barney', 'age': 36 },
-   *   { 'name': 'fred',   'age': 40 }
-   * ];
-   *
-   * // wrap to create custom callback shorthands
-   * _.createCallback = _.wrap(_.createCallback, function(func, callback, thisArg) {
-   *   var match = /^(.+?)__([gl]t)(.+)$/.exec(callback);
-   *   return !match ? func(callback, thisArg) : function(object) {
-   *     return match[2] == 'gt' ? object[match[1]] > match[3] : object[match[1]] < match[3];
-   *   };
-   * });
-   *
-   * _.filter(characters, 'age__gt38');
-   * // => [{ 'name': 'fred', 'age': 40 }]
-   */
-  function createCallback(func, thisArg, argCount) {
-    var type = typeof func;
-    if (func == null || type == 'function') {
-      return baseCreateCallback(func, thisArg, argCount);
-    }
-    // handle "_.pluck" style callback shorthands
-    if (type != 'object') {
-      return function(object) {
-        return object[func];
-      };
-    }
-    var props = keys(func);
-    return function(object) {
-      var length = props.length,
-          result = false;
-
-      while (length--) {
-        if (!(result = object[props[length]] === func[props[length]])) {
-          break;
-        }
-      }
-      return result;
     };
   }
 
@@ -3959,8 +3924,8 @@
    * @returns {number} Returns the timer id.
    * @example
    *
-   * _.defer(function() { console.log('deferred'); });
-   * // returns from the function before 'deferred' is logged
+   * _.defer(function(text) { console.log(text); }, 'deferred');
+   * // logs 'deferred' after one or more milliseconds
    */
   function defer(func) {
     if (!isFunction(func)) {
@@ -3983,9 +3948,8 @@
    * @returns {number} Returns the timer id.
    * @example
    *
-   * var log = _.bind(console.log, console);
-   * _.delay(log, 1000, 'logged later');
-   * // => 'logged later' (Appears after one second.)
+   * _.delay(function(text) { console.log(text); }, 1000, 'later');
+   * // => logs 'later' after one second
    */
   function delay(func, wait) {
     if (!isFunction(func)) {
@@ -4181,6 +4145,60 @@
   /*--------------------------------------------------------------------------*/
 
   /**
+   * Produces a callback bound to an optional `thisArg`. If `func` is a property
+   * name the created callback will return the property value for a given element.
+   * If `func` is an object the created callback will return `true` for elements
+   * that contain the equivalent object properties, otherwise it will return `false`.
+   *
+   * @static
+   * @memberOf _
+   * @category Utilities
+   * @param {*} [func=identity] The value to convert to a callback.
+   * @param {*} [thisArg] The `this` binding of the created callback.
+   * @param {number} [argCount] The number of arguments the callback accepts.
+   * @returns {Function} Returns a callback function.
+   * @example
+   *
+   * var characters = [
+   *   { 'name': 'barney', 'age': 36 },
+   *   { 'name': 'fred',   'age': 40 }
+   * ];
+   *
+   * // wrap to create custom callback shorthands
+   * _.createCallback = _.wrap(_.createCallback, function(func, callback, thisArg) {
+   *   var match = /^(.+?)__([gl]t)(.+)$/.exec(callback);
+   *   return !match ? func(callback, thisArg) : function(object) {
+   *     return match[2] == 'gt' ? object[match[1]] > match[3] : object[match[1]] < match[3];
+   *   };
+   * });
+   *
+   * _.filter(characters, 'age__gt38');
+   * // => [{ 'name': 'fred', 'age': 40 }]
+   */
+  function createCallback(func, thisArg, argCount) {
+    var type = typeof func;
+    if (func == null || type == 'function') {
+      return baseCreateCallback(func, thisArg, argCount);
+    }
+    // handle "_.pluck" style callback shorthands
+    if (type != 'object') {
+      return property(func);
+    }
+    var props = keys(func);
+    return function(object) {
+      var length = props.length,
+          result = false;
+
+      while (length--) {
+        if (!(result = object[props[length]] === func[props[length]])) {
+          break;
+        }
+      }
+      return result;
+    };
+  }
+
+  /**
    * Converts the characters `&`, `<`, `>`, `"`, and `'` in `string` to their
    * corresponding HTML entities.
    *
@@ -4217,25 +4235,30 @@
   }
 
   /**
-   * Adds function properties of a source object to the `lodash` function and
-   * chainable wrapper.
+   * Adds function properties of a source object to the destination object.
+   * If `object` is a function methods will be added to its prototype as well.
    *
    * @static
    * @memberOf _
    * @category Utilities
-   * @param {Object} object The object of function properties to add to `lodash`.
-   * @param {Object} object The object of function properties to add to `lodash`.
+   * @param {Function|Object} [object=lodash] object The destination object.
+   * @param {Object} source The object of functions to add.
+   * @param {Object} [options] The options object.
+   * @param {boolean} [options.chain=true] Specify whether the functions added are chainable.
    * @example
    *
-   * _.mixin({
-   *   'capitalize': function(string) {
-   *     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
-   *   }
-   * });
+   * function capitalize(string) {
+   *   return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+   * }
    *
+   * _.mixin({ 'capitalize': capitalize });
    * _.capitalize('fred');
    * // => 'Fred'
    *
+   * _('fred').capitalize().value();
+   * // => 'Fred'
+   *
+   * _.mixin({ 'capitalize': capitalize }, { 'chain': false });
    * _('fred').capitalize();
    * // => 'Fred'
    */
@@ -4289,6 +4312,53 @@
   }
 
   /**
+   * Gets the number of milliseconds that have elapsed since the Unix epoch
+   * (1 January 1970 00:00:00 UTC).
+   *
+   * @static
+   * @memberOf _
+   * @category Utilities
+   * @example
+   *
+   * var stamp = _.now();
+   * _.defer(function() { console.log(_.now() - stamp); });
+   * // => logs the number of milliseconds it took for the deferred function to be called
+   */
+  var now = reNative.test(now = Date.now) && now || function() {
+    return new Date().getTime();
+  };
+
+  /**
+   * Creates a "_.pluck" style function, which returns the `key` value of a
+   * given object.
+   *
+   * @static
+   * @memberOf _
+   * @category Utilities
+   * @param {string} key The name of the property to retrieve.
+   * @returns {Function} Returns the new function.
+   * @example
+   *
+   * var characters = [
+   *   { 'name': 'fred',   'age': 40 },
+   *   { 'name': 'barney', 'age': 36 }
+   * ];
+   *
+   * var getName = _.property('name');
+   *
+   * _.map(characters, getName);
+   * // => ['barney', 'fred']
+   *
+   * _.sortBy(characters, getName);
+   * // => [{ 'name': 'barney', 'age': 36 }, { 'name': 'fred',   'age': 40 }]
+   */
+  function property(key) {
+    return function(object) {
+      return object[key];
+    };
+  }
+
+  /**
    * Produces a random number between `min` and `max` (inclusive). If only one
    * argument is provided a number between `0` and the given number will be
    * returned. If `floating` is truey or either `min` or `max` are floats a
@@ -4330,7 +4400,7 @@
   }
 
   /**
-   * Resolves the value of `property` on `object`. If `property` is a function
+   * Resolves the value of property `key` on `object`. If `key` is a function
    * it will be invoked with the `this` binding of `object` and its result returned,
    * else the property value is returned. If `object` is falsey then `undefined`
    * is returned.
@@ -4339,7 +4409,7 @@
    * @memberOf _
    * @category Utilities
    * @param {Object} object The object to inspect.
-   * @param {string} property The property to get the value of.
+   * @param {string} key The name of the property to resolve.
    * @returns {*} Returns the resolved value.
    * @example
    *
@@ -4356,10 +4426,10 @@
    * _.result(object, 'stuff');
    * // => 'nonsense'
    */
-  function result(object, property) {
+  function result(object, key) {
     if (object) {
-      var value = object[property];
-      return isFunction(value) ? object[property]() : value;
+      var value = object[key];
+      return isFunction(value) ? object[key]() : value;
     }
   }
 
@@ -4423,8 +4493,8 @@
    * // => 'hello mustache!'
    *
    * // using the `imports` option to import jQuery
-   * var list = '<% $.each(people, function(name) { %><li><%- name %></li><% }); %>';
-   * _.template(list, { 'people': ['fred', 'barney'] }, { 'imports': { '$': jQuery } });
+   * var list = '<% jq.each(people, function(name) { %><li><%- name %></li><% }); %>';
+   * _.template(list, { 'people': ['fred', 'barney'] }, { 'imports': { 'jq': jQuery } });
    * // => '<li>fred</li><li>barney</li>'
    *
    * // using the `sourceURL` option to specify a custom sourceURL for the template
@@ -4659,7 +4729,7 @@
    * _(characters).chain()
    *   .first()
    *   .pick('age')
-   *   .value()
+   *   .value();
    * // => { 'age': 36 }
    */
   function wrapperChain() {
@@ -4822,7 +4892,7 @@
    * @memberOf _
    * @type string
    */
-  lodash.VERSION = '2.3.0';
+  lodash.VERSION = '2.4.0';
 
   // add "Chaining" functions to the wrapper
   lodash.prototype.chain = wrapperChain;
@@ -4864,9 +4934,8 @@
   // some AMD build optimizers like r.js check for condition patterns like the following:
   if (typeof define == 'function' && typeof define.amd == 'object' && define.amd) {
     // Expose Lo-Dash to the global object even when an AMD loader is present in
-    // case Lo-Dash was injected by a third-party script and not intended to be
-    // loaded as a module. The global assignment can be reverted in the Lo-Dash
-    // module by its `noConflict()` method.
+    // case Lo-Dash is loaded with a RequireJS shim config.
+    // See http://requirejs.org/docs/api.html#config-shim
     root._ = lodash;
 
     // define as an anonymous module so, through path mapping, it can be
