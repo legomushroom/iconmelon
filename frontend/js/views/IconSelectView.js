@@ -123,7 +123,7 @@
           isPaginated: true,
           pageNum: this.o.pageNum
         });
-        this.sectionsCollection.fetch().then(function() {
+        return this.sectionsCollection.fetch().then(function() {
           if (_this.isClosed) {
             return;
           }
@@ -136,10 +136,21 @@
             });
             _this.renderPagination();
             App.sectionsCollectionView = _this.sectionsCollectionView;
-            return _this.model.sectionsView = _this.sectionsCollectionView;
+            _this.model.sectionsView = _this.sectionsCollectionView;
+            _this.isFooterVisible || _this.showFooter();
+            return _this;
           });
         });
+      };
+
+      IconSelectView.prototype.showFooter = function() {
+        App.$footer.removeClass('h-gm').addClass('animated fadeInDown');
+        this.isFooterVisible = false;
         return this;
+      };
+
+      IconSelectView.prototype.hideFooter = function() {
+        return App.$footer.addClass('h-gm');
       };
 
       IconSelectView.prototype.renderButton = function() {
@@ -328,6 +339,7 @@
         if ((_ref1 = this.sectionsCollectionView) != null) {
           _ref1.teardown();
         }
+        this.hideFooter();
         return IconSelectView.__super__.teardown.apply(this, arguments);
       };
 

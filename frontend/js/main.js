@@ -58,6 +58,7 @@
         this.$loadingLine = $('#js-loadin-line');
         App.$loadingLine = this.$loadingLine;
         App.$mainHeader = this.$mainHeader;
+        App.$footer = $('#js-main-footer');
         App.$bodyHtml = $('body, html');
         App.$svgWrap = $('#js-svg-wrap');
         App.helpers = helpers;

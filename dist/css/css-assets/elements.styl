@@ -1,6 +1,39 @@
 // ELEMENTS
 @import '../assets/imports.styl'
 
+
+/* [hash needed] */
+.codrops-logo-e
+	width 18*gs
+	display block
+	fill #0099Cc
+	// fill c-grey3
+
+	&:hover
+		opacity .95
+		cursor pointer
+		// fill #0099Cc
+		// -webkit-transition fill .15s ease-out
+		// -moz-transition fill .15s ease-out
+		// -ms-transition fill .15s ease-out
+		// -o-transition fill .15s ease-out
+		// transition fill .15s ease-out
+
+	svg
+		rect 100%
+
+/* [hash needed] */
+.rosebud-logo-e
+	@extend .codrops-logo-e
+	height 7*gs
+	background white url('i/rosebud.gif') no-repeat center center
+	border-radius br
+	background-size 75% auto
+
+
+	&:hover
+		opacity .75
+
 /* c2f06a90b22b79c844700683e4327b0c */
 .loader-e
 	rect 4*gs

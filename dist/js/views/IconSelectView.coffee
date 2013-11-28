@@ -88,7 +88,15 @@ define 'views/IconSelectView', ['views/ProtoView', 'collectionViews/SectionsColl
 
 					@model.sectionsView = @sectionsCollectionView
 
+					@isFooterVisible or	@showFooter()
+					@
+
+		showFooter:->
+			App.$footer.removeClass('h-gm').addClass('animated fadeInDown')
+			@isFooterVisible = false
 			@
+
+		hideFooter:-> App.$footer.addClass 'h-gm'
 
 		renderButton:->
 			@$('#js-counter-btn-place').html @buttonCounterTemplate @model.toJSON()
@@ -172,6 +180,7 @@ define 'views/IconSelectView', ['views/ProtoView', 'collectionViews/SectionsColl
 		teardown:->
 			helpers.hideLoaderLine 'is-long'
 			@sectionsCollectionView?.teardown()
+			@hideFooter()
 			# delete @sectionsCollectionView
 			super
 

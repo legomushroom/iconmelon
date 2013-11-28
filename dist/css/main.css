@@ -1905,6 +1905,31 @@ a.is-check:after,
 .c-grey3-bg-gm {
   background-color: #bdbfbf;
 }
+.codrops-logo-e,
+.rosebud-logo-e {
+  width: 144px;
+  display: block;
+  fill: #09c;
+}
+.codrops-logo-e:hover,
+.rosebud-logo-e:hover {
+  opacity: 0.95;
+  cursor: pointer;
+}
+.codrops-logo-e svg,
+.rosebud-logo-e svg {
+  width: 100%;
+  height: 100%;
+}
+.rosebud-logo-e {
+  height: 56px;
+  background: #fff url("i/rosebud.gif") no-repeat center center;
+  border-radius: 3px;
+  background-size: 75% auto;
+}
+.rosebud-logo-e:hover {
+  opacity: 0.75;
+}
 .loader-e {
   width: 32px;
   height: 32px;
@@ -2042,6 +2067,26 @@ a.is-check:after,
   border-width: 1px;
   border-style: solid;
   border-color: #ff3d7f;
+}
+.partners-b {
+  display: block;
+  max-width: 528px;
+  margin: 0 auto;
+}
+.partners-b .header-be {
+  font-size: 24px;
+  color: #bdbfbf;
+  margin-bottom: 32px;
+  text-align: center;
+  float: left;
+  margin-right: 32px;
+  margin-top: 14px;
+}
+.partners-b a {
+  float: left;
+}
+.partners-b a + a {
+  margin-left: 16px;
 }
 .loader-with-text-b {
   display: inline-block;
@@ -3587,6 +3632,13 @@ a.is-check:after,
   width: 40px;
   font-size: 16px;
 }
+.main-footer-l {
+  text-align: center;
+  padding-top: 32px;
+  padding-bottom: 16px;
+  background: rgba(0,0,0,0.05);
+  box-shadow: inset 0 4px 0 rgba(59,59,58,0.2);
+}
 .pages-nav-l {
   position: relative;
   text-align: center;
@@ -3779,7 +3831,7 @@ a.is-check:after,
 #main-l {
   max-width: 1168px;
   margin: 0 auto;
-  padding-bottom: 160px;
+  padding-bottom: 96px;
   min-width: 576px;
 }
 .top-bottom-stripes-eff {
@@ -4519,7 +4571,7 @@ a.is-check:after,
   margin-top: 80px;
 }
 .main-page-p .pages-nav-l {
-  margin-top: 64px;
+  margin-top: 96px;
 }
 .main-page-p .main-logo-b {
   margin: 0 auto;

@@ -51,6 +51,7 @@ define 'main', ['collectionViews/NotiesCollectionView', 'marionette', 'router', 
 			
 			App.$loadingLine 	= @$loadingLine
 			App.$mainHeader 	= @$mainHeader
+			App.$footer 		= $('#js-main-footer')
 			App.$bodyHtml 		= $('body, html')
 			App.$svgWrap 			= $('#js-svg-wrap')
 			# @loadSvg()

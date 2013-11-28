@@ -35,6 +35,7 @@ define 'views/pages/main', ['views/pages/PageView', 'views/IconSelectView', 'mod
 			@hammerTime()
 			@
 
+
 		hammerTime:->
 			$el = @$('#js-main-logo-icon')
 			hamerTime = $el.hammer()
