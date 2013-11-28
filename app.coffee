@@ -45,7 +45,7 @@ SectionSchema = new mongo.Schema
       moderated:      Boolean
 
 SectionSchema.virtual('id').get -> @_id.toHexString()
- # Ensure virtual fields are serialised.
+# Ensure virtual fields are serialised.
 SectionSchema.set 'toJSON', virtuals: true
 
 Section = mongo.model 'Section', SectionSchema

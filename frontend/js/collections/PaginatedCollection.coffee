@@ -1,7 +1,7 @@
-define 'collections/PaginatedCollection', ['backbone'], (B)=>
+define 'collections/PaginatedCollection', ['backbone', 'helpers'], (B, helpers)=>
   class PaginatedCollection extends B.Collection
     page: 1
-    perPage: 10
+    perPage: do -> if helpers.isMobile() then 4 else 8
 
     initialize: ->
      

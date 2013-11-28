@@ -4,7 +4,7 @@
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define('collections/PaginatedCollection', ['backbone'], function(B) {
+  define('collections/PaginatedCollection', ['backbone', 'helpers'], function(B, helpers) {
     var PaginatedCollection, _ref;
 
     PaginatedCollection = (function(_super) {
@@ -17,7 +17,13 @@
 
       PaginatedCollection.prototype.page = 1;
 
-      PaginatedCollection.prototype.perPage = 10;
+      PaginatedCollection.prototype.perPage = (function() {
+        if (helpers.isMobile()) {
+          return 4;
+        } else {
+          return 8;
+        }
+      })();
 
       PaginatedCollection.prototype.initialize = function() {
         this.options = {
