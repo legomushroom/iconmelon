@@ -70,7 +70,8 @@
     website: String,
     isMulticolor: Boolean,
     icons: Array,
-    moderated: Boolean
+    moderated: Boolean,
+    createDate: Date
   });
 
   SectionSchema.virtual('id').get(function() {
@@ -532,7 +533,10 @@
       } else {
         options = {
           skip: (data.page - 1) * data.perPage,
-          limit: data.perPage
+          limit: data.perPage,
+          sort: {
+            createDate: -1
+          }
         };
         return Section.find({
           moderated: true
@@ -561,6 +565,7 @@
     });
     socket.on("section:create", function(data, callback) {
       data.moderated = false;
+      data.createDate = new Date;
       return new Section(data).save(function(err) {
         if (err) {
           callback(500, 'DB error');

@@ -65,7 +65,8 @@
         App.loadedHashes = [];
         App.iconsSelected = [];
         App.filtersSelected = [];
-        socketAdress = window.location.href.match('localhost') ? 'http://localhost' : 'http://iconmelon.com';
+        App.isDevMode = window.location.href.match('localhost');
+        socketAdress = App.isDevMode ? 'http://localhost' : 'http://iconmelon.com';
         window.socket = io.connect(socketAdress);
         App.$window = $(window);
         this.$mainHeader = $('#js-main-header');

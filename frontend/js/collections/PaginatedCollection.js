@@ -17,15 +17,18 @@
 
       PaginatedCollection.prototype.page = 1;
 
-      PaginatedCollection.prototype.perPage = (function() {
-        if (helpers.isMobile()) {
-          return 4;
-        } else {
-          return 8;
-        }
-      })();
-
       PaginatedCollection.prototype.initialize = function() {
+        this.perPage = (function() {
+          if (helpers.isMobile()) {
+            return 4;
+          } else {
+            if (window.App.isDevMode) {
+              return 4;
+            } else {
+              return 8;
+            }
+          }
+        })();
         this.options = {
           page: this.page,
           perPage: this.perPage,

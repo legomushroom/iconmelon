@@ -43,6 +43,7 @@ SectionSchema = new mongo.Schema
       isMulticolor:   Boolean
       icons:          Array
       moderated:      Boolean
+      createDate:     Date
 
 SectionSchema.virtual('id').get -> @_id.toHexString()
 # Ensure virtual fields are serialised.
@@ -328,6 +329,7 @@ io.sockets.on "connection", (socket) ->
       options = 
         skip: (data.page-1)*data.perPage
         limit: data.perPage
+        sort: createDate: -1
       Section.find {moderated: true}, null, options, (err, docs)->
         Section.find {moderated: true}, (err, docs2)->
           callback null, data =
@@ -344,6 +346,7 @@ io.sockets.on "connection", (socket) ->
 
   socket.on "section:create", (data, callback) ->
       data.moderated = false
+      data.createDate = new Date
       new Section(data).save (err)->
         if err
           callback 500, 'DB error'
