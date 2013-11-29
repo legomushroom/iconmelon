@@ -53,16 +53,18 @@ define 'main', ['collectionViews/NotiesCollectionView', 'marionette', 'router', 
 			App.$mainHeader 	= @$mainHeader
 			App.$footer 		= $('#js-main-footer')
 			App.$bodyHtml 		= $('body, html')
-			App.$svgWrap 			= $('#js-svg-wrap')
+			App.$svgWrap 		= $('#js-svg-wrap')
 			# @loadSvg()
 
-			App.helpers 			= helpers
+			App.helpers 		= helpers
 			App.loadedHashes 	= []
 
 			App.iconsSelected 	= []
 			App.filtersSelected = []
 
-			socketAdress =  if window.location.href.match 'localhost' then 'http://localhost' else 'http://iconmelon.com' 
+			App.isDevMode = window.location.href.match 'localhost'
+
+			socketAdress =  if App.isDevMode then 'http://localhost' else 'http://iconmelon.com' 
 			window.socket = io.connect socketAdress
 
 			App.$window = $(window)

@@ -12,10 +12,10 @@ retina(path, size= 100%, color= white)
 		background-size size
 
 downShadow()
-	box-shadow 0 (gs/2) 0 rgba(rgb(c-grey1), .2)
+	box-shadow 0 (gs/2) 0 rgba(rgb(c-grey1), .25)
 
 downRightShadow(size = (gs/2))
-	box-shadow size size 0 rgba(rgb(c-grey1), .2)
+	box-shadow size size 0 rgba(rgb(c-grey1), .25)
 
 brad(amount = br)
 	border-radius amount
@@ -72,11 +72,11 @@ transform(property,property2='')
 	-o-transform property
 	transform property
 
-transition(property, time, easing, delay=0)
-	-webkit-transition property time easing delay
-	-moz-transition property time easing delay
-	-o-transition property time easing delay
-	transition property time easing delay
+transition(property, time, easing)
+	-webkit-transition property time easing
+	-moz-transition property time easing
+	-o-transition property time easing
+	transition property time easing
 
 rect(size)
 	width size

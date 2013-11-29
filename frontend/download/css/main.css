@@ -257,10 +257,10 @@ table {
   left: 0;
   bottom: -6px;
   position: absolute;
-  -webkit-transition: width 0.05s ease-out 0;
-  -moz-transition: width 0.05s ease-out 0;
-  -o-transition: width 0.05s ease-out 0;
-  transition: width 0.05s ease-out 0;
+  -webkit-transition: width 0.05s ease-out;
+  -moz-transition: width 0.05s ease-out;
+  -o-transition: width 0.05s ease-out;
+  transition: width 0.05s ease-out;
   border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;
 }

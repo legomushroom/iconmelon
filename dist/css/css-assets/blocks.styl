@@ -8,7 +8,7 @@
 	margin 0 auto
 	.header-be
 		font-size 3*gs
-		color c-grey3
+		color lighten(c-grey2,5)
 		margin-bottom 4*gs
 		text-align center
 		float left
@@ -26,14 +26,14 @@
 		float left
 	> .text-be
 		font-size 2.5*gs
-		color c-grey2
+		color c-grey2-hover
 		margin-left 5*gs
 		margin-top gs - 1px
 
 /* fbb4d34de952f1f0711d294f68b2f4e9 */
 .pages-nav-nums-b
 	cursor: default
-	color c-grey3
+	color c-grey2
 	font-size 2.5*gs
 	> .btn-be
 		display inline-block
@@ -44,19 +44,19 @@
 			cursor: default
 			color c-grey3 II
 		&:hover, &.is-check
-			color c-grey3-hover
+			color c-grey2
 
 
 /* d0e8aa737b2ceea8bd9f7b998c83d1a4 */
 .pages-nav-b
-	color c-grey3
+	color c-grey2
 	font-size 2.5*gs
 
 	cursor pointer
 	&:hover
-		color c-grey3-hover
+		color c-grey2-hover
 		.icon
-			fill c-grey3-hover
+			fill c-grey2-hover
 
 	&.is-right
 		> .text-be
@@ -70,7 +70,7 @@
 		position: relative
 		top -2px
 	.icon
-		fill c-grey3
+		fill c-grey2
 		float left 
 		rect 2*gs
 
@@ -81,7 +81,7 @@
 	.text-be
 		font-size 	3*gs
 		line-height 3.5*gs
-		color c-grey2
+		color c-grey2-hover
 		margin-top 2*gs
 
 	.legomushroom-e
@@ -250,7 +250,7 @@
 
 /* 18d44e1e888afe365824a57f57134c93 */
 .use-text-b
-	color 		c-grey2
+	color 		c-grey2-hover
 	font-size 	3*gs
 	line-height 4*gs - 3px
 
@@ -289,7 +289,7 @@
 
 	&:after
 		content ''
-		border-top (gs/2) solid c-grey4
+		border-top (gs/2) solid c-grey3
 		width 200%
 		position absolute
 		z-index: 0
@@ -306,8 +306,8 @@
 
 /* e5e06d7c4c91714a20371c7716c047fb */
 .use-num-b
-	color 	c-grey4
-	border 	(gs/2) solid c-grey4
+	color 	c-grey3
+	border 	(gs/2) solid c-grey3
 	border-radius 50%
 	rect 5.5*gs
 	text-align center
@@ -344,14 +344,14 @@
 		margin 0 auto
 	> .header-be 
 		font-size 4*gs - 2px
-		color c-grey2-hover
+		color c-grey1
 		margin-top 3*gs
 		font-weight bold
 	> .text-be 
 		margin-top  3px
 		font-size 3*gs
 		line-height 4*gs - 1px
-		color c-grey2
+		color c-grey2-hover
 
 		.line-thru-gm
 			color c-grey3
@@ -446,14 +446,14 @@
 
 /* fb37b27f09cb5fb3537f01a90de36adf */
 .switcher-with-texts-b
-	color c-grey3
+	color lighten(c-grey2,5)
 	display inline-block
 	font-size 3*gs
 	overflow hidden
 	padding-bottom 1px
 
 	&:hover
-		color c-grey2
+		color c-grey2-hover
 	
 	> .left-text-be, > .right-text-be, .switch-b
 		float left
@@ -482,14 +482,14 @@
 	cursor pointer
 
 	> .bg-be
-		background-color c-grey3
+		background-color lighten(c-grey2,15)
 		height 3*gs + 1px
 		width 6*gs
 		border-radius 2*gs
 		position absolute
 		nw 0
 		z-index 0
-		transition all .15s ease-out
+		transition all, .15s, ease-out
 
 	> .btn-be
 		content ''
@@ -498,10 +498,10 @@
 		box-shadow 2px 2px 0 rgba(0,0,0,.1)
 		position absolute
 		t -1px
-		l 0
+		l -1px
 		border-radius 50%
 		z-index 1
-		transition all .15s ease-out
+		transition all, .15s, ease-out
 
 	input
 		rect 100%
@@ -521,7 +521,7 @@
 
 /* 8d92942b39756658a1fc398019ca1af8 */
 .icon-with-text-line-b
-	color c-grey3
+	color lighten(c-grey2,5)
 	padding-top 1px
 	display inline-block
 	
@@ -529,12 +529,12 @@
 	&.is-hoverable
 		&:hover
 			cursor pointer
-			color c-grey2
+			color c-grey2-hover
 			.plus-btn-b
-				border-color c-grey2
+				border-color c-grey2-hover
 
 			.icon
-				fill c-grey2
+				fill c-grey2-hover
 
 	.icon-bl
 		float left
@@ -542,6 +542,7 @@
 		font-size 2.5*gs
 		margin-left 4*gs
 		margin-top 2px
+
 
 
 /* 6c7758a7f5cb75603d6bb6f833d321b3 */
@@ -605,7 +606,7 @@
 	height 10*gs
 	padding-top gs
 	text-align center
-	color c-grey3
+	color c-grey2
 	border-radius br
 	cursor pointer
 
@@ -644,6 +645,7 @@
 
 		.icon
 			rect 1.5*gs
+			fill c-grey2
 
 	.left-bl
 		left 1.5*gs
@@ -795,7 +797,7 @@ arrowOffset = 5*gs
 
 /* df265d9e31b7bad5b31e1545831142ba */
 .submit-icon-collection-b
-	border-left 2px solid c-grey3
+	border-left 2px solid lighten(c-grey3-hover,10)
 	padding-left 8*gs
 	padding-top 4*gs
 
@@ -810,7 +812,7 @@ arrowOffset = 5*gs
 
 	> .header-be
 		font-size 4*gs
-		color c-grey3
+		color lighten(c-grey2,5)
 		margin-bottom gs - 1px
 
 	.submit-icon-b
@@ -819,7 +821,7 @@ arrowOffset = 5*gs
 /* 7fc5887b7434ee59fc7d648ff4f4541d */
 .plus-btn-b
 	rect 3*gs
-	border 1px solid c-grey3
+	border 1px solid lighten(c-grey2,5)
 	border-radius 50%
 	cursor pointer
 	overflow hidden
@@ -827,12 +829,13 @@ arrowOffset = 5*gs
 
 	&:hover
 		// background-color rgba(0,0,0,.05)
-		border-color c-grey2
+		border-color c-grey2-hover
 		.icon
-			fill c-grey2
+			fill c-grey2-hover
 
 
 	.icon
+		fill lighten(c-grey2,5)
 		rect gs
 		margin 0 auto
 		margin-top gs - 1px
@@ -874,7 +877,7 @@ marginTop = 2*gs
 
 	> .header-be
 		font-size 4*gs
-		color c-grey3
+		color lighten(c-grey2,5)
 		margin-bottom 2.5*gs
 
 	input, .btn-b
@@ -917,7 +920,7 @@ marginTop = 2*gs
 
 	.icon-sample-bh
 		float left
-		fill c-grey2
+		fill lighten(c-grey2,1)
 		margin-left (gs/2)
 		margin-top 2px
 		rect 4*gs
@@ -927,7 +930,7 @@ marginTop = 2*gs
 		rect gs + 2px
 		ne (gs/2)
 		display none
-		// fill c-grey3
+		fill c-grey2
 
 	.input-e
 		width 100%
@@ -1055,13 +1058,14 @@ marginTop = 2*gs
 		padding 2*gs 6*gs 0 2*gs
 
 /* 22c3f29200c646ede875bdad751d0ed5 */
+headerColor = lighten(c-grey2,5)
 .section-header-b
-	color c-grey3
+	color headerColor
 	font-size 4*gs
 	position relative
 	padding-right 3*gs
 	text-align left
-	
+
 	// background-color rgba(0,0,0,.05)
 	// border-top-left-radius br
 	// border-top-right-radius br
@@ -1082,7 +1086,7 @@ marginTop = 2*gs
 		font-size 2.5*gs
 		float right
 		display block
-		color c-grey3
+		color headerColor
 		margin-top gs + 2px
 
 	> .name-be
@@ -1097,6 +1101,7 @@ marginTop = 2*gs
 	.icon
 		float left
 		rect 1.5*gs
+		fill lighten(headerColor,5)
 
 		+ .icon
 			margin-left gs
@@ -1107,7 +1112,7 @@ marginTop = 2*gs
 	height 7*gs + 2px
 	padding-top 1px
 	border-radius br
-	color c-grey3
+	color c-grey2
 	cursor pointer
 	border 1px solid transparent
 	position relative
@@ -1124,21 +1129,36 @@ marginTop = 2*gs
 			transform(scale(2))
 			transform-origin 50% 50%
 
-			transition -webkit-transform time easing delay
-			transition -moz-transform time easing delay
-			transition -o-transform time easing delay
-			transition transform time easing delay
+			transition -webkit-transform time easing 
+			transition -moz-transform time easing
+			transition -o-transform time easing
+			transition transform time easing
+			-webkit-transition-delay delay
+			-moz-transition-delay delay
+			-o-transition-delay delay
+			transition-delay delay
 
 			&:before
 				opacity: 1
-				transition opacity time easing delay
+				transition opacity time easing
+				-webkit-transition-delay delay
+				-moz-transition-delay delay
+				-o-transition-delay delay
+				transition-delay delay
 
-	&:hover, &.is-check
-		color darken(c-grey2, 20)
-		border 1px solid c-grey4
+	&.is-check
+		color c-grey1
+		border 1px solid c-red2
+		background-color rgba(c-red1, .05)
 
 		> .icon
-			fill darken(c-grey2, 20)
+			fill c-grey1
+
+	&:hover
+		color c-grey1
+		> .icon
+			fill c-grey1
+
 
 	> .bullet-be
 		position absolute
@@ -1199,6 +1219,8 @@ marginTop = 2*gs
 		z-index:  1
 		top (gs/2)
 		left 1.5*gs
+		fill c-grey2
+
 		&:before
 			content ''
 			rect 160%
@@ -1241,6 +1263,7 @@ shadowSize = 2px
 		top 	50%
 		margin-top - gs - 2px
 		rect 	2.5*gs
+		fill lighten(c-grey2,15)
 
 	
 
@@ -1257,7 +1280,7 @@ shadowSize = 2px
 	color white
 	cursor pointer
 	border-radius br
-	box-shadow shadowSize shadowSize 0 rgba(rgb(c-grey1), .2)
+	box-shadow shadowSize shadowSize 0 rgba(rgb(c-grey1), .25)
 	font-size 20px
 	text-align center
 
@@ -1295,13 +1318,13 @@ shadowSize = 2px
 		opacity: 0
 
 	&.is-expand
-		background-color transparent
-		color c-grey3
+		background-color rgba(0,0,0,.02)
+		color lighten(c-grey2,5)
 		// border 1px solid c-grey4
 		box-shadow none
 
 		&:hover
-			background-color rgba(0,0,0,.02)
+			background-color rgba(0,0,0,.03)
 			color c-grey2
 
 

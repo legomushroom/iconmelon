@@ -12,6 +12,13 @@
 	&:hover
 		opacity .95
 		cursor pointer
+		// fill #0099Cc
+		// -webkit-transition fill .15s ease-out
+		// -moz-transition fill .15s ease-out
+		// -ms-transition fill .15s ease-out
+		// -o-transition fill .15s ease-out
+		// transition fill .15s ease-out
+
 	svg
 		rect 100%
 
@@ -108,17 +115,17 @@ shadowSize = 2px
 .input-e
 	display block
 	bbox()
-	border 1px solid c-grey3
+	border 1px solid lighten(c-grey2,15)
 	border-radius br
 	height 4.5*gs
 	outline 0
 	background white
 	padding-left gs
 	padding-right gs
-	box-shadow shadowSize shadowSize 0 rgba(rgb(c-grey1), .2)
+	box-shadow shadowSize shadowSize 0 rgba(rgb(c-grey1), .25)
 	color darken(c-grey2-hover, 10)
 	fontOfControl()
-	placeholder-mixin(c-grey3)
+	placeholder-mixin(lighten(c-grey2,5))
 
 	&:focus
 		box-shadow none
