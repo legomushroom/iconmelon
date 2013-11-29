@@ -17,8 +17,8 @@ pretty  = require('pretty-data').pd
 port    = 3000
 app     = express()
 
-folder = 'dist'
-# folder = 'frontend' 
+# folder = 'dist'
+folder = 'frontend' 
 
 mkdirp "#{folder}/generated-icons", ->
 mkdirp 'uploads', ->

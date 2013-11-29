@@ -36,7 +36,7 @@
 
   app = express();
 
-  folder = 'dist';
+  folder = 'frontend';
 
   mkdirp("" + folder + "/generated-icons", function() {});
 
