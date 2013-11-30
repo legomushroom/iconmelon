@@ -84,6 +84,8 @@ class Main
       'GPL-v2':    'http://www.gnu.org/licenses/gpl-2.0.html'
       'GPL-v1':    'http://www.gnu.org/licenses/gpl-1.0.html'
       'CC by 3.0': 'http://creativecommons.org/licenses/by/3.0/'
+      'CC by-sa 3.0': 'http://creativecommons.org/licenses/by-sa/3.0/'
+      'CC by-nd 3.0': 'http://creativecommons.org/licenses/by-nd/3.0/'
       'BSD':      'http://opensource.org/licenses/BSD-3-Clause'
   
   generateMainPageSvg:()->
@@ -185,15 +187,15 @@ class Main
   addAuthor:(doc)->
     @licenses ?= []
     if _.indexOf(@licenses, doc.license) is -1 then @licenses.push doc.license
-    "#{(new Date).getFullYear()} #{doc.author} #{doc.email} #{doc.website or ''} \n#{doc.license} #{@licensesLinks[doc.license]} \n\n" 
+    "#{(new Date).getFullYear()} #{doc.author} #{doc.email} #{doc.website or ''} \nlicense: #{doc.license} #{@licensesLinks[doc.license]} \n\n" 
 
 
   makeLicense:(data)->
     licenses = ''
     for license, i in @licenses
       if license.length >= 2
-        # licenses += "\n\n#{fs.readFileSync("views/licenses/#{license}.md").toString()}"
-        licenses += ""
+        licenses += "\n\n\n\n\n===========================\n#{fs.readFileSync("views/licenses/#{license}.md")?.toString()}"
+        # licenses += ""
     
     data += "#{licenses}"
 

@@ -123,6 +123,8 @@
         'GPL-v2': 'http://www.gnu.org/licenses/gpl-2.0.html',
         'GPL-v1': 'http://www.gnu.org/licenses/gpl-1.0.html',
         'CC by 3.0': 'http://creativecommons.org/licenses/by/3.0/',
+        'CC by-sa 3.0': 'http://creativecommons.org/licenses/by-sa/3.0/',
+        'CC by-nd 3.0': 'http://creativecommons.org/licenses/by-nd/3.0/',
         'BSD': 'http://opensource.org/licenses/BSD-3-Clause'
       };
     }
@@ -303,18 +305,18 @@
       if (_.indexOf(this.licenses, doc.license) === -1) {
         this.licenses.push(doc.license);
       }
-      return "" + ((new Date).getFullYear()) + " " + doc.author + " " + doc.email + " " + (doc.website || '') + " \n" + doc.license + " " + this.licensesLinks[doc.license] + " \n\n";
+      return "" + ((new Date).getFullYear()) + " " + doc.author + " " + doc.email + " " + (doc.website || '') + " \nlicense: " + doc.license + " " + this.licensesLinks[doc.license] + " \n\n";
     };
 
     Main.prototype.makeLicense = function(data) {
-      var i, license, licenses, _i, _len, _ref;
+      var i, license, licenses, _i, _len, _ref, _ref1;
 
       licenses = '';
       _ref = this.licenses;
       for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
         license = _ref[i];
         if (license.length >= 2) {
-          licenses += "";
+          licenses += "\n\n\n\n\n===========================\n" + ((_ref1 = fs.readFileSync("views/licenses/" + license + ".md")) != null ? _ref1.toString() : void 0);
         }
       }
       return data += "" + licenses;
