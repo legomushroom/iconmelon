@@ -2286,6 +2286,10 @@ a.is-check:after,
   margin-top: -10px;
   margin-left: -8px;
 }
+.social-btn-b.is-twitter,
+.to-top-btn-b.is-twitter {
+  background-color: #00acee;
+}
 .social-btn-b.is-email .icon,
 .to-top-btn-b.is-email .icon {
   width: 14px;
@@ -3163,7 +3167,7 @@ a.is-check:after,
 .main-header-b {
   font-size: 20px;
   color: #3b3b3a;
-  min-width: 576px;
+  min-width: 624px;
   height: 56px;
   padding-top: 18px;
   padding-left: 24px;
@@ -3852,7 +3856,7 @@ a.is-check:after,
   max-width: 1168px;
   margin: 0 auto;
   padding-bottom: 96px;
-  min-width: 576px;
+  min-width: 624px;
 }
 .top-bottom-stripes-eff {
   position: relative;
