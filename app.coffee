@@ -87,6 +87,7 @@ class Main
       'CC by-sa 3.0': 'http://creativecommons.org/licenses/by-sa/3.0/'
       'CC by-nd 3.0': 'http://creativecommons.org/licenses/by-nd/3.0/'
       'BSD':      'http://opensource.org/licenses/BSD-3-Clause'
+      'CC0 1.0':  'http://creativecommons.org/publicdomain/zero/1.0/'
   
   generateMainPageSvg:()->
     prm = new Promise()
