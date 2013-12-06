@@ -4780,6 +4780,31 @@ a.is-check:after,
 .hire-p .lego-n-text-b {
   display: inline-block;
 }
+.terms-p {
+  padding: 64px 128px;
+  color: #6b6b6b;
+}
+.terms-p h1,
+.terms-p h2,
+.terms-p h3 {
+  color: #3b3b3a;
+}
+.terms-p h1 {
+  font-size: 48px;
+  margin: 16px 0;
+}
+.terms-p h2 {
+  font-size: 40px;
+  margin: 12px 0;
+}
+.terms-p h3 {
+  font-size: 32px;
+  margin: 8px 0;
+}
+.terms-p p {
+  font-size: 24px;
+  line-height: 32px;
+}
 .notyfier-b {
   position: fixed;
   top: 96px;

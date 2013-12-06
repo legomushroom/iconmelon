@@ -18,12 +18,6 @@
 
       Terms.prototype.className = 'terms-p';
 
-      Terms.prototype.initialize = function() {
-        console.log('init');
-        Terms.__super__.initialize.apply(this, arguments);
-        return this;
-      };
-
       return Terms;
 
     })(PageView);
