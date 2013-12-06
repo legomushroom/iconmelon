@@ -144,8 +144,12 @@
       };
 
       IconSelectView.prototype.showFooter = function() {
-        App.$footer.removeClass('h-gm').addClass('animated fadeInDown');
-        this.isFooterVisible = false;
+        var _this = this;
+
+        _.defer(function() {
+          App.$footer.removeClass('h-gm').addClass('animated fadeInDown');
+          return _this.isFooterVisible = false;
+        });
         return this;
       };
 

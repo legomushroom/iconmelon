@@ -92,8 +92,9 @@ define 'views/IconSelectView', ['views/ProtoView', 'collectionViews/SectionsColl
 					@
 
 		showFooter:->
-			App.$footer.removeClass('h-gm').addClass('animated fadeInDown')
-			@isFooterVisible = false
+			_.defer =>
+				App.$footer.removeClass('h-gm').addClass('animated fadeInDown')
+				@isFooterVisible = false
 			@
 
 		hideFooter:-> App.$footer.addClass 'h-gm'
