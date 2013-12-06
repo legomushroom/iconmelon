@@ -8,6 +8,7 @@ define 'router', ['backbone','controllers/PagesController'], (B, pc)->
 			'support-us': 	'support'
 			'how-to-use': 	'how'
 			'hire-me': 			'hire'
+			'terms': 				'terms'
 			'*path': 				'main'
 
 		main:(pageNum='1')->
@@ -39,6 +40,11 @@ define 'router', ['backbone','controllers/PagesController'], (B, pc)->
 		hire:->
 			@startPage pc.hire
 			@checkMainMenuItem '#js-hire'
+			@showHeader()
+
+		terms:->
+			@startPage pc.terms
+			# @checkMainMenuItem '#js-terms'
 			@showHeader()
 
 

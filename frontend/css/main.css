@@ -2908,13 +2908,13 @@ a.is-check:after,
   overflow: hidden;
 }
 .checkbox-with-label-b {
-  color: #bdbfbf;
+  color: #858484;
 }
 .checkbox-with-label-b .plus-btn-b {
   width: 16px;
   height: 16px;
   display: inline-block;
-  color: #bdbfbf;
+  color: #858484;
   position: relative;
   top: 1px;
   left: 4px;
@@ -2922,21 +2922,25 @@ a.is-check:after,
 .checkbox-with-label-b .plus-btn-b .icon {
   margin-top: 3px;
 }
-.checkbox-with-label-b:hover {
-  color: #858484;
-}
 .checkbox-with-label-b:hover .checkbox-b {
-  box-shadow: 2px 2px 0 #858484;
+  box-shadow: 2px 2px 0 #b0b2b2;
   border-width: 1px;
   border-style: solid;
-  border-color: #858484;
+  border-color: #6b6b6b;
 }
 .checkbox-with-label-b:hover .checkbox-b .icon {
-  fill: #858484;
+  fill: #6b6b6b;
+}
+.checkbox-with-label-b:hover label {
+  color: #6b6b6b;
+}
+.checkbox-with-label-b.is-license label {
+  margin-top: -32px;
+  font-size: 20px;
 }
 .checkbox-with-label-b label {
   font-size: 24px;
-  padding-left: 12px;
+  margin-left: 32px;
   display: inline-block;
   cursor: pointer;
   margin-top: -1px;
@@ -2946,6 +2950,13 @@ a.is-check:after,
 }
 .checkbox-with-label-b .checkbox-b {
   float: left;
+  box-shadow: 2px 2px 0 #bdbfbf;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #858484;
+}
+.checkbox-with-label-b .checkbox-b .icon {
+  fill: #858484;
 }
 .checkbox-b {
   width: 21px;

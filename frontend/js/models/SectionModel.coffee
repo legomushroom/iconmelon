@@ -11,6 +11,7 @@ define 'models/SectionModel', ['models/ProtoModel', 'helpers'], (ProtoModel, hel
 			isExpanded: false
 			isClosed: false
 			moderated: false
+			isAgree: false
 			icons: []
 
 

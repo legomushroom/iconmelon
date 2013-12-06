@@ -26,6 +26,7 @@
         isExpanded: false,
         isClosed: false,
         moderated: false,
+        isAgree: false,
         icons: []
       };
 

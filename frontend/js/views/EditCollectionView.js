@@ -37,6 +37,10 @@
           observe: 'license',
           onSet: 'licenseSet'
         },
+        '#js-agree input': {
+          observe: 'isAgree',
+          onSet: 'agreeSet'
+        },
         '#js-email': {
           observe: 'email',
           onSet: 'emailSet'
@@ -98,7 +102,7 @@
       EditCollectionView.prototype.suggestOnSubmition = function(e) {
         return App.notifier.show({
           type: 'error',
-          text: 'You have to fill credentials and have at least one valid icon to make this button active'
+          text: 'You have to fill credentials, agree to the terms of service and have at least one valid icon to make this button active'
         });
       };
 
@@ -174,8 +178,14 @@
         return val;
       };
 
+      EditCollectionView.prototype.agreeSet = function(val) {
+        this.isAgree = val;
+        this.checkIfValidCollection();
+        return val;
+      };
+
       EditCollectionView.prototype.checkIfValidCollection = function() {
-        return this.enableSubmitButton(this.nameValid && this.authorValid && this.emailValid && this.licenseValid && this.isValidCollection());
+        return this.enableSubmitButton(this.isAgree && this.nameValid && this.authorValid && this.emailValid && this.licenseValid && this.isValidCollection());
       };
 
       EditCollectionView.prototype.isValidCollection = function() {

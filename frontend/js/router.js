@@ -22,6 +22,7 @@
         'support-us': 'support',
         'how-to-use': 'how',
         'hire-me': 'hire',
+        'terms': 'terms',
         '*path': 'main'
       };
 
@@ -66,6 +67,11 @@
       Router.prototype.hire = function() {
         this.startPage(pc.hire);
         this.checkMainMenuItem('#js-hire');
+        return this.showHeader();
+      };
+
+      Router.prototype.terms = function() {
+        this.startPage(pc.terms);
         return this.showHeader();
       };
 

@@ -23,6 +23,10 @@ define 'views/EditCollectionView', [ 'views/ProtoView', 'views/IconEditView', 'c
 				observe: 	'license'
 				onSet: 		'licenseSet'
 
+			'#js-agree':
+				observe: 'isAgree'
+				onSet: 'agreeSet'
+
 			'#js-email': 	
 				observe: 	'email'
 				onSet: 		'emailSet'
@@ -134,8 +138,13 @@ define 'views/EditCollectionView', [ 'views/ProtoView', 'views/IconEditView', 'c
 			@checkIfValidCollection()
 			val
 
+		agreeSet:(val)->
+			console.log val
+			@isAgree = val
+			val
+
 		checkIfValidCollection:->
-			@enableSubmitButton @nameValid and @authorValid and @emailValid and @licenseValid and @isValidCollection()
+			@enableSubmitButton @isAgree and @nameValid and @authorValid and @emailValid and @licenseValid and @isValidCollection()
 
 		isValidCollection:->
 			i = 0

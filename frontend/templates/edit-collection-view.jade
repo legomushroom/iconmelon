@@ -28,15 +28,17 @@
 		- var textLeft = 'Normal', textRight = 'Multicolor'
 		include ../css/partials/switcher-with-texts
 
-		//- .checkbox-with-label-b(class="license-bh", id="js-license")
-		//- 	- var checked = undefined, name = "license"
-		//- 	include ../css/partials/checkbox
-		//- 	label(for=name) apply MIT license
-		//- 		a(target="_blank", href="http://opensource.org/licenses/mit-license.html")
-		//- 			- var iconPath = 'info-icon', filter = 'info-icon'
-		//- 			- var className = '', idAttribute = ''
-		//- 			- var title = 'info'
-		//- 			include ../css/partials/plus-btn
+		.checkbox-with-label-b(class="license-bh", id="js-agree").is-license
+			- var checked = undefined, name = "license"
+			include ../css/partials/checkbox
+			label(for=name) I have read and agree to the 
+				a.is-hoverable.is-check(target="_blank", href="#/terms") 	terms of service
+
+				//- a(target="_blank", href="http://opensource.org/licenses/mit-license.html")
+				//- 	- var iconPath = 'info-icon', filter = 'info-icon'
+				//- 	- var className = '', idAttribute = ''
+				//- 	- var title = 'info'
+				//- 	include ../css/partials/plus-btn
 
 		- var text = 'moderated', className = 'moderated-bh', idAttribute = 'js-moderated'
 		include ../css/partials/checkbox-with-label
