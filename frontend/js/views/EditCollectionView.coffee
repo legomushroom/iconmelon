@@ -23,9 +23,9 @@ define 'views/EditCollectionView', [ 'views/ProtoView', 'views/IconEditView', 'c
 				observe: 	'license'
 				onSet: 		'licenseSet'
 
-			'#js-agree input':
-				observe: 'isAgree'
-				onSet: 'agreeSet'
+			# '#js-agree input':
+			# 	observe: 'isAgree'
+			# 	onSet: 'agreeSet'
 
 			'#js-email': 	
 				observe: 	'email'
@@ -76,7 +76,7 @@ define 'views/EditCollectionView', [ 'views/ProtoView', 'views/IconEditView', 'c
 		suggestOnSubmition:(e)->
 			App.notifier.show
 				type: 'error'
-				text: 'You have to fill credentials, agree to the terms of service and have at least one valid icon to make this button active'
+				text: 'You have to fill credentials and have at least one valid icon to make this button active'
 
 
 		makeSvgData:(isCheck=true, isReset=false)->
@@ -138,13 +138,13 @@ define 'views/EditCollectionView', [ 'views/ProtoView', 'views/IconEditView', 'c
 			@checkIfValidCollection()
 			val
 
-		agreeSet:(val)->
-			@isAgree = val
-			@checkIfValidCollection()
-			val
+		# agreeSet:(val)->
+		# 	@isAgree = val
+		# 	@checkIfValidCollection()
+		# 	val
 
 		checkIfValidCollection:->
-			@enableSubmitButton @isAgree and @nameValid and @authorValid and @emailValid and @licenseValid and @isValidCollection()
+			@enableSubmitButton @nameValid and @authorValid and @emailValid and @licenseValid and @isValidCollection()
 
 		isValidCollection:->
 			i = 0
