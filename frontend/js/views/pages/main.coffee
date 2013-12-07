@@ -27,6 +27,7 @@ define 'views/pages/main', ['views/pages/PageView', 'views/IconSelectView', 'mod
 			@$mainLogo 			= @$('.main-logo-b')
 			@$melon 				= @$('.logo-large-e')
 			@$mainSection 	= @$('#js-icons-select-view-place')
+			@$browserIcons 	= @$mainLogo.find('#js-browsers-icons')
 			
 			_.defer =>
 				!App.mainAnimated and @animate()
@@ -99,7 +100,19 @@ define 'views/pages/main', ['views/pages/PageView', 'views/IconSelectView', 'mod
 		animate:->
 			@$mainLogo.addClass 'animated fadeInRightBig'
 			@$melon.addClass 		'animated swing'
-			setTimeout (=> @$mainSection.addClass('animated fadeInDown'); App.mainAnimated = true), 1000
+			setTimeout => 
+				@$mainSection.addClass('animated fadeInDown'); 
+				@animateIcons()
+				App.mainAnimated = true
+			, 1000
+
+		animateIcons:->
+			@$browserIcons.addClass 'animated fadeInDown'
+			# i = 0
+			# interval = setInterval => 
+			# 	@$browserIcons.eq(i++).addClass 'animated dropIn'
+			# 	if i is @$browserIcons.length then clearInterval(interval)
+			# , 50
 
 		show:->
 			@$mainLogo.addClass 		'is-no-translateX'

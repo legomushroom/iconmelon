@@ -4266,6 +4266,35 @@ a.is-check:after,
   -o-animation-duration: 1s;
   animation-duration: 1s;
 }
+@-webkit-keyframes dropIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0.5);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+  }
+}
+.dropIn {
+  -webkit-animation-name: dropIn;
+  -moz-animation-name: dropIn;
+  -o-animation-name: dropIn;
+  animation-name: dropIn;
+  -webkit-animation-duration: 1s;
+  -moz-animation-duration: 1s;
+  -ms-animation-duration: 1s;
+  -o-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-transition-timing-function: cubic-bezier(0.31, 1, 0.78, 1);
+/* older webkit */
+  -webkit-transition-timing-function: cubic-bezier(0.31, 1.65, 0.78, 1.65);
+  -moz-transition-timing-function: cubic-bezier(0.31, 1.65, 0.78, 1.65);
+  -o-transition-timing-function: cubic-bezier(0.31, 1.65, 0.78, 1.65);
+  transition-timing-function: cubic-bezier(0.31, 1.65, 0.78, 1.65);
+/* custom */
+}
 @-moz-keyframes fadeInDown {
   0% {
     opacity: 0;

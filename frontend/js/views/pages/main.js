@@ -42,6 +42,7 @@
         this.$mainLogo = this.$('.main-logo-b');
         this.$melon = this.$('.logo-large-e');
         this.$mainSection = this.$('#js-icons-select-view-place');
+        this.$browserIcons = this.$mainLogo.find('#js-browsers-icons');
         _.defer(function() {
           !App.mainAnimated && _this.animate();
           return App.mainAnimated && _this.show();
@@ -140,10 +141,15 @@
 
         this.$mainLogo.addClass('animated fadeInRightBig');
         this.$melon.addClass('animated swing');
-        return setTimeout((function() {
+        return setTimeout(function() {
           _this.$mainSection.addClass('animated fadeInDown');
+          _this.animateIcons();
           return App.mainAnimated = true;
-        }), 1000);
+        }, 1000);
+      };
+
+      Main.prototype.animateIcons = function() {
+        return this.$browserIcons.addClass('animated fadeInDown');
       };
 
       Main.prototype.show = function() {
