@@ -742,11 +742,11 @@ arrowOffset = 5*gs
 
 /* b3ae71e6b694bf45eec717b27592df6e */
 .checkbox-with-label-b
-	color c-grey3
+	color c-grey2
 	.plus-btn-b
 		rect 2*gs
 		display inline-block
-		color c-grey3
+		color c-grey2
 		position relative
 		top 1px
 		left (gs/2)
@@ -754,16 +754,22 @@ arrowOffset = 5*gs
 			margin-top 3px
 
 	&:hover
-		color c-grey2
 		.checkbox-b
-			box-shadow 2px 2px 0 c-grey2
-			border 1px solid c-grey2
+			box-shadow 2px 2px 0 c-grey3-hover
+			border 1px solid c-grey2-hover
 			.icon
-				fill c-grey2
+				fill c-grey2-hover
+		label
+			color c-grey2-hover
+
+	&.is-license
+		label
+			margin-top - 4*gs
+			font-size 2.5*gs
 
 	label
 		font-size 3*gs
-		padding-left 1.5*gs
+		margin-left 4*gs
 		display inline-block
 		cursor pointer
 		margin-top - 1px
@@ -771,6 +777,10 @@ arrowOffset = 5*gs
 			color inherit
 	.checkbox-b
 		float left
+		box-shadow 2px 2px 0 c-grey3
+		border 1px solid c-grey2
+		.icon
+			fill c-grey2
 
 /* d72ce917d1c414ba1d72da724f3a7ec4 */
 .checkbox-b
@@ -979,6 +989,11 @@ marginTop = 2*gs
 	> .description-be
 		font-size 19px
 		margin-top - (gs/2)
+
+	.browsers-support-l
+		margin-top gs + 2px
+		display inline-block
+		float none
 
 
 /* 9f594b08a3b87a497c4f5b4592e970e4 */
