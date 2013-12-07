@@ -3175,6 +3175,11 @@ a.is-check:after,
   font-size: 19px;
   margin-top: -4px;
 }
+.main-logo-b .browsers-support-l {
+  margin-top: 10px;
+  display: inline-block;
+  float: none;
+}
 .main-header-b {
   font-size: 20px;
   color: #3b3b3a;
@@ -3665,6 +3670,18 @@ a.is-check:after,
 .btn-b.is-counter.is-4-digits:after {
   width: 40px;
   font-size: 16px;
+}
+.browsers-support-l .icon {
+  width: 12px;
+  height: 12px;
+  float: left;
+  fill: #3b3b3a;
+}
+.browsers-support-l .icon:hover {
+  fill: #6b6b6b;
+}
+.browsers-support-l .icon + .icon {
+  margin-left: 18px;
 }
 .main-footer-l {
   text-align: center;
