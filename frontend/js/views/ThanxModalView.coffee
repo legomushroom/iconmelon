@@ -17,7 +17,7 @@ define 'views/ThanxModalView', ['views/ProtoView', 'underscore', 'jquery' , 'hel
 		render:->
 			super
 			@$el.hide().appendTo(document.body).fadeIn()
-			App.$blinded.fadeIn('fast')
+			App.$blinded.fadeIn('fast').css 'border': '1px solid rgba(0,0,0,.75)'
 			App.$blinded.on 'click', @blindedClickFun
 			@
 
