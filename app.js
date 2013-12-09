@@ -60,6 +60,8 @@
 
   app.use(express.methodOverride());
 
+  process.env.NODE_ENV = true;
+
   mongo.connect(process.env.NODE_ENV ? fs.readFileSync("db").toString() : 'mongodb://localhost/iconmelon');
 
   SectionSchema = new mongo.Schema({

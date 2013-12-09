@@ -18,21 +18,13 @@
       PaginatedCollection.prototype.page = 1;
 
       PaginatedCollection.prototype.initialize = function() {
-        this.perPage = (function() {
-          if (helpers.isMobile()) {
-            return 4;
-          } else {
-            if (window.App.isDevMode) {
-              return 4;
-            } else {
-              return 8;
-            }
-          }
-        })();
+        this.perPage = 2;
         this.options = {
           page: this.page,
           perPage: this.perPage,
-          total: 10
+          total: 10,
+          reset: false,
+          remove: false
         };
         this.o.isPaginated && (this.fetch = this.fetchFun);
         this.o.isPaginated && (this.parse = this.parseFun);
@@ -46,7 +38,9 @@
         };
         this.loadFromFile = (options != null ? options.sectionNames : void 0) ? true : false;
         return Backbone.Collection.prototype.fetch.call(this, {
-          data: $.extend(this.options, options || {})
+          data: $.extend(this.options, options || {}),
+          remove: false,
+          reset: false
         });
       };
 

@@ -32,7 +32,7 @@ app.use express.static  __dirname + "/#{folder}", maxAge: oneDay
 app.use express.bodyParser(uploadDir: 'uploads')
 app.use express.methodOverride()
 
-# process.env.NODE_ENV = true
+process.env.NODE_ENV = true
 mongo.connect if process.env.NODE_ENV then fs.readFileSync("db").toString() else 'mongodb://localhost/iconmelon'
 
 SectionSchema = new mongo.Schema
