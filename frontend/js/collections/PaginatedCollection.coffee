@@ -20,7 +20,6 @@ define 'collections/PaginatedCollection', ['backbone', 'helpers'], (B, helpers)=
 
     fetchFun:(options)->
         options = { remove: false }
-
         @loadFromFile = if options?.sectionNames then true else false
         Backbone.Collection::fetch.call(@, {data: ($.extend @options, options or {}), remove: false, reset: false })
 
