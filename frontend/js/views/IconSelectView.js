@@ -33,6 +33,7 @@
         this.bindModelEvents();
         this.debouncedFilter = _.debounce(this.filter, 250);
         IconSelectView.__super__.initialize.apply(this, arguments);
+        this.listenToScroll();
         this.sectionsCollection.on('afterFetch', _.bind(this.renderPagination, this));
         return this;
       };
@@ -66,13 +67,22 @@
       };
 
       IconSelectView.prototype.changePageNoty = function() {
-        this.showLoader();
-        return this.scrollTop();
+        return this.showLoader();
       };
 
       IconSelectView.prototype.loadPage = function(e) {
         this.changePageNoty();
         return this.sectionsCollection.loadPage(parseInt($(e.target).text(), 10) || 0);
+      };
+
+      IconSelectView.prototype.listenToScroll = function() {
+        var _this = this;
+
+        return App.$window.on('scroll', function(e) {
+          if (App.$window.scrollTop() + App.$window.outerHeight() >= _this.$el.position().top + _this.$el.height()) {
+            return _this.next();
+          }
+        });
       };
 
       IconSelectView.prototype.toggleEffects = function() {

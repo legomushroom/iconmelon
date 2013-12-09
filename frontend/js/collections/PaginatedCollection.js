@@ -41,6 +41,9 @@
       };
 
       PaginatedCollection.prototype.fetchFun = function(options) {
+        options = {
+          remove: false
+        };
         this.loadFromFile = (options != null ? options.sectionNames : void 0) ? true : false;
         return Backbone.Collection.prototype.fetch.call(this, {
           data: $.extend(this.options, options || {})
