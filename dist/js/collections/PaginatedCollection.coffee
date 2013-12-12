@@ -3,13 +3,15 @@ define 'collections/PaginatedCollection', ['backbone', 'helpers'], (B, helpers)=
     page: 1
 
     initialize: ->
-      @perPage = do -> if helpers.isMobile() then 4 else (if window.App.isDevMode then 4 else 8)
+      @perPage = 2 #do -> if helpers.isMobile() then 4 else (if window.App.isDevMode then 4 else 8)
 
       # _.bindAll @, "parse", "url", "pageInfo", "nextPage", "previousPage"
       @options = 
         page: @page
         perPage: @perPage
         total: 10
+        reset: false
+        remove: false
 
       @o.isPaginated and @fetch = @fetchFun
       @o.isPaginated and @parse = @parseFun
@@ -17,8 +19,9 @@ define 'collections/PaginatedCollection', ['backbone', 'helpers'], (B, helpers)=
       @
 
     fetchFun:(options)->
+        options = { remove: false }
         @loadFromFile = if options?.sectionNames then true else false
-        Backbone.Collection::fetch.call(@, data: $.extend @options, options or {})
+        Backbone.Collection::fetch.call(@, {data: ($.extend @options, options or {}), remove: false, reset: false })
 
     parseFun: (resp) ->
       @options.total = resp.total if resp.total

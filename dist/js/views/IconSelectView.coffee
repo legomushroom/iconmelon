@@ -16,6 +16,7 @@ define 'views/IconSelectView', ['views/ProtoView', 'collectionViews/SectionsColl
 			@bindModelEvents()
 			@debouncedFilter = 	_.debounce @filter, 250
 			super
+			@listenToScroll()
 			@sectionsCollection.on 'afterFetch', _.bind @renderPagination, @
 			@
 
@@ -28,10 +29,16 @@ define 'views/IconSelectView', ['views/ProtoView', 'collectionViews/SectionsColl
 		showLoader:->
 			helpers.showLoaderLine('is-long').setLoaderLineProgress 100
 		changePageNoty:->
-			@showLoader(); @scrollTop()
+			@showLoader(); # @scrollTop()
 		loadPage:(e)->
 			@changePageNoty()
 			@sectionsCollection.loadPage parseInt($(e.target).text(), 10) or 0
+
+		listenToScroll:->
+			App.$window.on 'scroll', (e)=> 
+				if App.$window.scrollTop() + App.$window.outerHeight() >= @$el.position().top + @$el.height()
+					@next()
+
 
 
 		toggleEffects:->

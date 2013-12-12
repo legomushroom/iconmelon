@@ -8,13 +8,8 @@ define 'views/pages/main', ['views/pages/PageView', 'views/IconSelectView', 'mod
 
 		initialize:(@o={})->
 			@isNoPageAnima = true
-			# @loadSvg()
 			super
 			@
-
-		# loadSvg:()->
-		# 	App.$svgWrap.load 'css/icons-main-page.svg'
-
 
 		render:->
 			super
