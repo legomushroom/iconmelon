@@ -17,11 +17,12 @@ pretty  = require('pretty-data').pd
 port    = 3000  
 app     = express()
 
-folder = 'dist'
-# folder = 'frontend' 
+# folder = 'dist'
+folder = 'frontend' 
 
 mkdirp "#{folder}/generated-icons", ->
 mkdirp 'uploads', ->
+
 
 oneDay = 86400000
 app.set 'port', process.env.PORT or port
@@ -32,8 +33,11 @@ app.use express.static  __dirname + "/#{folder}", maxAge: oneDay
 app.use express.bodyParser(uploadDir: 'uploads')
 app.use express.methodOverride()
 
-# process.env.NODE_ENV = true
+process.env.NODE_ENV = true
 mongo.connect if process.env.NODE_ENV then fs.readFileSync("db").toString() else 'mongodb://localhost/iconmelon'
+
+app.sectionsTotal = parseInt(fs.readFileSync('.sections-count'), 10) || (console.error('no sections total error'))
+
 
 SectionSchema = new mongo.Schema
       name:           String
@@ -335,10 +339,10 @@ io.sockets.on "connection", (socket) ->
         limit: data.perPage
         sort: createDate: -1
       Section.find {moderated: true}, null, options, (err, docs)->
-        Section.find {moderated: true}, (err, docs2)->
-          callback null, data =
-                          models: docs
-                          total: docs2.length
+        # Section.find {moderated: true}, (err, docs2)->
+        callback null, data =
+          models: docs
+          total: 20
 
 
   socket.on "sections-all:read", (data, callback) ->

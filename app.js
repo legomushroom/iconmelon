@@ -36,7 +36,7 @@
 
   app = express();
 
-  folder = 'dist';
+  folder = 'frontend';
 
   mkdirp("" + folder + "/generated-icons", function() {});
 
@@ -60,7 +60,11 @@
 
   app.use(express.methodOverride());
 
+  process.env.NODE_ENV = true;
+
   mongo.connect(process.env.NODE_ENV ? fs.readFileSync("db").toString() : 'mongodb://localhost/iconmelon');
+
+  app.sectionsTotal = parseInt(fs.readFileSync('.sections-count'), 10) || (console.error('no sections total error'));
 
   SectionSchema = new mongo.Schema({
     name: String,
@@ -544,13 +548,9 @@
         return Section.find({
           moderated: true
         }, null, options, function(err, docs) {
-          return Section.find({
-            moderated: true
-          }, function(err, docs2) {
-            return callback(null, data = {
-              models: docs,
-              total: docs2.length
-            });
+          return callback(null, data = {
+            models: docs,
+            total: 20
           });
         });
       }

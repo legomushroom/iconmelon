@@ -1,6 +1,6 @@
 /**
  * @license
- * Lo-Dash 2.4.0 (Custom Build) <http://lodash.com/>
+ * Lo-Dash 2.4.1 (Custom Build) <http://lodash.com/>
  * Build: `lodash underscore exports="amd,commonjs,global,node" -o ./dist/lodash.underscore.js`
  * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
  * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
@@ -215,11 +215,11 @@
       propertyIsEnumerable = objectProto.propertyIsEnumerable;
 
   /* Native method shortcuts for methods with the same name as other `lodash` methods */
-  var nativeCreate = reNative.test(nativeCreate = Object.create) && nativeCreate,
-      nativeIsArray = reNative.test(nativeIsArray = Array.isArray) && nativeIsArray,
+  var nativeCreate = isNative(nativeCreate = Object.create) && nativeCreate,
+      nativeIsArray = isNative(nativeIsArray = Array.isArray) && nativeIsArray,
       nativeIsFinite = root.isFinite,
       nativeIsNaN = root.isNaN,
-      nativeKeys = reNative.test(nativeKeys = Object.keys) && nativeKeys,
+      nativeKeys = isNative(nativeKeys = Object.keys) && nativeKeys,
       nativeMax = Math.max,
       nativeMin = Math.min,
       nativeRandom = Math.random;
@@ -402,7 +402,10 @@
       // `Function#bind` spec
       // http://es5.github.io/#x15.3.4.5
       if (partialArgs) {
-        var args = partialArgs.slice();
+        // avoid `arguments` object deoptimizations by using `slice` instead
+        // of `Array.prototype.slice.call` and not assigning `arguments` to a
+        // variable as a ternary expression
+        var args = slice(partialArgs);
         push.apply(args, arguments);
       }
       // mimic the constructor's `return` behavior
@@ -504,7 +507,7 @@
     function bound() {
       var thisBinding = isBind ? thisArg : this;
       if (partialArgs) {
-        var args = partialArgs.slice();
+        var args = slice(partialArgs);
         push.apply(args, arguments);
       }
       if (partialRightArgs || isCurry) {
@@ -690,22 +693,25 @@
           }
         }
       }
-      return result;
     }
-    forIn(b, function(value, key, b) {
-      if (hasOwnProperty.call(b, key)) {
-        size++;
-        return !(result = hasOwnProperty.call(a, key) && baseIsEqual(a[key], value, stackA, stackB)) && indicatorObject;
-      }
-    });
-
-    if (result) {
-      forIn(a, function(value, key, a) {
-        if (hasOwnProperty.call(a, key)) {
-          return !(result = --size > -1) && indicatorObject;
+    else {
+      forIn(b, function(value, key, b) {
+        if (hasOwnProperty.call(b, key)) {
+          size++;
+          return !(result = hasOwnProperty.call(a, key) && baseIsEqual(a[key], value, stackA, stackB)) && indicatorObject;
         }
       });
+
+      if (result) {
+        forIn(a, function(value, key, a) {
+          if (hasOwnProperty.call(a, key)) {
+            return !(result = --size > -1) && indicatorObject;
+          }
+        });
+      }
     }
+    stackA.pop();
+    stackB.pop();
     return result;
   }
 
@@ -856,6 +862,17 @@
   function getIndexOf() {
     var result = (result = lodash.indexOf) === indexOf ? baseIndexOf : result;
     return result;
+  }
+
+  /**
+   * Checks if `value` is a native function.
+   *
+   * @private
+   * @param {*} value The value to check.
+   * @returns {boolean} Returns `true` if the `value` is a native function, else `false`.
+   */
+  function isNative(value) {
+    return typeof value == 'function' && reNative.test(value);
   }
 
   /**
@@ -4324,7 +4341,7 @@
    * _.defer(function() { console.log(_.now() - stamp); });
    * // => logs the number of milliseconds it took for the deferred function to be called
    */
-  var now = reNative.test(now = Date.now) && now || function() {
+  var now = isNative(now = Date.now) && now || function() {
     return new Date().getTime();
   };
 
@@ -4892,7 +4909,7 @@
    * @memberOf _
    * @type string
    */
-  lodash.VERSION = '2.4.0';
+  lodash.VERSION = '2.4.1';
 
   // add "Chaining" functions to the wrapper
   lodash.prototype.chain = wrapperChain;
