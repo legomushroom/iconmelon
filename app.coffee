@@ -24,6 +24,7 @@ mkdirp "#{folder}/generated-icons", ->
 mkdirp 'uploads', ->
 
 
+
 oneDay = 86400000
 app.set 'port', process.env.PORT or port
 app.use express.compress()
