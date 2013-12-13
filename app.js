@@ -36,7 +36,7 @@
 
   app = express();
 
-  folder = 'frontend';
+  folder = 'dist';
 
   mkdirp("" + folder + "/generated-icons", function() {});
 
@@ -59,8 +59,6 @@
   }));
 
   app.use(express.methodOverride());
-
-  process.env.NODE_ENV = true;
 
   mongo.connect(process.env.NODE_ENV ? fs.readFileSync("db").toString() : 'mongodb://localhost/iconmelon');
 
@@ -545,13 +543,17 @@
             createDate: -1
           }
         };
+        console.time('fetch');
         return Section.find({
           moderated: true
         }, null, options, function(err, docs) {
-          return callback(null, data = {
+          console.timeEnd('fetch');
+          console.time('fetch2');
+          callback(null, data = {
             models: docs,
-            total: 20
+            total: app.sectionsTotal
           });
+          return console.timeEnd('fetch2');
         });
       }
     });

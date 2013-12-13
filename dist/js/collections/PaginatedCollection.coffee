@@ -3,7 +3,7 @@ define 'collections/PaginatedCollection', ['backbone', 'helpers'], (B, helpers)=
     page: 1
 
     initialize: ->
-      @perPage = do -> if helpers.isMobile() then 4 else (if window.App.isDevMode then 4 else 8)
+      @perPage = do -> if helpers.isMobile() then 3 else 5
 
       # _.bindAll @, "parse", "url", "pageInfo", "nextPage", "previousPage"
       @options = 

@@ -20,13 +20,9 @@
       PaginatedCollection.prototype.initialize = function() {
         this.perPage = (function() {
           if (helpers.isMobile()) {
-            return 4;
+            return 3;
           } else {
-            if (window.App.isDevMode) {
-              return 4;
-            } else {
-              return 8;
-            }
+            return 5;
           }
         })();
         this.options = {
