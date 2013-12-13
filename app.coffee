@@ -33,7 +33,7 @@ app.use express.static  __dirname + "/#{folder}", maxAge: oneDay
 app.use express.bodyParser(uploadDir: 'uploads')
 app.use express.methodOverride()
 
-# process.env.NODE_ENV = true
+process.env.NODE_ENV = true
 mongo.connect if process.env.NODE_ENV then fs.readFileSync("db").toString() else 'mongodb://localhost/iconmelon'
 
 app.sectionsTotal = parseInt(fs.readFileSync('.sections-count'), 10) || (console.error('no sections total error'))
@@ -338,15 +338,15 @@ io.sockets.on "connection", (socket) ->
         limit: data.perPage
         sort: createDate: -1
 
-      console.time 'fetch'
+      # console.time 'fetch'
       Section.find {moderated: true}, null, options, (err, docs)->
-        console.timeEnd 'fetch'
+        # console.timeEnd 'fetch'
   
-        console.time 'fetch2'
+        # console.time 'fetch2'
         callback null, data =
           models: docs
           total: app.sectionsTotal
-        console.timeEnd 'fetch2'
+        # console.timeEnd 'fetch2'
 
 
 
@@ -377,6 +377,11 @@ io.sockets.on "connection", (socket) ->
             callback 500, 'DB error'
             console.error err
           else callback null, 'ok'
+
+        Section.find { moderated: true }, (err,docs)->
+          app.sectionsTotal = docs.length
+          main.writeFile('.sections-count', docs.length)
+
 
       # main.generateMainPageSvg()
 

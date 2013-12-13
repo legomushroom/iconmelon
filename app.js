@@ -60,6 +60,8 @@
 
   app.use(express.methodOverride());
 
+  process.env.NODE_ENV = true;
+
   mongo.connect(process.env.NODE_ENV ? fs.readFileSync("db").toString() : 'mongodb://localhost/iconmelon');
 
   app.sectionsTotal = parseInt(fs.readFileSync('.sections-count'), 10) || (console.error('no sections total error'));
@@ -543,17 +545,13 @@
             createDate: -1
           }
         };
-        console.time('fetch');
         return Section.find({
           moderated: true
         }, null, options, function(err, docs) {
-          console.timeEnd('fetch');
-          console.time('fetch2');
-          callback(null, data = {
+          return callback(null, data = {
             models: docs,
             total: app.sectionsTotal
           });
-          return console.timeEnd('fetch2');
         });
       }
     });
@@ -597,13 +595,19 @@
         }, function(err) {
           var _this = this;
 
-          return main.generateMainPageSvg().then(function() {
+          main.generateMainPageSvg().then(function() {
             if (err) {
               callback(500, 'DB error');
               return console.error(err);
             } else {
               return callback(null, 'ok');
             }
+          });
+          return Section.find({
+            moderated: true
+          }, function(err, docs) {
+            app.sectionsTotal = docs.length;
+            return main.writeFile('.sections-count', docs.length);
           });
         });
       });
