@@ -265,7 +265,7 @@ table {
   border-bottom-right-radius: 4px;
 }
 .main-header-b.is-convex {
-  box-shadow: 0 4px 0 rgba(59,59,58,0.2);
+  box-shadow: 0 4px 0 rgba(59,59,58,0.25);
 }
 .main-header-b > .logo-tiny-e {
   margin-top: -8px;

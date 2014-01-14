@@ -89,6 +89,7 @@ class Main
       'GPL-v2':    'http://www.gnu.org/licenses/gpl-2.0.html'
       'GPL-v1':    'http://www.gnu.org/licenses/gpl-1.0.html'
       'CC by 3.0': 'http://creativecommons.org/licenses/by/3.0/'
+      'CC by 2.5': 'http://creativecommons.org/licenses/by/2.5/'
       'CC by-sa 3.0': 'http://creativecommons.org/licenses/by-sa/3.0/'
       'CC by-nd 3.0': 'http://creativecommons.org/licenses/by-nd/3.0/'
       'BSD':      'http://opensource.org/licenses/BSD-3-Clause'
