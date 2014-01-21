@@ -1,6 +1,6 @@
 iconmelon
 =========
-svg icons library for web
+svg icons library for the web
 
 http://iconmelon.com/
 
