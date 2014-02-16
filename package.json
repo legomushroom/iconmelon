@@ -9,7 +9,7 @@
   },
   "private": false,
   "scripts": {
-    "start": "node app.js"
+    "start": "nodemon app.js"
   },
   "dependencies": {
     "express": "3.3.7",
@@ -27,7 +27,16 @@
     "pretty-data": "latest"
   },
   "devDependencies": {
-    "nodemon": "*"
+    "nodemon": "*",
+    "gulp": "~3.5.2",
+    "gulp-minify-css": "~0.3.0",
+    "gulp-stylus": "0.0.12",
+    "gulp-autoprefixer": "0.0.6",
+    "gulp-notify": "~0.5.1",
+    "gulp-livereload": "~1.1.1",
+    "gulp-coffee": "~1.4.1",
+    "gulp-changed": "~0.2.0",
+    "gulp-jade": "~0.4.2"
   },
   "domains": [
     "iconmelon.com",

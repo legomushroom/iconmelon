@@ -1,1 +1,41 @@
-(function(){var e={}.hasOwnProperty,t=function(t,n){function i(){this.constructor=t}for(var r in n)e.call(n,r)&&(t[r]=n[r]);return i.prototype=n.prototype,t.prototype=new i,t.__super__=n.prototype,t};define("views/pages/hire",["views/pages/PageView"],function(e){var n,r;return n=function(e){function n(){return r=n.__super__.constructor.apply(this,arguments),r}return t(n,e),n.prototype.template="#hire-page-template",n.prototype.className="hire-p",n.prototype.render=function(){return n.__super__.render.apply(this,arguments),this.loadImage(),this},n.prototype.loadImage=function(){var e,t=this;return e=new Image,e.onload=function(){return t.$("#js-lego-img").addClass("animate fadeInUp").removeClass("op-0-gm")},e.src=window.devicePixelRatio>1?"css/i/legomushroom-@2x.png":"css/i/legomushroom.png"},n}(e),n})}).call(this);
+(function() {
+  var __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  define('views/pages/hire', ['views/pages/PageView'], function(PageView) {
+    var Hire;
+    Hire = (function(_super) {
+      __extends(Hire, _super);
+
+      function Hire() {
+        return Hire.__super__.constructor.apply(this, arguments);
+      }
+
+      Hire.prototype.template = '#hire-page-template';
+
+      Hire.prototype.className = 'hire-p';
+
+      Hire.prototype.render = function() {
+        Hire.__super__.render.apply(this, arguments);
+        this.loadImage();
+        return this;
+      };
+
+      Hire.prototype.loadImage = function() {
+        var imageObj;
+        imageObj = new Image();
+        imageObj.onload = (function(_this) {
+          return function() {
+            return _this.$('#js-lego-img').addClass('animate fadeInUp').removeClass('op-0-gm');
+          };
+        })(this);
+        return imageObj.src = window.devicePixelRatio > 1 ? 'css/i/legomushroom-@2x.png' : 'css/i/legomushroom.png';
+      };
+
+      return Hire;
+
+    })(PageView);
+    return Hire;
+  });
+
+}).call(this);

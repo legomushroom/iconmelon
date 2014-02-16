@@ -1,1 +1,22 @@
-(function(){var e=this,t={}.hasOwnProperty,n=function(e,n){function i(){this.constructor=e}for(var r in n)t.call(n,r)&&(e[r]=n[r]);return i.prototype=n.prototype,e.prototype=new i,e.__super__=n.prototype,e};define("collections/NotiesCollection",["backbone","models/NotyModel"],function(e,t){var r,i;return r=function(e){function t(){return i=t.__super__.constructor.apply(this,arguments),i}return n(t,e),t}(e.Collection),r})}).call(this);
+(function() {
+  var __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  define('collections/NotiesCollection', ['backbone', 'models/NotyModel'], (function(_this) {
+    return function(B, NotyModel) {
+      var NotiesCollection;
+      NotiesCollection = (function(_super) {
+        __extends(NotiesCollection, _super);
+
+        function NotiesCollection() {
+          return NotiesCollection.__super__.constructor.apply(this, arguments);
+        }
+
+        return NotiesCollection;
+
+      })(B.Collection);
+      return NotiesCollection;
+    };
+  })(this));
+
+}).call(this);

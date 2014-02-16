@@ -1,1 +1,31 @@
-(function(){var e={}.hasOwnProperty,t=function(t,n){function i(){this.constructor=t}for(var r in n)e.call(n,r)&&(t[r]=n[r]);return i.prototype=n.prototype,t.prototype=new i,t.__super__=n.prototype,t};define("collectionViews/IconsCollectionView",["collectionViews/ProtoCollectionView","views/IconView","jquery"],function(e,n,r){var i,s;return i=function(e){function r(){return s=r.__super__.constructor.apply(this,arguments),s}return t(r,e),r.prototype.itemView=n,r.prototype.template="#icons-collection-view-template",r.prototype.initialize=function(e){return this.o=e!=null?e:{},this.collection.mode=this.o.mode,r.__super__.initialize.apply(this,arguments),this},r}(e),i})}).call(this);
+(function() {
+  var __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  define('collectionViews/IconsCollectionView', ['collectionViews/ProtoCollectionView', 'views/IconView', 'jquery'], function(ProtoView, IconView, $) {
+    var IconsCollectionView;
+    IconsCollectionView = (function(_super) {
+      __extends(IconsCollectionView, _super);
+
+      function IconsCollectionView() {
+        return IconsCollectionView.__super__.constructor.apply(this, arguments);
+      }
+
+      IconsCollectionView.prototype.itemView = IconView;
+
+      IconsCollectionView.prototype.template = '#icons-collection-view-template';
+
+      IconsCollectionView.prototype.initialize = function(o) {
+        this.o = o != null ? o : {};
+        this.collection.mode = this.o.mode;
+        IconsCollectionView.__super__.initialize.apply(this, arguments);
+        return this;
+      };
+
+      return IconsCollectionView;
+
+    })(ProtoView);
+    return IconsCollectionView;
+  });
+
+}).call(this);

@@ -1,1 +1,34 @@
-(function(){var e={}.hasOwnProperty,t=function(t,n){function i(){this.constructor=t}for(var r in n)e.call(n,r)&&(t[r]=n[r]);return i.prototype=n.prototype,t.prototype=new i,t.__super__=n.prototype,t};define("collectionViews/SectionsCollectionView",["collectionViews/ProtoCollectionView","views/SectionView","helpers"],function(e,n,r){var i,s;return i=function(e){function r(){return s=r.__super__.constructor.apply(this,arguments),s}return t(r,e),r.prototype.itemView=n,r.prototype.template="#sections-collection-view-template",r.prototype.render=function(){var e=this;return _.defer(function(){return r.__super__.render.apply(e,arguments),e.$el.addClass("animated fadeInDown")}),this},r}(e),i})}).call(this);
+(function() {
+  var __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  define('collectionViews/SectionsCollectionView', ['collectionViews/ProtoCollectionView', 'views/SectionView', 'helpers'], function(ProtoView, SectionView, helpers) {
+    var SectionsCollectionView;
+    SectionsCollectionView = (function(_super) {
+      __extends(SectionsCollectionView, _super);
+
+      function SectionsCollectionView() {
+        return SectionsCollectionView.__super__.constructor.apply(this, arguments);
+      }
+
+      SectionsCollectionView.prototype.itemView = SectionView;
+
+      SectionsCollectionView.prototype.template = '#sections-collection-view-template';
+
+      SectionsCollectionView.prototype.render = function() {
+        _.defer((function(_this) {
+          return function() {
+            SectionsCollectionView.__super__.render.apply(_this, arguments);
+            return _this.$el.addClass('animated fadeInDown');
+          };
+        })(this));
+        return this;
+      };
+
+      return SectionsCollectionView;
+
+    })(ProtoView);
+    return SectionsCollectionView;
+  });
+
+}).call(this);

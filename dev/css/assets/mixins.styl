@@ -1,0 +1,115 @@
+gs = 8px
+br = 3px
+
+notyWidth = 42*gs
+
+
+retina(path, size= 100%, color= white)
+	background color url(path+'.png') no-repeat center center
+	background-size size
+	@media only screen and (-webkit-min-device-pixel-ratio: 2), (min-resolution: 144dpi)
+		background color url(path+'-@2x.png') no-repeat center center
+		background-size size
+
+downShadow()
+	box-shadow 0 (gs/2) 0 rgba(rgb(c-grey1), .25)
+
+downRightShadow(size = (gs/2))
+	box-shadow size size 0 rgba(rgb(c-grey1), .25)
+
+brad(amount = br)
+	border-radius amount
+
+fontOfControl()
+	font-family 'dense'
+	font-size 20px
+	letter-spacing 1px
+
+t(position)
+	top position
+
+b(position)
+	bottom position	
+
+l(position)
+	left position
+
+r(position)
+	right position
+
+nw(position=0)
+	top 	position
+	left 	position
+ne(position=0)
+	top 	position 
+	right 	position
+sw(position=0)
+	bottom 	position
+	left 	position
+se(position=0)
+	bottom 	position
+	right 	position
+
+border(width, style= solid, color= black)
+	border-width width
+	border-style style
+	border-color color
+
+bbox()
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	        box-sizing: border-box;
+
+cbox()
+	-webkit-box-sizing: content-box;
+	   -moz-box-sizing: content-box;
+	        box-sizing: content-box;
+
+transform()
+	-webkit-transform arguments
+	 -moz-transform arguments
+	 -ms-transform arguments
+	 -o-transform arguments
+	 transform arguments
+
+transition()
+	-webkit-transition arguments
+	-moz-transition arguments
+	-o-transition arguments
+	transition arguments
+
+rect(size)
+	width size
+	height size
+
+min-rect(size)
+	min-width size
+	min-height size
+
+hl(color, size=1px)
+	outline size solid color
+
+textel()
+	white-space: nowrap
+	-webkit-text-overflow: ellipsis
+	-moz-text-overflow: ellipsis
+	-o-text-overflow: ellipsis
+	text-overflow: ellipsis
+	overflow:hidden
+
+placeholder-mixin(colorArg = c-grey3 )
+	&::-webkit-input-placeholder { /* WebKit browsers */
+		    color: colorArg
+	}
+	&:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+	    color: colorArg
+	}
+	&::-moz-placeholder { /* Mozilla Firefox 19+ */
+	    color: colorArg
+	}
+	&:-ms-input-placeholder { /* Internet Explorer 10+ */
+	    color: colorArg
+	}
+
+II = !important
+

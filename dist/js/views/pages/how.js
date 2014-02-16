@@ -1,1 +1,24 @@
-(function(){var e={}.hasOwnProperty,t=function(t,n){function i(){this.constructor=t}for(var r in n)e.call(n,r)&&(t[r]=n[r]);return i.prototype=n.prototype,t.prototype=new i,t.__super__=n.prototype,t};define("views/pages/how",["views/pages/PageView"],function(e){var n,r;return n=function(e){function n(){return r=n.__super__.constructor.apply(this,arguments),r}return t(n,e),n.prototype.template="#how-page-template",n.prototype.className="how-p",n}(e),n})}).call(this);
+(function() {
+  var __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  define('views/pages/how', ['views/pages/PageView'], function(PageView) {
+    var How;
+    How = (function(_super) {
+      __extends(How, _super);
+
+      function How() {
+        return How.__super__.constructor.apply(this, arguments);
+      }
+
+      How.prototype.template = '#how-page-template';
+
+      How.prototype.className = 'how-p';
+
+      return How;
+
+    })(PageView);
+    return How;
+  });
+
+}).call(this);

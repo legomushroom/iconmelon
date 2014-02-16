@@ -1,1 +1,51 @@
-(function(){var e={}.hasOwnProperty,t=function(t,n){function i(){this.constructor=t}for(var r in n)e.call(n,r)&&(t[r]=n[r]);return i.prototype=n.prototype,t.prototype=new i,t.__super__=n.prototype,t};define("collectionViews/ProtoCollectionView",["marionette","views/ProtoView"],function(e){var n,r;return n=function(e){function n(){return r=n.__super__.constructor.apply(this,arguments),r}return t(n,e),n.prototype.initialize=function(e){return this.o=e!=null?e:{},this.o.$el&&this.setElement(this.o.$el),n.__super__.initialize.apply(this,arguments),this.o.isRender&&this.render(),this},n.prototype.normalizeCollection=function(e){var t,n;if(this.model)return n=function(){var e;e=[];for(t in n=this.model.toJSON())e.push(n[t]);return e}.call(this),this.collection=new e(n),n=null,this.collection.parentCollection=this.model.collection},n.prototype.teardown=function(){var e;return this.isClosed=!0,(e=this.collection)!=null?e.isClosed=!0:void 0},n}(e.CompositeView),n})}).call(this);
+(function() {
+  var __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  define('collectionViews/ProtoCollectionView', ['marionette', 'views/ProtoView'], function(M) {
+    var ProtoCollectionView;
+    ProtoCollectionView = (function(_super) {
+      __extends(ProtoCollectionView, _super);
+
+      function ProtoCollectionView() {
+        return ProtoCollectionView.__super__.constructor.apply(this, arguments);
+      }
+
+      ProtoCollectionView.prototype.initialize = function(o) {
+        this.o = o != null ? o : {};
+        this.o.$el && this.setElement(this.o.$el);
+        ProtoCollectionView.__super__.initialize.apply(this, arguments);
+        this.o.isRender && this.render();
+        return this;
+      };
+
+      ProtoCollectionView.prototype.normalizeCollection = function(collectionProto) {
+        var i, modelAttr;
+        if (this.model) {
+          modelAttr = (function() {
+            var _results;
+            _results = [];
+            for (i in modelAttr = this.model.toJSON()) {
+              _results.push(modelAttr[i]);
+            }
+            return _results;
+          }).call(this);
+          this.collection = new collectionProto(modelAttr);
+          modelAttr = null;
+          return this.collection.parentCollection = this.model.collection;
+        }
+      };
+
+      ProtoCollectionView.prototype.teardown = function() {
+        var _ref;
+        this.isClosed = true;
+        return (_ref = this.collection) != null ? _ref.isClosed = true : void 0;
+      };
+
+      return ProtoCollectionView;
+
+    })(M.CompositeView);
+    return ProtoCollectionView;
+  });
+
+}).call(this);
