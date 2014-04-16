@@ -1,4 +1,4 @@
-!!!5
+doctype html
 html
 	head
 		meta(charset='UTF-8')
@@ -31,7 +31,7 @@ html
 		- var text = ''		
 		- var filter = ''
 		- var viewBox = '0 0 32 32'
-		#js-svg-wrap	
+		#js-svg-wrap
 			include css/icons.svg
 
 		.to-top-btn-b.is-left(title="to top").js-to-top
@@ -70,7 +70,7 @@ html
 				- var data = { className: 'is-twitter', link: 'https://twitter.com/iconmelon', title: "ask on twitter", iconPath: 'twitter-icon' }
 				include css/partials/social-btn
 
-				- var data = { className: 'is-github', link: 'https://github.com/sol0mka/iconmelon', title: "github", iconPath: 'github-logo-icon' }
+				- var data = { className: 'is-github', link: 'https://github.com/iconmelon/iconmelon', title: "github", iconPath: 'github-logo-icon' }
 				include css/partials/social-btn
 
 		section#main-l
@@ -157,15 +157,14 @@ html
 
 		script(type='text/javascript', src='js/lib/require.js', data-main='js/main')
 
-		script(type="text/javascript")
+		script(type="text/javascript").
 			var _gaq = _gaq || [];
 			_gaq.push(['_setAccount', 'UA-45568365-1']);
 			_gaq.push(['_trackPageview']);
-
 			(function() {
-			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 			})();
 
 

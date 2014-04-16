@@ -3,7 +3,7 @@
 
 ({
 	//- paths are relative to this app.build.js file
-	appDir: "../frontend",
+	appDir: "../dev",
 	baseUrl: "js",
 	//- this is the directory that the new files will be. it will be created if it doesn't exist
 	dir: "../dist",
