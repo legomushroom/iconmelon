@@ -1,0 +1,18 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'start' ]
+2 info using npm@1.3.14
+3 info using node@v0.10.22
+4 error Error: ENOENT, open '/Applications/MAMP/htdocs/iconmelon/build/package.json'
+5 error If you need help, you may report this log at:
+5 error     <http://github.com/isaacs/npm/issues>
+5 error or email it to:
+5 error     <npm-@googlegroups.com>
+6 error System Darwin 13.1.0
+7 error command "node" "/usr/local/bin/npm" "start"
+8 error cwd /Applications/MAMP/htdocs/iconmelon/build
+9 error node -v v0.10.22
+10 error npm -v 1.3.14
+11 error path /Applications/MAMP/htdocs/iconmelon/build/package.json
+12 error code ENOENT
+13 error errno 34
+14 verbose exit [ 34, true ]

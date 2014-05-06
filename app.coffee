@@ -18,7 +18,7 @@ port    = 3000
 app     = express()
 
 folder = 'dist'
-# folder = 'dev' 
+# folder = 'dev'
 
 mkdirp "#{folder}/generated-icons", ->
 mkdirp 'uploads', ->
